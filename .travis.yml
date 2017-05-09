@@ -4,7 +4,7 @@ language: php
 # Allows using containers
 sudo: false
 
-# Cache composer packages so "composer install" is faster
+# Cache composer packages so "composer ins  tall" is faster
 cache:
   directories:
     - $HOME/.composer/cache
