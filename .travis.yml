@@ -11,7 +11,7 @@ cache:
 
 # Base versions to test raw with the Symfony latest version.
 php:
-    - 5.5
+    - 5.6
   
 # The Symfony version implies that you require the full framework, not single components
 # Requiring single components is much harder to do... And probably not flexible enough, even if it's lighter.
@@ -38,8 +38,8 @@ before_install:
 # Note: for coveralls to work you need a ".coveralls.yml" file (see other file in this gist).
 install:
   - composer install
-  - composer require --dev phpunit/phpunit:~4.0
-  - composer require --dev satooshi/php-coveralls:~0.1
+  - composer require --dev phpunit/phpunit:~5.0
+  - composer require --dev satooshi/php-coveralls:~0.6
 
 # Run script and log coverage in the "build" directory
 script:
