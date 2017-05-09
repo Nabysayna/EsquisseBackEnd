@@ -15,6 +15,6 @@ class LuckyController extends Controller
     {
         // replace this example code with whatever you need
         $number = mt_rand(0,100) ;    
-        return new Response('<html><body>Lucky number: '.$number.'</body></html>') ;
+        return new Response('<html><body>Here we go ! Your Lucky number is ... '.$number.'</body></html>') ;
     }
 }
