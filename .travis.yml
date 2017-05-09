@@ -57,4 +57,4 @@ after_success: |
 
 # After a build, sends a notification to this e-mail with the build results.
 notifications:
-  email: contact@email.com
+  email: nabysayna@gmail.com
