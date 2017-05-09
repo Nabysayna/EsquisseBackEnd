@@ -11,7 +11,7 @@ cache:
 
 # Base versions to test raw with the Symfony latest version.
 php:
-    - 5
+    - 5.5
   
 # The Symfony version implies that you require the full framework, not single components
 # Requiring single components is much harder to do... And probably not flexible enough, even if it's lighter.
