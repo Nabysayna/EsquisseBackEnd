@@ -20,7 +20,7 @@ script: phpunit --coverage-text
   
  deploy:
   provider: heroku
-  app: your-app-name # optional if it's the same as your repo name
+  app: stormy-brushlands-63994 # optional if it's the same as your repo name
   api_key: $auth_token
   
 notifications:
