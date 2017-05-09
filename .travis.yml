@@ -22,12 +22,12 @@ php:
 # Requiring single components is much harder to do... And probably not flexible enough, even if it's lighter.
 env:
   global:
-    - SYMFONY_VERSION=""
+    - SYMFONY_VERSION="3.2"
 
 # Heavy matrix to test every version of the bundle/package
 matrix:
   # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
-  fast_finish: true
+  #fast_finish: true
   include:
     # Lowest dependency
     - php: 5.6
@@ -57,7 +57,7 @@ install:
 
 # Run script and log coverage in the "build" directory
 script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover build/coverage-clover.xml
+  - phpunit --coverage-text --coverage-clover build/coverage-clover.xml
 
 # Run coveralls after success and if not in hhvm (too much cache, incorrect coverage)
 after_success: |
