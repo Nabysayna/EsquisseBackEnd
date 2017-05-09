@@ -11,12 +11,12 @@ before_script:
 
 script: phpunit --coverage-text
 
-#after_script:
-#  - heroku config:set SYMFONY_ENV=prod
-#  - git init
-#  - git add .
-#  - git commit -m "initial"
-#  - git push heroku master
+after_script:
+  - heroku config:set SYMFONY_ENV=prod
+  - git init
+  - git add .
+  - git commit -m "initial"
+  - git push heroku master
   
  deploy:
   provider: heroku
