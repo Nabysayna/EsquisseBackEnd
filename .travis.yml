@@ -11,6 +11,18 @@ before_script:
 
 script: phpunit --coverage-text
 
+#after_script:
+#  - heroku config:set SYMFONY_ENV=prod
+#  - git init
+#  - git add .
+#  - git commit -m "initial"
+#  - git push heroku master
+  
+ deploy:
+  provider: heroku
+  app: your-app-name # optional if it's the same as your repo name
+  api_key: $auth_token
+  
 notifications:
   email:
     - nabysayna@gmail.com
