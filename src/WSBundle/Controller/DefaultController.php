@@ -4,6 +4,8 @@ namespace WSBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+include('./lib/nusoap.php');
 
 class DefaultController extends Controller
 {
@@ -20,5 +22,16 @@ class DefaultController extends Controller
         $response->setContent(ob_get_clean());
 
         return $response;
+    }
+
+    public function clientoapAction()
+    {
+
+        
+        $client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php?wsdl', true);
+ 
+        $result = $client->call('hello', array('name' => 'Team'));
+ 
+        return new JsonResponse(array('result' => $result));
     }
 }

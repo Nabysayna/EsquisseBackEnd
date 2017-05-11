@@ -1,3 +1,7 @@
 ws_homepage:
     path:     /
     defaults: { _controller: WSBundle:Default:index }
+
+soa_test:
+    path:     /soap
+    defaults: { _controller: WSBundle:Default:clientoap }
