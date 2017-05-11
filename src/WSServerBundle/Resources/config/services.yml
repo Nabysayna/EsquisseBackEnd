@@ -1,0 +1,6 @@
+services:
+#    ws_server.example:
+#        class: WSServerBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+      test_service:
+        class: WSServerBundle\Services\HelloService

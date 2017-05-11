@@ -1,0 +1,3 @@
+ws_client_homepage:
+    path:     /
+    defaults: { _controller: WSClientBundle:Default:index }
