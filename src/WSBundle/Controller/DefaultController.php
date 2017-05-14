@@ -5,7 +5,6 @@ namespace WSBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-include('./lib/nusoap.php');
 
 class DefaultController extends Controller
 {

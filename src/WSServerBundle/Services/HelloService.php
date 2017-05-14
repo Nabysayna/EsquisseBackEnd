@@ -13,6 +13,6 @@ class HelloService
 
     public function hello($name)
     {
-        return 'Hello, '.$name;
+        return 'Hallo Welt '. $name;
     }
 }

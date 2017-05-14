@@ -1,3 +1,8 @@
 ws_server_homepage:
-    path:     /auth
+    path:     /
     defaults: { _controller: WSServerBundle:Default:index }
+
+ws_server_logging:
+    path:     /logging
+    defaults: { _controller: WSServerBundle:Auth:index }
+
