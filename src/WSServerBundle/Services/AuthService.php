@@ -64,20 +64,20 @@ class AuthService
       }
       else {
 
-        // $token = sha1($dbuser->getPrenom());
+        $token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
 
-        // $dbprerogative = $this->em->getRepository('WSServerBundle:Prerogative')->find($dbuser->getId());
+        $dbprerogative = $this->em->getRepository('WSServerBundle:Prerogative')->find($dbuser->getId());
         
-        // $authorizedsession = new Authorizedsessions();
+        $authorizedsession = new Authorizedsessions();
         
-        // $authorizedsession->setIdUser($dbuser->getId());
-        // $authorizedsession->setAccessLevel($dbuser->getAccesslevel());
-        // $authorizedsession->setToken($token);
-        // $authorizedsession->setAuthorizedApis($dbprerogative->getAuthorizedApis());
-        // $authorizedsession->setDependsOn($dbuser->getDependsOn());
+        $authorizedsession->setIdUser($dbuser->getId());
+        $authorizedsession->setAccessLevel($dbuser->getAccesslevel());
+        $authorizedsession->setToken($token);
+        $authorizedsession->setAuthorizedApis($dbprerogative->getAuthorizedApis());
+        $authorizedsession->setDependsOn($dbuser->getDependsOn());
 
-        // $em->persist($authorizedsession);
-        // $em->flush();
+        $this->em->persist($authorizedsession);
+        $this->em->flush();
 
         return array(
           'prenom' => $dbuser->getPrenom(),
