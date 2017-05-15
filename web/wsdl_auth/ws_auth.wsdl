@@ -5,7 +5,7 @@
         <xsd:schema targetNamespace="urn:authwsdl">
             <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
             <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
-            <xsd:complexType name="User">
+            <xsd:complexType name="UserAuth">
                 <xsd:all>
                     <xsd:element name="login" type="xsd:string"/>
                     <xsd:element name="pwd" type="xsd:string"/>
@@ -22,7 +22,7 @@
     </types>
     
     <message name="authentificationRequest">
-        <part name="user" type="tns:User"/>
+        <part name="user" type="tns:UserAuth"/>
     </message>
     <message name="authentificationResponse">
         <part name="return" type="tns:Resultat"/>
@@ -71,7 +71,7 @@
 
     <service name="auth">
         <port name="authPort" binding="tns:authBinding">
-            <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd-test-nusoap/web/app_dev.php/invest/logging" />
+            <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/logging" />
         </port>
     </service>
 </definitions>
