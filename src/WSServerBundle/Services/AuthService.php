@@ -10,53 +10,47 @@ class AuthService
   		$this->em = $entityManager;
   	}
 
+    public function testDB(){
+      $dbuser = $this->em->getRepository('WSServerBundle:User')->findOneBy(array('login' => 'assane@ka.com', 'pwd' => 'assaneka'));
+      
+      if (empty($dbuser)) {
+        return array(
+          'prenom' => '',
+          'token' => '',
+          'reponse' => false
+        );
+      }
+      else {
+        return array(
+          'prenom' => $dbuser->getPrenom(),
+          'token' => sha1($dbuser->getPrenom()),
+          'reponse' => true
+        );
+      }
+    }
+
     public function hello($name)
     {
         return 'OKA says hello , '.$name;
     }
-    
-    // function authentification($logging)
-    // {
-      // $dbuser = $this->em->getRepository('WSServerBundle:User')->findOneBy(array('login' => $connect['login'],'pwd' => $connect['pwd']));
-      
-      // $result = '';
-      // $formatted = [];
-      // $message = ['response' => 'OK'];
-      // if (empty($user)) {
-      //   $message = ['response' => 'User not found'];
-      //   $result = 'faux';
-      // }
-      // else {
-      //   $formatted = [
-      //      'id' => $user->getId(),
-      //      'prenom' => $user->getPrenom(),
-      //      'nom' => $user->getNom(),
-      //      'email' => $user->getLogin(),
-      //   ];
-      //   $result .=  $user->getPrenom();
-      // }
-      // return array('user' => $formatted, 'message' => $message) ;      
-      // return $result ;      
-      // return $testConnect;
-
-        // return 'lkw';
-      //   return array(
-      //             'login' => 'assane',
-      //             'pwd' => 'ka'
-      //             );
-    // }
 
     function authentification($user) {
-      $prenom = 'OKA says hello , ' . $user->login .'. It is nice to meet a ' . $user->pwd;
-    
-    $token = sha1($user->login.'-'.$user->pwd);
-    $result = $user->login == $user->pwd;
-
-    return array(
-                'prenom' => $prenom,
-                'token' => $token,
-                'result' => $result
-                );
+      $dbuser = $this->em->getRepository('WSServerBundle:User')->findOneBy(array('login' => $user->login, 'pwd' => $user->pwd));
+      
+      if (empty($dbuser)) {
+        return array(
+          'prenom' => '',
+          'token' => '',
+          'reponse' => false
+        );
+      }
+      else {
+        return array(
+          'prenom' => $dbuser->getPrenom(),
+          'token' => sha1($dbuser->getPrenom()),
+          'reponse' => true
+        );
+      }
     }
     
 }

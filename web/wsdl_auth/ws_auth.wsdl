@@ -15,7 +15,7 @@
                 <xsd:all>
                     <xsd:element name="prenom" type="xsd:string"/>
                     <xsd:element name="token" type="xsd:string"/>
-                    <xsd:element name="result" type="xsd:boolean"/>
+                    <xsd:element name="reponse" type="xsd:boolean"/>
                 </xsd:all>
             </xsd:complexType>
         </xsd:schema>
