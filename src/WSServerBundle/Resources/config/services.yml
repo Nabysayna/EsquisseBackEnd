@@ -10,3 +10,10 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_postcash:
+        class: WSServerBundle\Services\PostCashService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+
+

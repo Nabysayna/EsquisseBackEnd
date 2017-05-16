@@ -6,3 +6,6 @@ ws_server_logging:
     path:     /logging
     defaults: { _controller: WSServerBundle:Auth:index }
 
+ws_server_postcash:
+    path:     /postcash
+    defaults: { _controller: WSServerBundle:PostCash:postcash }

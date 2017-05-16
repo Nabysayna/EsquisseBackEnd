@@ -5,3 +5,27 @@ ws_client_homepage:
 ws_client_logging:
     path:     /logging
     defaults: { _controller: WSClientBundle:Default:logging }
+
+ws_client_postcash_rechargementespece:
+    path:     /postcash/rechargementespece
+    defaults: { _controller: WSClientBundle:PostCash:rechargementespece }
+
+ws_client_postcash_retraitespece:
+    path:     /postcash/retraitespece
+    defaults: { _controller: WSClientBundle:PostCash:retraitespece }
+
+ws_client_postcash_achatcodewoyofal:
+    path:     /postcash/achatcodewoyofal
+    defaults: { _controller: WSClientBundle:PostCash:achatcodewoyofal }
+
+ws_client_postcash_reglementsenelec:
+    path:     /postcash/reglementsenelec
+    defaults: { _controller: WSClientBundle:PostCash:reglementsenelec }
+
+ws_client_postcash_achatjula:
+    path:     /postcash/achatjula
+    defaults: { _controller: WSClientBundle:PostCash:achatjula }
+
+ws_client_postcash_achatcredittelephonique:
+    path:     /postcash/achatcredittelephonique
+    defaults: { _controller: WSClientBundle:PostCash:achatcredittelephonique }

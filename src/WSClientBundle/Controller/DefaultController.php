@@ -29,5 +29,14 @@ class DefaultController extends Controller
         return new JsonResponse(array('result' => $result));
     }
 
+    // public function postcash_reglementsenelecAction()
+    // {
+    //     $client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl', true);
+    //     $user = array('login' => 'assane@ka.com', 'pwd' => 'assaneka');
+    //     $result = $client->call('authentification', array('user' => $user));
+
+    //     return new JsonResponse(array('result' => $result));
+    // }
+
 
 }

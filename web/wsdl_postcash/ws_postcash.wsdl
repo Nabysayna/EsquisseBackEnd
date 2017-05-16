@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:postcashwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:postcashwsdl">
+<types>
+<xsd:schema targetNamespace="urn:postcashwsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+<xsd:complexType name="InRechargementEspece">
+<xsd:all>
+<xsd:element name="api" type="xsd:int"/>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="tel_destinataire" type="xsd:int"/>
+<xsd:element name="montant" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InRetraitEspece">
+<xsd:all>
+<xsd:element name="api" type="xsd:int"/>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="code_validation" type="xsd:int"/>
+<xsd:element name="tel_destinataire" type="xsd:int"/>
+<xsd:element name="montant" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAchatCodeWoyofal">
+<xsd:all>
+<xsd:element name="api" type="xsd:int"/>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="montant" type="xsd:int"/>
+<xsd:element name="compteur" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InReglementSenelec">
+<xsd:all>
+<xsd:element name="api" type="xsd:int"/>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="police" type="xsd:string"/>
+<xsd:element name="num_facture" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAchatJula">
+<xsd:all>
+<xsd:element name="api" type="xsd:int"/>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="mt_carte" type="xsd:string"/>
+<xsd:element name="nb_carte" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAchatCreditTelephonique">
+<xsd:all>
+<xsd:element name="api" type="xsd:int"/>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="numero_a_recharger" type="xsd:string"/>
+<xsd:element name="montant" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+</xsd:schema>
+</types>
+<message name="rechargementespeceRequest">
+<part name="params" type="tns:InRechargementEspece"/>
+</message>
+<message name="rechargementespeceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="retraitespeceRequest">
+<part name="params" type="tns:InRetraitEspece"/>
+</message>
+<message name="retraitespeceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="achatcodewoyofalRequest">
+<part name="params" type="tns:InAchatCodeWoyofal"/>
+</message>
+<message name="achatcodewoyofalResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="reglementsenelecRequest">
+<part name="params" type="tns:InReglementSenelec"/>
+</message>
+<message name="reglementsenelecResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="achatjulaRequest">
+<part name="params" type="tns:InAchatJula"/>
+</message>
+<message name="achatjulaResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="achatcredittelephoniqueRequest">
+<part name="params" type="tns:InAchatCreditTelephonique"/>
+</message>
+<message name="achatcredittelephoniqueResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="postcashPortType">
+<operation name="rechargementespece">
+<documentation>Method PostCash RechargementEspece</documentation>
+<input message="tns:rechargementespeceRequest"/>
+<output message="tns:rechargementespeceResponse"/>
+</operation>
+<operation name="retraitespece">
+<documentation>Method PostCash RetraitEspece</documentation>
+<input message="tns:retraitespeceRequest"/>
+<output message="tns:retraitespeceResponse"/>
+</operation>
+<operation name="achatcodewoyofal">
+<documentation>Method PostCash AchatCodeWoyofal</documentation>
+<input message="tns:achatcodewoyofalRequest"/>
+<output message="tns:achatcodewoyofalResponse"/>
+</operation>
+<operation name="reglementsenelec">
+<documentation>Method PostCash reglementsenelec</documentation>
+<input message="tns:reglementsenelecRequest"/>
+<output message="tns:reglementsenelecResponse"/>
+</operation>
+<operation name="achatjula">
+<documentation>Method PostCash achatjula</documentation>
+<input message="tns:achatjulaRequest"/>
+<output message="tns:achatjulaResponse"/>
+</operation>
+<operation name="achatcredittelephonique">
+<documentation>Method PostCash achatcredittelephonique</documentation>
+<input message="tns:achatcredittelephoniqueRequest"/>
+<output message="tns:achatcredittelephoniqueResponse"/>
+</operation>
+</portType>
+<binding name="postcashBinding" type="tns:postcashPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="rechargementespece">
+<soap:operation soapAction="urn:postcashwsdl#rechargementespece" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="retraitespece">
+<soap:operation soapAction="urn:postcashwsdl#retraitespece" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="achatcodewoyofal">
+<soap:operation soapAction="urn:postcashwsdl#achatcodewoyofal" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="reglementsenelec">
+<soap:operation soapAction="urn:postcashwsdl#reglementsenelec" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="achatjula">
+<soap:operation soapAction="urn:postcashwsdl#achatjula" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="achatcredittelephonique">
+<soap:operation soapAction="urn:postcashwsdl#achatcredittelephonique" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="postcash">
+<port name="postcashPort" binding="tns:postcashBinding">
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/postcash"/>
+</port>
+</service>
+</definitions>
