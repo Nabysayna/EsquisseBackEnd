@@ -29,3 +29,8 @@ ws_client_postcash_achatjula:
 ws_client_postcash_achatcredittelephonique:
     path:     /postcash/achatcredittelephonique
     defaults: { _controller: WSClientBundle:PostCash:achatcredittelephonique }
+
+
+ws_client_expressocash_checkbalance:
+    path:     /expressocash/checkbalance
+    defaults: { _controller: WSClientBundle:ExpressoCash:checkbalance }

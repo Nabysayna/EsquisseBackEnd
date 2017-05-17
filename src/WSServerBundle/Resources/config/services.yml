@@ -15,5 +15,11 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_expressocash:
+        class: WSServerBundle\Services\ExpressoCashService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+
 
 

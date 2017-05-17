@@ -33,5 +33,6 @@
         <option name="default">0</option>
       </options>
     </field>
+    <field name="sessionStart" type="datetime" column="session_start" nullable="false"/>
   </entity>
 </doctrine-mapping>

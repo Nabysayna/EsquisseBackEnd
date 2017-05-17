@@ -7,65 +7,70 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Authorizedsessions
  *
- * @ORM\Table(name="authorizedsessions")
- * @ORM\Entity(repositoryClass="WSServerBundle\Repository\AuthorizedsessionsRepository")
+ * @ORM\Table(name="authorizedsessions", uniqueConstraints={@ORM\UniqueConstraint(name="token", columns={"token"})})
+ * @ORM\Entity
  */
 class Authorizedsessions
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id_session", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_user", type="integer")
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
      */
     private $idUser;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="accessLevel", type="integer")
+     * @ORM\Column(name="accessLevel", type="integer", nullable=false)
      */
-    private $accessLevel;
+    private $accesslevel;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="token", type="string", length=255)
+     * @ORM\Column(name="token", type="string", length=80, nullable=false)
      */
     private $token;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="authorized_apis", type="string", length=255)
+     * @ORM\Column(name="authorized_apis", type="string", length=80, nullable=false)
      */
     private $authorizedApis;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="depends_on", type="integer")
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
      */
-    private $dependsOn;
-
+    private $dependsOn = '0';
 
     /**
-     * Get id
+     * @var \DateTime
      *
-     * @return int
+     * @ORM\Column(name="session_start", type="datetime", nullable=false)
      */
-    public function getId()
+    private $sessionStart;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_session", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idSession;
+
+
+
+    public function __construct()
     {
-        return $this->id;
+        // Par défaut, la sessionStart de l'Authorizedsessions est la date d'aujourd'hui
+        $this->sessionStart = new \Datetime();
     }
+
 
     /**
      * Set idUser
@@ -84,7 +89,7 @@ class Authorizedsessions
     /**
      * Get idUser
      *
-     * @return int
+     * @return integer
      */
     public function getIdUser()
     {
@@ -92,27 +97,27 @@ class Authorizedsessions
     }
 
     /**
-     * Set accessLevel
+     * Set accesslevel
      *
-     * @param integer $accessLevel
+     * @param integer $accesslevel
      *
      * @return Authorizedsessions
      */
-    public function setAccessLevel($accessLevel)
+    public function setAccesslevel($accesslevel)
     {
-        $this->accessLevel = $accessLevel;
+        $this->accesslevel = $accesslevel;
 
         return $this;
     }
 
     /**
-     * Get accessLevel
+     * Get accesslevel
      *
-     * @return int
+     * @return integer
      */
-    public function getAccessLevel()
+    public function getAccesslevel()
     {
-        return $this->accessLevel;
+        return $this->accesslevel;
     }
 
     /**
@@ -180,22 +185,36 @@ class Authorizedsessions
     /**
      * Get dependsOn
      *
-     * @return int
+     * @return integer
      */
     public function getDependsOn()
     {
         return $this->dependsOn;
     }
-    /**
-     * @var integer
-     */
-    private $accesslevel;
 
     /**
-     * @var integer
+     * Set sessionStart
+     *
+     * @param \DateTime $sessionStart
+     *
+     * @return Authorizedsessions
      */
-    private $idSession;
+    public function setSessionStart($sessionStart)
+    {
+        $this->sessionStart = $sessionStart;
 
+        return $this;
+    }
+
+    /**
+     * Get sessionStart
+     *
+     * @return \DateTime
+     */
+    public function getSessionStart()
+    {
+        return $this->sessionStart;
+    }
 
     /**
      * Get idSession

@@ -1,0 +1,40 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Cautions
+ *
+ * @ORM\Table(name="cautions")
+ * @ORM\Entity
+ */
+class Cautions
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="caution", type="integer", nullable=false)
+     */
+    private $caution = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_caution", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idCaution;
+
+
+}
+

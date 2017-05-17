@@ -9,7 +9,7 @@ class PostCashController extends Controller
 {
     public function indexAction()
     {
-        $server = new \SoapServer('webservice.wsdl');
+        $server = new \SoapServer('webservice.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
         $server->setObject($this->get('test_service'));
 
         $response = new Response();

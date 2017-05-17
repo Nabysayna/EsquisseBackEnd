@@ -13,7 +13,7 @@ class AuthService
   	}
 
     public function testDB(){
-       $dbuser = $this->em->getRepository('WSServerBundle:User')->findOneBy(array('login' => 'assane', 'pwd' => 'assane'));
+       $dbuser = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('login' => 'assane@ka.com', 'pwd' => 'assaneka'));
 
       if (empty($dbuser)) {
         return array(
@@ -26,12 +26,12 @@ class AuthService
 
         $token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
 
-        $dbprerogative = $this->em->getRepository('WSServerBundle:Prerogative')->find($dbuser->getId());
+        $dbprerogative = $this->em->getRepository('WSServerBundle:Prerogatives')->find($dbuser->getIdUser());
         
         $authorizedsession = new Authorizedsessions();
-        
-        $authorizedsession->setIdUser($dbuser->getId());
-        $authorizedsession->setAccessLevel($dbuser->getAccesslevel());
+        $accelevel = 1;
+        $authorizedsession->setIdUser($dbuser->getIdUser());
+        $authorizedsession->setAccessLevel($dbuser->getIdUser());
         $authorizedsession->setToken($token);
         $authorizedsession->setAuthorizedApis($dbprerogative->getAuthorizedApis());
         $authorizedsession->setDependsOn($dbuser->getDependsOn());

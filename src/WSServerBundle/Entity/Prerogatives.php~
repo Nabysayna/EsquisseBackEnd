@@ -1,0 +1,40 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Prerogatives
+ *
+ * @ORM\Table(name="prerogatives")
+ * @ORM\Entity
+ */
+class Prerogatives
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorized_apis", type="string", length=80, nullable=false)
+     */
+    private $authorizedApis;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_auth", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idAuth;
+
+
+}
+
