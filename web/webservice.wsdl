@@ -51,7 +51,7 @@
 
     <service name="hellowsdl">
         <port name="hellowsdlPort" binding="tns:hellowsdlBinding">
-            <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php" />
+            <soap:address location="http://localhost:8085/cours/angular%202/EsquisseBackEnd/web/app_dev.php" />
         </port>
     </service>
 </definitions>

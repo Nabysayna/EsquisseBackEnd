@@ -5,53 +5,44 @@ namespace WSServerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Prerogative
+ * Prerogatives
  *
  * @ORM\Table(name="prerogatives")
- * @ORM\Entity(repositoryClass="WSServerBundle\Repository\PrerogativeRepository")
+ * @ORM\Entity
  */
-class Prerogative
+class Prerogatives
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id_auth", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_user", type="integer")
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
      */
     private $idUser;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="authorized_apis", type="string", length=255)
+     * @ORM\Column(name="authorized_apis", type="string", length=80, nullable=false)
      */
     private $authorizedApis;
 
-
     /**
-     * Get id
+     * @var integer
      *
-     * @return int
+     * @ORM\Column(name="id_auth", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $idAuth;
+
+
 
     /**
      * Set idUser
      *
      * @param integer $idUser
      *
-     * @return Prerogative
+     * @return Prerogatives
      */
     public function setIdUser($idUser)
     {
@@ -63,7 +54,7 @@ class Prerogative
     /**
      * Get idUser
      *
-     * @return int
+     * @return integer
      */
     public function getIdUser()
     {
@@ -75,7 +66,7 @@ class Prerogative
      *
      * @param string $authorizedApis
      *
-     * @return Prerogative
+     * @return Prerogatives
      */
     public function setAuthorizedApis($authorizedApis)
     {
@@ -93,5 +84,14 @@ class Prerogative
     {
         return $this->authorizedApis;
     }
-}
 
+    /**
+     * Get idAuth
+     *
+     * @return integer
+     */
+    public function getIdAuth()
+    {
+        return $this->idAuth;
+    }
+}

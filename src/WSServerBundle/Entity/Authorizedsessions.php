@@ -186,5 +186,24 @@ class Authorizedsessions
     {
         return $this->dependsOn;
     }
-}
+    /**
+     * @var integer
+     */
+    private $accesslevel;
 
+    /**
+     * @var integer
+     */
+    private $idSession;
+
+
+    /**
+     * Get idSession
+     *
+     * @return integer
+     */
+    public function getIdSession()
+    {
+        return $this->idSession;
+    }
+}

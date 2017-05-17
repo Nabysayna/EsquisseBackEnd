@@ -5,81 +5,72 @@ namespace WSServerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * Users
  *
- * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="WSServerBundle\Repository\UserRepository")
+ * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="login", columns={"login"})})
+ * @ORM\Entity
  */
-class User
+class Users
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_user", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=50, nullable=false)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=255)
+     * @ORM\Column(name="login", type="string", length=50, nullable=false)
      */
     private $login;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pwd", type="string", length=255)
+     * @ORM\Column(name="pwd", type="string", length=65, nullable=false)
      */
     private $pwd;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="accesslevel", type="integer")
+     * @ORM\Column(name="accesslevel", type="integer", nullable=false)
      */
     private $accesslevel;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="depends_on", type="integer")
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
      */
     private $dependsOn;
 
-
     /**
-     * Get id
+     * @var integer
      *
-     * @return int
+     * @ORM\Column(name="id_user", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $idUser;
+
+
 
     /**
      * Set prenom
      *
      * @param string $prenom
      *
-     * @return User
+     * @return Users
      */
     public function setPrenom($prenom)
     {
@@ -103,7 +94,7 @@ class User
      *
      * @param string $nom
      *
-     * @return User
+     * @return Users
      */
     public function setNom($nom)
     {
@@ -127,7 +118,7 @@ class User
      *
      * @param string $login
      *
-     * @return User
+     * @return Users
      */
     public function setLogin($login)
     {
@@ -151,7 +142,7 @@ class User
      *
      * @param string $pwd
      *
-     * @return User
+     * @return Users
      */
     public function setPwd($pwd)
     {
@@ -175,7 +166,7 @@ class User
      *
      * @param integer $accesslevel
      *
-     * @return User
+     * @return Users
      */
     public function setAccesslevel($accesslevel)
     {
@@ -187,7 +178,7 @@ class User
     /**
      * Get accesslevel
      *
-     * @return int
+     * @return integer
      */
     public function getAccesslevel()
     {
@@ -199,7 +190,7 @@ class User
      *
      * @param integer $dependsOn
      *
-     * @return User
+     * @return Users
      */
     public function setDependsOn($dependsOn)
     {
@@ -211,11 +202,20 @@ class User
     /**
      * Get dependsOn
      *
-     * @return int
+     * @return integer
      */
     public function getDependsOn()
     {
         return $this->dependsOn;
     }
-}
 
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+}

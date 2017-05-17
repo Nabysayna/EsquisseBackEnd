@@ -27,7 +27,7 @@ class DefaultController extends Controller
     {
 
         
-        $client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php?wsdl', true);
+        $client = new \nusoap_client('http://localhost:8085/cours/angular%202/EsquisseBackEnd/web/app_dev.php?wsdl', true);
  
         $result = $client->call('hello', array('name' => 'Team'));
  

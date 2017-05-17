@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:tns="urn:arnleadservicewsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="urn:postcashwsdl">
+
+    <types>
+        <xsd:schema targetNamespace="urn:postcashwsdl">
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+
+            <xsd:complexType name="RechargementEspeceEnum">
+                <xsd:all>
+                    <xsd:element name="api" type="xsd:int"/>
+                    <xsd:element name="token" type="xsd:string"/>
+                    <xsd:element name="tel_destinataire" type="xsd:string"/>
+                    <xsd:element name="montant" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+
+        </xsd:schema>
+    </types>
+
+   <message name="RechargementEspeceRequest">
+        <part name="params" type="tns:RechargementEspeceEnum"/>
+    </message>
+<message name="RechargementEspeceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="RetraitEspeceRequest">
+<part name="api" type="xsd:int"/>
+<part name="token" type="xsd:string"/>
+<part name="code_validation" type="xsd:string"/>
+<part name="tel_destinataire" type="xsd:string"/>
+<part name="montant" type="xsd:string"/>
+</message>
+<message name="RetraitEspeceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="AchatCodeWoyofalRequest">
+<part name="api" type="xsd:int"/>
+<part name="token" type="xsd:string"/>
+<part name="montant" type="xsd:string"/>
+<part name="compteur" type="xsd:string"/>
+</message>
+<message name="AchatCodeWoyofalResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ReglementSenelecRequest">
+<part name="api" type="xsd:int"/>
+<part name="token" type="xsd:string"/>
+<part name="police" type="xsd:string"/>
+<part name="num_facture" type="xsd:string"/>
+</message>
+<message name="ReglementSenelecResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="AchatJulaRequest">
+<part name="api" type="xsd:int"/>
+<part name="token" type="xsd:string"/>
+<part name="mt_carte" type="xsd:string"/>
+<part name="nb_carte" type="xsd:string"/>
+</message>
+<message name="AchatJulaResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="AchatCreditTelephoniqueRequest">
+<part name="api" type="xsd:int"/>
+<part name="token" type="xsd:string"/>
+<part name="numero_a_recharger" type="xsd:string"/>
+<part name="montant" type="xsd:string"/>
+</message>
+<message name="AchatCreditTelephoniqueResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
+    <portType name="postcashwsdlPortType">
+        <operation name="RechargementEspece">
+            <documentation>Hello World</documentation>
+            <input message="tns:RechargementEspeceRequest"/>
+            <output message="tns:RechargementEspeceResponse"/>
+        </operation>
+        <operation name="RetraitEspece">
+            <documentation>Hello World</documentation>
+            <input message="tns:RetraitEspeceRequest"/>
+            <output message="tns:RetraitEspeceResponse"/>
+        </operation>
+        <operation name="AchatCodeWoyofal">
+            <documentation>Hello World</documentation>
+            <input message="tns:AchatCodeWoyofalRequest"/>
+            <output message="tns:AchatCodeWoyofalResponse"/>
+        </operation>
+        <operation name="ReglementSenelec">
+            <documentation>Hello World</documentation>
+            <input message="tns:ReglementSenelecRequest"/>
+            <output message="tns:ReglementSenelecResponse"/>
+        </operation>
+        <operation name="AchatJula">
+            <documentation>Hello World</documentation>
+            <input message="tns:AchatJulaRequest"/>
+            <output message="tns:AchatJulaResponse"/>
+        </operation>
+        <operation name="AchatCreditTelephonique">
+            <documentation>Hello World</documentation>
+            <input message="tns:AchatCreditTelephoniqueRequest"/>
+            <output message="tns:AchatCreditTelephoniqueResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="postcashwsdlBinding" type="tns:postcashwsdlPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="RechargementEspece">
+            <soap:operation soapAction="urn:arnleadservicewsdl#RechargementEspece" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="RetraitEspece">
+            <soap:operation soapAction="urn:arnleadservicewsdl#RetraitEspece" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="AchatCodeWoyofal">
+            <soap:operation soapAction="urn:arnleadservicewsdl#AchatCodeWoyofal" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="ReglementSenelec">
+            <soap:operation soapAction="urn:arnleadservicewsdl#ReglementSenelec" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="AchatJula">
+            <soap:operation soapAction="urn:arnleadservicewsdl#AchatJula" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="AchatCreditTelephonique">
+            <soap:operation soapAction="urn:arnleadservicewsdl#AchatCreditTelephonique" style="rpc"/>
+
+            <input>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+
+            <output>
+                <soap:body use="encoded" namespace="urn:postcashwsdl"
+                    encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="postcashwsdl">
+        <port name="postcashwsdlPort" binding="tns:postcashwsdlBinding">
+            <soap:address location="http://localhost:8085/cours/angular%202/EsquisseBackEnd/web/app_dev.php/invest/postcash" />
+        </port>
+    </service>
+</definitions>
