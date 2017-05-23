@@ -65,13 +65,6 @@ class Authorizedsessions
 
 
 
-    public function __construct()
-    {
-        // Par défaut, la sessionStart de l'Authorizedsessions est la date d'aujourd'hui
-        $this->sessionStart = new \Datetime();
-    }
-
-
     /**
      * Set idUser
      *

@@ -20,6 +20,41 @@ class Apis
     private $nomApi;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="identifiant", type="string", length=50, nullable=false)
+     */
+    private $identifiant;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pwd", type="string", length=255, nullable=false)
+     */
+    private $pwd;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etat", type="integer", nullable=false)
+     */
+    private $etat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=false)
+     */
+    private $token;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="caution", type="integer", nullable=false)
+     */
+    private $caution;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id_api", type="integer")
@@ -52,6 +87,126 @@ class Apis
     public function getNomApi()
     {
         return $this->nomApi;
+    }
+
+    /**
+     * Set identifiant
+     *
+     * @param string $identifiant
+     *
+     * @return Apis
+     */
+    public function setIdentifiant($identifiant)
+    {
+        $this->identifiant = $identifiant;
+
+        return $this;
+    }
+
+    /**
+     * Get identifiant
+     *
+     * @return string
+     */
+    public function getIdentifiant()
+    {
+        return $this->identifiant;
+    }
+
+    /**
+     * Set pwd
+     *
+     * @param string $pwd
+     *
+     * @return Apis
+     */
+    public function setPwd($pwd)
+    {
+        $this->pwd = $pwd;
+
+        return $this;
+    }
+
+    /**
+     * Get pwd
+     *
+     * @return string
+     */
+    public function getPwd()
+    {
+        return $this->pwd;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param integer $etat
+     *
+     * @return Apis
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return integer
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Apis
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set caution
+     *
+     * @param integer $caution
+     *
+     * @return Apis
+     */
+    public function setCaution($caution)
+    {
+        $this->caution = $caution;
+
+        return $this;
+    }
+
+    /**
+     * Get caution
+     *
+     * @return integer
+     */
+    public function getCaution()
+    {
+        return $this->caution;
     }
 
     /**
