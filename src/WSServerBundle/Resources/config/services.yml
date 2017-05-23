@@ -20,6 +20,12 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      ws_api_service_tnt:
+        class: WSServerBundle\Services\TntService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+
 
 
 

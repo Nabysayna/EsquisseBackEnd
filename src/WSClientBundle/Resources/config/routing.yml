@@ -34,3 +34,8 @@ ws_client_postcash_achatcredittelephonique:
 ws_client_expressocash_checkbalance:
     path:     /expressocash/checkbalance
     defaults: { _controller: WSClientBundle:ExpressoCash:checkbalance }
+
+
+ws_client_tnt_listabonnement:
+    path:     /tnt/listabonnement
+    defaults: { _controller: WSClientBundle:Tnt:listabonnement }

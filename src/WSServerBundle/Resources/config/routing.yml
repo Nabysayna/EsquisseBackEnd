@@ -14,3 +14,7 @@ ws_server_expressocash:
     path:     /expressocash
     defaults: { _controller: WSServerBundle:Default:expressocash }
 
+ws_server_tnt:
+    path:     /tnt
+    defaults: { _controller: WSServerBundle:Default:tnt }
+
