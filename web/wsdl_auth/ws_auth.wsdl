@@ -11,13 +11,6 @@
                     <xsd:element name="pwd" type="xsd:string"/>
                 </xsd:all>
             </xsd:complexType>
-            <xsd:complexType name="Resultat">
-                <xsd:all>
-                    <xsd:element name="prenom" type="xsd:string"/>
-                    <xsd:element name="token" type="xsd:string"/>
-                    <xsd:element name="reponse" type="xsd:boolean"/>
-                </xsd:all>
-            </xsd:complexType>
         </xsd:schema>
     </types>
     
@@ -25,7 +18,7 @@
         <part name="user" type="tns:UserAuth"/>
     </message>
     <message name="authentificationResponse">
-        <part name="return" type="tns:Resultat"/>
+        <part name="return" type="xsd:string"/>
     </message>
     <message name="helloRequest">
         <part name="name" type="xsd:string"/>

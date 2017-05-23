@@ -5,12 +5,13 @@ namespace WSServerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+class TntController extends Controller
 {
-    public function indexAction()
+
+    public function tntAction()
     {
-        $server = new \SoapServer('webservice.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
-        $server->setObject($this->get('test_service'));
+        $server = new \SoapServer('wsdl_tnt/ws_tnt.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
+        $server->setObject($this->get('ws_api_service_tnt'));
 
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml; charset=ISO-8859-1');
@@ -20,6 +21,6 @@ class DefaultController extends Controller
         $response->setContent(ob_get_clean());
 
         return $response;
+        // return new Response('test');
     }
-
 }

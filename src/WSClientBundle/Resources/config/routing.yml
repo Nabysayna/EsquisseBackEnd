@@ -36,6 +36,14 @@ ws_client_expressocash_checkbalance:
     defaults: { _controller: WSClientBundle:ExpressoCash:checkbalance }
 
 
+ws_client_tnt_verifinumeroabonnement:
+    path:     /tnt/verifinumeroabonnement
+    defaults: { _controller: WSClientBundle:Tnt:verifinumeroabonnement }
+
 ws_client_tnt_listabonnement:
     path:     /tnt/listabonnement
     defaults: { _controller: WSClientBundle:Tnt:listabonnement }
+
+ws_client_tnt_ajoutabonnement:
+    path:     /tnt/ajoutabonnement
+    defaults: { _controller: WSClientBundle:Tnt:ajoutabonnement }

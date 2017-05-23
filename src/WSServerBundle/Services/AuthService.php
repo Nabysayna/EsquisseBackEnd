@@ -16,34 +16,29 @@ class AuthService
        $dbuser = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('login' => 'assane@ka.com', 'pwd' => 'assaneka'));
 
       if (empty($dbuser)) {
-        return array(
-          'prenom' => '',
-          'token' => '',
-          'reponse' => false
-        );
+        $reponse = array('prenom' => '', 'token' => '', 'reponse' => false);
+        return ''. json_encode($reponse);
       }
       else {
-
         $token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+        $dbprerogative = $this->em->getRepository('WSServerBundle:Prerogatives')->find($dbuser->getIdUser());        
+        $authorizedsession = new Authorizedsessions();
+        $authorizedsession->setIdUser($dbuser->getIdUser());
+        $authorizedsession->setAccessLevel($dbuser->getAccesslevel());
+        $authorizedsession->setToken($token);
+        $authorizedsession->setAuthorizedApis($dbprerogative->getAuthorizedApis());
+        $authorizedsession->setDependsOn($dbuser->getDependsOn());
+        $authorizedsession->setSessionStart(new \Datetime());
 
-        // $dbprerogative = $this->em->getRepository('WSServerBundle:Prerogatives')->find($dbuser->getIdUser());
-        
-        // $authorizedsession = new Authorizedsessions();
-        // $accelevel = 1;
-        // $authorizedsession->setIdUser($dbuser->getIdUser());
-        // $authorizedsession->setAccessLevel($dbuser->getIdUser());
-        // $authorizedsession->setToken($token);
-        // $authorizedsession->setAuthorizedApis($dbprerogative->getAuthorizedApis());
-        // $authorizedsession->setDependsOn($dbuser->getDependsOn());
+        $this->em->persist($authorizedsession);
+        $this->em->flush();
 
-        // $this->em->persist($authorizedsession);
-        // $this->em->flush();
-
-        return array(
+        $reponse = array(
           'prenom' => $dbuser->getPrenom(),
           'token' => $token,
           'reponse' => true
         );
+        return ''. json_encode($reponse);
       }
     }
 
@@ -57,15 +52,13 @@ class AuthService
       $dbuser = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('login' => $user->login, 'pwd' => $user->pwd));
 
       if (empty($dbuser)) {
-        return array('prenom' => '', 'token' => '', 'reponse' => false);
+        $reponse = array('prenom' => '', 'token' => '', 'reponse' => false);
+        return ''. json_encode($reponse);
       }
       else {
-
         $token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-
         $dbprerogative = $this->em->getRepository('WSServerBundle:Prerogatives')->find($dbuser->getIdUser());
         $authorizedsession = new Authorizedsessions();
-        
         $authorizedsession->setIdUser($dbuser->getIdUser());
         $authorizedsession->setAccessLevel($dbuser->getAccesslevel());
         $authorizedsession->setToken($token);
@@ -76,11 +69,12 @@ class AuthService
         $this->em->persist($authorizedsession);
         $this->em->flush();
         
-        return array(
+        $reponse = array(
           'prenom' => $dbuser->getPrenom(),
           'token' => $token,
           'reponse' => true
         );
+        return ''. json_encode($reponse);
       }
 
     }

@@ -5,12 +5,13 @@ namespace WSServerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+class ExpressoCashController extends Controller
 {
-    public function indexAction()
+
+    public function expressocashAction()
     {
-        $server = new \SoapServer('webservice.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
-        $server->setObject($this->get('test_service'));
+        $server = new \SoapServer('wsdl_expressocash/ws_expressocash.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
+        $server->setObject($this->get('test_server_expressocash'));
 
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml; charset=ISO-8859-1');
