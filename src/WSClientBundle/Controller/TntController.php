@@ -10,7 +10,7 @@ class TntController extends Controller
 {
     private $client = null;
     function __construct(){
-        $this->client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl', true);
+        $this->client = new \nusoap_client('http://abonnement.bbstvnet.com/integration-server-ws-tnt/index.php?wsdl', true);
     }
 
     public function listabonnementAction()
