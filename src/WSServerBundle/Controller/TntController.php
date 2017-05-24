@@ -21,6 +21,5 @@ class TntController extends Controller
         $response->setContent(ob_get_clean());
 
         return $response;
-        // return new Response('test');
     }
 }

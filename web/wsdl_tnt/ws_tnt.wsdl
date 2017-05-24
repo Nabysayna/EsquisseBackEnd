@@ -6,14 +6,12 @@
 <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
 <xsd:complexType name="InVerifiNumeroAbonnement">
 <xsd:all>
-<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="numeroCarteChip" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InAjoutAbonnement">
 <xsd:all>
-<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="prenom" type="xsd:string"/>
 <xsd:element name="nom" type="xsd:string"/>
@@ -30,7 +28,6 @@
 </xsd:complexType>
 <xsd:complexType name="InListAbonnement">
 <xsd:all>
-<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>

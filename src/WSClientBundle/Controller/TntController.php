@@ -10,19 +10,19 @@ class TntController extends Controller
 {
     private $client = null;
     function __construct(){
-        $this->client = new \nusoap_client('http://abonnement.bbstvnet.com/integration-server-ws-tnt/index.php?wsdl', true);
+        $this->client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl', true);
     }
 
     public function verifinumeroabonnementAction()
     {
-        $params = array('api' => 12, 'token' => 'bamba', 'numeroCarteChip' =>  '659071289');
+        $params = array('token' => 'bamba', 'numeroCarteChip' =>  '00616241893');
         $result = $this->client->call('verifinumeroabonnement', array('params' => $params));
         return new JsonResponse(array('result' => $result));
     }
     
     public function listabonnementAction()
     {
-        $params = array('api' => 1, 'token' => 'assaneka');
+        $params = array('token' => 'assaneka');
         $result = $this->client->call('listabonnement', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
@@ -30,13 +30,33 @@ class TntController extends Controller
 
     public function ajoutabonnementAction()
     {
-
-        $params = array('api' => 1, 'token' => 'assaneka', 'prenom' => 'assaneka', 'nom' => 'assaneka', 'telephone' => 'assaneka', 'adresse' => 'assaneka', 'departement' => 'assaneka', 'region' => 'assaneka', 'cni' => 'assaneka', 'numerochip' => 'assaneka', 'numerocarte' => 'assaneka', 'nombredemois' => 123, 'typedebouquet' => 'assaneka');
+        $params = array('token' => 'assaneka', 'prenom' => 'assaneka', 'nom' => 'assaneka', 'tel' => 'assaneka', 'adresse' => 'assaneka', 'region' => 'assaneka', 'city' => 'assaneka', 'cni' => 'assaneka', 'numerochip' => 'assaneka', 'numerocarte' => 'assaneka', 'duree' => 2, 'typedebouquet' => 1);
         $result = $this->client->call('ajoutabonnement', array('params' => $params));
-        // $result = 'assane';
         return new JsonResponse(array('result' => $result));
     }
 
+
+// public function verifinumeroabonnementAction()
+//     {
+//         $params = array('id' => 43, 'token' => 'bamba', 'numeroCarteChip' =>  '00658975422');
+//         $result = $this->client->call('verifinumeroabonnement', array('params' => $params));
+//         return new JsonResponse(array('result' => $result));
+//     }
+    
+//     public function listabonnementAction()
+//     {
+//         $params = array('id' => 43, 'token' => 'assaneka');
+//         $result = $this->client->call('listabonnement', array('params' => $params));
+
+//         return new JsonResponse(array('result' => $result));
+//     }
+
+//     public function ajoutabonnementAction()
+//     {
+//         $params = array('id' => 43, 'token' => 'assaneka', 'prenom' => 'assaneka', 'nom' => 'assaneka', 'tel' => 'assaneka', 'adresse' => 'assaneka', 'region' => 'assaneka', 'city' => 'assaneka', 'cni' => 'assaneka', 'numerochip' => 'assaneka', 'numerocarte' => 'assaneka', 'duree' => 2, 'typedebouquet' => 1);
+//         $result = $this->client->call('ajoutabonnement', array('params' => $params));
+//         return new JsonResponse(array('result' => $result));
+//     }
       
 
 }
