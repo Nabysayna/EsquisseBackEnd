@@ -11,6 +11,12 @@
                     <xsd:element name="pwd" type="xsd:string"/>
                 </xsd:all>
             </xsd:complexType>
+             <xsd:complexType name="UserDisconct">
+                <xsd:all>
+                    <xsd:element name="token" type="xsd:string"/>
+                    <xsd:element name="hdeconnexion" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
         </xsd:schema>
     </types>
     
@@ -20,6 +26,15 @@
     <message name="authentificationResponse">
         <part name="return" type="xsd:string"/>
     </message>
+
+    <message name="deconnexionRequest">
+        <part name="user" type="tns:UserDisconct"/>
+    </message>
+    <message name="deconnexionResponse">
+        <part name="return" type="xsd:int"/>
+    </message>
+
+
     <message name="helloRequest">
         <part name="name" type="xsd:string"/>
     </message>
@@ -29,10 +44,16 @@
     
     <portType name="authPortType">
         <operation name="authentification">
-            <documentation>Method auth</documentation>
+            <documentation>Methode authentification</documentation>
             <input message="tns:authentificationRequest"/>
             <output message="tns:authentificationResponse"/>
         </operation>
+        <operation name="deconnexion">
+            <documentation>Methode deconnexion</documentation>
+            <input message="tns:deconnexionRequest"/>
+            <output message="tns:deconnexionResponse"/>
+        </operation>
+
         <operation name="hello">
             <documentation>Method hello</documentation>
             <input message="tns:helloRequest"/>
@@ -51,6 +72,17 @@
                 <soap:body use="encoded" namespace="urn:authwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </output>
         </operation>
+
+        <operation name="deconnexion">
+            <soap:operation soapAction="urn:authwsdl#deconnexion" style="rpc"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:authwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:authwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+
         <operation name="hello">
             <soap:operation soapAction="urn:authwsdl#hello" style="rpc"/>
             <input>
@@ -64,7 +96,7 @@
 
     <service name="auth">
         <port name="authPort" binding="tns:authBinding">
-            <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/logging" />
+            <soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/logging" />
         </port>
     </service>
 </definitions>

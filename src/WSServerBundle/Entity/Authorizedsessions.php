@@ -29,7 +29,7 @@ class Authorizedsessions
     /**
      * @var string
      *
-     * @ORM\Column(name="token", type="string", length=80, nullable=false)
+     * @ORM\Column(name="token", type="string", length=255, nullable=false)
      */
     private $token;
 

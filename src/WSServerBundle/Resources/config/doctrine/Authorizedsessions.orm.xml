@@ -17,7 +17,7 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="token" type="string" column="token" length="80" nullable="false">
+    <field name="token" type="string" column="token" length="255" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
