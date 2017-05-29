@@ -5,7 +5,7 @@ namespace WSServerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-class TntController extends Controller
+class EcommerceController extends Controller
 {
 
      public function __construct() {  
@@ -13,10 +13,10 @@ class TntController extends Controller
         header("Access-Control-Allow-Headers: SOAPAction, Content-Type"); 
     }
 
-    public function tntAction()
+    public function ecommerceAction()
     {
-        $server = new \SoapServer('wsdl_tnt/ws_tnt.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
-        $server->setObject($this->get('ws_api_service_tnt'));
+        $server = new \SoapServer('wsdl_ecommerce/ws_ecommerce.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
+        $server->setObject($this->get('test_server_ecommerce'));
 
         $response = new Response();
         $response->headers->set('Content-Type', 'text/xml; charset=ISO-8859-1');
@@ -26,5 +26,7 @@ class TntController extends Controller
         $response->setContent(ob_get_clean());
 
         return $response;
+        // return new Response("Assane KA");
     }
+
 }

@@ -27,6 +27,12 @@ services:
           - "@doctrine.orm.default_entity_manager"
           - "@ws_api_client_tnt"
 
+      test_server_ecommerce:
+        class: WSServerBundle\Services\EcommerceService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+      
 
 
 

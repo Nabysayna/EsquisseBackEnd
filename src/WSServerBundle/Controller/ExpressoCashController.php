@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 class ExpressoCashController extends Controller
 {
 
+     public function __construct() {  
+        header("Access-Control-Allow-Origin: *"); 
+        header("Access-Control-Allow-Headers: SOAPAction, Content-Type"); 
+    }
+
     public function expressocashAction()
     {
         $server = new \SoapServer('wsdl_expressocash/ws_expressocash.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));

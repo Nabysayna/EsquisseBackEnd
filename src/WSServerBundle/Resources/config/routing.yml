@@ -21,3 +21,8 @@ ws_server_tnt:
     path:     /tnt
     defaults: { _controller: WSServerBundle:Tnt:tnt }
 
+ws_server_ecommerce:
+    path:     /ecommerce
+    defaults: { _controller: WSServerBundle:Ecommerce:ecommerce }
+
+

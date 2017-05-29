@@ -7,6 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PostCashController extends Controller
 {
+     public function __construct() {  
+        header("Access-Control-Allow-Origin: *"); 
+        header("Access-Control-Allow-Headers: SOAPAction, Content-Type"); 
+    }
+
     public function indexAction()
     {
         $server = new \SoapServer('webservice.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
