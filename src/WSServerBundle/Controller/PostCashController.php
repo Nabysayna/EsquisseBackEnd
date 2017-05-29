@@ -36,4 +36,19 @@ class PostCashController extends Controller
 
         return $response;
     }
+
+    public function postcashtestclientAction()
+    {
+        $server = new \SoapServer('wsdl_postcash_test_client/ws_postcash_test_client.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
+        $server->setObject($this->get('test_server_postcash'));
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'text/xml; charset=ISO-8859-1');
+
+        ob_start();
+        $server->handle();
+        $response->setContent(ob_get_clean());
+
+        return $response;
+    }
 }

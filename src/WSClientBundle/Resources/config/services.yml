@@ -8,3 +8,5 @@ services:
         # arguments:
           # - "@doctrine.orm.default_entity_manager"
           # - "@test_server_authentification"
+    ws_api_client_postcash:
+        class: WSClientBundle\Services\PostCashService

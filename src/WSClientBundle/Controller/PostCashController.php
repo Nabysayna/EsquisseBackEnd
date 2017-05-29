@@ -15,7 +15,7 @@ class PostCashController extends Controller
 
     public function rechargementespeceAction()
     {
-        $params = array('api' => 1, 'token' => 'assaneka', 'tel_destinataire' => 12, 'montant' => 'assaneka');
+        $params = array('token' => 'assaneka', 'tel_destinataire' => 12, 'montant' => 'assaneka');
         $result = $this->client->call('rechargementespece', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
@@ -23,7 +23,7 @@ class PostCashController extends Controller
 
     public function retraitespeceAction()
     {
-        $params = array('api' => 1, 'token' => 'assaneka', 'code_validation' => 123, 'police' => 'assaneka', 'num_facture' => 'assaneka');
+        $params = array('token' => 'assaneka', 'code_validation' => 123, 'police' => 'assaneka', 'num_facture' => 'assaneka');
         $result = $this->client->call('retraitespece', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
@@ -31,7 +31,7 @@ class PostCashController extends Controller
 
     public function achatcodewoyofalAction()
     {
-        $params = array('api' => 1, 'token' => 'assaneka', 'montant' => 12345, 'compteur' => 'assaneka');
+        $params = array('token' => 'assaneka', 'montant' => 12345, 'compteur' => 'assaneka');
         $result = $this->client->call('achatcodewoyofal', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
@@ -39,7 +39,7 @@ class PostCashController extends Controller
 
     public function reglementsenelecAction()
     {
-        $params = array('api' => 1, 'token' => 'assaneka', 'police' => 'assaneka', 'num_facture' => 'assaneka');
+        $params = array('token' => 'assaneka', 'police' => 'assaneka', 'num_facture' => 'assaneka');
         $result = $this->client->call('reglementsenelec', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
@@ -47,7 +47,7 @@ class PostCashController extends Controller
 
     public function achatjulaAction()
     {
-        $params = array('api' => 1, 'token' => 'assaneka', 'mt_carte' => 'assaneka', 'nb_carte' => 'assaneka');
+        $params = array('token' => 'assaneka', 'mt_carte' => 'assaneka', 'nb_carte' => 'assaneka');
         $result = $this->client->call('achatjula', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
@@ -55,7 +55,7 @@ class PostCashController extends Controller
 
     public function achatcredittelephoniqueAction()
     {
-        $params = array('api' => 1, 'token' => 'assaneka', 'numero_a_recharger' => 'assaneka', 'montant' => 12345);
+        $params = array('token' => 'assaneka', 'numero_a_recharger' => 'assaneka', 'montant' => 12345);
         $result = $this->client->call('achatjula', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));

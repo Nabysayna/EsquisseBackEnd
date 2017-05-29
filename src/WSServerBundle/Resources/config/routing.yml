@@ -9,6 +9,9 @@ ws_server_logging:
 ws_server_postcash:
     path:     /postcash
     defaults: { _controller: WSServerBundle:PostCash:postcash }
+ws_server_postcash_test_client:
+    path:     /postcashtestclient
+    defaults: { _controller: WSServerBundle:PostCash:postcashtestclient }
 
 ws_server_expressocash:
     path:     /expressocash

@@ -31,7 +31,6 @@ class TntService
         $param = array('id' => $this->id, 'token' => $params->token, 'prenom' => $params->prenom, 'nom' => $params->nom, 'tel' => $params->tel, 'adresse' => $params->adresse, 'region' => $params->region, 'city' => $params->city, 'cni' => $params->cni, 'numerochip' => $params->numerochip, 'numerocarte' => $params->numerocarte, 'duree' => $params->duree, 'typedebouquet' => $params->typedebouquet);
         $result = $this->client->call('ajoutabonnement', array('params' => $param));
         
-// $result = $params;
         return $result;
     }
 

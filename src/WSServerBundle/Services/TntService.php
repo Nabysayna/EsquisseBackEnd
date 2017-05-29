@@ -19,20 +19,20 @@ class TntService
     function verifinumeroabonnement($params)
     {
       $result = $this->tntClient->verifinumeroabonnement($params);
-      return ''. json_encode($result);
+      return $result;
     }
   
     function ajoutabonnement($params)
     {
       $result = $this->tntClient->ajoutabonnement($params);
-      return ''. json_encode($result);
+      return $result;
     }
 
     function listabonnement($params)
     {
         $result = $this->tntClient->listabonnement($params);
 
-        return ''. json_encode($result);
+        return $result;
     }
 
 
