@@ -7,7 +7,7 @@
 <xsd:complexType name="InVerifiNumeroAbonnement">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="numeroCarteChip" type="xsd:int"/>
+<xsd:element name="numeroCarteChip" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InAjoutAbonnement">
@@ -15,14 +15,14 @@
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="prenom" type="xsd:string"/>
 <xsd:element name="nom" type="xsd:string"/>
-<xsd:element name="telephone" type="xsd:string"/>
+<xsd:element name="tel" type="xsd:string"/>
 <xsd:element name="adresse" type="xsd:string"/>
-<xsd:element name="departement" type="xsd:string"/>
 <xsd:element name="region" type="xsd:string"/>
+<xsd:element name="city" type="xsd:string"/>
 <xsd:element name="cni" type="xsd:string"/>
 <xsd:element name="numerochip" type="xsd:string"/>
 <xsd:element name="numerocarte" type="xsd:string"/>
-<xsd:element name="nombredemois" type="xsd:int"/>
+<xsd:element name="duree" type="xsd:int"/>
 <xsd:element name="typedebouquet" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
