@@ -52,3 +52,28 @@ ws_client_tnt_listabonnement:
 ws_client_tnt_ajoutabonnement:
     path:     /tnt/ajoutabonnement
     defaults: { _controller: WSClientBundle:Tnt:ajoutabonnement }
+
+
+ws_client_ecommerce_ajoutarticle:
+    path:     /ecommerce/ajoutarticle
+    defaults: { _controller: WSClientBundle:Ecommerce:ajoutarticle }
+
+ws_client_ecommerce_ajoutcommande:
+    path:     /ecommerce/ajoutcommande
+    defaults: { _controller: WSClientBundle:Ecommerce:ajoutcommande }
+
+ws_client_ecommerce_ajoutvente:
+    path:     /ecommerce/ajoutvente
+    defaults: { _controller: WSClientBundle:Ecommerce:ajoutvente }
+
+ws_client_ecommerce_listerarticle:
+    path:     /ecommerce/listerarticle
+    defaults: { _controller: WSClientBundle:Ecommerce:listerarticle }
+
+ws_client_ecommerce_listercommande:
+    path:     /ecommerce/listercommande
+    defaults: { _controller: WSClientBundle:Ecommerce:listercommande }
+
+ws_client_ecommerce_listervente:
+    path:     /ecommerce/listervente
+    defaults: { _controller: WSClientBundle:Ecommerce:listervente }
