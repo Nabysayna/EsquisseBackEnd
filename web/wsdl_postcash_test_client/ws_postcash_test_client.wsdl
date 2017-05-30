@@ -6,6 +6,7 @@
 <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
 <xsd:complexType name="InRechargementEspece">
 <xsd:all>
+<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="tel_destinataire" type="xsd:int"/>
 <xsd:element name="montant" type="xsd:string"/>
@@ -13,6 +14,7 @@
 </xsd:complexType>
 <xsd:complexType name="InRetraitEspece">
 <xsd:all>
+<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="code_validation" type="xsd:int"/>
 <xsd:element name="tel_destinataire" type="xsd:int"/>
@@ -21,6 +23,7 @@
 </xsd:complexType>
 <xsd:complexType name="InAchatCodeWoyofal">
 <xsd:all>
+<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="montant" type="xsd:int"/>
 <xsd:element name="compteur" type="xsd:string"/>
@@ -28,6 +31,7 @@
 </xsd:complexType>
 <xsd:complexType name="InReglementSenelec">
 <xsd:all>
+<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="police" type="xsd:string"/>
 <xsd:element name="num_facture" type="xsd:string"/>
@@ -35,6 +39,7 @@
 </xsd:complexType>
 <xsd:complexType name="InAchatJula">
 <xsd:all>
+<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="mt_carte" type="xsd:string"/>
 <xsd:element name="nb_carte" type="xsd:string"/>
@@ -42,6 +47,7 @@
 </xsd:complexType>
 <xsd:complexType name="InAchatCreditTelephonique">
 <xsd:all>
+<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="numero_a_recharger" type="xsd:string"/>
 <xsd:element name="montant" type="xsd:int"/>

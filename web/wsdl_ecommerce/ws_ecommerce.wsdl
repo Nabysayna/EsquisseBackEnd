@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:ecommercewsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:ecommercewsdl">
+<types>
+<xsd:schema targetNamespace="urn:ecommercewsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+<xsd:complexType name="InAjoutArticle">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="designation" type="xsd:string"/>
+<xsd:element name="description" type="xsd:string"/>
+<xsd:element name="prix" type="xsd:int"/>
+<xsd:element name="stock" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAjoutCommande">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="id_article" type="xsd:int"/>
+<xsd:element name="quantite" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAjoutVente">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="id_commande" type="xsd:int"/>
+<xsd:element name="montant" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InListerArticle">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InListerCommande">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InListerVente">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+</xsd:schema>
+</types>
+<message name="ajoutarticleRequest">
+<part name="params" type="tns:InAjoutArticle"/>
+</message>
+<message name="ajoutarticleResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutcommandeRequest">
+<part name="params" type="tns:InAjoutCommande"/>
+</message>
+<message name="ajoutcommandeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutventeRequest">
+<part name="params" type="tns:InAjoutVente"/>
+</message>
+<message name="ajoutventeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listerarticleRequest">
+<part name="params" type="tns:InListerArticle"/>
+</message>
+<message name="listerarticleResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listercommandeRequest">
+<part name="params" type="tns:InListerCommande"/>
+</message>
+<message name="listercommandeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listerventeRequest">
+<part name="params" type="tns:InListerVente"/>
+</message>
+<message name="listerventeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="ecommercePortType">
+<operation name="ajoutarticle">
+<documentation>Method ECOMMERCE ajoutarticle</documentation>
+<input message="tns:ajoutarticleRequest"/>
+<output message="tns:ajoutarticleResponse"/>
+</operation>
+<operation name="ajoutcommande">
+<documentation>Method ECOMMERCE ajoutcommande</documentation>
+<input message="tns:ajoutcommandeRequest"/>
+<output message="tns:ajoutcommandeResponse"/>
+</operation>
+<operation name="ajoutvente">
+<documentation>Method ECOMMERCE ajoutvente</documentation>
+<input message="tns:ajoutventeRequest"/>
+<output message="tns:ajoutventeResponse"/>
+</operation>
+<operation name="listerarticle">
+<documentation>Method ECOMMERCE listerarticle</documentation>
+<input message="tns:listerarticleRequest"/>
+<output message="tns:listerarticleResponse"/>
+</operation>
+<operation name="listercommande">
+<documentation>Method ECOMMERCE listercommande</documentation>
+<input message="tns:listercommandeRequest"/>
+<output message="tns:listercommandeResponse"/>
+</operation>
+<operation name="listervente">
+<documentation>Method ECOMMERCE listervente</documentation>
+<input message="tns:listerventeRequest"/>
+<output message="tns:listerventeResponse"/>
+</operation>
+</portType>
+<binding name="ecommerceBinding" type="tns:ecommercePortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="ajoutarticle">
+<soap:operation soapAction="urn:ecommercewsdl#ajoutarticle" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutcommande">
+<soap:operation soapAction="urn:ecommercewsdl#ajoutcommande" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutvente">
+<soap:operation soapAction="urn:ecommercewsdl#ajoutvente" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listerarticle">
+<soap:operation soapAction="urn:ecommercewsdl#listerarticle" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listercommande">
+<soap:operation soapAction="urn:ecommercewsdl#listercommande" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listervente">
+<soap:operation soapAction="urn:ecommercewsdl#listervente" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="ecommerce">
+<port name="ecommercePort" binding="tns:ecommerceBinding">
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/invest/ecommerce"/>
+</port>
+</service>
+</definitions>

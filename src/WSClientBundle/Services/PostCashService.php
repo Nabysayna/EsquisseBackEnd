@@ -1,27 +1,25 @@
 <?php
 
-namespace WSServerBundle\Services;
+namespace WSClientBundle\Services;
 
 class PostCashService
 {
 
-    private $em;
-    private $postCashClient;
-
-  public function __construct(\Doctrine\ORM\EntityManager $entityManager, \WSClientBundle\Services\PostCashService $postCashClientService)
-  {
-    $this->em = $entityManager;
-    $this->postCashClient = $postCashClientService;
-  }
-
-  function rechargementespece($params)
+    public function __construct()
     {
-      $result = $this->postCashClient->rechargementespece($params);
-      return ''. json_encode($result);
 
     }
 
-  function retraitespece($params)
+    function rechargementespece($params)
+    {
+        $reponse = array(
+          'montant_reel' => 123
+        );
+
+        return ''. json_encode($reponse);
+    }
+
+function retraitespece($params)
     {
         $reponse = array(
           'errorCode' => 1,
