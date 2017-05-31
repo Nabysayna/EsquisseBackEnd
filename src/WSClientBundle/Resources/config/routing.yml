@@ -53,6 +53,14 @@ ws_client_tnt_ajoutabonnement:
     path:     /tnt/ajoutabonnement
     defaults: { _controller: WSClientBundle:Tnt:ajoutabonnement }
 
+ws_client_tnt_ventedecodeur:
+    path:     /tnt/ventedecodeur
+    defaults: { _controller: WSClientBundle:Tnt:ventedecodeur }
+
+ws_client_tnt_listdecodeur:
+    path:     /tnt/listdecodeur
+    defaults: { _controller: WSClientBundle:Tnt:listdecodeur }
+
 
 ws_client_ecommerce_ajoutarticle:
     path:     /ecommerce/ajoutarticle

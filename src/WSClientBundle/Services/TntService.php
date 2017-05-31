@@ -35,5 +35,24 @@ class TntService
         return $result;
     }
 
+    public function ventedecodeur($params)
+    {
+        $reponse = array(
+          'api' => 1,
+          'typedebouquet' => '123'
+        );
+
+        return ''. json_encode($reponse);
+    }
+
+    public function listdecodeur($params)
+    {
+        $reponse = array(
+          'api' => 1,
+          'typedebouquet' => '123'
+        );
+
+        return ''. json_encode($reponse);
+    }
 
 }
