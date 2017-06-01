@@ -10,7 +10,7 @@ class TntController extends Controller
 {
     private $client = null;
     function __construct(){
-        $this->client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl', true);
+        $this->client = new \nusoap_client('http://localhost/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl', true);
     }
 
     public function verifinumeroabonnementAction()
@@ -22,7 +22,7 @@ class TntController extends Controller
     
     public function listabonnementAction()
     {
-        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0');
+        $params = array('token' => '092a18aae3e71d3707688a4c9e9d12ea2dab3bdd');
         $result = $this->client->call('listabonnement', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
