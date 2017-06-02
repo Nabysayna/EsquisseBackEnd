@@ -10,4 +10,12 @@ namespace WSServerBundle\Repository;
  */
 class TntRepository extends \Doctrine\ORM\EntityRepository
 {
+
+/*	public function findCardOrChip($numero)
+	{
+	  $query = $this->_em->createQuery('SELECT t.infosoperation FROM Tnt  WHERE t.infosoperation like '%:numero%' ');
+	  $query->setParameter('numero', $numero);
+	  
+	  return $query->getSingleResult();
+	} */
 }
