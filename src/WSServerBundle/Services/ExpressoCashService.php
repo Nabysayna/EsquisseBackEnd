@@ -38,7 +38,7 @@ class ExpressoCashService
           'hashValue' => '123'
         );
 
-        return $reponse;
+        return ''. json_encode($reponse);
     }
 
   function topup($params)
@@ -53,7 +53,7 @@ class ExpressoCashService
           'hashValue' => '123'
         );
 
-        return $reponse;
+        return ''. json_encode($reponse);
     }
 
   function checkbalance($params)
@@ -69,7 +69,7 @@ class ExpressoCashService
           'hashValue' => '0123'
         );
 
-        return $reponse;
+        return ''. json_encode($reponse);
     }
 
 

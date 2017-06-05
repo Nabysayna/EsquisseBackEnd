@@ -4,7 +4,7 @@
 <xsd:schema targetNamespace="urn:adminpdvwsdl">
 <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
 <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
-<xsd:complexType name="InMontantTransfertService">
+<xsd:complexType name="InData">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="type" type="xsd:string"/>
@@ -13,9 +13,51 @@
 </xsd:schema>
 </types>
 <message name="montanttransfertserviceRequest">
-<part name="params" type="tns:InMontantTransfertService"/>
+<part name="params" type="tns:InData"/>
 </message>
 <message name="montanttransfertserviceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="performancepdvRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="performancepdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="notificationsRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="notificationsResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="bilandepositRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="bilandepositResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="consommationdepositserviceRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="consommationdepositserviceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="consommationdepositpdvRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="consommationdepositpdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="historiquerecouvrementRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="historiquerecouvrementResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="historiquereclamationRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="historiquereclamationResponse">
 <part name="return" type="xsd:string"/>
 </message>
 <portType name="adminpdvPortType">
@@ -24,11 +66,109 @@
 <input message="tns:montanttransfertserviceRequest"/>
 <output message="tns:montanttransfertserviceResponse"/>
 </operation>
+<operation name="performancepdv">
+<documentation>Method ADMINPDV performancepdv</documentation>
+<input message="tns:performancepdvRequest"/>
+<output message="tns:performancepdvResponse"/>
+</operation>
+<operation name="notifications">
+<documentation>Method ADMINPDV notifications</documentation>
+<input message="tns:notificationsRequest"/>
+<output message="tns:notificationsResponse"/>
+</operation>
+<operation name="bilandeposit">
+<documentation>Method ADMINPDV bilandeposit</documentation>
+<input message="tns:bilandepositRequest"/>
+<output message="tns:bilandepositResponse"/>
+</operation>
+<operation name="consommationdepositservice">
+<documentation>Method ADMINPDV consommationdepositservice</documentation>
+<input message="tns:consommationdepositserviceRequest"/>
+<output message="tns:consommationdepositserviceResponse"/>
+</operation>
+<operation name="consommationdepositpdv">
+<documentation>Method ADMINPDV consommationdepositpdv</documentation>
+<input message="tns:consommationdepositpdvRequest"/>
+<output message="tns:consommationdepositpdvResponse"/>
+</operation>
+<operation name="historiquerecouvrement">
+<documentation>Method ADMINPDV historiquerecouvrement</documentation>
+<input message="tns:historiquerecouvrementRequest"/>
+<output message="tns:historiquerecouvrementResponse"/>
+</operation>
+<operation name="historiquereclamation">
+<documentation>Method ADMINPDV historiquereclamation</documentation>
+<input message="tns:historiquereclamationRequest"/>
+<output message="tns:historiquereclamationResponse"/>
+</operation>
 </portType>
 <binding name="adminpdvBinding" type="tns:adminpdvPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
 <operation name="montanttransfertservice">
 <soap:operation soapAction="urn:adminpdvwsdl#montanttransfertservice" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="performancepdv">
+<soap:operation soapAction="urn:adminpdvwsdl#performancepdv" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="notifications">
+<soap:operation soapAction="urn:adminpdvwsdl#notifications" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="bilandeposit">
+<soap:operation soapAction="urn:adminpdvwsdl#bilandeposit" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="consommationdepositservice">
+<soap:operation soapAction="urn:adminpdvwsdl#consommationdepositservice" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="consommationdepositpdv">
+<soap:operation soapAction="urn:adminpdvwsdl#consommationdepositpdv" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="historiquerecouvrement">
+<soap:operation soapAction="urn:adminpdvwsdl#historiquerecouvrement" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="historiquereclamation">
+<soap:operation soapAction="urn:adminpdvwsdl#historiquereclamation" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>
