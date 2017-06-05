@@ -1,3 +1,7 @@
+############################################
+############################################
+#     Local Service
+
 ws_server_homepage:
     path:     /
     defaults: { _controller: WSServerBundle:Default:index }
@@ -6,9 +10,24 @@ ws_server_logging:
     path:     /logging
     defaults: { _controller: WSServerBundle:Auth:index }
 
+ws_server_ecommerce:
+    path:     /ecommerce
+    defaults: { _controller: WSServerBundle:Ecommerce:ecommerce }
+
+ws_server_adminpdv:
+    path:     /adminpdv
+    defaults: { _controller: WSServerBundle:Adminpdv:adminpdv }
+
+
+
+#########################################################
+#########################################################
+#     API Service Partenaire
+
 ws_server_postcash:
     path:     /postcash
     defaults: { _controller: WSServerBundle:PostCash:postcash }
+
 ws_server_postcash_test_client:
     path:     /postcashtestclient
     defaults: { _controller: WSServerBundle:PostCash:postcashtestclient }
@@ -20,9 +39,3 @@ ws_server_expressocash:
 ws_server_tnt:
     path:     /tnt
     defaults: { _controller: WSServerBundle:Tnt:tnt }
-
-ws_server_ecommerce:
-    path:     /ecommerce
-    defaults: { _controller: WSServerBundle:Ecommerce:ecommerce }
-
-

@@ -2,6 +2,11 @@ services:
 #    ws_server.example:
 #        class: WSServerBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+
+############################################
+############################################
+#     Local Service
       test_service:
         class: WSServerBundle\Services\HelloService
 
@@ -10,6 +15,21 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_ecommerce:
+        class: WSServerBundle\Services\EcommerceService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+      test_server_adminpdv:
+        class: WSServerBundle\Services\AdminpdvService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+
+
+#########################################################
+#########################################################
+#     API Service Partenaire
       test_server_postcash:
         class: WSServerBundle\Services\PostCashService
         arguments:
@@ -27,13 +47,4 @@ services:
           - "@doctrine.orm.default_entity_manager"
           - "@ws_api_client_tnt"
 
-      test_server_ecommerce:
-        class: WSServerBundle\Services\EcommerceService
-        arguments:
-          - "@doctrine.orm.default_entity_manager"
-
       
-
-
-
-
