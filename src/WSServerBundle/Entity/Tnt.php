@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Tnt
  *
  * @ORM\Table(name="tnt")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="WSServerBundle\Repository\TntRepository")
  */
 class Tnt
 {

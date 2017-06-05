@@ -29,6 +29,7 @@
 <xsd:element name="numerocarte" type="xsd:string"/>
 <xsd:element name="duree" type="xsd:int"/>
 <xsd:element name="typedebouquet" type="xsd:int"/>
+<xsd:element name="montant" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InVenteDecodeur">

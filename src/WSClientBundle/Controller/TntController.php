@@ -15,7 +15,7 @@ class TntController extends Controller
 
     public function verifinumeroabonnementAction()
     {
-        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'numeroCarteChip' =>  '65443');
+        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'numeroCarteChip' =>  '00616241893');
         $result = $this->client->call('verifinumeroabonnement', array('params' => $params));
         return new JsonResponse(array('result' => $result));
     }
