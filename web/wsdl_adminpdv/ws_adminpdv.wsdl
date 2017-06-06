@@ -10,6 +10,14 @@
 <xsd:element name="type" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
+<xsd:complexType name="InModifyUserPdv">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="idpdv" type="xsd:int"/>
+<xsd:element name="modifydata" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
 </xsd:schema>
 </types>
 <message name="montanttransfertserviceRequest">
@@ -60,6 +68,18 @@
 <message name="historiquereclamationResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="listuserpdvRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listuserpdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="modifypdvRequest">
+<part name="params" type="tns:InModifyUserPdv"/>
+</message>
+<message name="modifypdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <portType name="adminpdvPortType">
 <operation name="montanttransfertservice">
 <documentation>Method ADMINPDV montanttransfertservice</documentation>
@@ -100,6 +120,16 @@
 <documentation>Method ADMINPDV historiquereclamation</documentation>
 <input message="tns:historiquereclamationRequest"/>
 <output message="tns:historiquereclamationResponse"/>
+</operation>
+<operation name="listuserpdv">
+<documentation>Method ADMINPDV listuserpdv</documentation>
+<input message="tns:listuserpdvRequest"/>
+<output message="tns:listuserpdvResponse"/>
+</operation>
+<operation name="modifypdv">
+<documentation>Method ADMINPDV modifypdv</documentation>
+<input message="tns:modifypdvRequest"/>
+<output message="tns:modifypdvResponse"/>
 </operation>
 </portType>
 <binding name="adminpdvBinding" type="tns:adminpdvPortType">
@@ -176,8 +206,25 @@
 <soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
-</binding>
-<service name="adminpdv">
+<operation name="listuserpdv">
+<soap:operation soapAction="urn:adminpdvwsdl#listuserpdv" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="modifypdv">
+<soap:operation soapAction="urn:adminpdvwsdl#modifypdv" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding><service name="adminpdv">
 <port name="adminpdvPort" binding="tns:adminpdvBinding">
 <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminpdv"/>
 </port>

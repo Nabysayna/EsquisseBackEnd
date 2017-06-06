@@ -191,5 +191,57 @@ class AdminpdvService
         return ''. json_encode($reponse);
     }
 
+function listuserpdv($params)
+    {
+        $reponse = [
+          array(
+            'idpdv' => 1,
+            'fullname' => 'Assane KA',
+            'email' => 'Assane KA',
+            'adresse' => 'Assane KA',
+            'telephone' => "Pas de lait"
+          ),
+          array(
+            'idpdv' => 2,
+            'fullname' => 'Naby NDIAYE',
+            'email' => "Trop à lese",
+            'adresse' => "Trop à lese",
+            'telephone' => "Trop à lese"
+          ),
+          array(
+            'idpdv' => 3,
+            'fullname' => 'Bamba GNING',
+            'email' => "Parité",
+            'adresse' => "Parité",
+            'telephone' => "Parité"
+          ),
+        ];
+
+        return ''. json_encode($reponse);
+    }
+
+function modifypdv($params)
+    {
+        $reponse = [
+          array(
+            'pdv' => 'Assane KA',
+            'reclamation' => "Pas de lait",
+            'datereclamation' => "2007-05-10"
+          ),
+          array(
+            'pdv' => 'Naby NDIAYE',
+            'reclamation' => "Trop à lese",
+            'datereclamation' => "2007-05-10"
+          ),
+          array(
+            'pdv' => 'Bamba GNING',
+            'reclamation' => "Parité",
+            'datereclamation' => "2007-05-10"
+          ),
+        ];
+
+        return ''. json_encode($reponse);
+    }
+
 
 }
