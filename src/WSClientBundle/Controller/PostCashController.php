@@ -56,7 +56,7 @@ class PostCashController extends Controller
     public function achatcredittelephoniqueAction()
     {
         $params = array('token' => 'assaneka', 'numero_a_recharger' => 'assaneka', 'montant' => 12345);
-        $result = $this->client->call('achatjula', array('params' => $params));
+        $result = $this->client->call('achatcredittelephonique', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
     }

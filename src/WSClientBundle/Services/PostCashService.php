@@ -5,98 +5,47 @@ namespace WSClientBundle\Services;
 class PostCashService
 {
 
+    private $client = null;
+    
     public function __construct()
     {
-
+        $this->client = new \nusoap_client('http://abonnement.bbstvnet.com/wsclient/index.php?wsdl', true);
     }
 
     function rechargementespece($params)
     {
-        $reponse = array(
-          'montant_reel' => 123
-        );
-
-        return ''. json_encode($reponse);
+        $result = $this->client->call('rechargementespece', array('params' => $params));
+        return $result;
     }
 
 function retraitespece($params)
     {
-        $reponse = array(
-          'errorCode' => 1,
-          'errorMessage' => 'as12',
-          'result' => 1,
-          'commission' => 0123,
-          'montant_facture' => 789,
-          'trasnaction' => 'qwerty',
-          'motant_facial' => 456,
-          'montant_reel' => 123
-        );
-
-        return ''. json_encode($reponse);
+        $result = $this->client->call('retraitespece', array('params' => $params));
+        return $result;
     }
 
 function achatcodewoyofal($params)
     {
-        $reponse = array(
-          'errorCode' => 1,
-          'errorMessage' => 'as12',
-          'result' => 1,
-          'commission' => 0123,
-          'montant_facture' => 789,
-          'trasnaction' => 'qwerty',
-          'motant_facial' => 456,
-          'montant_reel' => 123
-        );
-
-        return ''. json_encode($reponse);
+        $result = $this->client->call('achatcodewoyofal', array('params' => $params));
+        return $result;
     }
 
 function reglementsenelec($params)
     {
-        $reponse = array(
-          'errorCode' => 1,
-          'errorMessage' => 'as12',
-          'result' => 1,
-          'commission' => 0123,
-          'montant_facture' => 789,
-          'trasnaction' => 'qwerty',
-          'motant_facial' => 456,
-          'montant_reel' => 123
-        );
-
-        return ''. json_encode($reponse);
+        $result = $this->client->call('reglementsenelec', array('params' => $params));
+        return $result;
     }
 
 function achatjula($params)
 {
-        $reponse = array(
-          'errorCode' => 1,
-          'errorMessage' => 'as12',
-          'result' => 1,
-          'commission' => 0123,
-          'montant_facture' => 789,
-          'trasnaction' => 'qwerty',
-          'motant_facial' => 456,
-          'montant_reel' => 123
-        );
-
-        return ''. json_encode($reponse);
+        $result = $this->client->call('achatjula', array('params' => $params));
+        return $result;
     }
 
 function achatcredittelephonique($params)
 {
-        $reponse = array(
-          'errorCode' => 1,
-          'errorMessage' => 'as12',
-          'result' => 1,
-          'commission' => 0123,
-          'montant_facture' => 789,
-          'trasnaction' => 'qwerty',
-          'motant_facial' => 456,
-          'montant_reel' => 123
-        );
-
-        return ''. json_encode($reponse);
+        $result = $this->client->call('achatcredittelephonique', array('params' => $params));
+        return $result;
     }
 
 
