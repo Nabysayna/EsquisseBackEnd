@@ -29,9 +29,13 @@ class PostCashController extends Controller
 
     public function rechargementespeceAction()
     {
-        $params = array('token' => 'assaneka', 'tel_destinataire' => '12', 'montant' => '100000');
-        $result = $this->client->call('rechargementespece', array('params' => $params));
+        
+        // $client = new \nusoap_client("http://www.webservicex.net/stockquote.asmx?WSDL", true);
+        // $parameters = array('symbol' => 'IBM');
+        // $result = $client->call('GetQuote', array('parameters' => $parameters));
 
+        $params = array('token' => 'assaneka', 'tel_destinataire' => '12', 'montant' => '100000');
+        $result = $this->client->call('rechargementespece', array('params' => $params));        
         return new JsonResponse(array('result' => $result));
     }
 
