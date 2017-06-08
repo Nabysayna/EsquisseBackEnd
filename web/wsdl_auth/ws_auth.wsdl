@@ -96,11 +96,8 @@
 
     <service name="auth">
         <port name="authPort" binding="tns:authBinding">
-<<<<<<< HEAD
+            
             <soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/logging" />
-=======
-            <soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/logging" />
->>>>>>> 3c126c627699149fc0ad9e0935e63b3cfe019c5d
         </port>
     </service>
 </definitions>
