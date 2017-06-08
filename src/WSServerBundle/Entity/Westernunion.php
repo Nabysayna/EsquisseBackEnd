@@ -34,6 +34,13 @@ class Westernunion
     private $infosoperation;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_operation", type="datetime", nullable=false)
+     */
+    private $dateOperation;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -114,6 +121,30 @@ class Westernunion
     public function getInfosoperation()
     {
         return $this->infosoperation;
+    }
+
+    /**
+     * Set dateOperation
+     *
+     * @param \DateTime $dateOperation
+     *
+     * @return Westernunion
+     */
+    public function setDateOperation($dateOperation)
+    {
+        $this->dateOperation = $dateOperation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateOperation
+     *
+     * @return \DateTime
+     */
+    public function getDateOperation()
+    {
+        return $this->dateOperation;
     }
 
     /**

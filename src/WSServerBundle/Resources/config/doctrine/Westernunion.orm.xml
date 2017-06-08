@@ -19,5 +19,6 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="dateOperation" type="datetime" column="date_operation" nullable="false"/>
   </entity>
 </doctrine-mapping>

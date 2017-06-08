@@ -55,6 +55,13 @@ class Users
     private $dependsOn;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=false)
+     */
+    private $dateCreation;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id_user", type="integer")
@@ -207,6 +214,30 @@ class Users
     public function getDependsOn()
     {
         return $this->dependsOn;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Users
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
     }
 
     /**
