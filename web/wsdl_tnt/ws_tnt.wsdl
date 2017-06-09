@@ -40,18 +40,33 @@
 <xsd:element name="tel" type="xsd:string"/>
 <xsd:element name="adresse" type="xsd:string"/>
 <xsd:element name="region" type="xsd:string"/>
-<xsd:element name="city" type="xsd:string"/>
 <xsd:element name="cni" type="xsd:string"/>
 <xsd:element name="numerochip" type="xsd:string"/>
 <xsd:element name="numerocarte" type="xsd:string"/>
-<xsd:element name="typedecodeur" type="xsd:string"/>
+<xsd:element name="typedebouquet" type="xsd:int"/>
 <xsd:element name="prix" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
+
+
+<xsd:complexType name="InVenteCarte">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="prenom" type="xsd:string"/>
+<xsd:element name="nom" type="xsd:string"/>
+<xsd:element name="tel" type="xsd:string"/>
+<xsd:element name="adresse" type="xsd:string"/>
+<xsd:element name="region" type="xsd:string"/>
+<xsd:element name="cni" type="xsd:string"/>
+<xsd:element name="numerocarte" type="xsd:string"/>
+<xsd:element name="prix" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+
+
 <xsd:complexType name="InListDecodeur">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 </xsd:schema>
@@ -80,12 +95,28 @@
 <message name="ventedecodeurResponse">
 <part name="return" type="xsd:string"/>
 </message>
+
+<message name="ventecarteRequest">
+<part name="params" type="tns:InVenteCarte"/>
+</message>
+<message name="ventecarteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
 <message name="listdecodeurRequest">
 <part name="params" type="tns:InListDecodeur"/>
 </message>
 <message name="listdecodeurResponse">
 <part name="return" type="xsd:string"/>
 </message>
+
+<message name="listcarteRequest">
+<part name="params" type="tns:InListDecodeur"/>
+</message>
+<message name="listcarteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
 <portType name="tntPortType">
 <operation name="verifinumeroabonnement">
 <documentation>Method TNT verifinumeroabonnement</documentation>
@@ -107,11 +138,26 @@
 <input message="tns:ventedecodeurRequest"/>
 <output message="tns:ventedecodeurResponse"/>
 </operation>
+
+<operation name="ventecarte">
+<documentation>Method TNT ventedecodeur</documentation>
+<input message="tns:ventecarteRequest"/>
+<output message="tns:ventecarteResponse"/>
+</operation>
+
+
 <operation name="listdecodeur">
 <documentation>Method TNT listdecodeur</documentation>
 <input message="tns:listdecodeurRequest"/>
 <output message="tns:listdecodeurResponse"/>
 </operation>
+
+<operation name="listcarte">
+<documentation>Method TNT listdecodeur</documentation>
+<input message="tns:listcarteRequest"/>
+<output message="tns:listcarteResponse"/>
+</operation>
+
 </portType>
 <binding name="tntBinding" type="tns:tntPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -151,6 +197,18 @@
 <soap:body use="encoded" namespace="urn:tntwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
+
+<operation name="ventecarte">
+<soap:operation soapAction="urn:tntwsdl#ventecarte" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:tntwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:tntwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
+
 <operation name="listdecodeur">
 <soap:operation soapAction="urn:tntwsdl#listdecodeur" style="rpc"/>
 <input>
@@ -160,10 +218,21 @@
 <soap:body use="encoded" namespace="urn:tntwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
+
+<operation name="listcarte">
+<soap:operation soapAction="urn:tntwsdl#listcarte" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:tntwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:tntwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
 </binding>
 <service name="tnt">
 <port name="tntPort" binding="tns:tntBinding">
-<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/tnt"/>
+<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/tnt"/>
 </port>
 </service>
 </definitions>

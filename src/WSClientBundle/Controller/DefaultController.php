@@ -10,7 +10,7 @@ class DefaultController extends Controller
 {
     private $client = null;
     function __construct(){
-        $this->client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl', true);
+        $this->client = new \nusoap_client('http://localhost/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl', true);
     }
 
     public function indexAction()

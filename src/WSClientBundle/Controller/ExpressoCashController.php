@@ -10,7 +10,7 @@ class ExpressoCashController extends Controller
 {
     private $client = null;
     function __construct(){
-        $this->client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/expressocash?wsdl', true);
+        $this->client = new \nusoap_client('http://localhost/EsquisseBackEnd/web/app_dev.php/invest/expressocash?wsdl', true);
     }
 
     public function topupAction()

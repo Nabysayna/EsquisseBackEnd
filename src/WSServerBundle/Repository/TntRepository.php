@@ -21,5 +21,6 @@ class TntRepository extends \Doctrine\ORM\EntityRepository
 		$results = $query->getResult() ;
 		return $results ;
 	} 
+
 }
 

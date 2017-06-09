@@ -175,7 +175,7 @@
 </binding>
 <service name="ecommerce">
 <port name="ecommercePort" binding="tns:ecommerceBinding">
-<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/invest/ecommerce"/>
+<soap:address location="http://localhost/EsquisseBackEnd/web/invest/ecommerce"/>
 </port>
 </service>
 </definitions>
