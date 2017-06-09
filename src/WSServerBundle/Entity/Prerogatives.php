@@ -27,6 +27,13 @@ class Prerogatives
     private $authorizedApis;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     */
+    private $dateAjout;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id_auth", type="integer")
@@ -83,6 +90,30 @@ class Prerogatives
     public function getAuthorizedApis()
     {
         return $this->authorizedApis;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Prerogatives
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
     }
 
     /**
