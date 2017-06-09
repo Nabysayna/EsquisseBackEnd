@@ -13,24 +13,78 @@ ws_client_disconnexion:
 
 
 
+ws_client_postcash_getcardusername:
+    path:     /postcash/getcardusername
+    defaults: { _controller: WSClientBundle:PostCash:getcardusername }
+ws_client_postcash_getfraispartenaire:
+    path:     /postcash/getfraispartenaire
+    defaults: { _controller: WSClientBundle:PostCash:getfraispartenaire }
 ws_client_postcash_rechargementespece:
     path:     /postcash/rechargementespece
     defaults: { _controller: WSClientBundle:PostCash:rechargementespece }
 ws_client_postcash_retraitespece:
     path:     /postcash/retraitespece
     defaults: { _controller: WSClientBundle:PostCash:retraitespece }
+ws_client_postcash_debitercarte:
+    path:     /postcash/debitercarte
+    defaults: { _controller: WSClientBundle:PostCash:debitercarte }
+ws_client_postcash_debitcartedirect:
+    path:     /postcash/debitcartedirect
+    defaults: { _controller: WSClientBundle:PostCash:debitcartedirect }
+ws_client_postcash_codevalidation:
+    path:     /postcash/codevalidation
+    defaults: { _controller: WSClientBundle:PostCash:codevalidation }
 ws_client_postcash_achatcodewoyofal:
     path:     /postcash/achatcodewoyofal
     defaults: { _controller: WSClientBundle:PostCash:achatcodewoyofal }
 ws_client_postcash_reglementsenelec:
     path:     /postcash/reglementsenelec
     defaults: { _controller: WSClientBundle:PostCash:reglementsenelec }
+ws_client_postcash_detailfacturesenelec:
+    path:     /postcash/detailfacturesenelec
+    defaults: { _controller: WSClientBundle:PostCash:detailfacturesenelec }
+ws_client_postcash_achatneo:
+    path:     /postcash/achatneo
+    defaults: { _controller: WSClientBundle:PostCash:achatneo }
 ws_client_postcash_achatjula:
     path:     /postcash/achatjula
     defaults: { _controller: WSClientBundle:PostCash:achatjula }
+ws_client_postcash_getinfosnumber:
+    path:     /postcash/getinfosnumber
+    defaults: { _controller: WSClientBundle:PostCash:getinfosnumber }
+ws_client_postcash_getinfosnumberap:
+    path:     /postcash/getinfosnumberap
+    defaults: { _controller: WSClientBundle:PostCash:getinfosnumberap }
 ws_client_postcash_achatcredittelephonique:
     path:     /postcash/achatcredittelephonique
     defaults: { _controller: WSClientBundle:PostCash:achatcredittelephonique }
+ws_client_postcash_cashtocashsend:
+    path:     /postcash/cashtocashsend
+    defaults: { _controller: WSClientBundle:PostCash:cashtocashsend }
+ws_client_postcash_cashtocashreceive:
+    path:     /postcash/cashtocashreceive
+    defaults: { _controller: WSClientBundle:PostCash:cashtocashreceive }
+ws_client_postcash_transfertverstamtam:
+    path:     /postcash/transfertverstamtam
+    defaults: { _controller: WSClientBundle:PostCash:transfertverstamtam }
+ws_client_postcash_consultersoldeneo:
+    path:     /postcash/consultersoldeneo
+    defaults: { _controller: WSClientBundle:PostCash:consultersoldeneo }
+ws_client_postcash_debitercompteneo:
+    path:     /postcash/debitercompteneo
+    defaults: { _controller: WSClientBundle:PostCash:debitercompteneo }
+ws_client_postcash_saveachatneo:
+    path:     /postcash/saveachatneo
+    defaults: { _controller: WSClientBundle:PostCash:saveachatneo }
+ws_client_postcash_transfertverstamtamviaapay:
+    path:     /postcash/transfertverstamtamviaapay
+    defaults: { _controller: WSClientBundle:PostCash:transfertverstamtamviaapay }
+ws_client_postcash_fraistamtamviaapay:
+    path:     /postcash/fraistamtamviaapay
+    defaults: { _controller: WSClientBundle:PostCash:fraistamtamviaapay }
+ws_client_postcash_histotransactmarchand:
+    path:     /postcash/histotransactmarchand
+    defaults: { _controller: WSClientBundle:PostCash:histotransactmarchand }
 
 
 

@@ -37,5 +37,6 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="dateCreation" type="datetime" column="date_creation" nullable="false"/>
   </entity>
 </doctrine-mapping>

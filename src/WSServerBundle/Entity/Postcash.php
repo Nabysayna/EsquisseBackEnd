@@ -29,9 +29,16 @@ class Postcash
     /**
      * @var string
      *
-     * @ORM\Column(name="infosOperation", type="string", length=255, nullable=false)
+     * @ORM\Column(name="infosOperation", type="string", length=2055, nullable=false)
      */
     private $infosoperation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_operation", type="datetime", nullable=false)
+     */
+    private $dateOperation;
 
     /**
      * @var integer
@@ -114,6 +121,30 @@ class Postcash
     public function getInfosoperation()
     {
         return $this->infosoperation;
+    }
+
+    /**
+     * Set dateOperation
+     *
+     * @param \DateTime $dateOperation
+     *
+     * @return Postcash
+     */
+    public function setDateOperation($dateOperation)
+    {
+        $this->dateOperation = $dateOperation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateOperation
+     *
+     * @return \DateTime
+     */
+    public function getDateOperation()
+    {
+        return $this->dateOperation;
     }
 
     /**

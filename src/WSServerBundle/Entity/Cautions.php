@@ -27,6 +27,13 @@ class Cautions
     private $caution = '0';
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     */
+    private $dateAjout;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id_caution", type="integer")
@@ -83,6 +90,30 @@ class Cautions
     public function getCaution()
     {
         return $this->caution;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Cautions
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
     }
 
     /**
