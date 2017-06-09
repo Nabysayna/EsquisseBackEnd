@@ -7,13 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit;
 }
  
-$path = 'img/';
+$path = 'img';
  
 if (isset($_FILES['file'])) {
   $originalName = $_FILES['file']['name'];
   $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
   // $generatedName = $originalName.$ext;
-  $generatedName = $_GET["nomImage"].$ext;
+  $generatedName = md5($_FILES['file']['tmp_name']).$ext;
   $filePath = $path.$generatedName;
  
   if (!is_writable($path)) {

@@ -182,7 +182,11 @@
 </binding>
 <service name="postcash">
 <port name="postcashPort" binding="tns:postcashBinding">
+<<<<<<< HEAD
 <soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/postcash"/>
+=======
+<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/postcash"/>
+>>>>>>> 35368872bbfdc2af0b4ff3ae3c1cc402bdbfe7bb
 </port>
 </service>
 </definitions>
