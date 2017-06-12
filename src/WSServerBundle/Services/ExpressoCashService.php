@@ -5,77 +5,39 @@ namespace WSServerBundle\Services;
 class ExpressoCashService
 {
 
-    public function __construct()
-    {
+  private $em;
+  private $expressocashClient;
 
-    }
+  public function __construct(\Doctrine\ORM\EntityManager $entityManager, \WSClientBundle\Services\ExpressoCashService $expressocashClientService)
+  {
+    $this->em = $entityManager;
+    $this->expressocashClient = $expressocashClientService;
+  }
 
-    function cashin($params)
-    {
-        $reponse = array(
-          'api' => 1,
-          'token' => 'as12',
-          'Status' => 1,
-          'description' => '0123',
-          'message' => '789',
-          'destinationBalance' => 456.0,
-          'referenceID' => '123',
-          'hashValue' => '123'
-        );
+    
+  function cashin($params)
+  {
+    $result = $this->expressocashClient->cashin($params);
+    return ''. json_encode($result);
+  }
 
-        return ''. json_encode($reponse);
-    }
-  
   function cashout($params)
-    {
-        $reponse = array(
-          'api' => 1,
-          'token' => 'as12',
-          'Status' => 1,
-          'description' => '0123',
-          'message' => '789',
-          'referenceID' => '123',
-          'hashValue' => '123'
-        );
-
-        return ''. json_encode($reponse);
-    }
+  {
+    $result = $this->expressocashClient->cashout($params);
+    return ''. json_encode($result);
+  }
 
   function topup($params)
-    {
-        $reponse = array(
-          'api' => 1,
-          'token' => 'as12',
-          'Status' => 1,
-          'description' => '0123',
-          'message' => '789',
-          'referenceID' => '123',
-          'hashValue' => '123'
-        );
-
-        return ''. json_encode($reponse);
-    }
+  {
+    $result = $this->expressocashClient->topup($params);
+    return ''. json_encode($result);
+  }
 
   function checkbalance($params)
-    {
-        $reponse = array(
-          'api' => 1,
-          'token' => 'as12',
-          'Status' => 1,
-          'description' => '0123',
-          'message' => '0123',
-          'firstname' => '0123',
-          'lastname' => '0123',
-          'hashValue' => '0123'
-        );
-
-        return ''. json_encode($reponse);
-    }
-
-
-
-
-
+  {
+    $result = $this->expressocashClient->checkbalance($params);
+    return ''. json_encode($result);
+  }
 
 
 }

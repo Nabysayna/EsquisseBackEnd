@@ -4,53 +4,18 @@
 <xsd:schema targetNamespace="urn:postcashwsdl">
 <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
 <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
-<xsd:complexType name="InGetCardUserName">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="tel" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InGetFraisPartenaire">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="identifiant" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
 <xsd:complexType name="InRechargementEspece">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="tel_destinataire" type="xsd:string"/>
+<xsd:element name="tel_destinataire" type="xsd:int"/>
 <xsd:element name="montant" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InRetraitEspece">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="code_validation" type="xsd:string"/>
-<xsd:element name="tel_destinataire" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InDebiterCarte">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="code_validation" type="xsd:string"/>
-<xsd:element name="tel_destinataire" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InDebitCarteDirect">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="tel_destinataire" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:int"/>
-<xsd:element name="clef_secret" type="xsd:int"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InCodeValidation">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="tel_destinataire" type="xsd:string"/>
+<xsd:element name="code_validation" type="xsd:int"/>
+<xsd:element name="tel_destinataire" type="xsd:int"/>
 <xsd:element name="montant" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
@@ -68,21 +33,6 @@
 <xsd:element name="num_facture" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
-<xsd:complexType name="InDetailFactureSenelec">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="police" type="xsd:string"/>
-<xsd:element name="num_facture" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InAchatneo">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="produit" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
 <xsd:complexType name="InAchatJula">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
@@ -90,136 +40,15 @@
 <xsd:element name="nb_carte" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
-<xsd:complexType name="InGetInfosNumber">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="telephone" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InGetInfosNumberAP">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="telephone" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
 <xsd:complexType name="InAchatCreditTelephonique">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="numero_a_recharger" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InCashToCashSend">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="tel_exp" type="xsd:string"/>
-<xsd:element name="nom_exp" type="xsd:string"/>
-<xsd:element name="prenom_exp" type="xsd:string"/>
-<xsd:element name="cni_exp" type="xsd:string"/>
-<xsd:element name="type_piece_exp" type="xsd:string"/>
-<xsd:element name="pays_exp" type="xsd:string"/>
-<xsd:element name="tel_rec" type="xsd:string"/>
-<xsd:element name="prenom_rec" type="xsd:string"/>
-<xsd:element name="nom_rec" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InCashToCashReceive">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="tel_rec" type="xsd:string"/>
-<xsd:element name="cni_rec" type="xsd:string"/>
-<xsd:element name="type_piece_rec" type="xsd:string"/>
-<xsd:element name="pays_rec" type="xsd:string"/>
-<xsd:element name="code" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InTransfertVersTamTam">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="tel" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-<xsd:element name="frais" type="xsd:string"/>
-<xsd:element name="nom" type="xsd:string"/>
-<xsd:element name="prenom" type="xsd:string"/>
-<xsd:element name="telephone_benef" type="xsd:string"/>
-<xsd:element name="code" type="xsd:string"/>
-<xsd:element name="pays" type="xsd:string"/>
-<xsd:element name="rcv_address" type="xsd:string"/>
-<xsd:element name="transaction_reason" type="xsd:string"/>
-<xsd:element name="incoming_source" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InConsulterSoldeNeo">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InDebiterCompteNeo">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InSaveAchatneo">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-<xsd:element name="code_pin" type="xsd:string"/>
-<xsd:element name="numero_serie" type="xsd:string"/>
-<xsd:element name="date_expiration" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
-<xsd:element name="telephone" type="xsd:string"/>
-<xsd:element name="num_transac" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InTransfertVersTamTamViaAPAY">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="prenom_exp" type="xsd:string"/>
-<xsd:element name="nom_exp" type="xsd:string"/>
-<xsd:element name="typecni_exp" type="xsd:string"/>
-<xsd:element name="cni_exp" type="xsd:string"/>
-<xsd:element name="tel_exp" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-<xsd:element name="frais" type="xsd:string"/>
-<xsd:element name="nom_dest" type="xsd:string"/>
-<xsd:element name="prenom_dest" type="xsd:string"/>
-<xsd:element name="tel_dest" type="xsd:string"/>
-<xsd:element name="pays_dest" type="xsd:string"/>
-<xsd:element name="adresse_dest" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InFraisTAMTAMViaAPAY">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:string"/>
-<xsd:element name="pays" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="InHistoTransactMarchand">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="date_debut" type="xsd:string"/>
-<xsd:element name="date_fin" type="xsd:string"/>
+<xsd:element name="montant" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
 </xsd:schema>
 </types>
-<message name="getcardusernameRequest">
-<part name="params" type="tns:InGetCardUserName"/>
-</message>
-<message name="getcardusernameResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="getfraispartenaireRequest">
-<part name="params" type="tns:InGetFraisPartenaire"/>
-</message>
-<message name="getfraispartenaireResponse">
-<part name="return" type="xsd:string"/>
-</message>
 <message name="rechargementespeceRequest">
 <part name="params" type="tns:InRechargementEspece"/>
 </message>
@@ -230,24 +59,6 @@
 <part name="params" type="tns:InRetraitEspece"/>
 </message>
 <message name="retraitespeceResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="debitercarteRequest">
-<part name="params" type="tns:InDebiterCarte"/>
-</message>
-<message name="debitercarteResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="debitcartedirectRequest">
-<part name="params" type="tns:InDebitCarteDirect"/>
-</message>
-<message name="debitcartedirectResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="codevalidationRequest">
-<part name="params" type="tns:InCodeValidation"/>
-</message>
-<message name="codevalidationResponse">
 <part name="return" type="xsd:string"/>
 </message>
 <message name="achatcodewoyofalRequest">
@@ -262,34 +73,10 @@
 <message name="reglementsenelecResponse">
 <part name="return" type="xsd:string"/>
 </message>
-<message name="detailfacturesenelecRequest">
-<part name="params" type="tns:InDetailFactureSenelec"/>
-</message>
-<message name="detailfacturesenelecResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="achatneoRequest">
-<part name="params" type="tns:InAchatneo"/>
-</message>
-<message name="achatneoResponse">
-<part name="return" type="xsd:string"/>
-</message>
 <message name="achatjulaRequest">
 <part name="params" type="tns:InAchatJula"/>
 </message>
 <message name="achatjulaResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="getinfosnumberRequest">
-<part name="params" type="tns:InGetInfosNumber"/>
-</message>
-<message name="getinfosnumberResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="getinfosnumberapRequest">
-<part name="params" type="tns:InGetInfosNumberAP"/>
-</message>
-<message name="getinfosnumberapResponse">
 <part name="return" type="xsd:string"/>
 </message>
 <message name="achatcredittelephoniqueRequest">
@@ -298,71 +85,7 @@
 <message name="achatcredittelephoniqueResponse">
 <part name="return" type="xsd:string"/>
 </message>
-<message name="cashtocashsendRequest">
-<part name="params" type="tns:InCashToCashSend"/>
-</message>
-<message name="cashtocashsendResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="cashtocashreceiveRequest">
-<part name="params" type="tns:InCashToCashReceive"/>
-</message>
-<message name="cashtocashreceiveResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="transfertverstamtamRequest">
-<part name="params" type="tns:InTransfertVersTamTam"/>
-</message>
-<message name="transfertverstamtamResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="consultersoldeneoRequest">
-<part name="params" type="tns:InConsulterSoldeNeo"/>
-</message>
-<message name="consultersoldeneoResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="debitercompteneoRequest">
-<part name="params" type="tns:InDebiterCompteNeo"/>
-</message>
-<message name="debitercompteneoResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="saveachatneoRequest">
-<part name="params" type="tns:InSaveAchatneo"/>
-</message>
-<message name="saveachatneoResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="transfertverstamtamviaapayRequest">
-<part name="params" type="tns:InTransfertVersTamTamViaAPAY"/>
-</message>
-<message name="transfertverstamtamviaapayResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="fraistamtamviaapayRequest">
-<part name="params" type="tns:InFraisTAMTAMViaAPAY"/>
-</message>
-<message name="fraistamtamviaapayResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="histotransactmarchandRequest">
-<part name="params" type="tns:InHistoTransactMarchand"/>
-</message>
-<message name="histotransactmarchandResponse">
-<part name="return" type="xsd:string"/>
-</message>
 <portType name="postcashPortType">
-<operation name="getcardusername">
-<documentation>Method PostCash getcardusername</documentation>
-<input message="tns:getcardusernameRequest"/>
-<output message="tns:getcardusernameResponse"/>
-</operation>
-<operation name="getfraispartenaire">
-<documentation>Method PostCash getfraispartenaire</documentation>
-<input message="tns:getfraispartenaireRequest"/>
-<output message="tns:getfraispartenaireResponse"/>
-</operation>
 <operation name="rechargementespece">
 <documentation>Method PostCash RechargementEspece</documentation>
 <input message="tns:rechargementespeceRequest"/>
@@ -372,21 +95,6 @@
 <documentation>Method PostCash RetraitEspece</documentation>
 <input message="tns:retraitespeceRequest"/>
 <output message="tns:retraitespeceResponse"/>
-</operation>
-<operation name="debitercarte">
-<documentation>Method PostCash debitercarte</documentation>
-<input message="tns:debitercarteRequest"/>
-<output message="tns:debitercarteResponse"/>
-</operation>
-<operation name="debitcartedirect">
-<documentation>Method PostCash debitcartedirect</documentation>
-<input message="tns:debitcartedirectRequest"/>
-<output message="tns:debitcartedirectResponse"/>
-</operation>
-<operation name="codevalidation">
-<documentation>Method PostCash codevalidation</documentation>
-<input message="tns:codevalidationRequest"/>
-<output message="tns:codevalidationResponse"/>
 </operation>
 <operation name="achatcodewoyofal">
 <documentation>Method PostCash AchatCodeWoyofal</documentation>
@@ -398,102 +106,19 @@
 <input message="tns:reglementsenelecRequest"/>
 <output message="tns:reglementsenelecResponse"/>
 </operation>
-<operation name="detailfacturesenelec">
-<documentation>Method PostCash detailfacturesenelec</documentation>
-<input message="tns:detailfacturesenelecRequest"/>
-<output message="tns:detailfacturesenelecResponse"/>
-</operation>
-<operation name="achatneo">
-<documentation>Method PostCash achatneo</documentation>
-<input message="tns:achatneoRequest"/>
-<output message="tns:achatneoResponse"/>
-</operation>
 <operation name="achatjula">
 <documentation>Method PostCash achatjula</documentation>
 <input message="tns:achatjulaRequest"/>
 <output message="tns:achatjulaResponse"/>
-</operation>
-<operation name="getinfosnumber">
-<documentation>Method PostCash getinfosnumber</documentation>
-<input message="tns:getinfosnumberRequest"/>
-<output message="tns:getinfosnumberResponse"/>
-</operation>
-<operation name="getinfosnumberap">
-<documentation>Method PostCash getinfosnumberap</documentation>
-<input message="tns:getinfosnumberapRequest"/>
-<output message="tns:getinfosnumberapResponse"/>
 </operation>
 <operation name="achatcredittelephonique">
 <documentation>Method PostCash achatcredittelephonique</documentation>
 <input message="tns:achatcredittelephoniqueRequest"/>
 <output message="tns:achatcredittelephoniqueResponse"/>
 </operation>
-<operation name="cashtocashsend">
-<documentation>Method PostCash cashtocashsend</documentation>
-<input message="tns:cashtocashsendRequest"/>
-<output message="tns:cashtocashsendResponse"/>
-</operation>
-<operation name="cashtocashreceive">
-<documentation>Method PostCash cashtocashreceive</documentation>
-<input message="tns:cashtocashreceiveRequest"/>
-<output message="tns:cashtocashreceiveResponse"/>
-</operation>
-<operation name="transfertverstamtam">
-<documentation>Method PostCash transfertverstamtam</documentation>
-<input message="tns:transfertverstamtamRequest"/>
-<output message="tns:transfertverstamtamResponse"/>
-</operation>
-<operation name="consultersoldeneo">
-<documentation>Method PostCash consultersoldeneo</documentation>
-<input message="tns:consultersoldeneoRequest"/>
-<output message="tns:consultersoldeneoResponse"/>
-</operation>
-<operation name="debitercompteneo">
-<documentation>Method PostCash debitercompteneo</documentation>
-<input message="tns:debitercompteneoRequest"/>
-<output message="tns:debitercompteneoResponse"/>
-</operation>
-<operation name="saveachatneo">
-<documentation>Method PostCash saveachatneo</documentation>
-<input message="tns:saveachatneoRequest"/>
-<output message="tns:saveachatneoResponse"/>
-</operation>
-<operation name="transfertverstamtamviaapay">
-<documentation>Method PostCash transfertverstamtamviaapay</documentation>
-<input message="tns:transfertverstamtamviaapayRequest"/>
-<output message="tns:transfertverstamtamviaapayResponse"/>
-</operation>
-<operation name="fraistamtamviaapay">
-<documentation>Method PostCash fraistamtamviaapay</documentation>
-<input message="tns:fraistamtamviaapayRequest"/>
-<output message="tns:fraistamtamviaapayResponse"/>
-</operation>
-<operation name="histotransactmarchand">
-<documentation>Method PostCash histotransactmarchand</documentation>
-<input message="tns:histotransactmarchandRequest"/>
-<output message="tns:histotransactmarchandResponse"/>
-</operation>
 </portType>
 <binding name="postcashBinding" type="tns:postcashPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-<operation name="getcardusername">
-<soap:operation soapAction="urn:postcashwsdl#getcardusername" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="getfraispartenaire">
-<soap:operation soapAction="urn:postcashwsdl#getfraispartenaire" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
 <operation name="rechargementespece">
 <soap:operation soapAction="urn:postcashwsdl#rechargementespece" style="rpc"/>
 <input>
@@ -505,33 +130,6 @@
 </operation>
 <operation name="retraitespece">
 <soap:operation soapAction="urn:postcashwsdl#retraitespece" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="debitercarte">
-<soap:operation soapAction="urn:postcashwsdl#debitercarte" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="debitcartedirect">
-<soap:operation soapAction="urn:postcashwsdl#debitcartedirect" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="codevalidation">
-<soap:operation soapAction="urn:postcashwsdl#codevalidation" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>
@@ -557,44 +155,8 @@
 <soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
-<operation name="detailfacturesenelec">
-<soap:operation soapAction="urn:postcashwsdl#detailfacturesenelec" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="achatneo">
-<soap:operation soapAction="urn:postcashwsdl#achatneo" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
 <operation name="achatjula">
 <soap:operation soapAction="urn:postcashwsdl#achatjula" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="getinfosnumber">
-<soap:operation soapAction="urn:postcashwsdl#getinfosnumber" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="getinfosnumberap">
-<soap:operation soapAction="urn:postcashwsdl#getinfosnumberap" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>
@@ -611,91 +173,14 @@
 <soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
-<operation name="cashtocashsend">
-<soap:operation soapAction="urn:postcashwsdl#cashtocashsend" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="cashtocashreceive">
-<soap:operation soapAction="urn:postcashwsdl#cashtocashreceive" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="transfertverstamtam">
-<soap:operation soapAction="urn:postcashwsdl#transfertverstamtam" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="consultersoldeneo">
-<soap:operation soapAction="urn:postcashwsdl#consultersoldeneo" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="debitercompteneo">
-<soap:operation soapAction="urn:postcashwsdl#debitercompteneo" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="saveachatneo">
-<soap:operation soapAction="urn:postcashwsdl#saveachatneo" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="transfertverstamtamviaapay">
-<soap:operation soapAction="urn:postcashwsdl#transfertverstamtamviaapay" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="fraistamtamviaapay">
-<soap:operation soapAction="urn:postcashwsdl#fraistamtamviaapay" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="histotransactmarchand">
-<soap:operation soapAction="urn:postcashwsdl#histotransactmarchand" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:postcashwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
 </binding>
 <service name="postcash">
 <port name="postcashPort" binding="tns:postcashBinding">
+<<<<<<< HEAD
 <soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/postcash"/>
+=======
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/postcash"/>
+>>>>>>> aee38e17e712a728d8c119b34f8bec88787aa695
 </port>
 </service>
 </definitions>

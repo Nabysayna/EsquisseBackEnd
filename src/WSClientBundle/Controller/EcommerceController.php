@@ -39,7 +39,7 @@ class EcommerceController extends Controller
 
     public function listerarticleAction()
     {
-        $params = array('token' => 'assaneka', 'type' => ''*);
+        $params = array('token' => 'assaneka', 'type' => '');
         $result = $this->client->call('listerarticle', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));

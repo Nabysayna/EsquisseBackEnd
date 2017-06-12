@@ -25,6 +25,11 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_compta_pdv:
+        class: WSServerBundle\Services\ComptapdvService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
 
 
 #########################################################
@@ -40,6 +45,13 @@ services:
         class: WSServerBundle\Services\ExpressoCashService
         arguments:
           - "@doctrine.orm.default_entity_manager"
+          - "@ws_api_client_expressocash"
+
+      test_server_jonijoni:
+        class: WSServerBundle\Services\JoniJoniService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+          - "@ws_api_client_jonijoni"
 
       ws_api_service_tnt:
         class: WSServerBundle\Services\TntService
