@@ -8,5 +8,15 @@ services:
         # arguments:
           # - "@doctrine.orm.default_entity_manager"
           # - "@test_server_authentification"
+    ws_api_client_expressocash:
+        class: WSClientBundle\Services\ExpressoCashService
+        # arguments:
+          # - "@doctrine.orm.default_entity_manager"
+          # - "@test_server_authentification"
+    ws_api_client_jonijoni:
+        class: WSClientBundle\Services\JoniJoniService
+        # arguments:
+          # - "@doctrine.orm.default_entity_manager"
+          # - "@test_server_authentification"
     ws_api_client_postcash:
         class: WSClientBundle\Services\PostCashService
