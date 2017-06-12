@@ -35,9 +35,21 @@
       </options>
     </field>
     <field name="dateCommande" type="datetime" column="date_commande" nullable="false"/>
-    <field name="etat" type="integer" column="etat" nullable="false">
+    <field name="fourni" type="integer" column="fourni" nullable="false">
       <options>
         <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="livre" type="integer" column="livre" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="recu" type="integer" column="recu" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
       </options>
     </field>
   </entity>
