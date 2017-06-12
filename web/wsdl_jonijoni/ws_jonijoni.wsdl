@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:jonijoniwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:jonijoniwsdl">
+<types>
+<xsd:schema targetNamespace="urn:jonijoniwsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+<xsd:complexType name="Incashtocash_getcommissionsttc">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="Invitfe_getinfocomptevitfe">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="Inmonetique_getinfocarte">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+</xsd:schema>
+</types>
+<message name="cashtocash_getcommissionsttcRequest">
+<part name="params" type="tns:Incashtocash_getcommissionsttc"/>
+</message>
+<message name="cashtocash_getcommissionsttcResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="cashtocash_sendtransactionRequest">
+<part name="params" type="tns:Incashtocash_getcommissionsttc"/>
+</message>
+<message name="cashtocash_sendtransactionResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="cashtocash_checktransactioncodeRequest">
+<part name="params" type="tns:Incashtocash_getcommissionsttc"/>
+</message>
+<message name="cashtocash_checktransactioncodeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="cashtocash_paytransactionRequest">
+<part name="params" type="tns:Incashtocash_getcommissionsttc"/>
+</message>
+<message name="cashtocash_paytransactionResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="cashtocash_canceltransactionRequest">
+<part name="params" type="tns:Incashtocash_getcommissionsttc"/>
+</message>
+<message name="cashtocash_canceltransactionResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="vitfe_getinfocomptevitfeRequest">
+<part name="params" type="tns:Invitfe_getinfocomptevitfe"/>
+</message>
+<message name="vitfe_getinfocomptevitfeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="vitfe_getcommissionsttcvitfeRequest">
+<part name="params" type="tns:Invitfe_getinfocomptevitfe"/>
+</message>
+<message name="vitfe_getcommissionsttcvitfeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="vitfe_approcompteRequest">
+<part name="params" type="tns:Invitfe_getinfocomptevitfe"/>
+</message>
+<message name="vitfe_approcompteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="monetique_getinfocarteRequest">
+<part name="params" type="tns:Inmonetique_getinfocarte"/>
+</message>
+<message name="monetique_getinfocarteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="monetique_getcommissionsttccarteRequest">
+<part name="params" type="tns:Inmonetique_getinfocarte"/>
+</message>
+<message name="monetique_getcommissionsttccarteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="monetique_rechargecarteRequest">
+<part name="params" type="tns:Inmonetique_getinfocarte"/>
+</message>
+<message name="monetique_rechargecarteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="jonijoniPortType">
+<operation name="cashtocash_getcommissionsttc">
+<documentation>Method JONIJONI cashtocash_getcommissionsttc</documentation>
+<input message="tns:cashtocash_getcommissionsttcRequest"/>
+<output message="tns:cashtocash_getcommissionsttcResponse"/>
+</operation>
+<operation name="cashtocash_sendtransaction">
+<documentation>Method JONIJONI cashtocash_sendtransaction</documentation>
+<input message="tns:cashtocash_sendtransactionRequest"/>
+<output message="tns:cashtocash_sendtransactionResponse"/>
+</operation>
+<operation name="cashtocash_checktransactioncode">
+<documentation>Method JONIJONI cashtocash_checktransactioncode</documentation>
+<input message="tns:cashtocash_checktransactioncodeRequest"/>
+<output message="tns:cashtocash_checktransactioncodeResponse"/>
+</operation>
+<operation name="cashtocash_paytransaction">
+<documentation>Method JONIJONI cashtocash_paytransaction</documentation>
+<input message="tns:cashtocash_paytransactionRequest"/>
+<output message="tns:cashtocash_paytransactionResponse"/>
+</operation>
+<operation name="cashtocash_canceltransaction">
+<documentation>Method JONIJONI cashtocash_canceltransaction</documentation>
+<input message="tns:cashtocash_canceltransactionRequest"/>
+<output message="tns:cashtocash_canceltransactionResponse"/>
+</operation>
+<operation name="vitfe_getinfocomptevitfe">
+<documentation>Method JONIJONI vitfe_getinfocomptevitfe</documentation>
+<input message="tns:vitfe_getinfocomptevitfeRequest"/>
+<output message="tns:vitfe_getinfocomptevitfeResponse"/>
+</operation>
+<operation name="vitfe_getcommissionsttcvitfe">
+<documentation>Method JONIJONI vitfe_getcommissionsttcvitfe</documentation>
+<input message="tns:vitfe_getcommissionsttcvitfeRequest"/>
+<output message="tns:vitfe_getcommissionsttcvitfeResponse"/>
+</operation>
+<operation name="vitfe_approcompte">
+<documentation>Method JONIJONI vitfe_approcompte</documentation>
+<input message="tns:vitfe_approcompteRequest"/>
+<output message="tns:vitfe_approcompteResponse"/>
+</operation>
+<operation name="monetique_getinfocarte">
+<documentation>Method JONIJONI monetique_getinfocarte</documentation>
+<input message="tns:monetique_getinfocarteRequest"/>
+<output message="tns:monetique_getinfocarteResponse"/>
+</operation>
+<operation name="monetique_getcommissionsttccarte">
+<documentation>Method JONIJONI monetique_getcommissionsttccarte</documentation>
+<input message="tns:monetique_getcommissionsttccarteRequest"/>
+<output message="tns:monetique_getcommissionsttccarteResponse"/>
+</operation>
+<operation name="monetique_rechargecarte">
+<documentation>Method JONIJONI monetique_rechargecarte</documentation>
+<input message="tns:monetique_rechargecarteRequest"/>
+<output message="tns:monetique_rechargecarteResponse"/>
+</operation>
+</portType>
+<binding name="jonijoniBinding" type="tns:jonijoniPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="cashtocash_getcommissionsttc">
+<soap:operation soapAction="urn:jonijoniwsdl#cashtocash_getcommissionsttc" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="cashtocash_sendtransaction">
+<soap:operation soapAction="urn:jonijoniwsdl#cashtocash_sendtransaction" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="cashtocash_checktransactioncode">
+<soap:operation soapAction="urn:jonijoniwsdl#cashtocash_checktransactioncode" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="cashtocash_paytransaction">
+<soap:operation soapAction="urn:jonijoniwsdl#cashtocash_paytransaction" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="cashtocash_canceltransaction">
+<soap:operation soapAction="urn:jonijoniwsdl#cashtocash_canceltransaction" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="vitfe_getinfocomptevitfe">
+<soap:operation soapAction="urn:jonijoniwsdl#vitfe_getinfocomptevitfe" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="vitfe_getcommissionsttcvitfe">
+<soap:operation soapAction="urn:jonijoniwsdl#vitfe_getcommissionsttcvitfe" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="vitfe_approcompte">
+<soap:operation soapAction="urn:jonijoniwsdl#vitfe_approcompte" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="monetique_getinfocarte">
+<soap:operation soapAction="urn:jonijoniwsdl#monetique_getinfocarte" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="monetique_getcommissionsttccarte">
+<soap:operation soapAction="urn:jonijoniwsdl#monetique_getcommissionsttccarte" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="monetique_rechargecarte">
+<soap:operation soapAction="urn:jonijoniwsdl#monetique_rechargecarte" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:jonijoniwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="jonijoni">
+<port name="jonijoniPort" binding="tns:jonijoniBinding">
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/jonijoni"/>
+</port>
+</service>
+</definitions>

@@ -18,6 +18,10 @@ ws_server_adminpdv:
     path:     /adminpdv
     defaults: { _controller: WSServerBundle:Adminpdv:adminpdv }
 
+ws_server_comptapdv:
+    path:     /comptapdv
+    defaults: { _controller: WSServerBundle:Comptapdv:comptapdv }
+
 
 
 #########################################################
@@ -35,6 +39,10 @@ ws_server_postcash_test_client:
 ws_server_expressocash:
     path:     /expressocash
     defaults: { _controller: WSServerBundle:ExpressoCash:expressocash }
+
+ws_server_jonijoni:
+    path:     /jonijoni
+    defaults: { _controller: WSServerBundle:JoniJoni:jonijoni }
 
 ws_server_tnt:
     path:     /tnt

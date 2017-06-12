@@ -88,9 +88,54 @@ ws_client_postcash_histotransactmarchand:
 
 
 
+ws_client_expressocash_cashin:
+    path:     /expressocash/cashin
+    defaults: { _controller: WSClientBundle:ExpressoCash:cashin }
+ws_client_expressocash_cashout:
+    path:     /expressocash/cashout
+    defaults: { _controller: WSClientBundle:ExpressoCash:cashout }
+ws_client_expressocash_topup:
+    path:     /expressocash/topup
+    defaults: { _controller: WSClientBundle:ExpressoCash:topup }
 ws_client_expressocash_checkbalance:
     path:     /expressocash/checkbalance
     defaults: { _controller: WSClientBundle:ExpressoCash:checkbalance }
+
+
+
+ws_client_jonijoni_cashtocash_getcommissionsttc:
+    path:     /jonijoni/cashtocash_getcommissionsttc
+    defaults: { _controller: WSClientBundle:JoniJoni:cashtocash_getcommissionsttc }
+ws_client_jonijoni_cashtocash_sendtransaction:
+    path:     /jonijoni/cashtocash_sendtransaction
+    defaults: { _controller: WSClientBundle:JoniJoni:cashtocash_sendtransaction }
+ws_client_jonijoni_cashtocash_checktransactioncode:
+    path:     /jonijoni/cashtocash_checktransactioncode
+    defaults: { _controller: WSClientBundle:JoniJoni:cashtocash_checktransactioncode }
+ws_client_jonijoni_cashtocash_paytransaction:
+    path:     /jonijoni/cashtocash_paytransaction
+    defaults: { _controller: WSClientBundle:JoniJoni:cashtocash_paytransaction }
+ws_client_jonijoni_cashtocash_canceltransaction:
+    path:     /jonijoni/cashtocash_canceltransaction
+    defaults: { _controller: WSClientBundle:JoniJoni:cashtocash_canceltransaction }
+ws_client_jonijoni_vitfe_getinfocomptevitfe:
+    path:     /jonijoni/vitfe_getinfocomptevitfe
+    defaults: { _controller: WSClientBundle:JoniJoni:vitfe_getinfocomptevitfe }
+ws_client_jonijoni_vitfe_getcommissionsttcvitfe:
+    path:     /jonijoni/vitfe_getcommissionsttcvitfe
+    defaults: { _controller: WSClientBundle:JoniJoni:vitfe_getcommissionsttcvitfe }
+ws_client_jonijoni_vitfe_approcompte:
+    path:     /jonijoni/vitfe_approcompte
+    defaults: { _controller: WSClientBundle:JoniJoni:vitfe_approcompte }
+ws_client_jonijoni_monetique_getinfocarte:
+    path:     /jonijoni/monetique_getinfocarte
+    defaults: { _controller: WSClientBundle:JoniJoni:monetique_getinfocarte }
+ws_client_jonijoni_monetique_getcommissionsttccarte:
+    path:     /jonijoni/monetique_getcommissionsttccarte
+    defaults: { _controller: WSClientBundle:JoniJoni:monetique_getcommissionsttccarte }
+ws_client_jonijoni_monetique_rechargecarte:
+    path:     /jonijoni/monetique_rechargecarte
+    defaults: { _controller: WSClientBundle:JoniJoni:monetique_rechargecarte }
 
 
 
@@ -165,3 +210,36 @@ ws_client_adminpdv_historiquerecouvrement:
 ws_client_adminpdv_historiquereclamation:
     path:     /adminpdv/historiquereclamation
     defaults: { _controller: WSClientBundle:Adminpdv:historiquereclamation }
+
+
+
+ws_client_comptapdv_totaloperationparapi:
+    path:     /comptapdv/totaloperationparapi
+    defaults: { _controller: WSClientBundle:Comptapdv:totaloperationparapi }
+ws_client_comptapdv_totalenvoiesparapi:
+    path:     /comptapdv/totalenvoiesparapi
+    defaults: { _controller: WSClientBundle:Comptapdv:totalenvoiesparapi }
+ws_client_comptapdv_totalreceptionsparapi:
+    path:     /comptapdv/totalreceptionsparapi
+    defaults: { _controller: WSClientBundle:Comptapdv:totalreceptionsparapi }
+ws_client_comptapdv_totalfraistransfertpercueparapi:
+    path:     /comptapdv/totalfraistransfertpercueparapi
+    defaults: { _controller: WSClientBundle:Comptapdv:totalfraistransfertpercueparapi }
+ws_client_comptapdv_totalcommissionparapi:
+    path:     /comptapdv/totalcommissionparapi
+    defaults: { _controller: WSClientBundle:Comptapdv:totalcommissionparapi }
+ws_client_comptapdv_totaloperationall:
+    path:     /comptapdv/totaloperationall
+    defaults: { _controller: WSClientBundle:Comptapdv:totaloperationall }
+ws_client_comptapdv_totalenvoiesall:
+    path:     /comptapdv/totalenvoiesall
+    defaults: { _controller: WSClientBundle:Comptapdv:totalenvoiesall }
+ws_client_comptapdv_totalreceptionsall:
+    path:     /comptapdv/totalreceptionsall
+    defaults: { _controller: WSClientBundle:Comptapdv:totalreceptionsall }
+ws_client_comptapdv_totalfraistransfertpercuesall:
+    path:     /comptapdv/totalfraistransfertpercuesall
+    defaults: { _controller: WSClientBundle:Comptapdv:totalfraistransfertpercuesall }
+ws_client_comptapdv_totalcommissionall:
+    path:     /comptapdv/totalcommissionall
+    defaults: { _controller: WSClientBundle:Comptapdv:totalcommissionall }

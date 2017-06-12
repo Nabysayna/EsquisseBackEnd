@@ -6,7 +6,6 @@
 <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
 <xsd:complexType name="InCashIn">
 <xsd:all>
-<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="transactionID" type="xsd:string"/>
 <xsd:element name="destination" type="xsd:string"/>
@@ -19,21 +18,8 @@
 <xsd:element name="hashValue" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
-<xsd:complexType name="OutCashIn">
-<xsd:all>
-<xsd:element name="api" type="xsd:int"/>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="Status" type="xsd:int"/>
-<xsd:element name="description" type="xsd:string"/>
-<xsd:element name="message" type="xsd:string"/>
-<xsd:element name="destinationBalance" type="xsd:double"/>
-<xsd:element name="referenceID" type="xsd:string"/>
-<xsd:element name="hashValue" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
 <xsd:complexType name="InCashOut">
 <xsd:all>
-<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="transactionID" type="xsd:string"/>
 <xsd:element name="customer" type="xsd:string"/>
@@ -46,35 +32,11 @@
 <xsd:element name="hashValue" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
-<xsd:complexType name="OutCashOut">
-<xsd:all>
-<xsd:element name="api" type="xsd:int"/>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="Status" type="xsd:int"/>
-<xsd:element name="description" type="xsd:string"/>
-<xsd:element name="message" type="xsd:string"/>
-<xsd:element name="referenceID" type="xsd:string"/>
-<xsd:element name="hashValue" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
 <xsd:complexType name="InCheckBalance">
 <xsd:all>
-<xsd:element name="api" type="xsd:int"/>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="clientID" type="xsd:string"/>
 <xsd:element name="clientPassword" type="xsd:string"/>
-<xsd:element name="hashValue" type="xsd:string"/>
-</xsd:all>
-</xsd:complexType>
-<xsd:complexType name="OutCheckBalance">
-<xsd:all>
-<xsd:element name="api" type="xsd:int"/>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="Status" type="xsd:int"/>
-<xsd:element name="description" type="xsd:string"/>
-<xsd:element name="message" type="xsd:string"/>
-<xsd:element name="firstname" type="xsd:string"/>
-<xsd:element name="lastname" type="xsd:string"/>
 <xsd:element name="hashValue" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
@@ -84,25 +46,25 @@
 <part name="params" type="tns:InCashIn"/>
 </message>
 <message name="cashinResponse">
-<part name="return" type="tns:OutCashIn"/>
+<part name="return" type="xsd:string"/>
 </message>
 <message name="cashoutRequest">
 <part name="params" type="tns:InCashOut"/>
 </message>
 <message name="cashoutResponse">
-<part name="return" type="tns:OutCashOut"/>
+<part name="return" type="xsd:string"/>
 </message>
 <message name="topupRequest">
 <part name="params" type="tns:InCashIn"/>
 </message>
 <message name="topupResponse">
-<part name="return" type="tns:OutCashOut"/>
+<part name="return" type="xsd:string"/>
 </message>
 <message name="checkbalanceRequest">
 <part name="params" type="tns:InCheckBalance"/>
 </message>
 <message name="checkbalanceResponse">
-<part name="return" type="tns:OutCheckBalance"/>
+<part name="return" type="xsd:string"/>
 </message>
 <portType name="expressocashPortType">
 <operation name="cashin">
@@ -167,7 +129,7 @@
 </binding>
 <service name="expressocash">
 <port name="expressocashPort" binding="tns:expressocashBinding">
-<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/expressocash"/>
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/expressocash"/>
 </port>
 </service>
 </definitions>

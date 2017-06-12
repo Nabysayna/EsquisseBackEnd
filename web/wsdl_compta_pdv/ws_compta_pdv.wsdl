@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:comptapdvwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:comptapdvwsdl">
+<types>
+<xsd:schema targetNamespace="urn:comptapdvwsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+<xsd:complexType name="InTotalParApi">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="typeapi" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+</xsd:schema>
+</types>
+<message name="totaloperationparapiRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totaloperationparapiResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totalenvoiesparapiRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totalenvoiesparapiResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totalreceptionsparapiRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totalreceptionsparapiResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totalfraistransfertpercueparapiRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totalfraistransfertpercueparapiResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totalcommissionparapiRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totalcommissionparapiResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totaloperationallRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totaloperationallResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totalenvoiesallRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totalenvoiesallResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totalreceptionsallRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totalreceptionsallResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totalfraistransfertpercuesallRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totalfraistransfertpercuesallResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="totalcommissionallRequest">
+<part name="params" type="tns:InTotalParApi"/>
+</message>
+<message name="totalcommissionallResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="comptapdvPortType">
+<operation name="totaloperationparapi">
+<documentation>Method COMPTA PDV totaloperationparapi</documentation>
+<input message="tns:totaloperationparapiRequest"/>
+<output message="tns:totaloperationparapiResponse"/>
+</operation>
+<operation name="totalenvoiesparapi">
+<documentation>Method COMPTA PDV totalenvoiesparapi</documentation>
+<input message="tns:totalenvoiesparapiRequest"/>
+<output message="tns:totalenvoiesparapiResponse"/>
+</operation>
+<operation name="totalreceptionsparapi">
+<documentation>Method COMPTA PDV totalreceptionsparapi</documentation>
+<input message="tns:totalreceptionsparapiRequest"/>
+<output message="tns:totalreceptionsparapiResponse"/>
+</operation>
+<operation name="totalfraistransfertpercueparapi">
+<documentation>Method COMPTA PDV totalfraistransfertpercueparapi</documentation>
+<input message="tns:totalfraistransfertpercueparapiRequest"/>
+<output message="tns:totalfraistransfertpercueparapiResponse"/>
+</operation>
+<operation name="totalcommissionparapi">
+<documentation>Method COMPTA PDV totalcommissionparapi</documentation>
+<input message="tns:totalcommissionparapiRequest"/>
+<output message="tns:totalcommissionparapiResponse"/>
+</operation>
+<operation name="totaloperationall">
+<documentation>Method COMPTA PDV totaloperationall</documentation>
+<input message="tns:totaloperationallRequest"/>
+<output message="tns:totaloperationallResponse"/>
+</operation>
+<operation name="totalenvoiesall">
+<documentation>Method COMPTA PDV totalenvoiesall</documentation>
+<input message="tns:totalenvoiesallRequest"/>
+<output message="tns:totalenvoiesallResponse"/>
+</operation>
+<operation name="totalreceptionsall">
+<documentation>Method COMPTA PDV totalreceptionsall</documentation>
+<input message="tns:totalreceptionsallRequest"/>
+<output message="tns:totalreceptionsallResponse"/>
+</operation>
+<operation name="totalfraistransfertpercuesall">
+<documentation>Method COMPTA PDV totalfraistransfertpercuesall</documentation>
+<input message="tns:totalfraistransfertpercuesallRequest"/>
+<output message="tns:totalfraistransfertpercuesallResponse"/>
+</operation>
+<operation name="totalcommissionall">
+<documentation>Method COMPTA PDV totalcommissionall</documentation>
+<input message="tns:totalcommissionallRequest"/>
+<output message="tns:totalcommissionallResponse"/>
+</operation>
+</portType>
+<binding name="comptapdvBinding" type="tns:comptapdvPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="totaloperationparapi">
+<soap:operation soapAction="urn:comptapdvwsdl#totaloperationparapi" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totalenvoiesparapi">
+<soap:operation soapAction="urn:comptapdvwsdl#totalenvoiesparapi" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totalreceptionsparapi">
+<soap:operation soapAction="urn:comptapdvwsdl#totalreceptionsparapi" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totalfraistransfertpercueparapi">
+<soap:operation soapAction="urn:comptapdvwsdl#totalfraistransfertpercueparapi" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totalcommissionparapi">
+<soap:operation soapAction="urn:comptapdvwsdl#totalcommissionparapi" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totaloperationall">
+<soap:operation soapAction="urn:comptapdvwsdl#totaloperationall" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totalenvoiesall">
+<soap:operation soapAction="urn:comptapdvwsdl#totalenvoiesall" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totalreceptionsall">
+<soap:operation soapAction="urn:comptapdvwsdl#totalreceptionsall" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totalfraistransfertpercuesall">
+<soap:operation soapAction="urn:comptapdvwsdl#totalfraistransfertpercuesall" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="totalcommissionall">
+<soap:operation soapAction="urn:comptapdvwsdl#totalcommissionall" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="comptapdv">
+<port name="comptapdvPort" binding="tns:comptapdvBinding">
+<soap:address location="http://localhost/www_test/webservice/webservices_soap_generation_wsdl-compta-pdv.php"/>
+</port>
+</service>
+</definitions>
