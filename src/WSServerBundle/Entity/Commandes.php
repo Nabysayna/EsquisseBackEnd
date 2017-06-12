@@ -64,9 +64,23 @@ class Commandes
     /**
      * @var integer
      *
-     * @ORM\Column(name="etat", type="integer", nullable=false)
+     * @ORM\Column(name="fourni", type="integer", nullable=false)
      */
-    private $etat;
+    private $fourni;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="livre", type="integer", nullable=false)
+     */
+    private $livre = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="recu", type="integer", nullable=false)
+     */
+    private $recu = '0';
 
     /**
      * @var integer
@@ -248,27 +262,75 @@ class Commandes
     }
 
     /**
-     * Set etat
+     * Set fourni
      *
-     * @param integer $etat
+     * @param integer $fourni
      *
      * @return Commandes
      */
-    public function setEtat($etat)
+    public function setFourni($fourni)
     {
-        $this->etat = $etat;
+        $this->fourni = $fourni;
 
         return $this;
     }
 
     /**
-     * Get etat
+     * Get fourni
      *
      * @return integer
      */
-    public function getEtat()
+    public function getFourni()
     {
-        return $this->etat;
+        return $this->fourni;
+    }
+
+    /**
+     * Set livre
+     *
+     * @param integer $livre
+     *
+     * @return Commandes
+     */
+    public function setLivre($livre)
+    {
+        $this->livre = $livre;
+
+        return $this;
+    }
+
+    /**
+     * Get livre
+     *
+     * @return integer
+     */
+    public function getLivre()
+    {
+        return $this->livre;
+    }
+
+    /**
+     * Set recu
+     *
+     * @param integer $recu
+     *
+     * @return Commandes
+     */
+    public function setRecu($recu)
+    {
+        $this->recu = $recu;
+
+        return $this;
+    }
+
+    /**
+     * Get recu
+     *
+     * @return integer
+     */
+    public function getRecu()
+    {
+        return $this->recu;
     }
 
     /**

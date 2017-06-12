@@ -13,8 +13,8 @@ if (isset($_FILES['file'])) {
   $originalName = $_FILES['file']['name'];
   $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
   // $generatedName = $originalName.$ext;
-  $generatedName = $_GET["nomImage"].$ext;
-  $filePath = $path.$generatedName;
+  $generatedName = md5($_FILES['file']['tmp_name']);//$_GET["nomImage"].$ext;
+  $filePath = $path.$originalName.$ext ;
  
   if (!is_writable($path)) {
     echo json_encode(array(

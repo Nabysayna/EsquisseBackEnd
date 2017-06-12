@@ -73,13 +73,15 @@ class EcommerceService
         $dbarticles = $this->em->getRepository('WSServerBundle:Articles')->findAll();
       }
       else {
-        $dbarticles = $this->em->getRepository('WSServerBundle:Articles')->findBy(array('idUser' => 4));
+        $currentUser = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token' => $params->token));
+        $dbarticles = $this->em->getRepository('WSServerBundle:Articles')->findBy(array('idUser' => $currentUser->getIdUser()));
       }
         
       $formatted = [];
       foreach ($dbarticles as $article) {
           $formatted[] = [
              'id' => $article->getId(),
+             'nomImg' => $article->getImgLink(),
              'designation' => $article->getDesignation(),
              'description' => $article->getDescription(),
              'prix' => $article->getPrix(),
