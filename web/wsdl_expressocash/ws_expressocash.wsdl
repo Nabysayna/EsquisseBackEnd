@@ -167,7 +167,7 @@
 </binding>
 <service name="expressocash">
 <port name="expressocashPort" binding="tns:expressocashBinding">
-<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/expressocash"/>
+<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/expressocash"/>
 </port>
 </service>
 </definitions>
