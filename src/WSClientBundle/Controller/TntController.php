@@ -10,7 +10,7 @@ class TntController extends Controller
 {
     private $client = null;
     function __construct(){
-        $this->client = new \nusoap_client('http://localhost/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl', true);
+        $this->client = new \nusoap_client('http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/tnt?wsdl', true);
     }
 
     public function verifinumeroabonnementAction()
