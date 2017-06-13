@@ -16,11 +16,12 @@
 </xsd:complexType>
 <xsd:complexType name="InAjoutCommande">
 <xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="id_article" type="xsd:int"/>
-<xsd:element name="quantite" type="xsd:int"/>
-<xsd:element name="fullname" type="xsd:string"/>
-<xsd:element name="tel" type="xsd:int"/>
+	<xsd:element name="token" type="xsd:string"/>
+	<xsd:element name="id_article" type="xsd:int"/>
+	<xsd:element name="quantite" type="xsd:int"/>
+	<xsd:element name="prenomclient" type="xsd:string"/>
+	<xsd:element name="nomclient" type="xsd:string"/>
+	<xsd:element name="telclient" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InAjoutVente">
@@ -176,10 +177,14 @@
 <service name="ecommerce">
 <port name="ecommercePort" binding="tns:ecommerceBinding">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <soap:address location="http://localhost:8888/EsquisseBackEnd/web/invest/ecommerce"/>
 =======
 <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/invest/ecommerce"/>
 >>>>>>> aee38e17e712a728d8c119b34f8bec88787aa695
+=======
+<soap:address location="http://localhost/EsquisseBackEnd/web/invest/ecommerce"/>
+>>>>>>> 93cebf277cc0755bc97290e1b952777671f4a4aa
 </port>
 </service>
 </definitions>

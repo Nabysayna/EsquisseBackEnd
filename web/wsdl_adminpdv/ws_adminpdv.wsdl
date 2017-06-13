@@ -227,10 +227,14 @@
 </binding><service name="adminpdv">
 <port name="adminpdvPort" binding="tns:adminpdvBinding">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/adminpdv"/>
 =======
 <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminpdv"/>
 >>>>>>> aee38e17e712a728d8c119b34f8bec88787aa695
+=======
+<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/adminpdv"/>
+>>>>>>> 93cebf277cc0755bc97290e1b952777671f4a4aa
 </port>
 </service>
 </definitions>

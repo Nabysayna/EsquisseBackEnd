@@ -13,7 +13,7 @@ if (isset($_FILES['file'])) {
   $originalName = $_FILES['file']['name'];
   $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
   // $generatedName = $originalName.$ext;
-  $generatedName = md5($_FILES['file']['tmp_name']);//$_GET["nomImage"].$ext;
+  $generatedName = md5($_FILES['file']['tmp_name']).$ext;
   $filePath = $path.$originalName.$ext ;
  
   if (!is_writable($path)) {
