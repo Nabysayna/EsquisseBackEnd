@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit;
 }
  
-$path = 'img';
+$path = 'uploads/';
  
 if (isset($_FILES['file'])) {
   $originalName = $_FILES['file']['name'];
