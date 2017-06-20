@@ -30,6 +30,11 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_commercial:
+        class: WSServerBundle\Services\CommercialService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
 
 
 #########################################################

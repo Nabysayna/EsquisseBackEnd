@@ -23,6 +23,12 @@ ws_server_comptapdv:
     defaults: { _controller: WSServerBundle:Comptapdv:comptapdv }
 
 
+ws_server_commercial:
+    path:     /commercial
+    defaults: { _controller: WSServerBundle:Commercial:commercial }
+
+
+
 
 #########################################################
 #########################################################
