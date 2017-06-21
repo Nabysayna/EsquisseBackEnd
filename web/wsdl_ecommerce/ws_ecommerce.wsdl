@@ -38,8 +38,9 @@
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InListerCommande">
-<xsd:all>
+<xsd:all> 
 <xsd:element name="token" type="xsd:string"/>
+<xsd:element name="typeListe" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InListerVente">
@@ -47,6 +48,27 @@
 <xsd:element name="token" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
+<xsd:complexType name="InReceptionCommande">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="idCommande" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+
+<xsd:complexType name="InListerCoursier">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+
+<xsd:complexType name="InFournitureCommande">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="idCommande" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+
+
 </xsd:schema>
 </types>
 <message name="ajoutarticleRequest">
@@ -85,6 +107,28 @@
 <message name="listerventeResponse">
 <part name="return" type="xsd:string"/>
 </message>
+
+<message name="receptionnerCommandeRequest">
+<part name="params" type="xsd:InReceptionCommande"/>
+</message>
+<message name="receptionnerCommandeResponse">
+<part name="return" type="xsd:string"/>
+</message> 
+<message name="fournirCommandesRequest">
+<part name="params" type="xsd:InFournitureCommande"/>
+</message>
+<message name="fournirCommandesResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
+<message name="listerCoursierRequest">
+<part name="params" type="xsd:InListerCoursier"/>
+</message>
+<message name="listerCoursierResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
+
 <portType name="ecommercePortType">
 <operation name="ajoutarticle">
 <documentation>Method ECOMMERCE ajoutarticle</documentation>
@@ -110,12 +154,32 @@
 <documentation>Method ECOMMERCE listercommande</documentation>
 <input message="tns:listercommandeRequest"/>
 <output message="tns:listercommandeResponse"/>
-</operation>
+</operation> 
 <operation name="listervente">
 <documentation>Method ECOMMERCE listervente</documentation>
 <input message="tns:listerventeRequest"/>
 <output message="tns:listerventeResponse"/>
 </operation>
+
+<operation name="receptionnerCommandes">
+<documentation>Methode ECOMMERCE receptionnerCommandes</documentation>
+<input message="tns:receptionnerCommandeRequest"/>
+<output message="tns:receptionnerCommandeResponse"/>
+</operation>
+
+<operation name="fournirCommandes">
+<documentation>Methode ECOMMERCE fournirCommandes</documentation>
+<input message="tns:fournirCommandesRequest"/>
+<output message="tns:fournirCommandesResponse"/>
+</operation>
+
+<operation name="listerCoursier">
+<documentation>Method ECOMMERCE listervente</documentation>
+<input message="tns:listerCoursierRequest"/>
+<output message="tns:listerCoursierResponse"/>
+</operation>
+
+
 </portType>
 <binding name="ecommerceBinding" type="tns:ecommercePortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -173,11 +237,43 @@
 <soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
+
+<operation name="receptionnerCommandes">
+<soap:operation soapAction="urn:ecommercewsdl#receptionnerCommandes" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
+<operation name="fournirCommandes">
+<soap:operation soapAction="urn:ecommercewsdl#fournirCommandes" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
+<operation name="listerCoursier">
+<soap:operation soapAction="urn:ecommercewsdl#listerCoursier" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
+
 </binding>
 <service name="ecommerce">
 <port name="ecommercePort" binding="tns:ecommerceBinding">
 
-<soap:address location="http://localhost:8888/EsquisseBackEnd/web/invest/ecommerce"/>
+<soap:address location="http://localhost/EsquisseBackEnd/web/invest/ecommerce"/>
 
 </port>
 </service>
