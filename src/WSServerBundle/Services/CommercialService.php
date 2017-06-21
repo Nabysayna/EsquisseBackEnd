@@ -15,9 +15,15 @@ class CommercialService
 
     
 function listcoursier($params) {
-        $reponse = array(
-          'test' => 'test testons testez listcoursier'
-        );
+        $reponse = ['Amath', 'Demba', 'Oury', 'Adja', 'Aliou', 'Sy'];                                    
+
+        return ''. json_encode($reponse);
+
+
+}
+    
+function zone($params) {
+        $reponse = ['Dakar', 'Diamalaye', 'Rufisque', 'Parcelles', 'VDN', 'Keur Mbaye fall'];                                    
 
         return ''. json_encode($reponse);
 

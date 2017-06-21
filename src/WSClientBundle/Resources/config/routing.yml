@@ -12,6 +12,10 @@ ws_client_disconnexion:
     defaults: { _controller: WSClientBundle:Default:disconnect }
 
 
+ws_client_commercial:
+    path:     /commercial/listcoursier
+    defaults: { _controller: WSClientBundle:Commercial:listcoursier }
+
 
 ws_client_postcash_getcardusername:
     path:     /postcash/getcardusername

@@ -18,17 +18,37 @@
 <message name="listcoursierResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="zoneRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="zoneResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <portType name="commercialPortType">
 <operation name="listcoursier">
 <documentation>Method COMMERCIAL listcoursier</documentation>
 <input message="tns:listcoursierRequest"/>
 <output message="tns:listcoursierResponse"/>
 </operation>
+<operation name="zone">
+<documentation>Method COMMERCIAL zone</documentation>
+<input message="tns:zoneRequest"/>
+<output message="tns:zoneResponse"/>
+</operation>
 </portType>
 <binding name="commercialBinding" type="tns:commercialPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
 <operation name="listcoursier">
 <soap:operation soapAction="urn:commercialwsdl#listcoursier" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="zone">
+<soap:operation soapAction="urn:commercialwsdl#zone" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>
