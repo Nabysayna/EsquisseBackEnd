@@ -90,7 +90,7 @@ class EcommerceService
       }
       else {
         $currentUser = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token' => $params->token));
-        $dbarticles = $this->em->getRepository('WSServerBundle:Articles')->findBy(array('idUser' => $currentUser->getIdUser()));
+        $dbarticles = $this->em->getRepository('WSServerBundle:Articles')->findBy(array('idUser' => $currentUser->getIdUser()) );
       }
         
       $formatted = [];
