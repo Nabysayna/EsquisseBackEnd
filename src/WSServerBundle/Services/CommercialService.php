@@ -14,13 +14,25 @@ class CommercialService
   }
 
     
-function listcoursier($params) {
-        $reponse = ['Amath', 'Demba', 'Oury', 'Adja', 'Aliou', 'Sy'];                                    
+ public function listcoursier($params)
+    {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-        return ''. json_encode($reponse);
+      if (!empty($correspSession)){
+  
+        $coursiers = $this->em->getRepository('WSServerBundle:Users')->findBy(array('accesslevel' => 2));
+        foreach ($coursiers as $coursier) {
+            $formatted[] = [
+               'id' => $coursier->getIdUser(),
+               'prenom' => $coursier->getPrenom(),
+               'nom' => $coursier->getNom()
+              ];
+        }
 
-
-}
+        return ''. json_encode($formatted);
+      }
+      return json_encode( array('errorCode' => 0, 'message' => 'Utilisateur non authentifié') ) ;
+    }
     
 function zone($params) {
         $reponse = ['Dakar', 'Diamalaye', 'Rufisque', 'Parcelles', 'VDN', 'Keur Mbaye fall'];                                    
