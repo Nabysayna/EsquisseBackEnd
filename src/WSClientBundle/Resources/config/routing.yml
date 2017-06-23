@@ -213,6 +213,17 @@ ws_client_adminpdv_historiquereclamation:
     defaults: { _controller: WSClientBundle:Adminpdv:historiquereclamation }
 
 
+ws_client_maps_listmaps:
+    path:     /maps/listmaps
+    defaults: { _controller: WSClientBundle:Maps:listmaps }
+ws_client_maps_listmapsdepart:
+    path:     /maps/listmapsdepart
+    defaults: { _controller: WSClientBundle:Maps:listmapsdepart }
+ws_client_maps_listmapspardepart:
+    path:     /maps/listmapspardepart
+    defaults: { _controller: WSClientBundle:Maps:listmapspardepart }
+
+
 
 ws_client_adminmultipdv_nombredereclamationagentpdvvente:
     path:     /adminmultipdv/nombredereclamationagentpdvvente

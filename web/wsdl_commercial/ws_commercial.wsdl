@@ -12,10 +12,10 @@
 </xsd:complexType>
 </xsd:schema>
 </types>
-<message name="listcoursierRequest">
+<message name="listoperateursRequest">
 <part name="params" type="tns:InData"/>
 </message>
-<message name="listcoursierResponse">
+<message name="listoperateursResponse">
 <part name="return" type="xsd:string"/>
 </message>
 <message name="zoneRequest">
@@ -24,22 +24,33 @@
 <message name="zoneResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="listcommerciauxRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listcommerciauxResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <portType name="commercialPortType">
-<operation name="listcoursier">
-<documentation>Method COMMERCIAL listcoursier</documentation>
-<input message="tns:listcoursierRequest"/>
-<output message="tns:listcoursierResponse"/>
+<operation name="listoperateurs">
+<documentation>Method COMMERCIAL listoperateurs</documentation>
+<input message="tns:listoperateursRequest"/>
+<output message="tns:listoperateursResponse"/>
 </operation>
 <operation name="zone">
 <documentation>Method COMMERCIAL zone</documentation>
 <input message="tns:zoneRequest"/>
 <output message="tns:zoneResponse"/>
 </operation>
+<operation name="listcommerciaux">
+<documentation>Method COMMERCIAL listcommerciaux</documentation>
+<input message="tns:listcommerciauxRequest"/>
+<output message="tns:listcommerciauxResponse"/>
+</operation>
 </portType>
 <binding name="commercialBinding" type="tns:commercialPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-<operation name="listcoursier">
-<soap:operation soapAction="urn:commercialwsdl#listcoursier" style="rpc"/>
+<operation name="listoperateurs">
+<soap:operation soapAction="urn:commercialwsdl#listoperateurs" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>
@@ -49,6 +60,15 @@
 </operation>
 <operation name="zone">
 <soap:operation soapAction="urn:commercialwsdl#zone" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listcommerciaux">
+<soap:operation soapAction="urn:commercialwsdl#listcommerciaux" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>
