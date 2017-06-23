@@ -79,7 +79,7 @@
 </binding>
 <service name="maps">
 <port name="mapsPort" binding="tns:mapsBinding">
-<soap:address location="http://localhost/www_test/webservice/webservices_soap_generation_wsdl-maps.php"/>
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/maps"/>
 </port>
 </service>
 </definitions>

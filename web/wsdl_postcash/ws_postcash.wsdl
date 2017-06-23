@@ -57,7 +57,7 @@
 <xsd:complexType name="InAchatCodeWoyofal">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="montant" type="xsd:int"/>
+<xsd:element name="montant" type="xsd:string"/>
 <xsd:element name="compteur" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
@@ -695,7 +695,9 @@
 </binding>
 <service name="postcash">
 <port name="postcashPort" binding="tns:postcashBinding">
+
 <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/postcash"/>
+
 </port>
 </service>
 </definitions>

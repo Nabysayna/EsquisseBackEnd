@@ -32,28 +32,9 @@ class PostCashService
 
   function rechargementespece($params)
   {
-
-    $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=> $params->token));
-
-    if( empty($correspSession) ) {
-      return ''.json_encode( array('errorCode' => 0, 'message' => 'Utilisateur non authentifié') ) ;
-    }
-    else{
-      $result = $this->postCashClient->rechargementespece($params);
-      if(json_decode($result)->response=="ok"){
-        $postcashRecord = new Postcash();
-        $postcashRecord->setIduser($correspSession->getIdUser());
-        $postcashRecord->setTypeoperation("rechargementespece");
-        $postcashRecord->setInfosoperation(''.json_encode($params));
-        $postcashRecord->setDateOperation(new \Datetime());
-
-        $this->em->persist($postcashRecord);
-        $this->em->flush();
-      }
-      return ''. json_encode($result);; 
-    }
+    $result = $this->postCashClient->rechargementespece($params);
+    return $result;
   }
-
 
   function retraitespece($params)
   {
@@ -183,3 +164,4 @@ class PostCashService
   
 
 }
+

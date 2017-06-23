@@ -10,7 +10,7 @@ class PostCashController extends Controller
 {
     private $client = null;
     function __construct(){
-        $this->client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/postcash?wsdl', true);
+        $this->client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app.php/invest/postcash?wsdl', true);
     }
 
     public function getcardusernameAction()
@@ -29,9 +29,8 @@ class PostCashController extends Controller
 
     public function rechargementespeceAction()
     {
-        
-        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'tel_destinataire' => '778036757', 'montant' => '1000');
-        $result = $this->client->call('rechargementespece', array('params' => $params));        
+        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'tel_destinataire' => '775198699', 'montant' => '500');
+        $result = $this->client->call('rechargementespece', array('params' => $params));
         return new JsonResponse(array('result' => $result));
     }
 
@@ -66,7 +65,7 @@ class PostCashController extends Controller
 
     public function achatcodewoyofalAction()
     {
-        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'montant' => 12345, 'compteur' => '11assaneka');
+        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'montant' => 200, 'compteur' => '14256330714');
         $result = $this->client->call('achatcodewoyofal', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
@@ -118,7 +117,7 @@ class PostCashController extends Controller
 
     public function achatcredittelephoniqueAction()
     {
-        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'numero_a_recharger' => 'assaneka', 'montant' => '1000');
+        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'numero_a_recharger' => '775198699', 'montant' => '200');
         $result = $this->client->call('achatcredittelephonique', array('params' => $params));
 
         return new JsonResponse(array('result' => $result));
