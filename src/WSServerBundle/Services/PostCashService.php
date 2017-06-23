@@ -21,13 +21,13 @@ class PostCashService
   function getcardusername($params)
   {
     $result = $this->postCashClient->getcardusername($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function getfraispartenaire($params)
   {
     $result = $this->postCashClient->getfraispartenaire($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function rechargementespece($params)
@@ -58,127 +58,127 @@ class PostCashService
   function retraitespece($params)
   {
     $result = $this->postCashClient->retraitespece($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function debitercarte($params)
   {
     $result = $this->postCashClient->debitercarte($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function debitcartedirect($params)
   {
     $result = $this->postCashClient->debitcartedirect($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function codevalidation($params)
   {
     $result = $this->postCashClient->codevalidation($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function achatcodewoyofal($params)
   {
     $result = $this->postCashClient->achatcodewoyofal($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function reglementsenelec($params)
   {
     $result = $this->postCashClient->reglementsenelec($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function detailfacturesenelec($params)
   {
     $result = $this->postCashClient->detailfacturesenelec($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function achatneo($params)
   {
     $result = $this->postCashClient->achatneo($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function achatjula($params)
   {
     $result = $this->postCashClient->achatjula($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function getinfosnumber($params)
   {
     $result = $this->postCashClient->getinfosnumber($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function getinfosnumberap($params)
   {
     $result = $this->postCashClient->getinfosnumberap($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function achatcredittelephonique($params)
   {
     $result = $this->postCashClient->achatcredittelephonique($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function cashtocashsend($params)
   {
     $result = $this->postCashClient->cashtocashsend($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function cashtocashreceive($params)
   {
     $result = $this->postCashClient->cashtocashreceive($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function transfertverstamtam($params)
   {
     $result = $this->postCashClient->transfertverstamtam($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function consultersoldeneo($params)
   {
     $result = $this->postCashClient->consultersoldeneo($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function debitercompteneo($params)
   {
     $result = $this->postCashClient->debitercompteneo($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function saveachatneo($params)
   {
     $result = $this->postCashClient->saveachatneo($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function transfertverstamtamviaapay($params)
   {
     $result = $this->postCashClient->transfertverstamtamviaapay($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function fraistamtamviaapay($params)
   {
     $result = $this->postCashClient->fraistamtamviaapay($params);
-    return ''. json_encode($result);
+    return $result;
   }
 
   function histotransactmarchand($params)
   {
     $result = $this->postCashClient->histotransactmarchand($params);
-    return ''. json_encode($result);
+    return $result;
   }
   
 

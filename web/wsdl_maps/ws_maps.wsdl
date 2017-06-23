@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:mapswsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:mapswsdl">
+<types>
+<xsd:schema targetNamespace="urn:mapswsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+</xsd:schema>
+</types>
+<message name="listmapsRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listmapsResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listmapsdepartRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listmapsdepartResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listmapspardepartRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listmapspardepartResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="mapsPortType">
+<operation name="listmaps">
+<documentation>Method Maps listmaps</documentation>
+<input message="tns:listmapsRequest"/>
+<output message="tns:listmapsResponse"/>
+</operation>
+<operation name="listmapsdepart">
+<documentation>Method Maps listmapsdepart</documentation>
+<input message="tns:listmapsdepartRequest"/>
+<output message="tns:listmapsdepartResponse"/>
+</operation>
+<operation name="listmapspardepart">
+<documentation>Method Maps listmapspardepart</documentation>
+<input message="tns:listmapspardepartRequest"/>
+<output message="tns:listmapspardepartResponse"/>
+</operation>
+</portType>
+<binding name="mapsBinding" type="tns:mapsPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="listmaps">
+<soap:operation soapAction="urn:mapswsdl#listmaps" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:mapswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:mapswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listmapsdepart">
+<soap:operation soapAction="urn:mapswsdl#listmapsdepart" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:mapswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:mapswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listmapspardepart">
+<soap:operation soapAction="urn:mapswsdl#listmapspardepart" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:mapswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:mapswsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="maps">
+<port name="mapsPort" binding="tns:mapsBinding">
+<soap:address location="http://localhost/www_test/webservice/webservices_soap_generation_wsdl-maps.php"/>
+</port>
+</service>
+</definitions>

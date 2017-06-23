@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:adminmultipdvwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:adminmultipdvwsdl">
+<types>
+<xsd:schema targetNamespace="urn:adminmultipdvwsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InModifyAgent">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="idagent" type="xsd:int"/>
+<xsd:element name="modifycaution" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+</xsd:schema>
+</types>
+<message name="nombredereclamationagentpdvventeRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="nombredereclamationagentpdvventeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="bilandepositRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="bilandepositResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="depositinitialconsommeparserviceRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="depositinitialconsommeparserviceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="performanceagentRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="performanceagentResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="historiquerecouvrementRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="historiquerecouvrementResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="historiquereclamationRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="historiquereclamationResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listmapRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listmapResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="activiteservicesRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="activiteservicesResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="demanderetraitfondRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="demanderetraitfondResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listmajcautionsRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listmajcautionsResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="modifymajcautionRequest">
+<part name="params" type="tns:InModifyAgent"/>
+</message>
+<message name="modifymajcautionResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="adminmultipdvPortType">
+<operation name="nombredereclamationagentpdvvente">
+<documentation>
+Method ADMINMULTIPDV nombredereclamationagentpdvvente
+</documentation>
+<input message="tns:nombredereclamationagentpdvventeRequest"/>
+<output message="tns:nombredereclamationagentpdvventeResponse"/>
+</operation>
+<operation name="bilandeposit">
+<documentation>Method ADMINMULTIPDV bilandeposit</documentation>
+<input message="tns:bilandepositRequest"/>
+<output message="tns:bilandepositResponse"/>
+</operation>
+<operation name="depositinitialconsommeparservice">
+<documentation>
+Method ADMINMULTIPDV depositinitialconsommeparservice
+</documentation>
+<input message="tns:depositinitialconsommeparserviceRequest"/>
+<output message="tns:depositinitialconsommeparserviceResponse"/>
+</operation>
+<operation name="performanceagent">
+<documentation>Method ADMINMULTIPDV performanceagent</documentation>
+<input message="tns:performanceagentRequest"/>
+<output message="tns:performanceagentResponse"/>
+</operation>
+<operation name="historiquerecouvrement">
+<documentation>Method ADMINMULTIPDV historiquerecouvrement</documentation>
+<input message="tns:historiquerecouvrementRequest"/>
+<output message="tns:historiquerecouvrementResponse"/>
+</operation>
+<operation name="historiquereclamation">
+<documentation>Method ADMINMULTIPDV historiquereclamation</documentation>
+<input message="tns:historiquereclamationRequest"/>
+<output message="tns:historiquereclamationResponse"/>
+</operation>
+<operation name="listmap">
+<documentation>Method ADMINMULTIPDV listmap</documentation>
+<input message="tns:listmapRequest"/>
+<output message="tns:listmapResponse"/>
+</operation>
+<operation name="activiteservices">
+<documentation>Method ADMINMULTIPDV activiteservices</documentation>
+<input message="tns:activiteservicesRequest"/>
+<output message="tns:activiteservicesResponse"/>
+</operation>
+<operation name="demanderetraitfond">
+<documentation>Method ADMINMULTIPDV demanderetraitfond</documentation>
+<input message="tns:demanderetraitfondRequest"/>
+<output message="tns:demanderetraitfondResponse"/>
+</operation>
+<operation name="listmajcautions">
+<documentation>Method ADMINMULTIPDV listmajcautions</documentation>
+<input message="tns:listmajcautionsRequest"/>
+<output message="tns:listmajcautionsResponse"/>
+</operation>
+<operation name="modifymajcaution">
+<documentation>Method ADMINMULTIPDV modifymajcaution</documentation>
+<input message="tns:modifymajcautionRequest"/>
+<output message="tns:modifymajcautionResponse"/>
+</operation>
+</portType>
+<binding name="adminmultipdvBinding" type="tns:adminmultipdvPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="nombredereclamationagentpdvvente">
+<soap:operation soapAction="urn:adminmultipdvwsdl#nombredereclamationagentpdvvente" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="bilandeposit">
+<soap:operation soapAction="urn:adminmultipdvwsdl#bilandeposit" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="depositinitialconsommeparservice">
+<soap:operation soapAction="urn:adminmultipdvwsdl#depositinitialconsommeparservice" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="performanceagent">
+<soap:operation soapAction="urn:adminmultipdvwsdl#performanceagent" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="historiquerecouvrement">
+<soap:operation soapAction="urn:adminmultipdvwsdl#historiquerecouvrement" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="historiquereclamation">
+<soap:operation soapAction="urn:adminmultipdvwsdl#historiquereclamation" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listmap">
+<soap:operation soapAction="urn:adminmultipdvwsdl#listmap" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="activiteservices">
+<soap:operation soapAction="urn:adminmultipdvwsdl#activiteservices" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="demanderetraitfond">
+<soap:operation soapAction="urn:adminmultipdvwsdl#demanderetraitfond" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listmajcautions">
+<soap:operation soapAction="urn:adminmultipdvwsdl#listmajcautions" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="modifymajcaution">
+<soap:operation soapAction="urn:adminmultipdvwsdl#modifymajcaution" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="adminmultipdv">
+<port name="adminmultipdvPort" binding="tns:adminmultipdvBinding">
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv"/>
+</port>
+</service>
+</definitions>
