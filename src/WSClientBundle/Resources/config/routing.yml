@@ -11,6 +11,9 @@ ws_client_disconnexion:
     path:     /deconnexion
     defaults: { _controller: WSClientBundle:Default:disconnect }
 
+sms_ing:
+    path:     /send_sms
+    defaults: { _controller: WSClientBundle:Default:sms }
 
 
 ws_client_postcash_getcardusername:
