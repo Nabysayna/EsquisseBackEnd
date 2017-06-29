@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:commercialwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:commercialwsdl">
+<types>
+<xsd:schema targetNamespace="urn:commercialwsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+</xsd:schema>
+</types>
+<message name="listoperateursRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listoperateursResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="zoneRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="zoneResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listcommerciauxRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listcommerciauxResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="commercialPortType">
+<operation name="listoperateurs">
+<documentation>Method COMMERCIAL listoperateurs</documentation>
+<input message="tns:listoperateursRequest"/>
+<output message="tns:listoperateursResponse"/>
+</operation>
+<operation name="zone">
+<documentation>Method COMMERCIAL zone</documentation>
+<input message="tns:zoneRequest"/>
+<output message="tns:zoneResponse"/>
+</operation>
+<operation name="listcommerciaux">
+<documentation>Method COMMERCIAL listcommerciaux</documentation>
+<input message="tns:listcommerciauxRequest"/>
+<output message="tns:listcommerciauxResponse"/>
+</operation>
+</portType>
+<binding name="commercialBinding" type="tns:commercialPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="listoperateurs">
+<soap:operation soapAction="urn:commercialwsdl#listoperateurs" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="zone">
+<soap:operation soapAction="urn:commercialwsdl#zone" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listcommerciaux">
+<soap:operation soapAction="urn:commercialwsdl#listcommerciaux" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="commercial">
+<port name="commercialPort" binding="tns:commercialBinding">
+<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/commercial"/>
+</port>
+</service>
+</definitions>

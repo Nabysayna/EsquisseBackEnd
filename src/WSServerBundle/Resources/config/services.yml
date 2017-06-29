@@ -26,8 +26,23 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_adminmultipdv:
+        class: WSServerBundle\Services\AdminmultipdvService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+      test_server_maps:
+        class: WSServerBundle\Services\MapsService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
       test_server_compta_pdv:
         class: WSServerBundle\Services\ComptapdvService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+      test_server_commercial:
+        class: WSServerBundle\Services\CommercialService
         arguments:
           - "@doctrine.orm.default_entity_manager"
 

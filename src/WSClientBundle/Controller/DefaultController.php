@@ -40,9 +40,7 @@ class DefaultController extends Controller
         $client = new \nusoap_client('http://localhost/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl', true);
         $fromUs =  sha1("bay3k00_f1_n10un") ;
         $user = array( 'token' => "8a6e82beca15168315400832ec3bc0f318a20623", 'hdeconnexion' => "459d" ) ;
-        $result = $client->call('deconnexion', array('user' => $user));
-
-
+        $result = $this->client->call('deconnexion', array('user' => $user));
         return new JsonResponse(array('result' => $result));  /* assane.ka@bbstvnet.com */
     }
 

@@ -18,9 +18,23 @@ ws_server_adminpdv:
     path:     /adminpdv
     defaults: { _controller: WSServerBundle:Adminpdv:adminpdv }
 
+ws_server_adminmultipdv:
+    path:     /adminmultipdv
+    defaults: { _controller: WSServerBundle:Adminmultipdv:adminmultipdv }
+
+ws_server_maps:
+    path:     /maps
+    defaults: { _controller: WSServerBundle:Maps:maps }
+
 ws_server_comptapdv:
     path:     /comptapdv
     defaults: { _controller: WSServerBundle:Comptapdv:comptapdv }
+
+
+ws_server_commercial:
+    path:     /commercial
+    defaults: { _controller: WSServerBundle:Commercial:commercial }
+
 
 
 
@@ -31,10 +45,6 @@ ws_server_comptapdv:
 ws_server_postcash:
     path:     /postcash
     defaults: { _controller: WSServerBundle:PostCash:postcash }
-
-ws_server_postcash_test_client:
-    path:     /postcashtestclient
-    defaults: { _controller: WSServerBundle:PostCash:postcashtestclient }
 
 ws_server_expressocash:
     path:     /expressocash
