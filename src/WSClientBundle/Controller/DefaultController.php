@@ -15,9 +15,16 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
-        $testDB = $this->container->get('test_server_authentification');
+        // $testDB = $this->container->get('test_server_authentification');
 
-        $result = $testDB->testDB();
+        // $result = $testDB->testDB();
+
+
+
+        $testDB = $this->container->get('test_server_commercial');
+
+        $params = array( 'token' => "c27fb0c5f59759ebdace57316039eda08cdbde01" ) ;
+        $result = $testDB->listeachcommercialbyid($params);
         return new JsonResponse(array('result' => $result));
 
     }

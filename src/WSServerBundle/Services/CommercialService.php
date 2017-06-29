@@ -58,7 +58,7 @@ class CommercialService
 
       if (!empty($correspSession)){
   
-        $operateurs = $this->em->getRepository('WSServerBundle:Users')->findBy(array('accesslevel' => 7));
+        $commerciaux = $this->em->getRepository('WSServerBundle:Users')->findBy(array('accesslevel' => 7));
         
         foreach ($commerciaux as $commercial) {
             $formatted[] = [
@@ -74,13 +74,45 @@ class CommercialService
       return json_encode( array('errorCode' => 0, 'message' => 'Utilisateur non authentifié') ) ;
     }
     
+     public function listeachcommercialbyid($params)
+    {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if (!empty($correspSession)){
+        
+        $resultat=$this->trouvercommercialbyid($correspSession->getIdUser());
+
+        foreach ($resultat as $rst) {
+            $formatted[] = [
+               'id' => $rst->getIdUser(),
+               'prenom' => $rst->getPrenomclient(),
+               'nom' => $rst->getNomclient(),
+                'tel' => $rst->getTelclient()
+
+              ];
+        }
+        return ''. json_encode($formatted);
+
+      }
+      return json_encode( array('errorCode' => 0, 'message' => 'Utilisateur non authentifié') ) ;
+    }
 function zone($params) {
         $reponse = ['Dakar', 'Diamalaye', 'Rufisque', 'Parcelles', 'VDN', 'Keur Mbaye fall'];                                    
 
         return ''. json_encode($reponse);
 
-
 }
+
+public function trouvercommercialbybyid($id_commercial)
+    {
+     $result = $this->em->getRepository('WSServerBundle:Fcommercial')->createQueryBuilder('f')
+       ->where("f.id_commercial=:iduser and f.categorie<>'1'")
+       ->setParameter('iduser', $id_commercial)
+       ->getQuery()
+       ->getResult();
+
+     return $result ;
+    }
 
 
 }
