@@ -17,6 +17,11 @@
                     <xsd:element name="hdeconnexion" type="xsd:string"/>
                 </xsd:all>
             </xsd:complexType>
+             <xsd:complexType name="UserAuthSecPhase">
+                <xsd:all>
+                    <xsd:element name="tokentemporaire" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
         </xsd:schema>
     </types>
     
@@ -32,6 +37,13 @@
     </message>
     <message name="deconnexionResponse">
         <part name="return" type="xsd:int"/>
+    </message>
+
+    <message name="authentificationPhaseTwoRequest">
+        <part name="user" type="tns:UserAuthSecPhase"/>
+    </message>
+    <message name="authentificationPhaseTwoResponse">
+        <part name="return" type="xsd:string"/>
     </message>
 
 
@@ -52,6 +64,11 @@
             <documentation>Methode deconnexion</documentation>
             <input message="tns:deconnexionRequest"/>
             <output message="tns:deconnexionResponse"/>
+        </operation>
+        <operation name="authentificationPhaseTwo">
+            <documentation>Methode deconnexion</documentation>
+            <input message="tns:authentificationPhaseTwoRequest"/>
+            <output message="tns:authentificationPhaseTwoResponse"/>
         </operation>
 
         <operation name="hello">
@@ -83,6 +100,17 @@
             </output>
         </operation>
 
+        <operation name="authentificationPhaseTwo">
+            <soap:operation soapAction="urn:authwsdl#authentificationPhaseTwo" style="rpc"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:authwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:authwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+
+
         <operation name="hello">
             <soap:operation soapAction="urn:authwsdl#hello" style="rpc"/>
             <input>
@@ -97,7 +125,7 @@
     <service name="auth">
         <port name="authPort" binding="tns:authBinding">
 
-            <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/logging" />
+            <soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/logging" />
 
         </port>
     </service>
