@@ -20,6 +20,11 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_outsitecommerce:
+        class: WSServerBundle\Services\OutsitEcommerceService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
       test_server_adminpdv:
         class: WSServerBundle\Services\AdminpdvService
         arguments:

@@ -166,6 +166,13 @@ ws_client_tnt_listcarte:
     defaults: { _controller: WSClientBundle:Tnt:listcarte }
 
 
+
+ws_client_outsitecommerce_listerarticleecomoutsite:
+    path:     /outsitecommerce/listerarticleecomoutsite
+    defaults: { _controller: WSClientBundle:OutsitEcommerce:listerarticleecomoutsite }
+
+
+
 ws_client_ecommerce_ajoutarticle:
     path:     /ecommerce/ajoutarticle
     defaults: { _controller: WSClientBundle:Ecommerce:ajoutarticle }
