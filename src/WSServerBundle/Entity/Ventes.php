@@ -43,6 +43,34 @@ class Ventes
     /**
      * @var integer
      *
+     * @ORM\Column(name="tel_client", type="bigint", nullable=false)
+     */
+    private $telClient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=40, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse_vendeur", type="string", length=50, nullable=false)
+     */
+    private $adresseVendeur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse_fournisseur", type="string", length=50, nullable=false)
+     */
+    private $adresseFournisseur;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -145,6 +173,102 @@ class Ventes
     public function getDateVente()
     {
         return $this->dateVente;
+    }
+
+    /**
+     * Set telClient
+     *
+     * @param integer $telClient
+     *
+     * @return Ventes
+     */
+    public function setTelClient($telClient)
+    {
+        $this->telClient = $telClient;
+
+        return $this;
+    }
+
+    /**
+     * Get telClient
+     *
+     * @return integer
+     */
+    public function getTelClient()
+    {
+        return $this->telClient;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Ventes
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set adresseVendeur
+     *
+     * @param string $adresseVendeur
+     *
+     * @return Ventes
+     */
+    public function setAdresseVendeur($adresseVendeur)
+    {
+        $this->adresseVendeur = $adresseVendeur;
+
+        return $this;
+    }
+
+    /**
+     * Get adresseVendeur
+     *
+     * @return string
+     */
+    public function getAdresseVendeur()
+    {
+        return $this->adresseVendeur;
+    }
+
+    /**
+     * Set adresseFournisseur
+     *
+     * @param string $adresseFournisseur
+     *
+     * @return Ventes
+     */
+    public function setAdresseFournisseur($adresseFournisseur)
+    {
+        $this->adresseFournisseur = $adresseFournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get adresseFournisseur
+     *
+     * @return string
+     */
+    public function getAdresseFournisseur()
+    {
+        return $this->adresseFournisseur;
     }
 
     /**

@@ -81,7 +81,7 @@ class CommercialService
       if (!empty($correspSession)){
         
         $resultat=$this->trouvercommercialbyid($correspSession->getIdUser());
-
+          $formatted=[];
         foreach ($resultat as $rst) {
             $formatted[] = [
                'id' => $rst->getIdUser(),
@@ -103,13 +103,9 @@ function zone($params) {
 
 }
 
-public function trouvercommercialbybyid($id_commercial)
+public function trouvercommercialbyid($id_commercial)
     {
-     $result = $this->em->getRepository('WSServerBundle:Fcommercial')->createQueryBuilder('f')
-       ->where("f.id_commercial=:iduser and f.categorie<>'1'")
-       ->setParameter('iduser', $id_commercial)
-       ->getQuery()
-       ->getResult();
+     $result = $this->em->getRepository('WSServerBundle:Fcommercial')->createQueryBuilder('f')->where("f.idCommercial=:iduser and f.categorie<>'1'")->setParameter('iduser', $id_commercial)->getQuery()->getResult();
 
      return $result ;
     }

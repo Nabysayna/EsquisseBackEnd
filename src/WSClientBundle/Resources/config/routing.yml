@@ -11,6 +11,9 @@ ws_client_disconnexion:
     path:     /deconnexion
     defaults: { _controller: WSClientBundle:Default:disconnect }
 
+sms_ing:
+    path:     /send_sms
+    defaults: { _controller: WSClientBundle:Default:sms }
 
 ws_client_commercial:
     path:     /commercial/listcoursier
@@ -155,15 +158,12 @@ ws_client_tnt_ajoutabonnement:
 ws_client_tnt_ventedecodeur:
     path:     /tnt/ventedecodeur
     defaults: { _controller: WSClientBundle:Tnt:ventedecodeur }
-
 ws_client_tnt_ventecarte:
     path:     /tnt/ventecarte
     defaults: { _controller: WSClientBundle:Tnt:ventecarte }
-
 ws_client_tnt_listdecodeur:
     path:     /tnt/listdecodeur
     defaults: { _controller: WSClientBundle:Tnt:listdecodeur }
-
 ws_client_tnt_listcarte:
     path:     /tnt/listcarte
     defaults: { _controller: WSClientBundle:Tnt:listcarte }
@@ -214,6 +214,50 @@ ws_client_adminpdv_historiquerecouvrement:
 ws_client_adminpdv_historiquereclamation:
     path:     /adminpdv/historiquereclamation
     defaults: { _controller: WSClientBundle:Adminpdv:historiquereclamation }
+
+
+ws_client_maps_listmaps:
+    path:     /maps/listmaps
+    defaults: { _controller: WSClientBundle:Maps:listmaps }
+ws_client_maps_listmapsdepart:
+    path:     /maps/listmapsdepart
+    defaults: { _controller: WSClientBundle:Maps:listmapsdepart }
+ws_client_maps_listmapspardepart:
+    path:     /maps/listmapspardepart
+    defaults: { _controller: WSClientBundle:Maps:listmapspardepart }
+
+
+
+ws_client_adminmultipdv_nombredereclamationagentpdvvente:
+    path:     /adminmultipdv/nombredereclamationagentpdvvente
+    defaults: { _controller: WSClientBundle:Adminmultipdv:nombredereclamationagentpdvvente }
+ws_client_adminmultipdv_depositinitialconsommeparservice:
+    path:     /adminmultipdv/depositinitialconsommeparservice
+    defaults: { _controller: WSClientBundle:Adminmultipdv:depositinitialconsommeparservice }
+ws_client_adminmultipdv_performanceagent:
+    path:     /adminmultipdv/performanceagent
+    defaults: { _controller: WSClientBundle:Adminmultipdv:performanceagent }
+ws_client_adminmultipdv_listmap:
+    path:     /adminmultipdv/listmap
+    defaults: { _controller: WSClientBundle:Adminmultipdv:listmap }
+ws_client_adminmultipdv_historiquerecouvrement:
+    path:     /adminmultipdv/historiquerecouvrement
+    defaults: { _controller: WSClientBundle:Adminmultipdv:historiquerecouvrement }
+ws_client_adminmultipdv_historiquereclamation:
+    path:     /adminmultipdv/historiquereclamation
+    defaults: { _controller: WSClientBundle:Adminmultipdv:historiquereclamation }
+ws_client_adminmultipdv_activiteservices:
+    path:     /adminmultipdv/activiteservices
+    defaults: { _controller: WSClientBundle:Adminmultipdv:activiteservices }
+ws_client_adminmultipdv_demanderetraitfond:
+    path:     /adminmultipdv/demanderetraitfond
+    defaults: { _controller: WSClientBundle:Adminmultipdv:demanderetraitfond }
+ws_client_adminmultipdv_listmajcautions:
+    path:     /adminmultipdv/listmajcautions
+    defaults: { _controller: WSClientBundle:Adminmultipdv:listmajcautions }
+ws_client_adminmultipdv_modifymajcaution:
+    path:     /adminmultipdv/modifymajcaution
+    defaults: { _controller: WSClientBundle:Adminmultipdv:modifymajcaution }
 
 
 
