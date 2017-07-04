@@ -16,5 +16,6 @@
       </options>
     </field>
     <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
+    <field name="dateModif" type="datetime" column="date_modif" nullable="true"/>
   </entity>
 </doctrine-mapping>

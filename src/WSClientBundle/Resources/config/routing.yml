@@ -173,6 +173,12 @@ ws_client_tnt_listcarte:
 ws_client_outsitecommerce_listerarticleecomoutsite:
     path:     /outsitecommerce/listerarticleecomoutsite
     defaults: { _controller: WSClientBundle:OutsitEcommerce:listerarticleecomoutsite }
+ws_client_outsitecommerce_listerzoneecomoutsite:
+    path:     /outsitecommerce/listerzoneecomoutsite
+    defaults: { _controller: WSClientBundle:OutsitEcommerce:listerzoneecomoutsite }
+ws_client_outsitecommerce_listercategorieecomoutsite:
+    path:     /outsitecommerce/listercategorieecomoutsite
+    defaults: { _controller: WSClientBundle:OutsitEcommerce:listercategorieecomoutsite }
 
 
 

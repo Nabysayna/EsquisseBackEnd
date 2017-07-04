@@ -34,6 +34,13 @@ class Cautions
     private $dateAjout;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_modif", type="datetime", nullable=true)
+     */
+    private $dateModif;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id_caution", type="integer")
@@ -114,6 +121,30 @@ class Cautions
     public function getDateAjout()
     {
         return $this->dateAjout;
+    }
+
+    /**
+     * Set dateModif
+     *
+     * @param \DateTime $dateModif
+     *
+     * @return Cautions
+     */
+    public function setDateModif($dateModif)
+    {
+        $this->dateModif = $dateModif;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModif
+     *
+     * @return \DateTime
+     */
+    public function getDateModif()
+    {
+        return $this->dateModif;
     }
 
     /**

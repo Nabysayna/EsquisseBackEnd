@@ -254,6 +254,32 @@ class AdminmultipdvService
     
     function listmajcautions($params)
     {
+        $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+      //   $query = $this->em->createQuery("SELECT 
+      //     a.id AS idarticle,
+      //     CONCAT(u.prenom,' ', u.nom) AS createby,
+      //     a.description,
+      //     a.prix,
+      //     a.stock AS qte,
+      //     a.imgLink AS imagelink,
+      //     a.dateAjout AS datepublication,
+      //     a.avis,
+      //     a.nbreavis,
+      //     a.designation,
+      //     a.categorie,
+      //     u.zone 
+      //     FROM 
+      //     WSServerBundle\Entity\Cautions a, WSServerBundle\Entity\Users u 
+      //     WHERE 
+      //     a.idUser=u.idUser
+      // ");
+      // $results = $query->getArrayResult();
+      // return ''. json_encode($results);
+
         $reponse = [
           array(
             'idagent' => 1,
@@ -281,7 +307,8 @@ class AdminmultipdvService
           ),
         ];
 
-        return ''. json_encode($reponse);
+        return ''. ''. json_encode( array('errorCode' => 1, 'response' => $reponse) );
+      }
     }
   
     function modifymajcaution($params)

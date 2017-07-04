@@ -29,20 +29,6 @@ class Users
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=100, nullable=false)
-     */
-    private $adresse;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="telephone", type="bigint", nullable=false)
-     */
-    private $telephone;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="login", type="string", length=50, nullable=false)
      */
     private $login;
@@ -74,6 +60,34 @@ class Users
      * @ORM\Column(name="date_creation", type="datetime", nullable=false)
      */
     private $dateCreation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=100, nullable=false)
+     */
+    private $adresse;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telephone", type="bigint", nullable=false)
+     */
+    private $telephone;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idzone", type="integer", nullable=true)
+     */
+    private $idzone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     */
+    private $zone;
 
     /**
      * @var integer
@@ -132,54 +146,6 @@ class Users
     public function getNom()
     {
         return $this->nom;
-    }
-
-    /**
-     * Set adresse
-     *
-     * @param string $adresse
-     *
-     * @return Users
-     */
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    /**
-     * Get adresse
-     *
-     * @return string
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
-
-    /**
-     * Set telephone
-     *
-     * @param integer $telephone
-     *
-     * @return Users
-     */
-    public function setTelephone($telephone)
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
-     * Get telephone
-     *
-     * @return integer
-     */
-    public function getTelephone()
-    {
-        return $this->telephone;
     }
 
     /**
@@ -300,6 +266,102 @@ class Users
     public function getDateCreation()
     {
         return $this->dateCreation;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Users
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set telephone
+     *
+     * @param integer $telephone
+     *
+     * @return Users
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return integer
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set idzone
+     *
+     * @param integer $idzone
+     *
+     * @return Users
+     */
+    public function setIdzone($idzone)
+    {
+        $this->idzone = $idzone;
+
+        return $this;
+    }
+
+    /**
+     * Get idzone
+     *
+     * @return integer
+     */
+    public function getIdzone()
+    {
+        return $this->idzone;
+    }
+
+    /**
+     * Set zone
+     *
+     * @param string $zone
+     *
+     * @return Users
+     */
+    public function setZone($zone)
+    {
+        $this->zone = $zone;
+
+        return $this;
+    }
+
+    /**
+     * Get zone
+     *
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
     }
 
     /**

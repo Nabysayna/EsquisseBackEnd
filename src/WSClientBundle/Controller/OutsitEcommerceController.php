@@ -22,6 +22,22 @@ class OutsitEcommerceController extends Controller
         return new JsonResponse(array('result' => $result));
     }
 
+    public function listerzoneecomoutsiteAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test");
+        $result = $this->client->call('listerzoneecomoutsite', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function listercategorieecomoutsiteAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test");
+        $result = $this->client->call('listercategorieecomoutsite', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
 
 
 }

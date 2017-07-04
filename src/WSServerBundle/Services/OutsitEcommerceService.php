@@ -1,58 +1,191 @@
 <?php
 
 namespace WSServerBundle\Services;
-use WSServerBundle\Entity\Authorizedsessions;
+
+use WSServerBundle\Entity\Clients;
+use WSServerBundle\Entity\Commandes;
 
 
 class OutsitEcommerceService
 {
 
     private $em;
-
-    private $datamappdv = [
-      array('lat' => 14.693858, 'lng' => -17.445982, 'label' => 'A', 'title' => 'AA', 'content' => 'AA'),
-      array('lat' => 14.823458, 'lng' => -16.005082, 'label' => 'F', 'title' => 'F', 'content' => 'F'),
-    ];
-
-    private $dataarticle = array(
-      'categoriesandnbre' => [
-        array('categorie' => "accessoires", 'nbre' => 1),
-        array('categorie' => "ordinateur", 'nbre' => 2),
-        array('categorie' => "telephone", 'nbre' => 2),
-        array('categorie' => "chaussures", 'nbre' => 2),
-      ], 
-      'articles' => [
-        array('idarticle' => 12, 'categorie' => "accessoires", 'description' => "ecouteur top", 'label' => "ecouteur green", 'createby' => 'bamba', 'qte' => 100, 'prix' => 2500, 'datepublication' => '2017-06-27', 'imagelink' => 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/uploads/shop/ecouteur.jpg'),
-        array('idarticle' => 121, 'categorie' => "ordinateur", 'description' => "Le pére des ordinateur portable", 'label' => 'Macbook', 'createby' => 'Ablaye', 'qte' => 10, 'prix' => 800000, 'datepublication' => '2017-06-16', 'imagelink' => 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/uploads/shop/macbok.jpg'),
-        array('idarticle' => 123, 'categorie' => "ordinateur", 'description' => "Le pére des ordinateur portable mack", 'label' => 'Macbook One', 'createby' => 'Awa', 'qte' => 10, 'prix' => 800000, 'datepublication' => '2017-06-06', 'imagelink' => 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/uploads/shop/macbok.jpg'),
-        array('idarticle' => 125, 'categorie' => "telephone", 'description' => "samsums portable", 'label' => 'samsums 2pouce', 'createby' => 'Oumy', 'qte' => 10, 'prix' => 800000, 'datepublication' => '2017-06-26', 'imagelink' => 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/uploads/shop/samsums.jpg'),
-        array('idarticle' => 129, 'categorie' => "telephone", 'description' => "Le portable mere", 'label' => 'samsums', 'createby' => 'Tapha', 'qte' => 10, 'prix' => 80000, 'datepublication' => '2017-06-21', 'imagelink' => 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/uploads/shop/samsums.jpg'),
-        array('idarticle' => 127, 'categorie' => "chaussures", 'description' => "Le pére des ordinateur portable", 'label' => 'Talon', 'createby' => 'Tapha', 'qte' => 10, 'prix' => 8000, 'datepublication' => '2017-06-22', 'imagelink' => 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/uploads/shop/chaussure_women.jpg'),
-        array('idarticle' => 132, 'categorie' => "chaussures", 'description' => "Le pére des ordinateur portable", 'label' => 'Bote', 'createby' => 'Ablaye', 'qte' => 10, 'prix' => 8000, 'datepublication' => '2017-06-23', 'imagelink' => 'http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/server-backend-upload/uploads/shop/chaussure1_men.jpg'),
-      ],
-    );
+    private $mailservice;
     
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager)
+    
+    public function __construct(\Doctrine\ORM\EntityManager $entityManager, \WSServerBundle\Services\MailingService $mailService)
     {
       $this->em = $entityManager;
-    }
-
-    function ajoutcommandeecomoutsite($params)
-    {
-      $reponse = array(
-        'typedebouquet' => 'ajoutcommandeecomoutsite'
-      );
-
-      return ''. json_encode($reponse);
+      $this->mailservice = $mailService;
     }
 
     function listerarticleecomoutsite($params)
     {
-      $reponse = $this->dataarticle;
+      $query = $this->em->createQuery("SELECT 
+          a.id AS idarticle,
+          CONCAT(u.prenom,' ', u.nom) AS createby,
+          a.description,
+          a.prix,
+          a.stock AS qte,
+          a.imgLink AS imagelink,
+          a.dateAjout AS datepublication,
+          a.avis,
+          a.nbreavis,
+          a.designation,
+          a.categorie,
+          u.zone 
+          FROM 
+          WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u 
+          WHERE 
+          a.idUser=u.idUser
+      ");
+      $results = $query->getArrayResult();
+      return ''. json_encode($results);
 
+    }
+
+    function listercategorieecomoutsite($params)
+    {
+      $query = $this->em->createQuery("SELECT  
+        a.categorie,
+        COUNT(a.id) AS nbre
+        FROM 
+        WSServerBundle\Entity\Articles a 
+        GROUP BY a.categorie
+      ");
+      $results = $query->getArrayResult();
+
+      return ''. json_encode($results);
+    }
+
+    function listerzoneecomoutsite($params)
+    {
+      $query = $this->em->createQuery("SELECT  
+        u.zone,
+        COUNT(u.idUser) AS nbre
+        FROM 
+        WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u 
+        WHERE 
+        a.idUser=u.idUser
+        GROUP BY u.zone
+      ");
+      $results = $query->getArrayResult();
+      
+      return ''. json_encode($results);
+    }
+
+    function ajoutavisecomoutsite($params)
+    {
+        $article = $this->em->getRepository('WSServerBundle:Articles')->find($params->id_article);
+        $nbreavis = $article->getNbreavis() + 1;
+        $newavis = $article->getAvis() + $params->avis;
+        $article->setNbreavis($nbreavis);
+        $article->setAvis($newavis);
+        $this->em->flush();
+        
+        $reponse = array(
+          'response' => 'ok'
+        );
+        return ''. json_encode($reponse);
+    }
+
+    function ajoutcommandeecomoutsite($params)
+    {
+      $existclient = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone'=>$params->telephoneclient));
+      if(empty($existclient)){
+        $newclient = new Clients();
+        $newclient->setPrenom($params->prenomclient);
+        $newclient->setNom($params->nomclient);
+        $newclient->setTelephone($params->telephoneclient);
+        $newclient->setEmail($params->emailclient);
+        $addTime = new \Datetime();
+        $newclient->setDateAjout($addTime);
+        $this->em->persist($newclient);
+        $this->em->flush();
+
+        $newCommande = new Commandes();
+        $newCommande->setIdArticle($params->id_article);
+        $newCommande->setCommanditaire(-1);
+        $newCommande->setIdclient($newclient->getId());
+        $newCommande->setPrenomclient($params->prenomclient);
+        $newCommande->setNomclient($params->nomclient);
+        $newCommande->setTelephoneclient($params->telephoneclient);
+        $newCommande->setQuantite($params->quantite);
+        $addTime = new \Datetime();
+        $newCommande->setDateCommande($addTime);
+        $newCommande->setCodepayement(time());
+        $this->em->persist($newCommande);
+        $this->em->flush();
+      }
+      else{      
+        $newCommande = new Commandes();
+        $newCommande->setIdArticle($params->id_article);
+        $newCommande->setCommanditaire(-1);
+        $newCommande->setIdclient($existclient->getId());
+        $newCommande->setPrenomclient($params->prenomclient);
+        $newCommande->setNomclient($params->nomclient);
+        $newCommande->setTelephoneclient($params->telephoneclient);
+        $newCommande->setQuantite($params->quantite);
+        $addTime = new \Datetime();
+        $newCommande->setDateCommande($addTime);
+        $newCommande->setCodepayement(time());
+        $this->em->persist($newCommande);
+        $this->em->flush();
+      }
+      $reponse = array(
+        'response' => 'ok'
+      );
       return ''. json_encode($reponse);
     }
 
+    function ajoutabonneecomoutsite($params)
+    {
+      $existclient = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('email' => $params->infoclient));
+      if(empty($existclient)){
+        $newclient = new Clients();
+        $newclient->setEmail($params->infoclient);
+        $addTime = new \Datetime();
+        $newclient->setDateAjout($addTime);
+        $this->em->persist($newclient);
+        $this->em->flush();
+      }
+      $reponse = array(
+        'response' => 'ok'
+      );
+      return ''. json_encode($reponse);
+    }
+
+    function ecrireecomoutsite($params)
+    {
+      $existclient = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('email' => $params->email));
+      if(empty($existclient)){
+        $newclient = new Clients();
+        $newclient->setFullname($params->fullname);
+        $newclient->setEmail($params->email);
+        $addTime = new \Datetime();
+        $newclient->setDateAjout($addTime);
+        $this->em->persist($newclient);
+        $this->em->flush();
+      }
+      
+      $sendMail = $this->mailservice->envoifromsite($params->email, $params->sujet, $params->message);
+      $reponse = array(
+        'response' => $sendMail
+      );
+      return ''. json_encode($reponse);
+    }
+    
+    function ajoutauthecomoutsite($params)
+    {
+        $reponse = array(
+          'api' => 1,
+          'token' => 'as12',
+          'typedebouquet' => '123'
+        );
+
+        return ''. json_encode($reponse);
+    }
+    
     function listercommandeecomoutsite($params)
     {
       $reponse = array(
@@ -62,5 +195,7 @@ class OutsitEcommerceService
       return ''. json_encode($reponse);
     }
 
-
+    
+    
+    
 }
