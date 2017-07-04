@@ -280,7 +280,23 @@ class AdminmultipdvService
       // $results = $query->getArrayResult();
       // return ''. json_encode($results);
 
-        $reponse = [
+     //  $query = $this->em->createQuery("SELECT 
+     //     ca.idCaution AS idcaution,
+     //     u.idUser AS idadminpdv,
+     //     CONCAT(u.prenom,' ', u.nom) AS adminpdv,
+     //     u.telephone AS telephone,
+     //     u.zone AS zone,
+     //     u.adresse AS adresse,
+     //     ca.caution AS cautioninitiale,
+     //     a.id AS montantconsomme,
+     //     FROM 
+     //     WSServerBundle\Entity\Cautions ca, WSServerBundle\Entity\Users u 
+     //     WHERE 
+     //     ca.idUser=u.idUser
+     // ");
+     //  $results = $query->getArrayResult();
+
+          $reponse = [
           array(
             'idagent' => 1,
             'agent' => 'Assane KA',

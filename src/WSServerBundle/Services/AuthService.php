@@ -50,6 +50,7 @@ class AuthService
 
           return 'true';
       }
+
     }
 
     function authentificationPhaseTwo($params)
