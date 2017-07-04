@@ -18,6 +18,12 @@
 <message name="listoperateursResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="listeachcommercialbyidRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listeachcommercialbyidResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <message name="zoneRequest">
 <part name="params" type="tns:InData"/>
 </message>
@@ -36,6 +42,11 @@
 <input message="tns:listoperateursRequest"/>
 <output message="tns:listoperateursResponse"/>
 </operation>
+<operation name="listeachcommercialbyid">
+<documentation>Method COMMERCIAL listeachcommercialbyid</documentation>
+<input message="tns:listeachcommercialbyidRequest"/>
+<output message="tns:listeachcommercialbyidResponse"/>
+</operation>
 <operation name="zone">
 <documentation>Method COMMERCIAL zone</documentation>
 <input message="tns:zoneRequest"/>
@@ -51,6 +62,15 @@
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
 <operation name="listoperateurs">
 <soap:operation soapAction="urn:commercialwsdl#listoperateurs" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listeachcommercialbyid">
+<soap:operation soapAction="urn:commercialwsdl#listeachcommercialbyid" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:commercialwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>

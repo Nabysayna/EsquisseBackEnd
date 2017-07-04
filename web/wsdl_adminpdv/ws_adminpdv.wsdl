@@ -228,7 +228,6 @@
 <port name="adminpdvPort" binding="tns:adminpdvBinding">
 
 <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminpdv"/>
-
 </port>
 </service>
 </definitions>
