@@ -10,7 +10,7 @@ class AdminmultipdvController extends Controller
 {
     private $client = null;
     function __construct(){
-        $this->client = new \nusoap_client('http://localhost:8888/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl', true);
+        $this->client = new \nusoap_client('http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv?wsdl', true);
     }
 
     public function nombredereclamationagentpdvventeAction()
@@ -31,6 +31,13 @@ class AdminmultipdvController extends Controller
     {
         $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'type' =>  '65443');
         $result = $this->client->call('performanceagent', array('params' => $params));
+        return new JsonResponse(array('result' => $result));
+    }
+    
+    public function bilandepositAction()
+    {
+        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'type' =>  '65443');
+        $result = $this->client->call('bilandeposit', array('params' => $params));
         return new JsonResponse(array('result' => $result));
     }
     

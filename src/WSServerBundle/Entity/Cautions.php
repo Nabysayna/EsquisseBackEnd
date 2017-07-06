@@ -24,7 +24,14 @@ class Cautions
      *
      * @ORM\Column(name="caution", type="integer", nullable=false)
      */
-    private $caution = '0';
+    private $caution;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cautionconsomme", type="integer", nullable=false)
+     */
+    private $cautionconsomme;
 
     /**
      * @var \DateTime
@@ -97,6 +104,30 @@ class Cautions
     public function getCaution()
     {
         return $this->caution;
+    }
+
+    /**
+     * Set cautionconsomme
+     *
+     * @param integer $cautionconsomme
+     *
+     * @return Cautions
+     */
+    public function setCautionconsomme($cautionconsomme)
+    {
+        $this->cautionconsomme = $cautionconsomme;
+
+        return $this;
+    }
+
+    /**
+     * Get cautionconsomme
+     *
+     * @return integer
+     */
+    public function getCautionconsomme()
+    {
+        return $this->cautionconsomme;
     }
 
     /**

@@ -80,14 +80,14 @@ class Articles
      *
      * @ORM\Column(name="avis", type="integer", nullable=true)
      */
-    private $avis = '0';
+    private $avis;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="nbreavis", type="integer", nullable=false)
      */
-    private $nbreavis = '0';
+    private $nbreavis;
 
     /**
      * @var integer

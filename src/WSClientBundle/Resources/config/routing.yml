@@ -250,6 +250,9 @@ ws_client_adminmultipdv_depositinitialconsommeparservice:
 ws_client_adminmultipdv_performanceagent:
     path:     /adminmultipdv/performanceagent
     defaults: { _controller: WSClientBundle:Adminmultipdv:performanceagent }
+ws_client_adminmultipdv_bilandeposit:
+    path:     /adminmultipdv/bilandeposit
+    defaults: { _controller: WSClientBundle:Adminmultipdv:bilandeposit }
 ws_client_adminmultipdv_listmap:
     path:     /adminmultipdv/listmap
     defaults: { _controller: WSClientBundle:Adminmultipdv:listmap }

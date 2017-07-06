@@ -10,12 +10,19 @@
 <xsd:element name="type" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
-<xsd:complexType name="InModifyAgent">
+<xsd:complexType name="InModifyCaution">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="type" type="xsd:string"/>
-<xsd:element name="idagent" type="xsd:int"/>
+<xsd:element name="idadminpdv" type="xsd:int"/>
 <xsd:element name="modifycaution" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InValiderRetrait">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="idretrait" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
 </xsd:schema>
@@ -81,9 +88,15 @@
 <part name="return" type="xsd:string"/>
 </message>
 <message name="modifymajcautionRequest">
-<part name="params" type="tns:InModifyAgent"/>
+<part name="params" type="tns:InModifyCaution"/>
 </message>
 <message name="modifymajcautionResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="validerretraitRequest">
+<part name="params" type="tns:InValiderRetrait"/>
+</message>
+<message name="validerretraitResponse">
 <part name="return" type="xsd:string"/>
 </message>
 <portType name="adminmultipdvPortType">
@@ -145,6 +158,11 @@ Method ADMINMULTIPDV depositinitialconsommeparservice
 <documentation>Method ADMINMULTIPDV modifymajcaution</documentation>
 <input message="tns:modifymajcautionRequest"/>
 <output message="tns:modifymajcautionResponse"/>
+</operation>
+<operation name="validerretrait">
+<documentation>Method ADMINMULTIPDV validerretrait</documentation>
+<input message="tns:validerretraitRequest"/>
+<output message="tns:validerretraitResponse"/>
 </operation>
 </portType>
 <binding name="adminmultipdvBinding" type="tns:adminmultipdvPortType">
@@ -241,6 +259,15 @@ Method ADMINMULTIPDV depositinitialconsommeparservice
 </operation>
 <operation name="modifymajcaution">
 <soap:operation soapAction="urn:adminmultipdvwsdl#modifymajcaution" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="validerretrait">
+<soap:operation soapAction="urn:adminmultipdvwsdl#validerretrait" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>

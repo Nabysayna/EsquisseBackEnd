@@ -45,7 +45,7 @@ class Authorizedsessions
      *
      * @ORM\Column(name="depends_on", type="integer", nullable=false)
      */
-    private $dependsOn = '0';
+    private $dependsOn;
 
     /**
      * @var \DateTime

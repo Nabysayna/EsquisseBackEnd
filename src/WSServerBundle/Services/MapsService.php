@@ -35,8 +35,25 @@ class MapsService
 
     function listmaps($params)
     {
-        $reponse = $this->datamappdv;
-        return ''. json_encode($reponse);
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT 
+           u.prenom AS label,
+           CONCAT(u.prenom,' ', u.nom) AS title,
+           u.adresse AS content,
+           z.latitude AS lat,
+           z.longitude AS lng
+           FROM 
+           WSServerBundle\Entity\Users u, WSServerBundle\Entity\Zones z
+           WHERE 
+           u.accesslevel=3 and u.idzone=z.id
+        ");
+        $results = $query->getArrayResult();
+        return ''. json_encode( array('errorCode' => 1, 'response' => $results) ) ;
+      }
     }
 
     function listmapsdepart($params)
