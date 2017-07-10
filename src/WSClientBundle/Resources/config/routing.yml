@@ -241,6 +241,9 @@ ws_client_maps_listmapspardepart:
 
 
 
+ws_client_adminmultipdv_performancesadminpdv:
+    path:     /adminmultipdv/performancesadminpdv
+    defaults: { _controller: WSClientBundle:Adminmultipdv:performancesadminpdv }
 ws_client_adminmultipdv_nombredereclamationagentpdvvente:
     path:     /adminmultipdv/nombredereclamationagentpdvvente
     defaults: { _controller: WSClientBundle:Adminmultipdv:nombredereclamationagentpdvvente }

@@ -14,8 +14,7 @@ class AdminmultipdvService
       $this->em = $entityManager;
     }
 
-    function nombredereclamationagentpdvvente($params)
-    {
+    function nombredereclamationagentpdvvente($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if(empty($correspSession))
@@ -51,12 +50,11 @@ class AdminmultipdvService
           'nbarticlesvendus' => $results4[0]['nbarticlesvendus']
         );
 
-        return ''. json_encode( array('errorCode' => 0, 'response' => $reponse) ) ;
+        return ''. json_encode( array('errorCode' => 1, 'response' => $reponse) ) ;
       }
     }
 
-    function bilandeposit($params)
-    {
+    function bilandeposit($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if(empty($correspSession))
@@ -79,8 +77,7 @@ class AdminmultipdvService
       }
     }
 
-    function depositinitialconsommeparservice($params)
-    {
+    function depositinitialconsommeparservice($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if(empty($correspSession))
@@ -106,8 +103,7 @@ class AdminmultipdvService
       }
     }
 
-    function performanceagent($params)
-    {
+    function performanceagent($params) {
         $reponse = [
           array(
             'id' => 1,
@@ -132,10 +128,21 @@ class AdminmultipdvService
         return ''. json_encode($reponse);
     }
 
+
+    function performancesadminpdv($params) {
+      $reponse = array(
+        'typedata' => 'Performance des adminpdv',
+        'typeservice' => ['Faible', 'Passage', 'Assez-bien', 'Bien'],
+        'colors' => ['red', 'orange', 'yellow', 'green'],
+        'montanttotal' => [900000, 750000, 1350000, 650000]
+      );
+
+      return ''. json_encode($reponse);
+    }
+
     function listmap($params){}
 
-    function historiquereclamation($params)
-    {
+    function historiquereclamation($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
@@ -154,31 +161,80 @@ class AdminmultipdvService
            recl.iduser=updv.idUser and updv.accesslevel=uadminpdv.idUser
         ");
         $results = $query->getArrayResult();
-        return ''. json_encode( array('errorCode' => 0, 'response' => $results) );
+        return ''. json_encode( array('errorCode' => 1, 'response' => $results) );
       }
     }
 
-    function activiteservices($params)
-    {
+    function activiteservices($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query1 = $this->em->createQuery("
+          SELECT exp.dateOperation AS data, count(exp.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Expressocash exp
+          GROUP BY exp.dateOperation
+        ");
+        $results1 = $query1->getArrayResult();
+        $query2 = $this->em->createQuery("
+          SELECT joni.dateOperation AS data, count(joni.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Jonijoni joni
+          GROUP BY joni.dateOperation
+        ");
+        $results2 = $query2->getArrayResult();
+        $query3 = $this->em->createQuery("
+          SELECT post.dateOperation AS data, count(post.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Postcash post
+          GROUP BY post.dateOperation
+        ");
+        $results3 = $query3->getArrayResult();
+        $query4 = $this->em->createQuery("
+          SELECT tigo.dateOperation AS data, count(tigo.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Tigocash tigo
+          GROUP BY tigo.dateOperation
+        ");
+        $results4 = $query4->getArrayResult();
+        $query5 = $this->em->createQuery("
+          SELECT tnt.dateOperation AS data, count(tnt.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Tnt tnt
+          GROUP BY tnt.dateOperation
+        ");
+        $results5 = $query5->getArrayResult();
+        
+        $resultsactivite = array_merge_recursive($results1, $results2, $results3, $results4, $results5);
+        $dates = [];
+        foreach ($resultsactivite as $value) { $dates[] = $value['data']->format('Y-m-d'); }
+        $dateactivite = array_unique($dates);
+        sort($dateactivite);
+        $dataexpresso = []; $datajonijoni = []; $datapost = []; $datatigo = []; $datatnt = [];
+        foreach ($dateactivite as $activite) {
+          $compteurexpresso = 0; $compteurjonijoni = 0; $compteurpost = 0; $compteurtigo = 0; $compteurtnt = 0;
+          foreach ($results1 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurexpresso++; }
+          foreach ($results2 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurjonijoni++; }
+          foreach ($results3 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurpost++; }
+          foreach ($results4 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurtigo++; }
+          foreach ($results5 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurtnt++; }
+          $dataexpresso[] = $compteurexpresso; $datajonijoni[] = $compteurjonijoni;
+          $datapost[] = $compteurpost; $datatigo[] = $compteurtigo; $datatnt[] = $compteurtnt;
+        }
+        
         $reponse = array(
-          'typeactivite' => $params->type,
+          'typeactivite' => "Nombre d'opérations par jour",
           'datas' => [
-            array('data' => [65, 59, 80, 81, 56, 55, 40], 'label' => "PosteCash"),
-            array('data' => [28, 48, 49, 19, 86, 40, 90], 'label' => "TigoCash"),
-            array('data' => [18, 18, 87, 9, 100, 27, 19], 'label' => "ExpressoCash"),
-            array('data' => [48, 38, 25, 55, 19, 27, 28], 'label' => "Joni-Joni"),
-            array('data' => [35, 66, 70, 9, 100, 40, 30], 'label' => "TNT"),
-            array('data' => [26, 28, 71, 9, 19, 27, 65], 'label' => "RIA"),
-            array('data' => [16, 98, 17, 39, 10, 37, 6], 'label' => "E-commerce"),
+            array('data' => $dataexpresso, 'label' => "ExpressoCash"),
+            array('data' => $datajonijoni, 'label' => "Joni-Joni"),
+            array('data' => $datapost, 'label' => "PosteCash"),
+            array('data' => $datatigo, 'label' => "TigoCash"),
+            array('data' => $datatnt, 'label' => "TNT"),
           ],
-          'dateactivite' => ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+          'dateactivite' => $dateactivite
         );
 
         return ''. json_encode($reponse);
+      }
     }
 
-    function demanderetraitfond($params)
-    {
+    function demanderetraitfond($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if(empty($correspSession))
@@ -202,8 +258,7 @@ class AdminmultipdvService
       }
     }
 
-    function validerretrait($params)
-    {
+    function validerretrait($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if(empty($correspSession))
@@ -212,13 +267,11 @@ class AdminmultipdvService
         $caution = $this->em->getRepository('WSServerBundle:Retraitfond')->find($params->idretrait);
         $caution->setEtatdemande(1);
         $this->em->flush();
-        
         return ''. json_encode( array('errorCode' => 1, 'response' => 'ok') ) ;
       }
     }
 
-    function listmajcautions($params)
-    {
+    function listmajcautions($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if(empty($correspSession))
@@ -239,8 +292,7 @@ class AdminmultipdvService
       }
     }
   
-    function modifymajcaution($params)
-    {
+    function modifymajcaution($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if(empty($correspSession))
@@ -249,12 +301,9 @@ class AdminmultipdvService
         $caution = $this->em->getRepository('WSServerBundle:Cautions')->find($params->idadminpdv);
         $caution->setCaution($params->modifycaution);
         $caution->setDateModif(new \Datetime());
-        $this->em->flush();
-        
+        $this->em->flush();   
         return ''. json_encode( array('errorCode' => 1, 'response' => 'ok') ) ;
       }
     }
-
-
 
 }

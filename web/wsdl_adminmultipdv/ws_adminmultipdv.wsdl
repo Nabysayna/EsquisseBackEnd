@@ -51,6 +51,12 @@
 <message name="performanceagentResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="performancesadminpdvRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="performancesadminpdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <message name="historiquerecouvrementRequest">
 <part name="params" type="tns:InData"/>
 </message>
@@ -124,6 +130,11 @@ Method ADMINMULTIPDV depositinitialconsommeparservice
 <input message="tns:performanceagentRequest"/>
 <output message="tns:performanceagentResponse"/>
 </operation>
+<operation name="performancesadminpdv">
+<documentation>Method ADMINMULTIPDV performancesadminpdv</documentation>
+<input message="tns:performancesadminpdvRequest"/>
+<output message="tns:performancesadminpdvResponse"/>
+</operation>
 <operation name="historiquerecouvrement">
 <documentation>Method ADMINMULTIPDV historiquerecouvrement</documentation>
 <input message="tns:historiquerecouvrementRequest"/>
@@ -196,6 +207,15 @@ Method ADMINMULTIPDV depositinitialconsommeparservice
 </operation>
 <operation name="performanceagent">
 <soap:operation soapAction="urn:adminmultipdvwsdl#performanceagent" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="performancesadminpdv">
+<soap:operation soapAction="urn:adminmultipdvwsdl#performancesadminpdv" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>
