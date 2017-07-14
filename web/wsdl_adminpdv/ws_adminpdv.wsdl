@@ -20,6 +20,12 @@
 </xsd:complexType>
 </xsd:schema>
 </types>
+<message name="nombredereclamationpdvventeRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="nombredereclamationpdvventeResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <message name="montanttransfertserviceRequest">
 <part name="params" type="tns:InData"/>
 </message>
@@ -81,6 +87,11 @@
 <part name="return" type="xsd:string"/>
 </message>
 <portType name="adminpdvPortType">
+<operation name="nombredereclamationpdvvente">
+<documentation>Method ADMINMULTIPDV nombredereclamationpdvvente</documentation>
+<input message="tns:nombredereclamationpdvventeRequest"/>
+<output message="tns:nombredereclamationpdvventeResponse"/>
+</operation>
 <operation name="montanttransfertservice">
 <documentation>Method ADMINPDV montanttransfertservice</documentation>
 <input message="tns:montanttransfertserviceRequest"/>
@@ -134,6 +145,15 @@
 </portType>
 <binding name="adminpdvBinding" type="tns:adminpdvPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="nombredereclamationpdvvente">
+<soap:operation soapAction="urn:adminmultipdvwsdl#nombredereclamationpdvvente" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
 <operation name="montanttransfertservice">
 <soap:operation soapAction="urn:adminpdvwsdl#montanttransfertservice" style="rpc"/>
 <input>
@@ -224,7 +244,8 @@
 <soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
-</binding><service name="adminpdv">
+</binding>
+<service name="adminpdv">
 <port name="adminpdvPort" binding="tns:adminpdvBinding">
 
 <soap:address location="http://localhost:8888/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminpdv"/>

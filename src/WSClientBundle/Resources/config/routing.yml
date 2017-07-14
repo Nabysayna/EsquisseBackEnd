@@ -203,6 +203,9 @@ ws_client_ecommerce_listervente:
 
 
 
+ws_client_adminpdv_listuserpdv:
+    path:     /adminpdv/listuserpdv
+    defaults: { _controller: WSClientBundle:Adminpdv:listuserpdv }
 ws_client_adminpdv_montanttransfertservice:
     path:     /adminpdv/montanttransfertservice
     defaults: { _controller: WSClientBundle:Adminpdv:montanttransfertservice }
@@ -227,6 +230,10 @@ ws_client_adminpdv_historiquerecouvrement:
 ws_client_adminpdv_historiquereclamation:
     path:     /adminpdv/historiquereclamation
     defaults: { _controller: WSClientBundle:Adminpdv:historiquereclamation }
+ws_client_adminpdv_nombredereclamationpdvvente:
+    path:     /adminpdv/nombredereclamationpdvvente
+    defaults: { _controller: WSClientBundle:Adminpdv:nombredereclamationpdvvente }
+
 
 
 ws_client_maps_listmaps:
@@ -310,3 +317,30 @@ ws_client_comptapdv_totalfraistransfertpercuesall:
 ws_client_comptapdv_totalcommissionall:
     path:     /comptapdv/totalcommissionall
     defaults: { _controller: WSClientBundle:Comptapdv:totalcommissionall }
+ws_client_comptapdv_ajoutservice:
+    path:     /comptapdv/ajoutservice
+    defaults: { _controller: WSClientBundle:Comptapdv:ajoutservice }
+ws_client_comptapdv_ajoutcharge:
+    path:     /comptapdv/ajoutcharge
+    defaults: { _controller: WSClientBundle:Comptapdv:ajoutcharge }
+ws_client_comptapdv_listecharge:
+    path:     /comptapdv/listecharge
+    defaults: { _controller: WSClientBundle:Comptapdv:listecharge }
+ws_client_comptapdv_supprimerservice:
+    path:     /comptapdv/supprimerservice
+    defaults: { _controller: WSClientBundle:Comptapdv:supprimerservice }
+ws_client_comptapdv_modifierservice:
+    path:     /comptapdv/modifierservice
+    defaults: { _controller: WSClientBundle:Comptapdv:modifierservice }
+ws_client_comptapdv_approvisionner:
+    path:     /comptapdv/approvisionner
+    defaults: { _controller: WSClientBundle:Comptapdv:approvisionner }
+ws_client_comptapdv_listecaisse:
+    path:     /comptapdv/listecaisse
+    defaults: { _controller: WSClientBundle:Comptapdv:listecaisse }
+ws_client_comptapdv_listeservice:
+    path:     /comptapdv/listeservice
+    defaults: { _controller: WSClientBundle:Comptapdv:listeservice }
+ws_client_comptapdv_listerevenu:
+    path:     /comptapdv/listerevenu
+    defaults: { _controller: WSClientBundle:Comptapdv:listerevenu }

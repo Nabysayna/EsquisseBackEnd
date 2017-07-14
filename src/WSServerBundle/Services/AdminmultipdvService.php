@@ -43,7 +43,7 @@ class AdminmultipdvService
         ");
         $results4 = $query4->getArrayResult();
 
-         $reponse = array(
+        $reponse = array(
           'nbreclamations' => $results1[0]['nbreclamations'],
           'nbagents' => $results2[0]['nbreadminpdv'],
           'nbpdv' => $results3[0]['nbrepdv'],
@@ -133,7 +133,6 @@ class AdminmultipdvService
       $reponse = array(
         'typedata' => 'Performance des adminpdv',
         'typeservice' => ['Faible', 'Passage', 'Assez-bien', 'Bien'],
-        'colors' => ['red', 'orange', 'yellow', 'green'],
         'montanttotal' => [900000, 750000, 1350000, 650000]
       );
 

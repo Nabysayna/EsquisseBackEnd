@@ -17,7 +17,6 @@ class MailingService
         $message->setContentType('text/html');
         $message->setSubject($sujet) ;
         $message->setFrom('naby.hikam@gmail.com');
-        // $message->setTo("naby@bbstvnet.com");
         $message->setTo("kasanesn@gmail.com");
         $message->setBody("<h3>De ".$to."</h3><p>".$content."!</p>");
         $this->mailer->send($message);
