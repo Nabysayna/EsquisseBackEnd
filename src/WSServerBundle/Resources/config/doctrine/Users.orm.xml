@@ -48,5 +48,10 @@
       </options>
     </field>
     <field name="dateCreation" type="datetime" column="date_creation" nullable="false"/>
+    <field name="token" type="string" column="token" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>

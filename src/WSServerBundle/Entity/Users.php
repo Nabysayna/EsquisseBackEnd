@@ -76,6 +76,13 @@ class Users
     private $dateCreation;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
+     */
+    private $token;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id_user", type="integer")
@@ -300,6 +307,30 @@ class Users
     public function getDateCreation()
     {
         return $this->dateCreation;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Users
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**

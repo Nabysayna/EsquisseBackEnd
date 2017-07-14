@@ -27,9 +27,9 @@ class DefaultController extends Controller
 
         $client = new \nusoap_client('http://localhost/EsquisseBackEnd/web/app_dev.php/invest/logging?wsdl', true);
 
-        //$user = array('login' => 'nabysayna@gmail.com', 'pwd' => 'fallou');
+        //$user = array('login' => 'naby@bbstvnet.com', 'pwd' => 'naby');
 
-        $user = array('tokentemporaire'=>"0.89215000 1498305028"); 
+        $user = array('tokentemporaire'=>"8923"); 
         $result = $this->client->call('authentificationPhaseTwo', array('user' => $user));
 
         return new JsonResponse(array('result' => $result)); 

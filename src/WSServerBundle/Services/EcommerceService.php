@@ -117,7 +117,7 @@ class EcommerceService
 
           if ($params->typeListe=="toReceive"){
             $dbcommandes = $this->em->getRepository('WSServerBundle:Commandes')->findBy(array('commanditaire' => $correspSession->getIdUser(), 'recu'=>0));
-                      foreach ($dbcommandes as $commande) {
+            foreach ($dbcommandes as $commande) {
             $article = $this->em->getRepository('WSServerBundle:Articles')->findOneBy(array('id' => $commande->getIdArticle()));
 
               $formatted[] = [
