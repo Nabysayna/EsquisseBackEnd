@@ -13,11 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Ventes
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id_commande", type="integer", nullable=false)
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
-    private $idCommande;
+    private $type;
 
     /**
      * @var integer
@@ -32,6 +32,20 @@ class Ventes
      * @ORM\Column(name="id_user", type="integer", nullable=false)
      */
     private $idUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="depend_on", type="integer", nullable=false)
+     */
+    private $dependOn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="infovente", type="string", length=500, nullable=false)
+     */
+    private $infovente;
 
     /**
      * @var \DateTime
@@ -52,27 +66,27 @@ class Ventes
 
 
     /**
-     * Set idCommande
+     * Set type
      *
-     * @param integer $idCommande
+     * @param string $type
      *
      * @return Ventes
      */
-    public function setIdCommande($idCommande)
+    public function setType($type)
     {
-        $this->idCommande = $idCommande;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get idCommande
+     * Get type
      *
-     * @return integer
+     * @return string
      */
-    public function getIdCommande()
+    public function getType()
     {
-        return $this->idCommande;
+        return $this->type;
     }
 
     /**
@@ -121,6 +135,54 @@ class Ventes
     public function getIdUser()
     {
         return $this->idUser;
+    }
+
+    /**
+     * Set dependOn
+     *
+     * @param integer $dependOn
+     *
+     * @return Ventes
+     */
+    public function setDependOn($dependOn)
+    {
+        $this->dependOn = $dependOn;
+
+        return $this;
+    }
+
+    /**
+     * Get dependOn
+     *
+     * @return integer
+     */
+    public function getDependOn()
+    {
+        return $this->dependOn;
+    }
+
+    /**
+     * Set infovente
+     *
+     * @param string $infovente
+     *
+     * @return Ventes
+     */
+    public function setInfovente($infovente)
+    {
+        $this->infovente = $infovente;
+
+        return $this;
+    }
+
+    /**
+     * Get infovente
+     *
+     * @return string
+     */
+    public function getInfovente()
+    {
+        return $this->infovente;
     }
 
     /**

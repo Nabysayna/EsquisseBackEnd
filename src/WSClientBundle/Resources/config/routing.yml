@@ -344,3 +344,6 @@ ws_client_comptapdv_listeservice:
 ws_client_comptapdv_listerevenu:
     path:     /comptapdv/listerevenu
     defaults: { _controller: WSClientBundle:Comptapdv:listerevenu }
+ws_client_comptapdv_listevente:
+    path:     /comptapdv/listevente
+    defaults: { _controller: WSClientBundle:Comptapdv:listevente }

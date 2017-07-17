@@ -13,11 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Ventes
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id_commande", type="integer", nullable=false)
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
      */
-    private $idCommande;
+    private $type;
 
     /**
      * @var integer
@@ -32,6 +32,20 @@ class Ventes
      * @ORM\Column(name="id_user", type="integer", nullable=false)
      */
     private $idUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="depend_on", type="integer", nullable=false)
+     */
+    private $dependOn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="infovente", type="string", length=500, nullable=false)
+     */
+    private $infovente;
 
     /**
      * @var \DateTime

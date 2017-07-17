@@ -43,7 +43,8 @@
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="type" type="xsd:string"/>
 <xsd:element name="libelle" type="xsd:string"/>
-<xsd:element name="detail" type="xsd:string"/>
+<xsd:element name="idpdv" type="xsd:int"/>
+<xsd:element name="service" type="xsd:string"/>
 <xsd:element name="montant" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
@@ -171,6 +172,12 @@
 <message name="approvisionnerResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="listeventeRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listeventeResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <portType name="comptapdvPortType">
 <operation name="totaloperationparapi">
 <documentation>Method COMPTA PDV totaloperationparapi</documentation>
@@ -266,6 +273,11 @@
 <documentation>Method COMPTA PDV approvisionner</documentation>
 <input message="tns:approvisionnerRequest"/>
 <output message="tns:approvisionnerResponse"/>
+</operation>
+<operation name="listevente">
+<documentation>Method COMPTA PDV listevente</documentation>
+<input message="tns:listeventeRequest"/>
+<output message="tns:listeventeResponse"/>
 </operation>
 </portType>
 <binding name="comptapdvBinding" type="tns:comptapdvPortType">
@@ -439,6 +451,15 @@
 </input>
 <output>
 <soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listevente">
+<soap:operation soapAction="urn:comptapdvwsdlcomptapdvwsdl#listevente" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
 </binding>

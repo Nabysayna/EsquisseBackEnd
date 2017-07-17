@@ -22,9 +22,16 @@ class Charges
     /**
      * @var string
      *
-     * @ORM\Column(name="detail", type="string", length=1000, nullable=false)
+     * @ORM\Column(name="detail", type="string", length=1000, nullable=true)
      */
     private $detail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="service", type="string", length=255, nullable=false)
+     */
+    private $service;
 
     /**
      * @var integer
@@ -39,6 +46,13 @@ class Charges
      * @ORM\Column(name="idUser", type="integer", nullable=false)
      */
     private $iduser;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     */
+    private $dateAjout;
 
     /**
      * @var integer
