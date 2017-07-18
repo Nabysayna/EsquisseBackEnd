@@ -3,6 +3,8 @@
 namespace WSServerBundle\Services;
 
 use WSServerBundle\Entity\Charges;
+use WSServerBundle\Entity\Services;
+use WSServerBundle\Entity\Designations;
 
 
 class ComptapdvService
@@ -35,18 +37,6 @@ class ComptapdvService
         }
 
         return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
-      }
-    }
-
-    public function listeservice($params) {   
-      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
-
-      if(empty($correspSession))
-        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
-      else{      
-        $query = $this->em->createQuery("SELECT serv FROM WSServerBundle\Entity\Services serv WHERE serv.idadminpdv=3");
-        $results = $query->getArrayResult();
-        return ''. json_encode(array('errorCode' => 1, 'response' => $results));
       }
     }
 
@@ -108,6 +98,11 @@ class ComptapdvService
     }
 
     public function listerevenu($params) {   
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
         $formatted = array();
         $exploitationvente = $this->em->getRepository('WSServerBundle:Ventes')->findBy(array('idUser' => 4));
         foreach ($exploitationvente as $vente) {
@@ -121,29 +116,81 @@ class ComptapdvService
         }
 
         return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+      }
     }
 
+    public function listeservice($params) {   
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT serv.id AS idservice, serv.nom AS services, desig.nom AS design FROM WSServerBundle\Entity\Services serv, WSServerBundle\Entity\Designations desig  WHERE serv.idadminpdv=3 AND serv.id=desig.idservice");
+        $results = $query->getArrayResult();
+        return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+      }
+    }
     public function ajoutservice($params) {   
-        $reponse = array(
-          'typedebouquet' => 'ajoutservice'
-        );
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-        return ''. json_encode($reponse);
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{        
+        $existservice = $this->em->getRepository('WSServerBundle:Services')->findOneBy(array('nom' => $params->nom, 'idpdv' => $params->idpdv));
+        if(empty($existservice)){
+          $newService = new Services();
+          $newService->setDateAjout(new \Datetime());
+          $newService->setIdadminpdv(3);
+          $newService->setNom($params->nom);
+          $newService->setIdpdv($params->idpdv);
+          $this->em->persist($newService);
+          $this->em->flush();  
+        
+          $newDesignation = new Designations();
+          $newDesignation->setIdservice($newService->getId());
+          $newDesignation->setNom($params->designations);
+          $this->em->persist($newDesignation);
+          $this->em->flush();
+        }
+        else{
+          $existdesignatin = $this->em->getRepository('WSServerBundle:Designations')->findOneBy(array('idservice' => $existservice->getId()));
+          $newDesignations = $existdesignatin->getNom() ."--". $params->designations;
+          $existdesignatin->setNom($newDesignations);
+
+          $this->em->flush(); 
+        }
+
+        return ''. json_encode(array('errorCode' => 1, 'response' => 'ok'));
+      }
     }
-    
     public function modifierservice($params) {   
-        $reponse = array(
-          'typedebouquet' => 'modifierservice'
-        );
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-        return ''. json_encode($reponse);
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{        
+        $existservice = $this->em->getRepository('WSServerBundle:Services')->find($params->idservice);
+        $existservice->setNom($params->nom);
+        
+        $this->em->flush(); 
+
+        return ''. json_encode(array('errorCode' => 1, 'response' => 'ok'));
+      }
     }
     public function supprimerservice($params) {   
-        $reponse = array(
-          'typedebouquet' => 'supprimerservice'
-        );
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-        return ''. json_encode($reponse);
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{        
+        $existservice = $this->em->getRepository('WSServerBundle:Services')->find($params->idsupprimer);        
+        $existdesignatin = $this->em->getRepository('WSServerBundle:Designations')->findOneBy(array('idservice' => $existservice->getId()));        
+        $this->em->remove($existdesignatin);
+        $this->em->remove($existservice);
+        $this->em->flush(); 
+
+        return ''. json_encode(array('errorCode' => 1, 'response' => 'ok'));
+      }
     }
 
     public function totaloperationparapi($params) {   

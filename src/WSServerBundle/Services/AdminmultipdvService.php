@@ -1,6 +1,7 @@
 <?php
 
 namespace WSServerBundle\Services;
+
 use WSServerBundle\Entity\Authorizedsessions;
 
 

@@ -41,7 +41,6 @@ class OutsitEcommerceService
       ");
       $results = $query->getArrayResult();
       return ''. json_encode($results);
-
     }
 
     function listercategorieecomoutsite($params)

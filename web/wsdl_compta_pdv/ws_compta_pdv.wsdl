@@ -21,6 +21,8 @@
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="type" type="xsd:string"/>
 <xsd:element name="nom" type="xsd:string"/>
+<xsd:element name="idpdv" type="xsd:int"/>
+<xsd:element name="designations" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InModifierService">
