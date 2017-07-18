@@ -435,4 +435,62 @@ class Commandes
     {
         return $this->id;
     }
+    /**
+     * @var integer
+     */
+    private $dependsOn;
+
+    /**
+     * @var integer
+     */
+    private $idUser;
+
+
+    /**
+     * Set dependsOn
+     *
+     * @param integer $dependsOn
+     *
+     * @return Commandes
+     */
+    public function setDependsOn($dependsOn)
+    {
+        $this->dependsOn = $dependsOn;
+
+        return $this;
+    }
+
+    /**
+     * Get dependsOn
+     *
+     * @return integer
+     */
+    public function getDependsOn()
+    {
+        return $this->dependsOn;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param integer $idUser
+     *
+     * @return Commandes
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
 }

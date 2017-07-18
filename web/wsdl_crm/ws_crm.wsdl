@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:crmwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:crmwsdl">
+<types>
+<xsd:schema targetNamespace="urn:crmwsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+</xsd:schema>
+</types>
+<message name="portefeuilleRequest">
+<part name="token" type="xsd:string"/>
+</message>
+<message name="portefeuilleResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="relanceRequest">
+<part name="token" type="xsd:string"/>
+</message>
+<message name="relanceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="promotionRequest">
+<part name="token" type="xsd:string"/>
+<part name="service" type="xsd:string"/>
+</message>
+<message name="promotionResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="prospectionRequest">
+<part name="token" type="xsd:string"/>
+</message>
+<message name="prospectionResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="suivicommandeRequest">
+<part name="token" type="xsd:string"/>
+</message>
+<message name="suivicommandeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="crmPortType">
+<operation name="portefeuille">
+<documentation>Method CRM portefeuille</documentation>
+<input message="tns:portefeuilleRequest"/>
+<output message="tns:portefeuilleResponse"/>
+</operation>
+<operation name="relance">
+<documentation>Method CRM relance</documentation>
+<input message="tns:relanceRequest"/>
+<output message="tns:relanceResponse"/>
+</operation>
+<operation name="promotion">
+<documentation>Method CRM promotion</documentation>
+<input message="tns:promotionRequest"/>
+<output message="tns:promotionResponse"/>
+</operation>
+<operation name="prospection">
+<documentation>Method CRM prospection</documentation>
+<input message="tns:prospectionRequest"/>
+<output message="tns:prospectionResponse"/>
+</operation>
+<operation name="suivicommande">
+<documentation>Method CRM suivicommande</documentation>
+<input message="tns:suivicommandeRequest"/>
+<output message="tns:suivicommandeResponse"/>
+</operation>
+</portType>
+<binding name="crmBinding" type="tns:crmPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="portefeuille">
+<soap:operation soapAction="urn:crmwsdl#portefeuille" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="relance">
+<soap:operation soapAction="urn:crmwsdl#relance" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="promotion">
+<soap:operation soapAction="urn:crmwsdl#promotion" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="prospection">
+<soap:operation soapAction="urn:crmwsdl#prospection" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="suivicommande">
+<soap:operation soapAction="urn:crmwsdl#suivicommande" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="crm">
+<port name="crmPort" binding="tns:crmBinding">
+<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/crm"/>
+</port>
+</service>
+</definitions>

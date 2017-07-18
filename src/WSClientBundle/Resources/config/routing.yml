@@ -344,3 +344,24 @@ ws_client_comptapdv_listeservice:
 ws_client_comptapdv_listerevenu:
     path:     /comptapdv/listerevenu
     defaults: { _controller: WSClientBundle:Comptapdv:listerevenu }
+
+ws_client_crm_portefeuille:
+    path:     /crm/portefeuille
+    defaults: { _controller: WSClientBundle:Crm:portefeuille }
+
+ws_client_crm_relance:
+    path:     /crm/relance
+    defaults: { _controller: WSClientBundle:Crm:relance }
+
+ws_client_crm_promotion:
+    path:     /crm/promotion
+    defaults: { _controller: WSClientBundle:Crm:promotion }
+
+ws_client_crm_prospection:
+    path:     /crm/prospection
+    defaults: { _controller: WSClientBundle:Crm:prospection }
+
+ws_client_crm_suivicommande:
+    path:     /crm/suivicommande
+    defaults: { _controller: WSClientBundle:Crm:suivicommande }
+    
