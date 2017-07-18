@@ -365,3 +365,6 @@ ws_client_crm_suivicommande:
     path:     /crm/suivicommande
     defaults: { _controller: WSClientBundle:Crm:suivicommande }
     
+ws_client_comptapdv_listevente:
+    path:     /comptapdv/listevente
+    defaults: { _controller: WSClientBundle:Comptapdv:listevente }
