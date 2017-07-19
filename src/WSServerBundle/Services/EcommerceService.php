@@ -25,6 +25,10 @@ class EcommerceService
         $article->setPrix($params->prix);
         $article->setStock($params->stock);
         $article->setImgLink($params->img_link);
+        $article->setAvis(0);
+        $article->setNbreavis(0); 
+        $article->setIdcategorie(0);
+        $article->setCategorie($params->categorie);
         $article->setDateAjout(new \Datetime());
 
         $this->em->persist($article);

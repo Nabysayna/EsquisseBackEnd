@@ -14,43 +14,96 @@ class AdminmultipdvService
       $this->em = $entityManager;
     }
 
-    function nombredereclamationagentpdvvente($params)
-    {
+    function nombredereclamationagentpdvvente($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query1 = $this->em->createQuery("SELECT 
+           count(recl) AS nbreclamations
+           FROM WSServerBundle\Entity\Reclamations recl
+        ");
+        $results1 = $query1->getArrayResult();
+        $query2 = $this->em->createQuery("SELECT 
+           count(adminpdv) AS nbreadminpdv
+           FROM WSServerBundle\Entity\Users adminpdv
+           WHERE adminpdv.accesslevel=2
+        ");
+        $results2 = $query2->getArrayResult();
+        $query3 = $this->em->createQuery("SELECT 
+           count(pdv) AS nbrepdv
+           FROM WSServerBundle\Entity\Users pdv
+           WHERE pdv.accesslevel=3
+        ");
+        $results3 = $query3->getArrayResult();
+        $query4 = $this->em->createQuery("SELECT 
+           count(a) AS nbarticlesvendus
+           FROM WSServerBundle\Entity\Articles a
+        ");
+        $results4 = $query4->getArrayResult();
+
         $reponse = array(
-          'nbreclamations' => 100,
-          'nbrecouvrements' => 200,
-          'nbagents' => 300,
-          'nbpdv' => 250,
-          'nbarticlesvendus' => 300
+          'nbreclamations' => $results1[0]['nbreclamations'],
+          'nbagents' => $results2[0]['nbreadminpdv'],
+          'nbpdv' => $results3[0]['nbrepdv'],
+          'nbarticlesvendus' => $results4[0]['nbarticlesvendus']
         );
 
-        return ''. json_encode($reponse);
+        return ''. json_encode( array('errorCode' => 1, 'response' => $reponse) ) ;
+      }
     }
 
-    function bilandeposit($params)
-    {
+    function bilandeposit($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT 
+           SUM(apis.caution) AS depositInitial,
+           SUM(apis.cautionconsomme) AS depositConsomme
+           FROM WSServerBundle\Entity\Apis apis
+        ");
+        $results = $query->getArrayResult();
+        $data = $results[0];
         $reponse = array(
-          'depositInitial' => 3000000,
-          'depositConsomme' => 1096000,
-          'depositRestant' => 1904000,
+          'depositInitial' => $data['depositInitial'],
+          'depositConsomme' => $data['depositConsomme'],
+          'depositRestant' => $data['depositInitial'] - $data['depositConsomme'],
         );
 
-        return ''. json_encode($reponse);
+        return ''. json_encode( array('errorCode' => 1, 'response' => $reponse) ) ;
+      }
     }
 
-    function depositinitialconsommeparservice($params)
-    {
+    function depositinitialconsommeparservice($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT apis FROM WSServerBundle\Entity\Apis apis");
+        $results = $query->getArrayResult();
+        $services = [];
+        $depositinitial = [];
+        $depositconsomme = [];
+        foreach ($results as $value) {
+          $services[] = $value['nomApi'];
+          $depositinitial[] = $value['caution'];
+          $depositconsomme[] = $value['cautionconsomme'];
+        }
         $reponse = array(
-          'services' => ['Poste Cash', 'Tigo Cash', 'Expresso Cash', 'TNT', 'Joni Joni', 'Orange Money'],
-          'depositinitial' => [1000000, 900000, 200000, 500000, 300000, 100000],
-          'depositconsomme' => [280000, 480000, 40000, 190000, 96000, 10000]
+          'services' => $services,
+          'depositinitial' => $depositinitial,
+          'depositconsomme' => $depositconsomme
         );
 
-        return ''. json_encode($reponse);
+        return ''. json_encode( array('errorCode' => 1, 'response' => $reponse) ) ;
+      }
     }
 
-    function performanceagent($params)
-    {
+    function performanceagent($params) {
         $reponse = [
           array(
             'id' => 1,
@@ -75,224 +128,181 @@ class AdminmultipdvService
         return ''. json_encode($reponse);
     }
 
-    function listmap($params)
-    {
-        $reponse = [
-          array(
-            'lat' => 14.693858,
-            'lng' => -17.445982,
-            'label' => 'A',
-            'title' => 'AA',
-            'content' => 'AA'
-          ),
-          array(
-            'lat' => 14.693958,
-            'lng' => -16.445882,
-            'label' => 'B',
-            'title' => 'B',
-            'content' => 'B'
-          ),
-          array(
-            'lat' => 15.20998780073036,
-            'lng' => -15.8697509765625,
-            'label' => 'C',
-            'title' => 'C',
-            'content' => 'C'
-          ),
-          array(
-            'lat' => 14.291000538604875,
-            'lng' => -16.61956787109375,
-            'label' => 'D',
-            'title' => 'D',
-            'content' => 'D'
-          ),
-          array(
-            'lat' => 14.223858,
-            'lng' => -16.195982,
-            'label' => 'E',
-            'title' => 'E',
-            'content' => 'E'
-          ),
-          array(
-            'lat' => 14.823858,
-            'lng' => -16.095982,
-            'label' => 'E',
-            'title' => 'E',
-            'content' => 'E'
-          ),
-        ];
 
-        return ''. json_encode($reponse);
+    function performancesadminpdv($params) {
+      $reponse = array(
+        'typedata' => 'Performance des adminpdv',
+        'typeservice' => ['Faible', 'Passage', 'Assez-bien', 'Bien'],
+        'montanttotal' => [900000, 750000, 1350000, 650000]
+      );
+
+      return ''. json_encode($reponse);
     }
 
-    function historiquerecouvrement($params)
-    {
-        $reponse = [
-          array(
-            'daterecouvrement' => "2007-05-10",
-            'agent' => 'Assane KA',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'montantconsomme' => 500000,
-            'commission' => 50000,
-            'montantrecouvre' => 50000,
-            'montantrestant' => 50000,
-          ),
-          array(
-            'daterecouvrement' => "2007-05-10",
-            'agent' => 'Naby NDIAYE',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'montantconsomme' => 300000,
-            'commission' => 30000,
-            'montantrecouvre' => 50000,
-            'montantrestant' => 50000,
-          ),
-          array(
-            'daterecouvrement' => "2007-05-10",
-            'agent' => 'Bamba GNING',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'montantconsomme' => 200000,
-            'commission' => 20000,
-            'montantrecouvre' => 50000,
-            'montantrestant' => 50000,
-          ),
-        ];
+    function listmap($params){}
 
-        return ''. json_encode($reponse);
+    function historiquereclamation($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT 
+           recl.dateajout AS datereclamation,
+           recl.nomservice AS typeservice,
+           recl.etat AS etatreclamation,
+           CONCAT(uadminpdv.prenom,' ', uadminpdv.nom) AS adminpdv,
+           CONCAT(updv.prenom,' ', updv.nom) AS pdv,
+           updv.telephone,
+           updv.adresse 
+           FROM
+           WSServerBundle\Entity\Reclamations recl, WSServerBundle\Entity\Users updv, WSServerBundle\Entity\Users uadminpdv
+           WHERE
+           recl.iduser=updv.idUser and updv.accesslevel=uadminpdv.idUser
+        ");
+        $results = $query->getArrayResult();
+        return ''. json_encode( array('errorCode' => 1, 'response' => $results) );
+      }
     }
 
-    function historiquereclamation($params)
-    {
-        $reponse = [
-          array(
-            'datereclamation' => "2007-05-10",
-            'agent' => 'Assane KA',
-            'pdv' => 'Assane KA',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'typeservice' => "TNT",
-            'reclamation' => "Pas de lait",
-            'etatreclamation' => "regle"
-          ),
-          array(
-            'datereclamation' => "2007-05-10",
-            'agent' => 'Naby NDIAYE',
-            'pdv' => 'Naby NDIAYE',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'typeservice' => "E-commerce",
-            'reclamation' => "Trop à lese",
-            'etatreclamation' => "regle"
-          ),
-          array(
-            'datereclamation' => "2007-05-10",
-            'agent' => 'Bamba GNING',
-            'pdv' => 'Bamba GNING',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'typeservice' => "Poste Cash",
-            'reclamation' => "Parité",
-            'etatreclamation' => "regle"
-          ),
-        ];
-
-        return ''. json_encode($reponse);
-    }
-
-    function activiteservices($params)
-    {
+    function activiteservices($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query1 = $this->em->createQuery("
+          SELECT exp.dateOperation AS data, count(exp.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Expressocash exp
+          GROUP BY exp.dateOperation
+        ");
+        $results1 = $query1->getArrayResult();
+        $query2 = $this->em->createQuery("
+          SELECT joni.dateOperation AS data, count(joni.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Jonijoni joni
+          GROUP BY joni.dateOperation
+        ");
+        $results2 = $query2->getArrayResult();
+        $query3 = $this->em->createQuery("
+          SELECT post.dateOperation AS data, count(post.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Postcash post
+          GROUP BY post.dateOperation
+        ");
+        $results3 = $query3->getArrayResult();
+        $query4 = $this->em->createQuery("
+          SELECT tigo.dateOperation AS data, count(tigo.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Tigocash tigo
+          GROUP BY tigo.dateOperation
+        ");
+        $results4 = $query4->getArrayResult();
+        $query5 = $this->em->createQuery("
+          SELECT tnt.dateOperation AS data, count(tnt.id) AS nbreoperation
+          FROM WSServerBundle\Entity\Tnt tnt
+          GROUP BY tnt.dateOperation
+        ");
+        $results5 = $query5->getArrayResult();
+        
+        $resultsactivite = array_merge_recursive($results1, $results2, $results3, $results4, $results5);
+        $dates = [];
+        foreach ($resultsactivite as $value) { $dates[] = $value['data']->format('Y-m-d'); }
+        $dateactivite = array_unique($dates);
+        sort($dateactivite);
+        $dataexpresso = []; $datajonijoni = []; $datapost = []; $datatigo = []; $datatnt = [];
+        foreach ($dateactivite as $activite) {
+          $compteurexpresso = 0; $compteurjonijoni = 0; $compteurpost = 0; $compteurtigo = 0; $compteurtnt = 0;
+          foreach ($results1 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurexpresso++; }
+          foreach ($results2 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurjonijoni++; }
+          foreach ($results3 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurpost++; }
+          foreach ($results4 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurtigo++; }
+          foreach ($results5 as $value) { if($activite == $value['data']->format('Y-m-d')) $compteurtnt++; }
+          $dataexpresso[] = $compteurexpresso; $datajonijoni[] = $compteurjonijoni;
+          $datapost[] = $compteurpost; $datatigo[] = $compteurtigo; $datatnt[] = $compteurtnt;
+        }
+        
         $reponse = array(
-          'typeactivite' => $params->type,
+          'typeactivite' => "Nombre d'opérations par jour",
           'datas' => [
-            array('data' => [65, 59, 80, 81, 56, 55, 40], 'label' => "PosteCash"),
-            array('data' => [28, 48, 49, 19, 86, 40, 90], 'label' => "TigoCash"),
-            array('data' => [18, 18, 87, 9, 100, 27, 19], 'label' => "ExpressoCash"),
-            array('data' => [48, 38, 25, 55, 19, 27, 28], 'label' => "Joni-Joni"),
-            array('data' => [35, 66, 70, 9, 100, 40, 30], 'label' => "TNT"),
-            array('data' => [26, 28, 71, 9, 19, 27, 65], 'label' => "RIA"),
-            array('data' => [16, 98, 17, 39, 10, 37, 6], 'label' => "E-commerce"),
+            array('data' => $dataexpresso, 'label' => "ExpressoCash"),
+            array('data' => $datajonijoni, 'label' => "Joni-Joni"),
+            array('data' => $datapost, 'label' => "PosteCash"),
+            array('data' => $datatigo, 'label' => "TigoCash"),
+            array('data' => $datatnt, 'label' => "TNT"),
           ],
-          'dateactivite' => ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+          'dateactivite' => $dateactivite
         );
 
         return ''. json_encode($reponse);
+      }
     }
 
-    function demanderetraitfond($params)
-    {
-        $reponse = [
-          array(
-            'datedemanderetrait' => "2007-05-10",
-            'agent' => 'Assane KA',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'montantdemande' => 500000,
-            'etatdemande' => 'validé',
-          ),
-          array(
-            'datedemanderetrait' => "2007-05-10",
-            'agent' => 'Naby NDIAYE',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'montantdemande' => 300000,
-            'etatdemande' => 'validé',
-          ),
-          array(
-            'datedemanderetrait' => "2007-05-10",
-            'agent' => 'Bamba GNING',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'montantdemande' => 200000,
-            'etatdemande' => 'validé',
-          ),
-        ];
+    function demanderetraitfond($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-        return ''. json_encode($reponse);
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT 
+           retrait.id AS iddemanderetrait,
+           retrait.datedemande AS datedemanderetrait,
+           retrait.montantdemande,
+           retrait.etatdemande,
+           CONCAT(adminpdv.prenom,' ', adminpdv.nom) AS agent,
+           adminpdv.telephone,
+           adminpdv.adresse
+           FROM 
+           WSServerBundle\Entity\Retraitfond retrait, WSServerBundle\Entity\Users adminpdv
+           WHERE 
+           retrait.idadminpdv=adminpdv.idUser
+        ");
+        $results = $query->getArrayResult();
+        return ''. json_encode($results);
+      }
     }
-    
-    function listmajcautions($params)
-    {
-        $reponse = [
-          array(
-            'idagent' => 1,
-            'agent' => 'Assane KA',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'cautioninitiale' => 500000,
-            'montantconsomme' => 100000,
-          ),
-          array(
-            'idagent' => 2,
-            'agent' => 'Naby NDIAYE',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'cautioninitiale' => 600000,
-            'montantconsomme' => 300000,
-          ),
-          array(
-            'idagent' => 3,
-            'agent' => 'Bamba GNING',
-            'telephone' => 'Assane KA',
-            'adresse' => 'Assane KA',
-            'cautioninitiale' => 400000,
-            'montantconsomme' => 200000,
-          ),
-        ];
 
-        return ''. json_encode($reponse);
+    function validerretrait($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $caution = $this->em->getRepository('WSServerBundle:Retraitfond')->find($params->idretrait);
+        $caution->setEtatdemande(1);
+        $this->em->flush();
+        return ''. json_encode( array('errorCode' => 1, 'response' => 'ok') ) ;
+      }
+    }
+
+    function listmajcautions($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT 
+           caut.idCaution AS idcaution,
+           CONCAT(admin.prenom,' ', admin.nom) AS adminpdv,
+           admin.adresse,
+           admin.telephone,
+           caut.caution AS cautioninitiale,
+           caut.caution AS montantconsomme
+           FROM WSServerBundle\Entity\Cautions caut, WSServerBundle\Entity\Users admin
+           WHERE caut.idUser=admin.idUser
+        ");
+        $results = $query->getArrayResult();
+        return ''. json_encode( array('errorCode' => 1, 'response' => $results) );
+      }
     }
   
-    function modifymajcaution($params)
-    {
-        $reponse = array(
-          'response' => "ok",
-        );
+    function modifymajcaution($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-        return ''. json_encode($reponse);
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $caution = $this->em->getRepository('WSServerBundle:Cautions')->find($params->idadminpdv);
+        $caution->setCaution($params->modifycaution);
+        $caution->setDateModif(new \Datetime());
+        $this->em->flush();   
+        return ''. json_encode( array('errorCode' => 1, 'response' => 'ok') ) ;
+      }
     }
-
-
 
 }

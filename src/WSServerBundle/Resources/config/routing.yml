@@ -14,6 +14,10 @@ ws_server_ecommerce:
     path:     /ecommerce
     defaults: { _controller: WSServerBundle:Ecommerce:ecommerce }
 
+ws_server_outsitecommerce:
+    path:     /outsitecommerce
+    defaults: { _controller: WSServerBundle:OutsitEcommerce:outsitecommerce }
+
 ws_server_adminpdv:
     path:     /adminpdv
     defaults: { _controller: WSServerBundle:Adminpdv:adminpdv }

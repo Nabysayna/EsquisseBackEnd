@@ -20,25 +20,5 @@
       </options>
     </field>
     <field name="dateVente" type="datetime" column="date_vente" nullable="false"/>
-    <field name="telClient" type="bigint" column="tel_client" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="type" type="string" column="type" length="40" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="adresseVendeur" type="string" column="adresse_vendeur" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="adresseFournisseur" type="string" column="adresse_fournisseur" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
   </entity>
 </doctrine-mapping>

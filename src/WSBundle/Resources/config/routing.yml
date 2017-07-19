@@ -2,6 +2,10 @@ ws_homepage:
     path:     /
     defaults: { _controller: WSBundle:Default:index }
 
+ws_bd_test:
+    path:     /bdtest
+    defaults: { _controller: WSBundle:Default:bdtest }
+
 soa_test:
     path:     /soap
     defaults: { _controller: WSBundle:Default:clientoap }

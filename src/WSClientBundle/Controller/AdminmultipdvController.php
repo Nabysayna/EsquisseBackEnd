@@ -34,6 +34,20 @@ class AdminmultipdvController extends Controller
         return new JsonResponse(array('result' => $result));
     }
     
+    public function performancesadminpdvAction()
+    {
+        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'type' =>  '65443');
+        $result = $this->client->call('performancesadminpdv', array('params' => $params));
+        return new JsonResponse(array('result' => $result));
+    }
+    
+    public function bilandepositAction()
+    {
+        $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'type' =>  '65443');
+        $result = $this->client->call('bilandeposit', array('params' => $params));
+        return new JsonResponse(array('result' => $result));
+    }
+    
     public function listmapAction()
     {
         $params = array('token' => '13f6b94c6b93e5a46fee99615abe1717768fd5a0', 'type' =>  '65443');

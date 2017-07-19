@@ -10,6 +10,51 @@
 <xsd:element name="typeapi" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAjoutService">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="nom" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InModifierService">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="nom" type="xsd:string"/>
+<xsd:element name="idservice" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InSupprimer">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="idsupprimer" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAjoutCharge">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="libelle" type="xsd:string"/>
+<xsd:element name="detail" type="xsd:string"/>
+<xsd:element name="montant" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InApprovision">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="idpdv" type="xsd:int"/>
+<xsd:element name="montant" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
 </xsd:schema>
 </types>
 <message name="totaloperationparapiRequest">
@@ -72,6 +117,60 @@
 <message name="totalcommissionallResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="listechargeRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listechargeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listeserviceRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listeserviceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listecaisseRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listecaisseResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listerevenuRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listerevenuResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutchargeRequest">
+<part name="params" type="tns:InAjoutCharge"/>
+</message>
+<message name="ajoutchargeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutserviceRequest">
+<part name="params" type="tns:InAjoutService"/>
+</message>
+<message name="ajoutserviceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="modifierserviceRequest">
+<part name="params" type="tns:InModifierService"/>
+</message>
+<message name="modifierserviceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="supprimerserviceRequest">
+<part name="params" type="tns:InSupprimer"/>
+</message>
+<message name="supprimerserviceResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="approvisionnerRequest">
+<part name="params" type="tns:InApprovision"/>
+</message>
+<message name="approvisionnerResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <portType name="comptapdvPortType">
 <operation name="totaloperationparapi">
 <documentation>Method COMPTA PDV totaloperationparapi</documentation>
@@ -122,6 +221,51 @@
 <documentation>Method COMPTA PDV totalcommissionall</documentation>
 <input message="tns:totalcommissionallRequest"/>
 <output message="tns:totalcommissionallResponse"/>
+</operation>
+<operation name="listecharge">
+<documentation>Method COMPTA PDV listecharge</documentation>
+<input message="tns:listechargeRequest"/>
+<output message="tns:listechargeResponse"/>
+</operation>
+<operation name="listeservice">
+<documentation>Method COMPTA PDV listeservice</documentation>
+<input message="tns:listeserviceRequest"/>
+<output message="tns:listeserviceResponse"/>
+</operation>
+<operation name="listecaisse">
+<documentation>Method COMPTA PDV listecaisse</documentation>
+<input message="tns:listecaisseRequest"/>
+<output message="tns:listecaisseResponse"/>
+</operation>
+<operation name="listerevenu">
+<documentation>Method COMPTA PDV listerevenu</documentation>
+<input message="tns:listerevenuRequest"/>
+<output message="tns:listerevenuResponse"/>
+</operation>
+<operation name="ajoutcharge">
+<documentation>Method COMPTA ADMIN PDV ajoutcharge</documentation>
+<input message="tns:ajoutchargeRequest"/>
+<output message="tns:ajoutchargeResponse"/>
+</operation>
+<operation name="ajoutservice">
+<documentation>Method COMPTA PDV ajoutservice</documentation>
+<input message="tns:ajoutserviceRequest"/>
+<output message="tns:ajoutserviceResponse"/>
+</operation>
+<operation name="modifierservice">
+<documentation>Method COMPTA PDV modifierservice</documentation>
+<input message="tns:modifierserviceRequest"/>
+<output message="tns:modifierserviceResponse"/>
+</operation>
+<operation name="supprimerservice">
+<documentation>Method COMPTA PDV ajoutservice</documentation>
+<input message="tns:supprimerserviceRequest"/>
+<output message="tns:supprimerserviceResponse"/>
+</operation>
+<operation name="approvisionner">
+<documentation>Method COMPTA PDV approvisionner</documentation>
+<input message="tns:approvisionnerRequest"/>
+<output message="tns:approvisionnerResponse"/>
 </operation>
 </portType>
 <binding name="comptapdvBinding" type="tns:comptapdvPortType">
@@ -209,6 +353,87 @@
 </operation>
 <operation name="totalcommissionall">
 <soap:operation soapAction="urn:comptapdvwsdl#totalcommissionall" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listecharge">
+<soap:operation soapAction="urn:comptapdvwsdlcomptapdvwsdl#listecharge" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listeservice">
+<soap:operation soapAction="urn:comptapdvwsdlcomptapdvwsdl#listeservice" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listecaisse">
+<soap:operation soapAction="urn:comptapdvwsdlcomptapdvwsdl#listecaisse" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listerevenu">
+<soap:operation soapAction="urn:comptapdvwsdlcomptapdvwsdl#listerevenu" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdlcomptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutcharge">
+<soap:operation soapAction="urn:comptapdvwsdl#ajoutcharge" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutservice">
+<soap:operation soapAction="urn:comptapdvwsdl#ajoutservice" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="modifierservice">
+<soap:operation soapAction="urn:comptapdvwsdl#modifierservice" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="supprimerservice">
+<soap:operation soapAction="urn:comptapdvwsdl#ajoutservice" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="approvisionner">
+<soap:operation soapAction="urn:comptapdvwsdl#approvisionner" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>

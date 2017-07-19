@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
+   
+
     public function indexAction()
     {
         $server = new \SoapServer('webservice.wsdl');
@@ -32,5 +34,31 @@ class DefaultController extends Controller
         $result = $client->call('hello', array('name' => 'Team'));
  
         return new JsonResponse(array('result' => $result));
+    }
+
+    public function bdtestAction()
+    {
+
+        // $em = $this->getDoctrine()->getManager();
+        // $query = $em->createQuery("SELECT 
+        //     a.id AS idarticle,
+        //     CONCAT(u.prenom,' ', u.nom) AS createby,
+        //     a.description,
+        //     u.zone 
+        //     FROM 
+        //     WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u
+        //     WHERE 
+        //     a.idUser=u.idUser
+        // ");
+      
+      
+        // $results = $query->getArrayResult();
+        // return new JsonResponse($results);
+
+        $testDB = $this->get('test_server_mailing');
+        $results = $testDB->envoifromsite("kasanesn@gmail.com","test","K.FDDGH");
+        return new JsonResponse($results);
+        
+
     }
 }

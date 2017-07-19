@@ -21,6 +21,12 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_outsitecommerce:
+        class: WSServerBundle\Services\OutsitEcommerceService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+          - "@test_server_mailing"
+
       test_server_adminpdv:
         class: WSServerBundle\Services\AdminpdvService
         arguments:
@@ -45,6 +51,12 @@ services:
         class: WSServerBundle\Services\CommercialService
         arguments:
           - "@doctrine.orm.default_entity_manager"
+
+      test_server_mailing:
+        class: WSServerBundle\Services\MailingService
+        arguments:
+          - "@mailer"
+
 
 
 #########################################################

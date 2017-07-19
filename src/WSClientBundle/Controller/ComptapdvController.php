@@ -93,6 +93,78 @@ class ComptapdvController extends Controller
         return new JsonResponse(array('result' => $result));
     }
 
+    public function listechargeAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test");
+        $result = $this->client->call('listecharge', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function ajoutchargeAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test", 'libelle' => "impression", 'detail' => "Achat d'une imprimante", 'montant' => 50000);
+        $result = $this->client->call('ajoutcharge', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function supprimerserviceAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test", 'idsupprimer' => 1);
+        $result = $this->client->call('supprimerservice', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function modifierserviceAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test", 'nom' => "assane", 'idservice' => 1);
+        $result = $this->client->call('modifierservice', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function ajoutserviceAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test", 'nom' => "Assane KA");
+        $result = $this->client->call('ajoutservice', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function approvisionnerAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test", 'idpdv' => 4, 'montant' => 400000);
+        $result = $this->client->call('approvisionner', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function listecaisseAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test");
+        $result = $this->client->call('listecaisse', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function listeserviceAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test");
+        $result = $this->client->call('listeservice', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function listerevenuAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test");
+        $result = $this->client->call('listerevenu', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
 
 
 }

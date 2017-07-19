@@ -10,4 +10,12 @@ namespace WSServerBundle\Repository;
  */
 class ArticlesRepository extends \Doctrine\ORM\EntityRepository
 {
+	// public function getArticles()
+	// {
+	//     return $this->getEntityManager()
+ //           ->createQuery(
+ //           'SELECT a FROM WSServerBundle:Articles a'
+ //           )
+ //           ->getResult();
+	// }
 }

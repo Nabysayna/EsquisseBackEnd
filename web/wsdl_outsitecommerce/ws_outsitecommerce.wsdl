@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:ecommerceoutsitewsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:ecommerceoutsitewsdl">
+<types>
+<xsd:schema targetNamespace="urn:ecommerceoutsitewsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+<xsd:complexType name="InAjoutCommandeEcomOutsite">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="id_article" type="xsd:int"/>
+<xsd:element name="nomclient" type="xsd:string"/>
+<xsd:element name="prenomclient" type="xsd:string"/>
+<xsd:element name="emailclient" type="xsd:string"/>
+<xsd:element name="telephoneclient" type="xsd:string"/>
+<xsd:element name="quantite" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAjoutAvisEcomOutsite">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="id_article" type="xsd:int"/>
+<xsd:element name="avis" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAjoutAbonneEcomOutsite">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="infoclient" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InEcrireEcomOutsite">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="fullname" type="xsd:string"/>
+<xsd:element name="email" type="xsd:string"/>
+<xsd:element name="sujet" type="xsd:string"/>
+<xsd:element name="message" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InListerEcomOutsite">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InAuthEcomOutsite">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="infoabonne" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+</xsd:schema>
+</types>
+<message name="ajoutcommandeecomoutsiteRequest">
+<part name="params" type="tns:InAjoutCommandeEcomOutsite"/>
+</message>
+<message name="ajoutcommandeecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutauthecomoutsiteRequest">
+<part name="params" type="tns:InAuthEcomOutsite"/>
+</message>
+<message name="ajoutauthecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ecrireecomoutsiteRequest">
+<part name="params" type="tns:InEcrireEcomOutsite"/>
+</message>
+<message name="ecrireecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutabonneecomoutsiteRequest">
+<part name="params" type="tns:InAjoutAbonneEcomOutsite"/>
+</message>
+<message name="ajoutabonneecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutavisecomoutsiteRequest">
+<part name="params" type="tns:InAjoutAvisEcomOutsite"/>
+</message>
+<message name="ajoutavisecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listerarticleecomoutsiteRequest">
+<part name="params" type="tns:InListerEcomOutsite"/>
+</message>
+<message name="listerarticleecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listerzoneecomoutsiteRequest">
+<part name="params" type="tns:InListerEcomOutsite"/>
+</message>
+<message name="listerzoneecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listercategorieecomoutsiteRequest">
+<part name="params" type="tns:InListerEcomOutsite"/>
+</message>
+<message name="listercategorieecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="listercommandeecomoutsiteRequest">
+<part name="params" type="tns:InListerEcomOutsite"/>
+</message>
+<message name="listercommandeecomoutsiteResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="ecommerceoutsitePortType">
+<operation name="ajoutcommandeecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE ajoutcommandeecomoutsite</documentation>
+<input message="tns:ajoutcommandeecomoutsiteRequest"/>
+<output message="tns:ajoutcommandeecomoutsiteResponse"/>
+</operation>
+<operation name="ajoutauthecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE ajoutauthecomoutsite</documentation>
+<input message="tns:ajoutauthecomoutsiteRequest"/>
+<output message="tns:ajoutauthecomoutsiteResponse"/>
+</operation>
+<operation name="ecrireecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE ecrireecomoutsite</documentation>
+<input message="tns:ecrireecomoutsiteRequest"/>
+<output message="tns:ecrireecomoutsiteResponse"/>
+</operation>
+<operation name="ajoutabonneecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE ajoutabonneecomoutsite</documentation>
+<input message="tns:ajoutabonneecomoutsiteRequest"/>
+<output message="tns:ajoutabonneecomoutsiteResponse"/>
+</operation>
+<operation name="ajoutavisecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE ajoutavisecomoutsite</documentation>
+<input message="tns:ajoutavisecomoutsiteRequest"/>
+<output message="tns:ajoutavisecomoutsiteResponse"/>
+</operation>
+<operation name="listerarticleecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE listerarticleecomoutsite</documentation>
+<input message="tns:listerarticleecomoutsiteRequest"/>
+<output message="tns:listerarticleecomoutsiteResponse"/>
+</operation>
+<operation name="listerzoneecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE listerzoneecomoutsite</documentation>
+<input message="tns:listerzoneecomoutsiteRequest"/>
+<output message="tns:listerzoneecomoutsiteResponse"/>
+</operation>
+<operation name="listercategorieecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE listercategorieecomoutsite</documentation>
+<input message="tns:listercategorieecomoutsiteRequest"/>
+<output message="tns:listercategorieecomoutsiteResponse"/>
+</operation>
+<operation name="listercommandeecomoutsite">
+<documentation>Method ECOMMERCEOUTSITE listercommandeecomoutsite</documentation>
+<input message="tns:listercommandeecomoutsiteRequest"/>
+<output message="tns:listercommandeecomoutsiteResponse"/>
+</operation>
+</portType>
+<binding name="ecommerceoutsiteBinding" type="tns:ecommerceoutsitePortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="ajoutcommandeecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#ajoutcommandeecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutauthecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#ajoutauthecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ecrireecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#ecrireecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutabonneecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#ajoutabonneecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutavisecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#ajoutavisecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listerarticleecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#listerarticleecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listerzoneecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#listerzoneecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listercategorieecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#listercategorieecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="listercommandeecomoutsite">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#listercommandeecomoutsite" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="ecommerceoutsite">
+<port name="ecommerceoutsitePort" binding="tns:ecommerceoutsiteBinding">
+<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/outsitecommerce"/>
+</port>
+</service>
+</definitions>

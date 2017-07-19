@@ -12,6 +12,7 @@
 <xsd:element name="prix" type="xsd:int"/>
 <xsd:element name="stock" type="xsd:int"/>
 <xsd:element name="img_link" type="xsd:string"/>
+<xsd:element name="categorie" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InAjoutCommande">
@@ -274,7 +275,6 @@
 <port name="ecommercePort" binding="tns:ecommerceBinding">
 
 <soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/ecommerce"/>
-
 </port>
 </service>
 </definitions>

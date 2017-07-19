@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PostCashController extends Controller
 {
-     public function __construct() {  
+    public function __construct() {  
         header("Access-Control-Allow-Origin: *"); 
         header("Access-Control-Allow-Headers: SOAPAction, Content-Type"); 
     }

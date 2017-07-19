@@ -24,7 +24,14 @@ class Cautions
      *
      * @ORM\Column(name="caution", type="integer", nullable=false)
      */
-    private $caution = '0';
+    private $caution;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cautionconsomme", type="integer", nullable=false)
+     */
+    private $cautionconsomme;
 
     /**
      * @var \DateTime
@@ -32,6 +39,13 @@ class Cautions
      * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
      */
     private $dateAjout;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_modif", type="datetime", nullable=true)
+     */
+    private $dateModif;
 
     /**
      * @var integer
@@ -93,6 +107,30 @@ class Cautions
     }
 
     /**
+     * Set cautionconsomme
+     *
+     * @param integer $cautionconsomme
+     *
+     * @return Cautions
+     */
+    public function setCautionconsomme($cautionconsomme)
+    {
+        $this->cautionconsomme = $cautionconsomme;
+
+        return $this;
+    }
+
+    /**
+     * Get cautionconsomme
+     *
+     * @return integer
+     */
+    public function getCautionconsomme()
+    {
+        return $this->cautionconsomme;
+    }
+
+    /**
      * Set dateAjout
      *
      * @param \DateTime $dateAjout
@@ -114,6 +152,30 @@ class Cautions
     public function getDateAjout()
     {
         return $this->dateAjout;
+    }
+
+    /**
+     * Set dateModif
+     *
+     * @param \DateTime $dateModif
+     *
+     * @return Cautions
+     */
+    public function setDateModif($dateModif)
+    {
+        $this->dateModif = $dateModif;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModif
+     *
+     * @return \DateTime
+     */
+    public function getDateModif()
+    {
+        return $this->dateModif;
     }
 
     /**

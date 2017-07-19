@@ -50,7 +50,7 @@ class AuthService
            for ($i=1; $i <4 ; $i++) { 
              $line[$i] = mt_rand(0, 19);
              $colm[$i] = mt_rand(0, 5);
-             $chaineAttendue = $chaineAttendue."   ".strval($line[$i]+1)."--".strval($colm[$i]+1);
+             $chaineAttendue = $chaineAttendue." ".strval($line[$i]+1)."--".strval($colm[$i]+1);
              $tokenTemp = $tokenTemp.$explodedToken[$line[$i]][$colm[$i]] ;
            }
           
@@ -67,6 +67,7 @@ class AuthService
 
           return $chaineAttendue;
       }
+
     }
 
     function authentificationPhaseTwo($params)

@@ -7,8 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EcommerceController extends Controller
 {
-
-     public function __construct() {  
+    public function __construct() {  
         header("Access-Control-Allow-Origin: *"); 
         header("Access-Control-Allow-Headers: SOAPAction, Content-Type"); 
     }
@@ -26,7 +25,6 @@ class EcommerceController extends Controller
         $response->setContent(ob_get_clean());
 
         return $response;
-        // return new Response("Assane KA");
     }
 
 }
