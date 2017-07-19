@@ -5,19 +5,19 @@ namespace WSServerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Zones
+ * Souszones
  *
- * @ORM\Table(name="zones")
+ * @ORM\Table(name="souszones")
  * @ORM\Entity
  */
-class Zones
+class Souszones
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=false)
      */
-    private $zone;
+    private $sousZone;
 
     /**
      * @var float
@@ -36,16 +36,16 @@ class Zones
     /**
      * @var integer
      *
-     * @ORM\Column(name="idregion", type="integer", nullable=false)
+     * @ORM\Column(name="idzone", type="integer", nullable=false)
      */
-    private $idregion;
+    private $idzone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=50, nullable=false)
+     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
      */
-    private $region;
+    private $zone;
 
     /**
      * @var integer
@@ -59,27 +59,27 @@ class Zones
 
 
     /**
-     * Set zone
+     * Set sousZone
      *
-     * @param string $zone
+     * @param string $sousZone
      *
-     * @return Zones
+     * @return Souszones
      */
-    public function setZone($zone)
+    public function setSousZone($sousZone)
     {
-        $this->zone = $zone;
+        $this->sousZone = $sousZone;
 
         return $this;
     }
 
     /**
-     * Get zone
+     * Get sousZone
      *
      * @return string
      */
-    public function getZone()
+    public function getSousZone()
     {
-        return $this->zone;
+        return $this->sousZone;
     }
 
     /**
@@ -87,7 +87,7 @@ class Zones
      *
      * @param float $latitude
      *
-     * @return Zones
+     * @return Souszones
      */
     public function setLatitude($latitude)
     {
@@ -111,7 +111,7 @@ class Zones
      *
      * @param float $longitude
      *
-     * @return Zones
+     * @return Souszones
      */
     public function setLongitude($longitude)
     {
@@ -131,51 +131,51 @@ class Zones
     }
 
     /**
-     * Set idregion
+     * Set idzone
      *
-     * @param integer $idregion
+     * @param integer $idzone
      *
-     * @return Zones
+     * @return Souszones
      */
-    public function setIdregion($idregion)
+    public function setIdzone($idzone)
     {
-        $this->idregion = $idregion;
+        $this->idzone = $idzone;
 
         return $this;
     }
 
     /**
-     * Get idregion
+     * Get idzone
      *
      * @return integer
      */
-    public function getIdregion()
+    public function getIdzone()
     {
-        return $this->idregion;
+        return $this->idzone;
     }
 
     /**
-     * Set region
+     * Set zone
      *
-     * @param string $region
+     * @param string $zone
      *
-     * @return Zones
+     * @return Souszones
      */
-    public function setRegion($region)
+    public function setZone($zone)
     {
-        $this->region = $region;
+        $this->zone = $zone;
 
         return $this;
     }
 
     /**
-     * Get region
+     * Get zone
      *
      * @return string
      */
-    public function getRegion()
+    public function getZone()
     {
-        return $this->region;
+        return $this->zone;
     }
 
     /**

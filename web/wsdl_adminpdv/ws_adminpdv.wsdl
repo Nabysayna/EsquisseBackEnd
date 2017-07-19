@@ -18,8 +18,33 @@
 <xsd:element name="modifydata" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
+<xsd:complexType name="InDeconnectUserPdv">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="idpdv" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
 </xsd:schema>
 </types>
+<message name="listuserpdvRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="listuserpdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="modifypdvRequest">
+<part name="params" type="tns:InModifyUserPdv"/>
+</message>
+<message name="modifypdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="deconnectpdvRequest">
+<part name="params" type="tns:InDeconnectUserPdv"/>
+</message>
+<message name="deconnectpdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <message name="nombredereclamationpdvventeRequest">
 <part name="params" type="tns:InData"/>
 </message>
@@ -74,19 +99,22 @@
 <message name="historiquereclamationResponse">
 <part name="return" type="xsd:string"/>
 </message>
-<message name="listuserpdvRequest">
-<part name="params" type="tns:InData"/>
-</message>
-<message name="listuserpdvResponse">
-<part name="return" type="xsd:string"/>
-</message>
-<message name="modifypdvRequest">
-<part name="params" type="tns:InModifyUserPdv"/>
-</message>
-<message name="modifypdvResponse">
-<part name="return" type="xsd:string"/>
-</message>
 <portType name="adminpdvPortType">
+<operation name="listuserpdv">
+<documentation>Method ADMINPDV listuserpdv</documentation>
+<input message="tns:listuserpdvRequest"/>
+<output message="tns:listuserpdvResponse"/>
+</operation>
+<operation name="modifypdv">
+<documentation>Method ADMINPDV modifypdv</documentation>
+<input message="tns:modifypdvRequest"/>
+<output message="tns:modifypdvResponse"/>
+</operation>
+<operation name="deconnectpdv">
+<documentation>Method ADMINPDV deconnectpdv</documentation>
+<input message="tns:deconnectpdvRequest"/>
+<output message="tns:deconnectpdvResponse"/>
+</operation>
 <operation name="nombredereclamationpdvvente">
 <documentation>Method ADMINMULTIPDV nombredereclamationpdvvente</documentation>
 <input message="tns:nombredereclamationpdvventeRequest"/>
@@ -132,19 +160,36 @@
 <input message="tns:historiquereclamationRequest"/>
 <output message="tns:historiquereclamationResponse"/>
 </operation>
-<operation name="listuserpdv">
-<documentation>Method ADMINPDV listuserpdv</documentation>
-<input message="tns:listuserpdvRequest"/>
-<output message="tns:listuserpdvResponse"/>
-</operation>
-<operation name="modifypdv">
-<documentation>Method ADMINPDV modifypdv</documentation>
-<input message="tns:modifypdvRequest"/>
-<output message="tns:modifypdvResponse"/>
-</operation>
 </portType>
 <binding name="adminpdvBinding" type="tns:adminpdvPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="listuserpdv">
+<soap:operation soapAction="urn:adminpdvwsdl#listuserpdv" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="modifypdv">
+<soap:operation soapAction="urn:adminpdvwsdl#modifypdv" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="deconnectpdv">
+<soap:operation soapAction="urn:adminpdvwsdl#deconnectpdv" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
 <operation name="nombredereclamationpdvvente">
 <soap:operation soapAction="urn:adminmultipdvwsdl#nombredereclamationpdvvente" style="rpc"/>
 <input>
@@ -219,24 +264,6 @@
 </operation>
 <operation name="historiquereclamation">
 <soap:operation soapAction="urn:adminpdvwsdl#historiquereclamation" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="listuserpdv">
-<soap:operation soapAction="urn:adminpdvwsdl#listuserpdv" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
-<operation name="modifypdv">
-<soap:operation soapAction="urn:adminpdvwsdl#modifypdv" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:adminpdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>

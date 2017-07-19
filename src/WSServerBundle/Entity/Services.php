@@ -34,6 +34,13 @@ class Services
     private $idpdv;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="designations", type="string", length=1000, nullable=false)
+     */
+    private $designations;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
@@ -121,6 +128,30 @@ class Services
     public function getIdpdv()
     {
         return $this->idpdv;
+    }
+
+    /**
+     * Set designations
+     *
+     * @param string $designations
+     *
+     * @return Services
+     */
+    public function setDesignations($designations)
+    {
+        $this->designations = $designations;
+
+        return $this;
+    }
+
+    /**
+     * Get designations
+     *
+     * @return string
+     */
+    public function getDesignations()
+    {
+        return $this->designations;
     }
 
     /**

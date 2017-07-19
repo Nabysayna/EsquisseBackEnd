@@ -29,6 +29,20 @@ class Designations
     /**
      * @var integer
      *
+     * @ORM\Column(name="stock", type="integer", nullable=false)
+     */
+    private $stock;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="prixunitaire", type="integer", nullable=false)
+     */
+    private $prixunitaire;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -83,6 +97,54 @@ class Designations
     public function getIdservice()
     {
         return $this->idservice;
+    }
+
+    /**
+     * Set stock
+     *
+     * @param integer $stock
+     *
+     * @return Designations
+     */
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Get stock
+     *
+     * @return integer
+     */
+    public function getStock()
+    {
+        return $this->stock;
+    }
+
+    /**
+     * Set prixunitaire
+     *
+     * @param integer $prixunitaire
+     *
+     * @return Designations
+     */
+    public function setPrixunitaire($prixunitaire)
+    {
+        $this->prixunitaire = $prixunitaire;
+
+        return $this;
+    }
+
+    /**
+     * Get prixunitaire
+     *
+     * @return integer
+     */
+    public function getPrixunitaire()
+    {
+        return $this->prixunitaire;
     }
 
     /**
