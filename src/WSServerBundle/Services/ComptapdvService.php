@@ -46,7 +46,7 @@ class ComptapdvService
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{      
-        $query = $this->em->createQuery("SELECT cais.id, cais.soldeOuvert AS caisse, u.prenom, u.nom, u.idUser FROM WSServerBundle\Entity\Caisse cais, WSServerBundle\Entity\Users u WHERE cais.idadminpdv=3 and cais.idgerantpdv=u.idUser");
+        $query = $this->em->createQuery("SELECT cais.id, cais.soldeOuvert AS caisse, u.prenom, u.nom, u.idUser AS idpdv FROM WSServerBundle\Entity\Caisse cais, WSServerBundle\Entity\Users u WHERE cais.idadminpdv=3 and cais.idgerantpdv=u.idUser");
         $results = $query->getArrayResult();
         return ''. json_encode(array('errorCode' => 1, 'response' => $results));
       }
@@ -125,7 +125,7 @@ class ComptapdvService
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{      
-        $query = $this->em->createQuery("SELECT serv.id AS idservice, serv.nom AS services, desig.nom AS design FROM WSServerBundle\Entity\Services serv, WSServerBundle\Entity\Designations desig  WHERE serv.idadminpdv=3 AND serv.id=desig.idservice");
+        $query = $this->em->createQuery("SELECT serv.id AS idservice, serv.nom AS services, serv.designations AS design FROM WSServerBundle\Entity\Services serv WHERE serv.idadminpdv=:idadmin")->setParameter('idadmin', $correspSession->getIdUser());
         $results = $query->getArrayResult();
         return ''. json_encode(array('errorCode' => 1, 'response' => $results));
       }
@@ -136,33 +136,21 @@ class ComptapdvService
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{        
-        $existservice = $this->em->getRepository('WSServerBundle:Services')->findOneBy(array('nom' => $params->nom, 'idpdv' => $params->idpdv));
+        $existservice = $this->em->getRepository('WSServerBundle:Services')->findOneBy(array('nom' => $params->nom, 'idadminpdv' => $correspSession->getIdUser(), 'idpdv' => $params->idpdv));
         if(empty($existservice)){
           $newService = new Services();
           $newService->setDateAjout(new \Datetime());
-          $newService->setIdadminpdv(3);
+          $newService->setIdadminpdv($correspSession->getIdUser());
+          $newService->setDesignations($params->designations);
           $newService->setNom($params->nom);
           $newService->setIdpdv($params->idpdv);
           $this->em->persist($newService);
-          $this->em->flush();  
-        
-          $newDesignation = new Designations();
-          $newDesignation->setIdservice($newService->getId());
-          $newDesignation->setNom($params->designations);
-          $this->em->persist($newDesignation);
           $this->em->flush();
         }
-        else{
-          $existdesignatin = $this->em->getRepository('WSServerBundle:Designations')->findOneBy(array('idservice' => $existservice->getId()));
-          $newDesignations = $existdesignatin->getNom() ."--". $params->designations;
-          $existdesignatin->setNom($newDesignations);
-
-          $this->em->flush(); 
-        }
-
-        return ''. json_encode(array('errorCode' => 1, 'response' => 'ok'));
+        return ''. json_encode(array('errorCode' => 1, 'response' => "ok"));
       }
     }
+    
     public function modifierservice($params) {   
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
@@ -170,8 +158,9 @@ class ComptapdvService
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{        
         $existservice = $this->em->getRepository('WSServerBundle:Services')->find($params->idservice);
-        $existservice->setNom($params->nom);
-        
+        $existservice->setDesignations($params->designations);
+        $existservice->setNom($params->service);
+          
         $this->em->flush(); 
 
         return ''. json_encode(array('errorCode' => 1, 'response' => 'ok'));
@@ -184,8 +173,6 @@ class ComptapdvService
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{        
         $existservice = $this->em->getRepository('WSServerBundle:Services')->find($params->idsupprimer);        
-        $existdesignatin = $this->em->getRepository('WSServerBundle:Designations')->findOneBy(array('idservice' => $existservice->getId()));        
-        $this->em->remove($existdesignatin);
         $this->em->remove($existservice);
         $this->em->flush(); 
 

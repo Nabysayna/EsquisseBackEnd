@@ -19,6 +19,11 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="designations" type="string" column="designations" length="1000" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
   </entity>
 </doctrine-mapping>
