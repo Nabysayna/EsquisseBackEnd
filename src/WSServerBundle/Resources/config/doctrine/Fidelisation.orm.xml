@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="WSServerBundle\Entity\Cautions" table="cautions">
-    <id name="idCaution" type="integer" column="id_caution">
+  <entity name="WSServerBundle\Entity\Fidelisation" table="fidelisation">
+    <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="idUser" type="integer" column="id_user" nullable="false">
+    <field name="typeOperation" type="string" column="type_operation" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="montant" type="integer" column="montant" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="caution" type="integer" column="caution" nullable="false">
+    <field name="nbrePoint" type="integer" column="nbre_point" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
-    <field name="cautionconsomme" type="integer" column="cautionconsomme" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="dateModif" type="datetime" column="date_modif" nullable="true"/>
   </entity>
 </doctrine-mapping>

@@ -232,7 +232,7 @@
 </binding>
 <service name="tnt">
 <port name="tntPort" binding="tns:tntBinding">
-<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/tnt"/>
+<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/tnt"/>
 </port>
 </service>
 </definitions>
