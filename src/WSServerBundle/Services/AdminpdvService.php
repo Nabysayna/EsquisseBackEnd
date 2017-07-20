@@ -163,20 +163,16 @@ class AdminpdvService
     function performancepdv($params) {
       $reponse = [
         array(
-          'id' => 1,
+          'idpdv' => 4,
           'fullname' => "Assane KA",
+          'telephone' => 7777123,
           'nbreoperation' => 123,
           'montanttotal' => 123000,
         ),
         array(
-          'id' => 2,
-          'fullname' => "Naby NDIAYE",
-          'nbreoperation' => 120,
-          'montanttotal' => 120000,
-        ),
-        array(
-          'id' => 3,
+          'idpdv' => 5,
           'fullname' => "Bamba GNING",
+          'telephone' => 7777100,
           'nbreoperation' => 100,
           'montanttotal' => 100000,
         ),
