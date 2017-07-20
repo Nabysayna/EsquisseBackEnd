@@ -78,16 +78,16 @@ class Users
     /**
      * @var integer
      *
-     * @ORM\Column(name="idzone", type="integer", nullable=true)
+     * @ORM\Column(name="idsous_zone", type="integer", nullable=true)
      */
-    private $idzone;
+    private $idsousZone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=false)
      */
-    private $zone;
+    private $sousZone;
 
     /**
      * @var integer
@@ -317,51 +317,51 @@ class Users
     }
 
     /**
-     * Set idzone
+     * Set idsousZone
      *
-     * @param integer $idzone
+     * @param integer $idsousZone
      *
      * @return Users
      */
-    public function setIdzone($idzone)
+    public function setIdsousZone($idsousZone)
     {
-        $this->idzone = $idzone;
+        $this->idsousZone = $idsousZone;
 
         return $this;
     }
 
     /**
-     * Get idzone
+     * Get idsousZone
      *
      * @return integer
      */
-    public function getIdzone()
+    public function getIdsousZone()
     {
-        return $this->idzone;
+        return $this->idsousZone;
     }
 
     /**
-     * Set zone
+     * Set sousZone
      *
-     * @param string $zone
+     * @param string $sousZone
      *
      * @return Users
      */
-    public function setZone($zone)
+    public function setSousZone($sousZone)
     {
-        $this->zone = $zone;
+        $this->sousZone = $sousZone;
 
         return $this;
     }
 
     /**
-     * Get zone
+     * Get sousZone
      *
      * @return string
      */
-    public function getZone()
+    public function getSousZone()
     {
-        return $this->zone;
+        return $this->sousZone;
     }
 
     /**

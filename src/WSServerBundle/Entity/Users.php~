@@ -78,16 +78,16 @@ class Users
     /**
      * @var integer
      *
-     * @ORM\Column(name="idzone", type="integer", nullable=true)
+     * @ORM\Column(name="idsous_zone", type="integer", nullable=true)
      */
-    private $idzone;
+    private $idsousZone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=false)
      */
-    private $zone;
+    private $sousZone;
 
     /**
      * @var integer

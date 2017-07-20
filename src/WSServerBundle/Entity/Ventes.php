@@ -57,6 +57,13 @@ class Ventes
     /**
      * @var integer
      *
+     * @ORM\Column(name="id_client", type="integer", nullable=false)
+     */
+    private $idClient;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -207,6 +214,30 @@ class Ventes
     public function getDateVente()
     {
         return $this->dateVente;
+    }
+
+    /**
+     * Set idClient
+     *
+     * @param integer $idClient
+     *
+     * @return Ventes
+     */
+    public function setIdClient($idClient)
+    {
+        $this->idClient = $idClient;
+
+        return $this;
+    }
+
+    /**
+     * Get idClient
+     *
+     * @return integer
+     */
+    public function getIdClient()
+    {
+        return $this->idClient;
     }
 
     /**

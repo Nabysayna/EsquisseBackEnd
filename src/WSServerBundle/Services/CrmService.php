@@ -23,7 +23,8 @@ class CrmService
       else{
         
           $portefeuille = $this->em->getRepository('WSServerBundle:Clients')->findBy(array('dependsOn' => $correspSession->getIdUser()));
-
+          
+          $formatted=[];
           
         foreach ($portefeuille as $cls) {
             $formatted[] = [

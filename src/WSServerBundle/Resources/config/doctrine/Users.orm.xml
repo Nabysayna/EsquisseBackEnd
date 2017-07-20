@@ -48,12 +48,12 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="idzone" type="integer" column="idzone" nullable="true">
+    <field name="idsousZone" type="integer" column="idsous_zone" nullable="true">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="zone" type="string" column="zone" length="50" nullable="false">
+    <field name="sousZone" type="string" column="sous_zone" length="50" nullable="false">
       <options>
         <option name="fixed"/>
       </options>

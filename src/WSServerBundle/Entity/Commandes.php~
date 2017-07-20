@@ -106,6 +106,34 @@ class Commandes
     /**
      * @var integer
      *
+     * @ORM\Column(name="depend_on", type="integer", nullable=false)
+     */
+    private $dependOn;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pointderecuperation", type="string", length=50, nullable=false)
+     */
+    private $pointderecuperation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="montantcommande", type="integer", nullable=false)
+     */
+    private $montantcommande;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")

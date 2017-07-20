@@ -106,6 +106,34 @@ class Commandes
     /**
      * @var integer
      *
+     * @ORM\Column(name="depend_on", type="integer", nullable=false)
+     */
+    private $dependOn;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pointderecuperation", type="string", length=50, nullable=false)
+     */
+    private $pointderecuperation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="montantcommande", type="integer", nullable=false)
+     */
+    private $montantcommande;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -424,6 +452,102 @@ class Commandes
     public function getCodepayement()
     {
         return $this->codepayement;
+    }
+
+    /**
+     * Set dependOn
+     *
+     * @param integer $dependOn
+     *
+     * @return Commandes
+     */
+    public function setDependOn($dependOn)
+    {
+        $this->dependOn = $dependOn;
+
+        return $this;
+    }
+
+    /**
+     * Get dependOn
+     *
+     * @return integer
+     */
+    public function getDependOn()
+    {
+        return $this->dependOn;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param integer $idUser
+     *
+     * @return Commandes
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set pointderecuperation
+     *
+     * @param string $pointderecuperation
+     *
+     * @return Commandes
+     */
+    public function setPointderecuperation($pointderecuperation)
+    {
+        $this->pointderecuperation = $pointderecuperation;
+
+        return $this;
+    }
+
+    /**
+     * Get pointderecuperation
+     *
+     * @return string
+     */
+    public function getPointderecuperation()
+    {
+        return $this->pointderecuperation;
+    }
+
+    /**
+     * Set montantcommande
+     *
+     * @param integer $montantcommande
+     *
+     * @return Commandes
+     */
+    public function setMontantcommande($montantcommande)
+    {
+        $this->montantcommande = $montantcommande;
+
+        return $this;
+    }
+
+    /**
+     * Get montantcommande
+     *
+     * @return integer
+     */
+    public function getMontantcommande()
+    {
+        return $this->montantcommande;
     }
 
     /**

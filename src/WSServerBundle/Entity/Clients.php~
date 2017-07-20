@@ -78,6 +78,34 @@ class Clients
     /**
      * @var integer
      *
+     * @ORM\Column(name="nbre_operation", type="integer", nullable=false)
+     */
+    private $nbreOperation = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="fidelite", type="integer", nullable=false)
+     */
+    private $fidelite = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
+     */
+    private $dependsOn;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")

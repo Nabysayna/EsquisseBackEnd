@@ -13,20 +13,17 @@
 <xsd:complexType name="InData">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InDataPdv">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
 <xsd:element name="idpdv" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InAjoutService">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
 <xsd:element name="nom" type="xsd:string"/>
 <xsd:element name="idpdv" type="xsd:int"/>
 <xsd:element name="designations" type="xsd:string"/>
@@ -35,7 +32,6 @@
 <xsd:complexType name="InModifierService">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
 <xsd:element name="service" type="xsd:string"/>
 <xsd:element name="designations" type="xsd:string"/>
 <xsd:element name="idservice" type="xsd:int"/>
@@ -44,14 +40,12 @@
 <xsd:complexType name="InSupprimer">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
 <xsd:element name="idsupprimer" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InAjoutCharge">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
 <xsd:element name="libelle" type="xsd:string"/>
 <xsd:element name="idpdv" type="xsd:int"/>
 <xsd:element name="service" type="xsd:string"/>
@@ -61,7 +55,6 @@
 <xsd:complexType name="InApprovision">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="type" type="xsd:string"/>
 <xsd:element name="idpdv" type="xsd:int"/>
 <xsd:element name="montant" type="xsd:int"/>
 </xsd:all>
@@ -475,7 +468,7 @@
 </binding>
 <service name="comptapdv">
 <port name="comptapdvPort" binding="tns:comptapdvBinding">
-<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/comptapdv"/>
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/comptapdv"/>
 </port>
 </service>
 </definitions>
