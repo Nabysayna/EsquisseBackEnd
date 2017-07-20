@@ -36,7 +36,24 @@ class AuthService
       else {
 
           $sessionStart = new \Datetime() ;
-          $tokenTemp =  microtime() ;
+         // $tokenTemp =  microtime() ;
+           $explodedToken = explode(" ", $dbuser->getToken() ) ;
+          
+           $line = [];
+           $colm = [];
+
+           $line[0] = mt_rand(0, 19);
+           $colm[0] = mt_rand(0, 5);
+           $chaineAttendue = strval($line[0]+1)."--".strval($colm[0]+1);
+           $tokenTemp = $explodedToken[$line[0]][$colm[0]] ;
+
+           for ($i=1; $i <4 ; $i++) { 
+             $line[$i] = mt_rand(0, 19);
+             $colm[$i] = mt_rand(0, 5);
+             $chaineAttendue = $chaineAttendue." ".strval($line[$i]+1)."--".strval($colm[$i]+1);
+             $tokenTemp = $tokenTemp.$explodedToken[$line[$i]][$colm[$i]] ;
+           }
+          
           $newTempRow = new Tokentemporaire();
           $newTempRow->setIdUser($dbuser->getIdUser());
           $newTempRow->setAccessLevel($dbuser->getAccesslevel());
@@ -46,9 +63,9 @@ class AuthService
           $this->em->persist($newTempRow);
           $this->em->flush();
 
-          $this->envoyerSMS('naby.hikam@gmail.com', $dbuser->getLogin(), strval($tokenTemp) ) ;
+         // $this->envoyerSMS('naby.hikam@gmail.com', $dbuser->getLogin(), strval($tokenTemp) ) ;
 
-          return 'true';
+          return $chaineAttendue;
       }
 
     }

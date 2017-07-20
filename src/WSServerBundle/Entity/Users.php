@@ -64,6 +64,14 @@ class Users
     /**
      * @var string
      *
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
+     */
+    private $token;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="adresse", type="string", length=100, nullable=false)
      */
     private $adresse;
@@ -97,8 +105,6 @@ class Users
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idUser;
-
-
 
     /**
      * Set prenom
@@ -269,6 +275,18 @@ class Users
     }
 
     /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Users
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
      * Set adresse
      *
      * @param string $adresse
@@ -278,8 +296,17 @@ class Users
     public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
-
         return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**
@@ -349,8 +376,12 @@ class Users
      */
     public function setSousZone($sousZone)
     {
+<<<<<<< HEAD
         $this->sousZone = $sousZone;
 
+=======
+        $this->zone = $zone;
+>>>>>>> 6716e1b6d129c6130dfe4197678a5f7094069ca9
         return $this;
     }
 

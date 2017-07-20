@@ -78,7 +78,7 @@ class CrmService
         
           $clients = $this->em->getRepository('WSServerBundle:Clients')->findBy(array('dependsOn' => $correspSession->getIdUser()));
 
-          
+          $formatted = [] ;
         foreach ($clients as $cls) {
             $formatted[] = [
                'prenom' => $cls->getPrenom(),

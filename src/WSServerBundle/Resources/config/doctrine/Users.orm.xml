@@ -53,7 +53,12 @@
         <option name="unsigned"/>
       </options>
     </field>
+<<<<<<< HEAD
     <field name="sousZone" type="string" column="sous_zone" length="50" nullable="false">
+=======
+    <field name="token" type="string" column="token" length="255" nullable="true"/>
+    <field name="zone" type="string" column="zone" length="50" nullable="false">
+>>>>>>> 6716e1b6d129c6130dfe4197678a5f7094069ca9
       <options>
         <option name="fixed"/>
       </options>

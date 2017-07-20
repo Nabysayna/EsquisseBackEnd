@@ -27,11 +27,15 @@ class Articles
     private $designation;
 
     /**
+   
+   
+    /**
      * @var integer
      *
-     * @ORM\Column(name="idcategorie", type="integer", nullable=true)
+     * @ORM\Column(name="idcategorie", type="integer", nullable=false)
      */
     private $idcategorie;
+
 
     /**
      * @var string

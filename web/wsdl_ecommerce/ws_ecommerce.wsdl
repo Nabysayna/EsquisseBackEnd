@@ -12,6 +12,7 @@
 <xsd:element name="prix" type="xsd:int"/>
 <xsd:element name="stock" type="xsd:int"/>
 <xsd:element name="img_link" type="xsd:string"/>
+<xsd:element name="categorie" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InAjoutCommande">
@@ -24,6 +25,14 @@
 	<xsd:element name="telclient" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
+
+<xsd:complexType name="InModifCommande">
+<xsd:all>
+	<xsd:element name="token" type="xsd:string"/>
+	<xsd:element name="article" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+
 <xsd:complexType name="InAjoutVente">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
@@ -128,6 +137,20 @@
 <part name="return" type="xsd:string"/>
 </message>
 
+<message name="modifierArticleRequest">
+<part name="params" type="tns:InModifCommande"/>
+</message>
+<message name="modifierArticleResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
+<message name="supprimerArticleRequest">
+<part name="params" type="tns:InModifCommande"/>
+</message>
+<message name="supprimerArticleResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
 
 <portType name="ecommercePortType">
 <operation name="ajoutarticle">
@@ -174,9 +197,22 @@
 </operation>
 
 <operation name="listerCoursier">
-<documentation>Method ECOMMERCE listervente</documentation>
+<documentation>Method ECOMMERCE listerCourses</documentation>
 <input message="tns:listerCoursierRequest"/>
 <output message="tns:listerCoursierResponse"/>
+</operation>
+
+
+<operation name="modifierArticle">
+<documentation>Method ECOMMERCE Modifier articles</documentation>
+<input message="tns:modifierArticleRequest"/>
+<output message="tns:modifierArticleResponse"/>
+</operation>
+
+<operation name="supprimerArticle">
+<documentation>Method ECOMMERCE Modifier articles</documentation>
+<input message="tns:supprimerArticleRequest"/>
+<output message="tns:supprimerArticleResponse"/>
 </operation>
 
 
@@ -268,11 +304,30 @@
 </output>
 </operation>
 
+<operation name="modifierArticle">
+<soap:operation soapAction="urn:ecommercewsdl#modifierArticle" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
+<operation name="supprimerArticle">
+<soap:operation soapAction="urn:ecommercewsdl#supprimerArticle" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
 
 </binding>
 <service name="ecommerce">
 <port name="ecommercePort" binding="tns:ecommerceBinding">
-
 <soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/ecommerce"/>
 </port>
 </service>

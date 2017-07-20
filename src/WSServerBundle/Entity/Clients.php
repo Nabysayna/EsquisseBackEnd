@@ -69,9 +69,9 @@ class Clients
     private $adresse;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     * @ORM\Column(name="date_ajout", type="date", nullable=true)
      */
     private $dateAjout;
 
@@ -309,7 +309,7 @@ class Clients
     /**
      * Set dateAjout
      *
-     * @param \DateTime $dateAjout
+     * @param \Date $dateAjout
      *
      * @return Clients
      */
@@ -323,7 +323,7 @@ class Clients
     /**
      * Get dateAjout
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDateAjout()
     {
