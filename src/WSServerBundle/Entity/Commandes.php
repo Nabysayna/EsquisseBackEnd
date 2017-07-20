@@ -493,4 +493,62 @@ class Commandes
     {
         return $this->idUser;
     }
+    /**
+     * @var string
+     */
+    private $pointderecuperation;
+
+    /**
+     * @var integer
+     */
+    private $montantcommande;
+
+
+    /**
+     * Set pointderecuperation
+     *
+     * @param string $pointderecuperation
+     *
+     * @return Commandes
+     */
+    public function setPointderecuperation($pointderecuperation)
+    {
+        $this->pointderecuperation = $pointderecuperation;
+
+        return $this;
+    }
+
+    /**
+     * Get pointderecuperation
+     *
+     * @return string
+     */
+    public function getPointderecuperation()
+    {
+        return $this->pointderecuperation;
+    }
+
+    /**
+     * Set montantcommande
+     *
+     * @param integer $montantcommande
+     *
+     * @return Commandes
+     */
+    public function setMontantcommande($montantcommande)
+    {
+        $this->montantcommande = $montantcommande;
+
+        return $this;
+    }
+
+    /**
+     * Get montantcommande
+     *
+     * @return integer
+     */
+    public function getMontantcommande()
+    {
+        return $this->montantcommande;
+    }
 }

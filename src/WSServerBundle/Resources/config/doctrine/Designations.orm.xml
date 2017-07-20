@@ -14,5 +14,15 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="stock" type="integer" column="stock" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="prixunitaire" type="integer" column="prixunitaire" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>

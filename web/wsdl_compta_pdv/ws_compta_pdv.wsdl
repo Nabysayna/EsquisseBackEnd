@@ -16,6 +16,13 @@
 <xsd:element name="type" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
+<xsd:complexType name="InDataServicePdv">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="idpdv" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
 <xsd:complexType name="InAjoutService">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
@@ -29,7 +36,8 @@
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="type" type="xsd:string"/>
-<xsd:element name="nom" type="xsd:string"/>
+<xsd:element name="service" type="xsd:string"/>
+<xsd:element name="designations" type="xsd:string"/>
 <xsd:element name="idservice" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
@@ -127,7 +135,7 @@
 <part name="return" type="xsd:string"/>
 </message>
 <message name="listeserviceRequest">
-<part name="params" type="tns:InData"/>
+<part name="params" type="tns:InDataServicePdv"/>
 </message>
 <message name="listeserviceResponse">
 <part name="return" type="xsd:string"/>

@@ -75,5 +75,15 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="pointderecuperation" type="string" column="pointderecuperation" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="montantcommande" type="integer" column="montantcommande" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>
