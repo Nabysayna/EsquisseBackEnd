@@ -39,6 +39,10 @@ ws_server_commercial:
     path:     /commercial
     defaults: { _controller: WSServerBundle:Commercial:commercial }
 
+ws_server_crm:
+    path:     /crm
+    defaults: { _controller: WSServerBundle:Crm:crm }
+
 
 
 

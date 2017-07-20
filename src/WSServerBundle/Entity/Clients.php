@@ -311,4 +311,120 @@ class Clients
     {
         return $this->id;
     }
+    /**
+     * @var integer
+     */
+    private $nbreOperation = '1';
+
+    /**
+     * @var integer
+     */
+    private $fidelite = '0';
+
+    /**
+     * @var integer
+     */
+    private $idUser;
+
+    /**
+     * @var integer
+     */
+    private $dependsOn;
+
+
+    /**
+     * Set nbreOperation
+     *
+     * @param integer $nbreOperation
+     *
+     * @return Clients
+     */
+    public function setNbreOperation($nbreOperation)
+    {
+        $this->nbreOperation = $nbreOperation;
+
+        return $this;
+    }
+
+    /**
+     * Get nbreOperation
+     *
+     * @return integer
+     */
+    public function getNbreOperation()
+    {
+        return $this->nbreOperation;
+    }
+
+    /**
+     * Set fidelite
+     *
+     * @param integer $fidelite
+     *
+     * @return Clients
+     */
+    public function setFidelite($fidelite)
+    {
+        $this->fidelite = $fidelite;
+
+        return $this;
+    }
+
+    /**
+     * Get fidelite
+     *
+     * @return integer
+     */
+    public function getFidelite()
+    {
+        return $this->fidelite;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param integer $idUser
+     *
+     * @return Clients
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set dependsOn
+     *
+     * @param integer $dependsOn
+     *
+     * @return Clients
+     */
+    public function setDependsOn($dependsOn)
+    {
+        $this->dependsOn = $dependsOn;
+
+        return $this;
+    }
+
+    /**
+     * Get dependsOn
+     *
+     * @return integer
+     */
+    public function getDependsOn()
+    {
+        return $this->dependsOn;
+    }
 }

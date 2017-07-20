@@ -90,11 +90,15 @@ class EcommerceService
     {
       $dbarticles = null;
       if ($params->type == "catalogue"){
-        $dbarticles = $this->em->getRepository('WSServerBundle:Articles')->findAll();
+        $query = $this->em->createQuery("SELECT a.id, a.imgLink as nomImg, a.designation, a.description, a.prix, a.stock FROM WSServerBundle\Entity\Articles a WHERE a.stock>0") ;
+        $results = $query->getArrayResult();
+        return ''. json_encode($results);
       }
+
       else {
-        $currentUser = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token' => $params->token));
-        $dbarticles = $this->em->getRepository('WSServerBundle:Articles')->findBy(array('idUser' => $currentUser->getIdUser()) );
+        $query = $this->em->createQuery("SELECT a.id, a.imgLink as nomImg, a.designation, a.description, a.prix, a.stock FROM WSServerBundle\Entity\Articles a WHERE a.stock>0 and a.idUser=(SELECT aus.idUser from WSServerBundle\Entity\Authorizedsessions aus WHERE aus.token=:userToken) ")->setParameter('userToken', $params->token);
+        $results = $query->getArrayResult();
+        return ''. json_encode($results);
       }
         
       $formatted = [];
@@ -259,15 +263,47 @@ class EcommerceService
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if (!empty($correspSession)){
-  
         $cmdFournie = $this->em->getRepository('WSServerBundle:Commandes')->findOneBy(array('id' => $params->idCommande));
-
         $cmdFournie->setFourni(1) ;
         $this->em->persist($cmdFournie) ;
         $this->em->flush() ;
         return 'ok';
       }
       return json_encode( array('errorCode' => 0, 'message' => 'Utilisateur non authentifié') ) ;
+    }
+
+    public function modifierArticle($params)
+    {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if (!empty($correspSession)){
+        $article = json_decode($params->article); 
+        $articleToUpdate = $this->em->getRepository('WSServerBundle:Articles')->findOneBy(array('id' => $article->id));
+        $articleToUpdate->setDesignation($article->designation) ;
+        $articleToUpdate->setDescription($article->description) ;
+        $articleToUpdate->setPrix($article->prix) ;
+        $articleToUpdate->setImgLink($article->nomImg) ;
+        $this->em->persist($articleToUpdate) ;
+        $this->em->flush() ;
+        return 'ok';
+      }else
+        return 'bad move';
+    }
+
+
+    public function supprimerArticle($params)
+    {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if (!empty($correspSession)){
+        $article = json_decode($params->article); 
+        $articleToUpdate = $this->em->getRepository('WSServerBundle:Articles')->findOneBy(array('id' => $article->id));
+        $this->em->remove($articleToUpdate) ;
+        $this->em->flush() ;
+        return 'ok';
+      }else
+        return 'bad move';
+
     }
 
 

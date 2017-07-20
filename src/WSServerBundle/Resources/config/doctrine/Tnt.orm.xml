@@ -20,5 +20,11 @@
       </options>
     </field>
     <field name="dateOperation" type="datetime" column="date_operation" nullable="false"/>
+    <field name="echeance" type="date" column="echeance" nullable="false"/>
+    <field name="dependsOn" type="integer" column="depends_on" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>

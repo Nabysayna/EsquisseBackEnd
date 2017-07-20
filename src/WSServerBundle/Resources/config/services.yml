@@ -52,6 +52,13 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+
+      test_server_crm:
+        class: WSServerBundle\Services\CrmService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
+          
       test_server_mailing:
         class: WSServerBundle\Services\MailingService
         arguments:

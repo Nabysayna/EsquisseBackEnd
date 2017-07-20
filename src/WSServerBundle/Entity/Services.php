@@ -29,6 +29,20 @@ class Services
     /**
      * @var integer
      *
+     * @ORM\Column(name="idpdv", type="integer", nullable=false)
+     */
+    private $idpdv;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     */
+    private $dateAjout;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -83,6 +97,54 @@ class Services
     public function getIdadminpdv()
     {
         return $this->idadminpdv;
+    }
+
+    /**
+     * Set idpdv
+     *
+     * @param integer $idpdv
+     *
+     * @return Services
+     */
+    public function setIdpdv($idpdv)
+    {
+        $this->idpdv = $idpdv;
+
+        return $this;
+    }
+
+    /**
+     * Get idpdv
+     *
+     * @return integer
+     */
+    public function getIdpdv()
+    {
+        return $this->idpdv;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Services
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
     }
 
     /**

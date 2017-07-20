@@ -93,6 +93,14 @@ class ComptapdvController extends Controller
         return new JsonResponse(array('result' => $result));
     }
 
+    public function listeventeAction()
+    {
+        $params = array('token' => 'assaneka', 'type' => "test");
+        $result = $this->client->call('listevente', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
     public function listechargeAction()
     {
         $params = array('token' => 'assaneka', 'type' => "test");

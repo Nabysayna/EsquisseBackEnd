@@ -4,9 +4,9 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="idCommande" type="integer" column="id_commande" nullable="false">
+    <field name="type" type="string" column="type" length="255" nullable="false">
       <options>
-        <option name="unsigned"/>
+        <option name="fixed"/>
       </options>
     </field>
     <field name="montant" type="integer" column="montant" nullable="false">
@@ -19,6 +19,21 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="dependOn" type="integer" column="depend_on" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="infovente" type="string" column="infovente" length="500" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="dateVente" type="datetime" column="date_vente" nullable="false"/>
+    <field name="idClient" type="integer" column="id_client" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>
