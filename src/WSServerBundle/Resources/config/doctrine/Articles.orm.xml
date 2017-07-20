@@ -14,6 +14,16 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="idcategorie" type="integer" column="idcategorie" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="categorie" type="string" column="categorie" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="description" type="string" column="description" length="40" nullable="false">
       <options>
         <option name="fixed"/>
@@ -35,16 +45,6 @@
       </options>
     </field>
     <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
-    <field name="idcategorie" type="integer" column="idcategorie" nullable="true">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="categorie" type="string" column="categorie" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
     <field name="avis" type="integer" column="avis" nullable="true">
       <options>
         <option name="unsigned"/>

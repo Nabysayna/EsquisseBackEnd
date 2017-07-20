@@ -19,6 +19,26 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="idclient" type="integer" column="idclient" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="prenomclient" type="string" column="prenomclient" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="nomclient" type="string" column="nomclient" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="telephoneclient" type="string" column="telephoneclient" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="quantite" type="integer" column="quantite" nullable="false">
       <options>
         <option name="unsigned"/>
@@ -40,37 +60,7 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="idclient" type="integer" column="idclient" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="prenomclient" type="string" column="prenomclient" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="nomclient" type="string" column="nomclient" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="telephoneclient" type="string" column="telephoneclient" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
     <field name="codepayement" type="integer" column="codepayement" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="dependsOn" type="integer" column="depends_on" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="idUser" type="integer" column="id_user" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>

@@ -16,7 +16,7 @@
 <xsd:element name="type" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
-<xsd:complexType name="InDataServicePdv">
+<xsd:complexType name="InDataPdv">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="type" type="xsd:string"/>
@@ -129,13 +129,13 @@
 <part name="return" type="xsd:string"/>
 </message>
 <message name="listechargeRequest">
-<part name="params" type="tns:InData"/>
+<part name="params" type="tns:InDataPdv"/>
 </message>
 <message name="listechargeResponse">
 <part name="return" type="xsd:string"/>
 </message>
 <message name="listeserviceRequest">
-<part name="params" type="tns:InDataServicePdv"/>
+<part name="params" type="tns:InDataPdv"/>
 </message>
 <message name="listeserviceResponse">
 <part name="return" type="xsd:string"/>
@@ -147,7 +147,7 @@
 <part name="return" type="xsd:string"/>
 </message>
 <message name="listerevenuRequest">
-<part name="params" type="tns:InData"/>
+<part name="params" type="tns:InDataPdv"/>
 </message>
 <message name="listerevenuResponse">
 <part name="return" type="xsd:string"/>
@@ -183,7 +183,7 @@
 <part name="return" type="xsd:string"/>
 </message>
 <message name="listeventeRequest">
-<part name="params" type="tns:InData"/>
+<part name="params" type="tns:InDataPdv"/>
 </message>
 <message name="listeventeResponse">
 <part name="return" type="xsd:string"/>

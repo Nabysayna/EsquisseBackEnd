@@ -34,11 +34,11 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
     <field name="cautionconsomme" type="integer" column="cautionconsomme" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
   </entity>
 </doctrine-mapping>

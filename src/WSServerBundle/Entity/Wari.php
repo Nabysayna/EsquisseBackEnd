@@ -2,35 +2,53 @@
 
 namespace WSServerBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Wari
+ *
+ * @ORM\Table(name="wari")
+ * @ORM\Entity
  */
 class Wari
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="idUser", type="integer", nullable=false)
      */
     private $iduser;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="typeOperation", type="string", length=255, nullable=false)
      */
     private $typeoperation;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="infosOperation", type="string", length=255, nullable=false)
      */
     private $infosoperation;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date_operation", type="datetime", nullable=false)
      */
     private $dateOperation;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
     /**

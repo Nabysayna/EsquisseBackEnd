@@ -30,10 +30,5 @@
       </options>
     </field>
     <field name="dateVente" type="datetime" column="date_vente" nullable="false"/>
-    <field name="idClient" type="integer" column="id_client" nullable="false">
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
   </entity>
 </doctrine-mapping>
