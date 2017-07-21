@@ -124,7 +124,7 @@
 
     <service name="auth">
         <port name="authPort" binding="tns:authBinding">
-            <soap:address location="http://localhost/EsquisseBackEnd/web/invest/logging" />
+            <soap:address location="http://localhost:8888/EsquisseBackEnd/web/invest/logging" />
         </port>
     </service>
 </definitions>

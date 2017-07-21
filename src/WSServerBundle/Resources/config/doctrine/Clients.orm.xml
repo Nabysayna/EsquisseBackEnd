@@ -40,7 +40,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="dateAjout" type="date" column="date_ajout" nullable="true"/>
+    <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
     <field name="nbreOperation" type="integer" column="nbre_operation" nullable="true">
       <options>
         <option name="unsigned"/>

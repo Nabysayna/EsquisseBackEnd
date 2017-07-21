@@ -11,12 +11,12 @@
     </field>
     <field name="latitude" type="float" column="latitude" precision="10" scale="0" nullable="false"/>
     <field name="longitude" type="float" column="longitude" precision="10" scale="0" nullable="false"/>
-    <field name="idregion" type="integer" column="idregion" nullable="false">
+    <field name="iddepartement" type="integer" column="iddepartement" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="region" type="string" column="region" length="50" nullable="false">
+    <field name="departement" type="string" column="departement" length="50" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
