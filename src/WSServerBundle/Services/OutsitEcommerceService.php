@@ -60,18 +60,30 @@ class OutsitEcommerceService
     function listerzoneecomoutsite($params)
     {
       $query = $this->em->createQuery("SELECT  
-        u.zone,
-        COUNT(u.idUser) AS nbre
+        a.categorie,
         FROM 
-        WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u 
-        WHERE 
-        a.idUser=u.idUser
-        GROUP BY u.zone
+        WSServerBundle\Entity\Articles a 
       ");
       $results = $query->getArrayResult();
       
       return ''. json_encode($results);
     }
+
+    // function listerzoneecomoutsite($params)
+    // {
+    //   $query = $this->em->createQuery("SELECT  
+    //     sz.zone,
+    //     COUNT(sz.id) AS nbre
+    //     FROM 
+    //     WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u, WSServerBundle\Entity\Souszones sz 
+    //     WHERE 
+    //     a.idUser=u.idUser and u.idsousZone=sz.id
+    //     GROUP BY sz.zone
+    //   ");
+    //   $results = $query->getArrayResult();
+      
+    //   return ''. json_encode($results);
+    // }
 
     function ajoutavisecomoutsite($params)
     {

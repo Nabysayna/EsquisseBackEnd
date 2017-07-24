@@ -368,3 +368,7 @@ ws_client_crm_suivicommande:
 ws_client_comptapdv_listevente:
     path:     /comptapdv/listevente
     defaults: { _controller: WSClientBundle:Comptapdv:listevente }
+
+ws_client_comptapdv_gestionreporting:
+    path:     /gestionreporting/gestionreporting
+    defaults: { _controller: WSClientBundle:Gestionreporting:gestionreporting }

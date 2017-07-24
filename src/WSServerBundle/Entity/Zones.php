@@ -187,4 +187,62 @@ class Zones
     {
         return $this->id;
     }
+    /**
+     * @var integer
+     */
+    private $iddepartement;
+
+    /**
+     * @var string
+     */
+    private $departement;
+
+
+    /**
+     * Set iddepartement
+     *
+     * @param integer $iddepartement
+     *
+     * @return Zones
+     */
+    public function setIddepartement($iddepartement)
+    {
+        $this->iddepartement = $iddepartement;
+
+        return $this;
+    }
+
+    /**
+     * Get iddepartement
+     *
+     * @return integer
+     */
+    public function getIddepartement()
+    {
+        return $this->iddepartement;
+    }
+
+    /**
+     * Set departement
+     *
+     * @param string $departement
+     *
+     * @return Zones
+     */
+    public function setDepartement($departement)
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    /**
+     * Get departement
+     *
+     * @return string
+     */
+    public function getDepartement()
+    {
+        return $this->departement;
+    }
 }

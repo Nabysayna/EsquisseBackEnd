@@ -58,6 +58,11 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_gestionreporting:
+        class: WSServerBundle\Services\GestionreportingService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
           
       test_server_mailing:
         class: WSServerBundle\Services\MailingService
