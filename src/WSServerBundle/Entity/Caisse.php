@@ -43,6 +43,13 @@ class Caisse
     /**
      * @var integer
      *
+     * @ORM\Column(name="etat", type="integer", nullable=false)
+     */
+    private $etat = '0';
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -145,6 +152,30 @@ class Caisse
     public function getSoldeFermet()
     {
         return $this->soldeFermet;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param integer $etat
+     *
+     * @return Caisse
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return integer
+     */
+    public function getEtat()
+    {
+        return $this->etat;
     }
 
     /**

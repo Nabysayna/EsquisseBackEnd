@@ -15,7 +15,6 @@
       </options>
     </field>
     <field name="idcategorie" type="integer" column="idcategorie" nullable="true">
-<<<<<<< HEAD
       <options>
         <option name="unsigned"/>
       </options>
@@ -26,18 +25,6 @@
       </options>
     </field>
     <field name="description" type="string" column="description" length="40" nullable="false">
-=======
->>>>>>> 6716e1b6d129c6130dfe4197678a5f7094069ca9
-      <options>
-        <option name="unsigned"/>
-      </options>
-    </field>
-    <field name="categorie" type="string" column="categorie" length="50" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
-    <field name="description" type="string" column="description" length="70" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
@@ -47,8 +34,6 @@
         <option name="unsigned"/>
       </options>
     </field>
-<<<<<<< HEAD
-=======
     <field name="stock" type="integer" column="stock" nullable="false">
       <options>
         <option name="unsigned"/>
@@ -59,7 +44,6 @@
         <option name="fixed"/>
       </options>
     </field>
->>>>>>> 6716e1b6d129c6130dfe4197678a5f7094069ca9
     <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
     <field name="avis" type="integer" column="avis" nullable="true">
       <options>

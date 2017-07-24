@@ -217,26 +217,6 @@ class Ventes
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-
-    /**
-     * @var integer
-     */
-    private $idClient;
-
-
-    /**
->>>>>>> 6716e1b6d129c6130dfe4197678a5f7094069ca9
      * Set idClient
      *
      * @param integer $idClient

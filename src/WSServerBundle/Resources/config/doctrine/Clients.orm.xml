@@ -40,13 +40,8 @@
         <option name="fixed"/>
       </options>
     </field>
-<<<<<<< HEAD
     <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
     <field name="nbreOperation" type="integer" column="nbre_operation" nullable="false">
-=======
-    <field name="dateAjout" type="date" column="date_ajout" nullable="true"/>
-    <field name="nbreOperation" type="integer" column="nbre_operation" nullable="true">
->>>>>>> 6716e1b6d129c6130dfe4197678a5f7094069ca9
       <options>
         <option name="unsigned"/>
         <option name="default">1</option>

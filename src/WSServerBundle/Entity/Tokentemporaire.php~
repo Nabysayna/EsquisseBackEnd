@@ -1,0 +1,54 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Tokentemporaire
+ *
+ * @ORM\Table(name="tokentemporaire")
+ * @ORM\Entity
+ */
+class Tokentemporaire
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="accesslevel", type="integer", nullable=false)
+     */
+    private $accesslevel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tokentemporaire", type="string", length=30, nullable=false)
+     */
+    private $tokentemporaire;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="countingPoint", type="datetime", nullable=false)
+     */
+    private $countingpoint;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

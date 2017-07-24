@@ -1,0 +1,47 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fidelisation
+ *
+ * @ORM\Table(name="fidelisation")
+ * @ORM\Entity
+ */
+class Fidelisation
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_operation", type="string", length=40, nullable=false)
+     */
+    private $typeOperation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="montant", type="integer", nullable=false)
+     */
+    private $montant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbre_point", type="integer", nullable=false)
+     */
+    private $nbrePoint;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

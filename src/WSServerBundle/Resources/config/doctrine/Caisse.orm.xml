@@ -24,5 +24,11 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="etat" type="integer" column="etat" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>
