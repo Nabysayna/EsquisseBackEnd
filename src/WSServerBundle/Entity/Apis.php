@@ -55,18 +55,18 @@ class Apis
     private $caution;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="cautionconsomme", type="integer", nullable=false)
-     */
-    private $cautionconsomme;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
      */
     private $dateAjout;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cautionconsomme", type="integer", nullable=false)
+     */
+    private $cautionconsomme;
 
     /**
      * @var integer
@@ -224,30 +224,6 @@ class Apis
     }
 
     /**
-     * Set cautionconsomme
-     *
-     * @param integer $cautionconsomme
-     *
-     * @return Apis
-     */
-    public function setCautionconsomme($cautionconsomme)
-    {
-        $this->cautionconsomme = $cautionconsomme;
-
-        return $this;
-    }
-
-    /**
-     * Get cautionconsomme
-     *
-     * @return integer
-     */
-    public function getCautionconsomme()
-    {
-        return $this->cautionconsomme;
-    }
-
-    /**
      * Set dateAjout
      *
      * @param \DateTime $dateAjout
@@ -269,6 +245,30 @@ class Apis
     public function getDateAjout()
     {
         return $this->dateAjout;
+    }
+
+    /**
+     * Set cautionconsomme
+     *
+     * @param integer $cautionconsomme
+     *
+     * @return Apis
+     */
+    public function setCautionconsomme($cautionconsomme)
+    {
+        $this->cautionconsomme = $cautionconsomme;
+
+        return $this;
+    }
+
+    /**
+     * Get cautionconsomme
+     *
+     * @return integer
+     */
+    public function getCautionconsomme()
+    {
+        return $this->cautionconsomme;
     }
 
     /**

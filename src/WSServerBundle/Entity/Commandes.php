@@ -36,34 +36,6 @@ class Commandes
     /**
      * @var integer
      *
-     * @ORM\Column(name="idclient", type="integer", nullable=false)
-     */
-    private $idclient;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prenomclient", type="string", length=50, nullable=false)
-     */
-    private $prenomclient;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nomclient", type="string", length=50, nullable=false)
-     */
-    private $nomclient;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="telephoneclient", type="string", length=50, nullable=false)
-     */
-    private $telephoneclient;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="quantite", type="integer", nullable=false)
      */
     private $quantite;
@@ -99,9 +71,58 @@ class Commandes
     /**
      * @var integer
      *
+     * @ORM\Column(name="idclient", type="integer", nullable=false)
+     */
+    private $idclient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenomclient", type="string", length=50, nullable=false)
+     */
+    private $prenomclient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomclient", type="string", length=50, nullable=false)
+     */
+    private $nomclient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telephoneclient", type="string", length=50, nullable=false)
+     */
+    private $telephoneclient;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="codepayement", type="integer", nullable=false)
      */
     private $codepayement;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
+     */
+    private $dependsOn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pointderecuperation", type="string", length=50, nullable=false)
+     */
+    private $pointderecuperation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="montantcommande", type="integer", nullable=false)
+     */
+    private $montantcommande;
 
     /**
      * @var integer
@@ -184,102 +205,6 @@ class Commandes
     public function getPourvoyeur()
     {
         return $this->pourvoyeur;
-    }
-
-    /**
-     * Set idclient
-     *
-     * @param integer $idclient
-     *
-     * @return Commandes
-     */
-    public function setIdclient($idclient)
-    {
-        $this->idclient = $idclient;
-
-        return $this;
-    }
-
-    /**
-     * Get idclient
-     *
-     * @return integer
-     */
-    public function getIdclient()
-    {
-        return $this->idclient;
-    }
-
-    /**
-     * Set prenomclient
-     *
-     * @param string $prenomclient
-     *
-     * @return Commandes
-     */
-    public function setPrenomclient($prenomclient)
-    {
-        $this->prenomclient = $prenomclient;
-
-        return $this;
-    }
-
-    /**
-     * Get prenomclient
-     *
-     * @return string
-     */
-    public function getPrenomclient()
-    {
-        return $this->prenomclient;
-    }
-
-    /**
-     * Set nomclient
-     *
-     * @param string $nomclient
-     *
-     * @return Commandes
-     */
-    public function setNomclient($nomclient)
-    {
-        $this->nomclient = $nomclient;
-
-        return $this;
-    }
-
-    /**
-     * Get nomclient
-     *
-     * @return string
-     */
-    public function getNomclient()
-    {
-        return $this->nomclient;
-    }
-
-    /**
-     * Set telephoneclient
-     *
-     * @param string $telephoneclient
-     *
-     * @return Commandes
-     */
-    public function setTelephoneclient($telephoneclient)
-    {
-        $this->telephoneclient = $telephoneclient;
-
-        return $this;
-    }
-
-    /**
-     * Get telephoneclient
-     *
-     * @return string
-     */
-    public function getTelephoneclient()
-    {
-        return $this->telephoneclient;
     }
 
     /**
@@ -403,6 +328,102 @@ class Commandes
     }
 
     /**
+     * Set idclient
+     *
+     * @param integer $idclient
+     *
+     * @return Commandes
+     */
+    public function setIdclient($idclient)
+    {
+        $this->idclient = $idclient;
+
+        return $this;
+    }
+
+    /**
+     * Get idclient
+     *
+     * @return integer
+     */
+    public function getIdclient()
+    {
+        return $this->idclient;
+    }
+
+    /**
+     * Set prenomclient
+     *
+     * @param string $prenomclient
+     *
+     * @return Commandes
+     */
+    public function setPrenomclient($prenomclient)
+    {
+        $this->prenomclient = $prenomclient;
+
+        return $this;
+    }
+
+    /**
+     * Get prenomclient
+     *
+     * @return string
+     */
+    public function getPrenomclient()
+    {
+        return $this->prenomclient;
+    }
+
+    /**
+     * Set nomclient
+     *
+     * @param string $nomclient
+     *
+     * @return Commandes
+     */
+    public function setNomclient($nomclient)
+    {
+        $this->nomclient = $nomclient;
+
+        return $this;
+    }
+
+    /**
+     * Get nomclient
+     *
+     * @return string
+     */
+    public function getNomclient()
+    {
+        return $this->nomclient;
+    }
+
+    /**
+     * Set telephoneclient
+     *
+     * @param string $telephoneclient
+     *
+     * @return Commandes
+     */
+    public function setTelephoneclient($telephoneclient)
+    {
+        $this->telephoneclient = $telephoneclient;
+
+        return $this;
+    }
+
+    /**
+     * Get telephoneclient
+     *
+     * @return string
+     */
+    public function getTelephoneclient()
+    {
+        return $this->telephoneclient;
+    }
+
+    /**
      * Set codepayement
      *
      * @param integer $codepayement
@@ -427,26 +448,6 @@ class Commandes
     }
 
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    /**
-     * @var integer
-     */
-    private $dependsOn;
-
-    /**
-     * @var integer
-     */
-    private $idUser;
-
-
-    /**
      * Set dependsOn
      *
      * @param integer $dependsOn
@@ -469,40 +470,6 @@ class Commandes
     {
         return $this->dependsOn;
     }
-
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Commandes
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-    /**
-     * @var string
-     */
-    private $pointderecuperation;
-
-    /**
-     * @var integer
-     */
-    private $montantcommande;
-
 
     /**
      * Set pointderecuperation
@@ -550,5 +517,15 @@ class Commandes
     public function getMontantcommande()
     {
         return $this->montantcommande;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

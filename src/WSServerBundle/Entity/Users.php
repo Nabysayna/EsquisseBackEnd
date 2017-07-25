@@ -29,6 +29,20 @@ class Users
     /**
      * @var string
      *
+     * @ORM\Column(name="adresse", type="string", length=100, nullable=false)
+     */
+    private $adresse;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telephone", type="bigint", nullable=false)
+     */
+    private $telephone;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="login", type="string", length=50, nullable=false)
      */
     private $login;
@@ -68,21 +82,6 @@ class Users
      */
     private $token;
 
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=100, nullable=false)
-     */
-    private $adresse;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="telephone", type="bigint", nullable=false)
-     */
-    private $telephone;
-
     /**
      * @var integer
      *
@@ -105,6 +104,8 @@ class Users
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idUser;
+
+
 
     /**
      * Set prenom
@@ -152,6 +153,54 @@ class Users
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Users
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set telephone
+     *
+     * @param integer $telephone
+     *
+     * @return Users
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return integer
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
     }
 
     /**
@@ -284,18 +333,7 @@ class Users
     public function setToken($token)
     {
         $this->token = $token;
-    }
 
-    /**
-     * Set adresse
-     *
-     * @param string $adresse
-     *
-     * @return Users
-     */
-    public function setAdresse($adresse)
-    {
-        $this->adresse = $adresse;
         return $this;
     }
 
@@ -307,40 +345,6 @@ class Users
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Get adresse
-     *
-     * @return string
-     */
-    public function getAdresse()
-    {
-        return $this->adresse;
-    }
-
-    /**
-     * Set telephone
-     *
-     * @param integer $telephone
-     *
-     * @return Users
-     */
-    public function setTelephone($telephone)
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
-     * Get telephone
-     *
-     * @return integer
-     */
-    public function getTelephone()
-    {
-        return $this->telephone;
     }
 
     /**
@@ -377,6 +381,7 @@ class Users
     public function setZone($zone)
     {
         $this->zone = $zone;
+
         return $this;
     }
 

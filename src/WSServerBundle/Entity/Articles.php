@@ -27,27 +27,9 @@ class Articles
     private $designation;
 
     /**
-   
-   
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idcategorie", type="integer", nullable=false)
-     */
-    private $idcategorie;
-
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="categorie", type="string", length=50, nullable=false)
-     */
-    private $categorie;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=40, nullable=false)
+     * @ORM\Column(name="description", type="string", length=70, nullable=false)
      */
     private $description;
 
@@ -78,6 +60,20 @@ class Articles
      * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
      */
     private $dateAjout;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idcategorie", type="integer", nullable=true)
+     */
+    private $idcategorie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categorie", type="string", length=50, nullable=false)
+     */
+    private $categorie;
 
     /**
      * @var integer
@@ -150,54 +146,6 @@ class Articles
     public function getDesignation()
     {
         return $this->designation;
-    }
-
-    /**
-     * Set idcategorie
-     *
-     * @param integer $idcategorie
-     *
-     * @return Articles
-     */
-    public function setIdcategorie($idcategorie)
-    {
-        $this->idcategorie = $idcategorie;
-
-        return $this;
-    }
-
-    /**
-     * Get idcategorie
-     *
-     * @return integer
-     */
-    public function getIdcategorie()
-    {
-        return $this->idcategorie;
-    }
-
-    /**
-     * Set categorie
-     *
-     * @param string $categorie
-     *
-     * @return Articles
-     */
-    public function setCategorie($categorie)
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
-    /**
-     * Get categorie
-     *
-     * @return string
-     */
-    public function getCategorie()
-    {
-        return $this->categorie;
     }
 
     /**
@@ -318,6 +266,54 @@ class Articles
     public function getDateAjout()
     {
         return $this->dateAjout;
+    }
+
+    /**
+     * Set idcategorie
+     *
+     * @param integer $idcategorie
+     *
+     * @return Articles
+     */
+    public function setIdcategorie($idcategorie)
+    {
+        $this->idcategorie = $idcategorie;
+
+        return $this;
+    }
+
+    /**
+     * Get idcategorie
+     *
+     * @return integer
+     */
+    public function getIdcategorie()
+    {
+        return $this->idcategorie;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param string $categorie
+     *
+     * @return Articles
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return string
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 
     /**

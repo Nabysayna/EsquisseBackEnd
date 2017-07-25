@@ -19,6 +19,7 @@
         <option name="fixed"/>
       </options>
     </field>
+    <field name="dateAjout" type="date" column="date_ajout" nullable="true"/>
     <field name="email" type="string" column="email" length="50" nullable="true">
       <options>
         <option name="fixed"/>
@@ -40,7 +41,6 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="dateAjout" type="date" column="date_ajout" nullable="true"/>
     <field name="nbreOperation" type="integer" column="nbre_operation" nullable="true">
       <options>
         <option name="unsigned"/>

@@ -14,7 +14,6 @@
         <option name="unsigned"/>
       </options>
     </field>
-
     <field name="idpdv" type="integer" column="idpdv" nullable="false">
       <options>
         <option name="unsigned"/>
@@ -26,6 +25,5 @@
       </options>
     </field>
     <field name="dateAjout" type="datetime" column="date_ajout" nullable="false"/>
-
   </entity>
 </doctrine-mapping>

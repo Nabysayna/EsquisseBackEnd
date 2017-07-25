@@ -2,35 +2,53 @@
 
 namespace WSServerBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Courses
+ *
+ * @ORM\Table(name="courses")
+ * @ORM\Entity
  */
 class Courses
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_coursier", type="integer", nullable=false)
      */
     private $idCoursier;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_cmd", type="integer", nullable=false)
      */
     private $idCmd;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="date_course", type="datetime", nullable=false)
      */
     private $dateCourse;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="etat", type="integer", nullable=false)
      */
     private $etat;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
     /**

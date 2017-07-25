@@ -41,6 +41,20 @@ class Tnt
     private $dateOperation;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="echeance", type="date", nullable=false)
+     */
+    private $echeance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
+     */
+    private $dependsOn;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -148,21 +162,6 @@ class Tnt
     }
 
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    /**
-     * @var \DateTime
-     */
-    private $echeance;
-
-
-    /**
      * Set echeance
      *
      * @param \DateTime $echeance
@@ -185,11 +184,6 @@ class Tnt
     {
         return $this->echeance;
     }
-    /**
-     * @var integer
-     */
-    private $dependsOn;
-
 
     /**
      * Set dependsOn
@@ -213,5 +207,15 @@ class Tnt
     public function getDependsOn()
     {
         return $this->dependsOn;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

@@ -34,6 +34,13 @@ class Clients
     private $telephone;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="date", nullable=true)
+     */
+    private $dateAjout;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=50, nullable=true)
@@ -69,11 +76,32 @@ class Clients
     private $adresse;
 
     /**
-     * @var \Date
+     * @var integer
      *
-     * @ORM\Column(name="date_ajout", type="date", nullable=true)
+     * @ORM\Column(name="nbre_operation", type="integer", nullable=true)
      */
-    private $dateAjout;
+    private $nbreOperation = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="fidelite", type="integer", nullable=false)
+     */
+    private $fidelite = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
+     */
+    private $dependsOn;
 
     /**
      * @var integer
@@ -156,6 +184,30 @@ class Clients
     public function getTelephone()
     {
         return $this->telephone;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Clients
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
     }
 
     /**
@@ -279,60 +331,6 @@ class Clients
     }
 
     /**
-     * Set dateAjout
-     *
-     * @param \Date $dateAjout
-     *
-     * @return Clients
-     */
-    public function setDateAjout($dateAjout)
-    {
-        $this->dateAjout = $dateAjout;
-
-        return $this;
-    }
-
-    /**
-     * Get dateAjout
-     *
-     * @return \Date
-     */
-    public function getDateAjout()
-    {
-        return $this->dateAjout;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    /**
-     * @var integer
-     */
-    private $nbreOperation = '1';
-
-    /**
-     * @var integer
-     */
-    private $fidelite = '0';
-
-    /**
-     * @var integer
-     */
-    private $idUser;
-
-    /**
-     * @var integer
-     */
-    private $dependsOn;
-
-
-    /**
      * Set nbreOperation
      *
      * @param integer $nbreOperation
@@ -426,5 +424,15 @@ class Clients
     public function getDependsOn()
     {
         return $this->dependsOn;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

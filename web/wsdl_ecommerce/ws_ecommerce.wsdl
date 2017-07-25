@@ -151,6 +151,13 @@
 <part name="return" type="xsd:string"/>
 </message>
 
+<message name="prendreCommandeRequest">
+<part name="params" type="tns:InModifCommande"/>
+</message>
+<message name="prendreCommandeResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
 
 <portType name="ecommercePortType">
 <operation name="ajoutarticle">
@@ -210,9 +217,15 @@
 </operation>
 
 <operation name="supprimerArticle">
-<documentation>Method ECOMMERCE Modifier articles</documentation>
+<documentation>Method ECOMMERCE Supprimer article</documentation>
 <input message="tns:supprimerArticleRequest"/>
 <output message="tns:supprimerArticleResponse"/>
+</operation>
+
+<operation name="prendreCommande">
+<documentation>Method ECOMMERCE Prendre Commande</documentation>
+<input message="tns:prendreCommandeRequest"/>
+<output message="tns:prendreCommandeResponse"/>
 </operation>
 
 
@@ -323,6 +336,17 @@
 <soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
+
+<operation name="prendreCommande">
+<soap:operation soapAction="urn:ecommercewsdl#prendreCommande" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
 
 
 </binding>

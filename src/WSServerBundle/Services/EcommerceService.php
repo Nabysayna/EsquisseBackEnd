@@ -290,7 +290,6 @@ class EcommerceService
         return 'bad move';
     }
 
-
     public function supprimerArticle($params)
     {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
@@ -303,9 +302,45 @@ class EcommerceService
         return 'ok';
       }else
         return 'bad move';
-
     }
 
+    public function prendreCommande($params)
+    {
+        $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+        $commande = new Commandes();
+        if (!empty($correspSession)){
+
+          $commandetmp = $params->article; 
+          $tmpCmd = $this->em->getRepository('WSServerBundle:Tmpcommande')->findOneBy(array('codeCommande' => $commandetmp));  
+          $memoire = json_encode($tmpCmd) ;   
+
+          if (!empty($tmpCmd)){    
+            $commande->setIdArticle( $tmpCmd->getIdArticle() );
+            $commande->setCommanditaire( $correspSession->getIdUser() );
+            $commande->setPourvoyeur( $tmpCmd->getPourvoyeur() );
+            $commande->setQuantite( $tmpCmd->getQte() );
+            $commande->setIdclient( $tmpCmd->getIdClient() );  
+            $commande->setPrenomclient( $tmpCmd->getPrenomclient() );  
+            $commande->setNomclient( $tmpCmd->getNomclient() );  
+            $commande->setTelephoneclient( $tmpCmd->getTelclient() );
+            $commande->setFourni(0);
+            $commande->setLivre(0);
+            $commande->setRecu(0);
+            $commande->setCodepayement(1234);
+            $commande->setDependsOn( $correspSession->getDependsOn() );
+            $commande->setPointderecuperation("Dakar");
+            $commande->setMontantcommande( $tmpCmd->getMntcmd() ) ;
+            $commande->setDateCommande(new \Datetime());
+
+            $this->em->persist($commande) ;
+            $this->em->remove($tmpCmd) ;
+            $this->em->flush() ;
+            return json_encode((array)$commande) ;
+          }else
+            return 'No row found matching the given code.';
+      }else
+        return 'bad move';
+    }
 
     
 }
