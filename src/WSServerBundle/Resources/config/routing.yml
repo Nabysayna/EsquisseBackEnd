@@ -43,6 +43,10 @@ ws_server_crm:
     path:     /crm
     defaults: { _controller: WSServerBundle:Crm:crm }
 
+ws_server_gestionreporting:
+    path:     /gestionreporting
+    defaults: { _controller: WSServerBundle:Gestionreporting:gestionreporting }
+
 
 
 

@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="operations")
  * @ORM\Entity
+/**
+ * Operations
  */
 class Operations
 {
@@ -62,7 +64,6 @@ class Operations
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
 
 
     /**
