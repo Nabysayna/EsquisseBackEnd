@@ -33,7 +33,7 @@
 </binding>
 <service name="gestreport">
 <port name="gestreportPort" binding="tns:gestreportBinding">
-<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/gestionreporting"/>
+<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/gestionreporting"/>
 </port>
 </service>
 </definitions>
