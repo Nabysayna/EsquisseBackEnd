@@ -28,6 +28,30 @@ class ComptapdvService
       }
     }
     
+    public function etatcaisse($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT cais FROM WSServerBundle\Entity\Caisse cais WHERE cais.idgerantpdv=:idgerantpdv")->setParameter('idgerantpdv', $correspSession->getIdUser());
+        $results = $query->getArrayResult();
+        return ''. json_encode(array('errorCode' => 1, 'response' => $results[0]));
+      }
+    }
+
+    public function validerapprovisionn($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $caissepdv = $this->em->getRepository('WSServerBundle:Caisse')->find($params->idcaisse);
+        $caissepdv->setEtat(1);
+        $this->em->flush();   
+        return ''. json_encode(array('errorCode' => 1, 'response' => "ok"));
+      }
+    }
+
     public function approvisionner($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 

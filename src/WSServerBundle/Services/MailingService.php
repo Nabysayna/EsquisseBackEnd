@@ -28,7 +28,7 @@ class MailingService
 	    $message = \Swift_Message::newInstance() ;
         $message->setContentType('text/html') ;
         $message->setSubject('Notification E-PDV') ;
-        $message->setFrom('naby.hikam@gmail.com') ;
+        $message->setFrom('assane.ka@bbstvnet.com') ;
         $message->setTo($to) ;
         $message->setBody("<h3>".$content."!</h3>");
         $this->mailer->send($message);

@@ -20,6 +20,13 @@ class Tmpcommande
     private $idArticle;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="designation", type="string", length=30, nullable=false)
+     */
+    private $designation;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="qte", type="integer", nullable=false)
@@ -41,11 +48,46 @@ class Tmpcommande
     private $idClient;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="code_commande", type="integer", nullable=false)
+     * @ORM\Column(name="code_commande", type="string", length=20, nullable=false)
      */
     private $codeCommande;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telclient", type="string", length=50, nullable=false)
+     */
+    private $telclient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenomclient", type="string", length=50, nullable=false)
+     */
+    private $prenomclient;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomclient", type="string", length=50, nullable=false)
+     */
+    private $nomclient;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mntcmd", type="integer", nullable=false)
+     */
+    private $mntcmd;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
+     */
+    private $pourvoyeur;
 
     /**
      * @var integer
@@ -157,7 +199,7 @@ class Tmpcommande
     /**
      * Set codeCommande
      *
-     * @param integer $codeCommande
+     * @param string $codeCommande
      *
      * @return Tmpcommande
      */
@@ -171,11 +213,131 @@ class Tmpcommande
     /**
      * Get codeCommande
      *
-     * @return integer
+     * @return string
      */
     public function getCodeCommande()
     {
         return $this->codeCommande;
+    }
+
+    /**
+     * Set telclient
+     *
+     * @param string $telclient
+     *
+     * @return Tmpcommande
+     */
+    public function setTelclient($telclient)
+    {
+        $this->telclient = $telclient;
+
+        return $this;
+    }
+
+    /**
+     * Get telclient
+     *
+     * @return string
+     */
+    public function getTelclient()
+    {
+        return $this->telclient;
+    }
+
+    /**
+     * Set prenomclient
+     *
+     * @param string $prenomclient
+     *
+     * @return Tmpcommande
+     */
+    public function setPrenomclient($prenomclient)
+    {
+        $this->prenomclient = $prenomclient;
+
+        return $this;
+    }
+
+    /**
+     * Get prenomclient
+     *
+     * @return string
+     */
+    public function getPrenomclient()
+    {
+        return $this->prenomclient;
+    }
+
+    /**
+     * Set nomclient
+     *
+     * @param string $nomclient
+     *
+     * @return Tmpcommande
+     */
+    public function setNomclient($nomclient)
+    {
+        $this->nomclient = $nomclient;
+
+        return $this;
+    }
+
+    /**
+     * Get nomclient
+     *
+     * @return string
+     */
+    public function getNomclient()
+    {
+        return $this->nomclient;
+    }
+
+    /**
+     * Set mntcmd
+     *
+     * @param integer $mntcmd
+     *
+     * @return Tmpcommande
+     */
+    public function setMntcmd($mntcmd)
+    {
+        $this->mntcmd = $mntcmd;
+
+        return $this;
+    }
+
+    /**
+     * Get mntcmd
+     *
+     * @return integer
+     */
+    public function getMntcmd()
+    {
+        return $this->mntcmd;
+    }
+
+    /**
+     * Set pourvoyeur
+     *
+     * @param integer $pourvoyeur
+     *
+     * @return Tmpcommande
+     */
+    public function setPourvoyeur($pourvoyeur)
+    {
+        $this->pourvoyeur = $pourvoyeur;
+
+        return $this;
+    }
+
+    /**
+     * Get pourvoyeur
+     *
+     * @return integer
+     */
+    public function getPourvoyeur()
+    {
+        return $this->pourvoyeur;
     }
 
     /**
@@ -186,5 +348,29 @@ class Tmpcommande
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set designation
+     *
+     * @param string $designation
+     *
+     * @return Tmpcommande
+     */
+    public function setDesignation($designation)
+    {
+        $this->designation = $designation;
+
+        return $this;
+    }
+
+    /**
+     * Get designation
+     *
+     * @return string
+     */
+    public function getDesignation()
+    {
+        return $this->designation;
     }
 }

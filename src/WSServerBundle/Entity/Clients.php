@@ -71,35 +71,35 @@ class Clients
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=true)
      */
     private $dateAjout;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="nbre_operation", type="integer", nullable=false)
+     * @ORM\Column(name="nbre_operation", type="integer", nullable=true)
      */
-    private $nbreOperation = '1';
+    private $nbreOperation;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="fidelite", type="integer", nullable=false)
+     * @ORM\Column(name="fidelite", type="integer", nullable=true)
      */
-    private $fidelite = '0';
+    private $fidelite;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     * @ORM\Column(name="id_user", type="integer", nullable=true)
      */
     private $idUser;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="depends_on", type="integer", nullable=false)
+     * @ORM\Column(name="depends_on", type="integer", nullable=true)
      */
     private $dependsOn;
 

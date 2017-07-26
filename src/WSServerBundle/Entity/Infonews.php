@@ -20,6 +20,13 @@ class Infonews
     private $email;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateajout", type="datetime", nullable=false)
+     */
+    private $dateajout;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -62,5 +69,29 @@ class Infonews
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set dateajout
+     *
+     * @param \DateTime $dateajout
+     *
+     * @return Infonews
+     */
+    public function setDateajout($dateajout)
+    {
+        $this->dateajout = $dateajout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateajout
+     *
+     * @return \DateTime
+     */
+    public function getDateajout()
+    {
+        return $this->dateajout;
     }
 }

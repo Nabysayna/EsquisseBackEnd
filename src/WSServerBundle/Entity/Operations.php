@@ -64,6 +64,7 @@ class Operations
     private $id;
 
 
+
     /**
      * Set date
      *

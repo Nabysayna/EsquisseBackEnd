@@ -128,79 +128,21 @@ class AdminpdvService
       }
     }
 
-    function consommationdepositservice($params) {
-      $reponse = [
-        array(
-          'service' => 'Tnt',
-          'montantconsomme' => 500000,
-          'commission' => 50000
-        ),
-        array(
-          'service' => 'Post-Cash',
-          'montantconsomme' => 300000,
-          'commission' => 30000
-        ),
-        array(
-          'service' => 'Joni-Joni',
-          'montantconsomme' => 200000,
-          'commission' => 20000
-        ),
-      ];
-
-      return ''. json_encode($reponse);
-    }
-
-    function montanttransfertservice($params) {
-      $reponse = array(
-        'id' => 1,
-        'typeservice' => ['Post-Cash', 'Joni-Joni', 'TNT', 'Expresso-Cash'],
-        'montanttotal' => [900000, 750000, 1350000, 650000]
-      );
-
-      return ''. json_encode($reponse);
-    }
-
     function performancepdv($params) {
-      $reponse = [
-        array(
-          'idpdv' => 4,
-          'fullname' => "Assane KA",
-          'telephone' => 7777123,
-          'nbreoperation' => 123,
-          'montanttotal' => 123000,
-        ),
-        array(
-          'idpdv' => 5,
-          'fullname' => "Bamba GNING",
-          'telephone' => 7777100,
-          'nbreoperation' => 100,
-          'montanttotal' => 100000,
-        ),
-      ];
+        
+        $formatted = array();
+        $pdvs = $this->em->getRepository('WSServerBundle:Users')->findBy(array('dependsOn'=>2));
+        foreach ($pdvs as $pdv) {
+          $formatted[] = [
+            'idpdv' => $pdv->getIdUser(),
+            'fullname' => $pdv->getPrenom()." ".$pdv->getNom(),
+            'telephone' => $pdv->getTelephone(),
+            'nbreoperation' => 123,
+            'montanttotal' => 123000,
+          ];
+        }
+        return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
 
-      return ''. json_encode($reponse);
-    }
-
-    function notifications($params) {
-      $reponse = [
-        array(
-          'id' => 1,
-          'type' => "Nouvelle Reclamation",
-          'datenotification' => "12/3/2020 11:11:11",
-        ),
-        array(
-          'id' => 2,
-          'type' => "Etat deposit",
-          'datenotification' => "12/3/2020 22:11:11",
-        ),
-        array(
-          'id' => 3,
-          'type' => "Nouveau Recouvrement",
-          'datenotification' => "12/3/2020 20:11:11",
-        ),
-      ];
-
-      return ''. json_encode($reponse);
     }
 
     function consommationdepositpdv($params) {
