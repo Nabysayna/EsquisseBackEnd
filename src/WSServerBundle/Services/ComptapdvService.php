@@ -16,41 +16,42 @@ class ComptapdvService
     }
    
     
-    public function listevente($params) {   
-      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
-
-      if(empty($correspSession))
-        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
-      else{      
-        $formatted = array();
-        $exploitationvente = $this->em->getRepository('WSServerBundle:Ventes')->findBy(array('idUser' => 4));
-        foreach ($exploitationvente as $vente) {
-            $infovente = json_decode( $vente->getInfovente() );
-            $formatted[] = [
-               'idpdv' => $vente->getIdUser(),
-               'designation' => $infovente->designation,
-               'stocki' => $infovente->stocki,
-               'vente' => $infovente->stockvente,
-               'stockf' => $infovente->stocki - $infovente->stockvente,
-               'mnt' => $vente->getMontant(),
-              ];
-        }
-
-        return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
-      }
-    }
-
     public function listecaisse($params) {   
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{      
-        $query = $this->em->createQuery("SELECT cais.id, cais.soldeOuvert AS caisse, u.prenom, u.nom, u.idUser AS idpdv FROM WSServerBundle\Entity\Caisse cais, WSServerBundle\Entity\Users u WHERE cais.idadminpdv=3 and cais.idgerantpdv=u.idUser");
+        $query = $this->em->createQuery("SELECT cais.id, cais.soldeOuvert AS caisse, u.prenom, u.nom, u.idUser AS idpdv FROM WSServerBundle\Entity\Caisse cais, WSServerBundle\Entity\Users u WHERE cais.idadminpdv=:idadminpdv and cais.idgerantpdv=u.idUser")->setParameter('idadminpdv', $correspSession->getIdUser());
         $results = $query->getArrayResult();
         return ''. json_encode(array('errorCode' => 1, 'response' => $results));
       }
     }
+    
+    public function etatcaisse($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT cais FROM WSServerBundle\Entity\Caisse cais WHERE cais.idgerantpdv=:idgerantpdv")->setParameter('idgerantpdv', $correspSession->getIdUser());
+        $results = $query->getArrayResult();
+        return ''. json_encode(array('errorCode' => 1, 'response' => $results[0]));
+      }
+    }
+
+    public function validerapprovisionn($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $caissepdv = $this->em->getRepository('WSServerBundle:Caisse')->find($params->idcaisse);
+        $caissepdv->setEtat(1);
+        $this->em->flush();   
+        return ''. json_encode(array('errorCode' => 1, 'response' => "ok"));
+      }
+    }
+
     public function approvisionner($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
@@ -62,6 +63,18 @@ class ComptapdvService
         $caissepdv->setSoldeOuvert($newsolde);
         $this->em->flush();   
         return ''. json_encode(array('errorCode' => 1, 'response' => "ok"));
+      }
+    }
+
+    public function listecharge($params) {   
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $query = $this->em->createQuery("SELECT charg FROM WSServerBundle\Entity\Charges charg WHERE charg.iduser=:idpdv")->setParameter('idpdv', $params->idpdv);
+        $results = $query->getArrayResult();
+        return ''. json_encode(array('errorCode' => 1, 'response' => $results));
       }
     }
 
@@ -85,18 +98,6 @@ class ComptapdvService
       }
     }
     
-    public function listecharge($params) {   
-      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
-
-      if(empty($correspSession))
-        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
-      else{      
-        $query = $this->em->createQuery("SELECT charg FROM WSServerBundle\Entity\Charges charg");
-        $results = $query->getArrayResult();
-        return ''. json_encode(array('errorCode' => 1, 'response' => $results));
-      }
-    }
-
     public function listerevenu($params) {   
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
@@ -104,7 +105,7 @@ class ComptapdvService
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{      
         $formatted = array();
-        $exploitationvente = $this->em->getRepository('WSServerBundle:Ventes')->findBy(array('idUser' => 4));
+        $exploitationvente = $this->em->getRepository('WSServerBundle:Ventes')->findBy( array('idUser' => $params->idpdv) );
         foreach ($exploitationvente as $vente) {
             $infovente = json_decode( $vente->getInfovente() );
             $formatted[] = [
@@ -112,6 +113,30 @@ class ComptapdvService
                'libelle' => $infovente->designation,
                'montant' => $vente->getMontant(),
                'date' => $vente->getDateVente(),
+              ];
+        }
+
+        return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+      }
+    }
+
+    public function listevente($params) {   
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $formatted = array();
+        $exploitationvente = $this->em->getRepository('WSServerBundle:Ventes')->findBy(array('idUser' => $params->idpdv));
+        foreach ($exploitationvente as $vente) {
+            $infovente = json_decode( $vente->getInfovente() );
+            $formatted[] = [
+               'idpdv' => $vente->getIdUser(),
+               'designation' => $infovente->designation,
+               'stocki' => $infovente->stocki,
+               'vente' => $infovente->stockvente,
+               'stockf' => $infovente->stocki - $infovente->stockvente,
+               'mnt' => $vente->getMontant(),
               ];
         }
 

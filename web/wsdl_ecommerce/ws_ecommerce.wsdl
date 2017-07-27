@@ -158,6 +158,13 @@
 <part name="return" type="xsd:string"/>
 </message>
 
+<message name="listerCategorieRequest">
+<part name="params" type="tns:InListerVente"/>
+</message>
+<message name="listerCategorieResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
 
 <portType name="ecommercePortType">
 <operation name="ajoutarticle">
@@ -226,6 +233,12 @@
 <documentation>Method ECOMMERCE Prendre Commande</documentation>
 <input message="tns:prendreCommandeRequest"/>
 <output message="tns:prendreCommandeResponse"/>
+</operation>
+
+<operation name="listerCategorie">
+<documentation>Method ECOMMERCE Lister Categories</documentation>
+<input message="tns:listerCategorieRequest"/>
+<output message="tns:listerCategorieResponse"/>
 </operation>
 
 
@@ -348,10 +361,21 @@
 </operation>
 
 
+<operation name="listerCategorie">
+<soap:operation soapAction="urn:ecommercewsdl#listerCategorie" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommercewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
 
 </binding>
 <service name="ecommerce">
 <port name="ecommercePort" binding="tns:ecommerceBinding">
+
 
 <soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/ecommerce"/>
 </port>

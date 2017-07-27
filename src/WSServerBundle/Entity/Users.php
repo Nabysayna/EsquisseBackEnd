@@ -76,25 +76,25 @@ class Users
     private $dateCreation;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="token", type="string", length=255, nullable=true)
-     */
-    private $token;
-
-    /**
      * @var integer
      *
-     * @ORM\Column(name="idzone", type="integer", nullable=true)
+     * @ORM\Column(name="idsous_zone", type="integer", nullable=true)
      */
-    private $idzone;
+    private $idsousZone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=false)
      */
-    private $zone;
+    private $sousZone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=false)
+     */
+    private $token;
 
     /**
      * @var integer
@@ -324,6 +324,54 @@ class Users
     }
 
     /**
+     * Set idsousZone
+     *
+     * @param integer $idsousZone
+     *
+     * @return Users
+     */
+    public function setIdsousZone($idsousZone)
+    {
+        $this->idsousZone = $idsousZone;
+
+        return $this;
+    }
+
+    /**
+     * Get idsousZone
+     *
+     * @return integer
+     */
+    public function getIdsousZone()
+    {
+        return $this->idsousZone;
+    }
+
+    /**
+     * Set sousZone
+     *
+     * @param string $sousZone
+     *
+     * @return Users
+     */
+    public function setSousZone($sousZone)
+    {
+        $this->sousZone = $sousZone;
+
+        return $this;
+    }
+
+    /**
+     * Get sousZone
+     *
+     * @return string
+     */
+    public function getSousZone()
+    {
+        return $this->sousZone;
+    }
+
+    /**
      * Set token
      *
      * @param string $token
@@ -345,54 +393,6 @@ class Users
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Set idzone
-     *
-     * @param integer $idzone
-     *
-     * @return Users
-     */
-    public function setIdzone($idzone)
-    {
-        $this->idzone = $idzone;
-
-        return $this;
-    }
-
-    /**
-     * Get idzone
-     *
-     * @return integer
-     */
-    public function getIdzone()
-    {
-        return $this->idzone;
-    }
-
-    /**
-     * Set zone
-     *
-     * @param string $zone
-     *
-     * @return Users
-     */
-    public function setZone($zone)
-    {
-        $this->zone = $zone;
-
-        return $this;
-    }
-
-    /**
-     * Get zone
-     *
-     * @return string
-     */
-    public function getZone()
-    {
-        return $this->zone;
     }
 
     /**

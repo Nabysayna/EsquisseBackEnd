@@ -21,6 +21,13 @@ class Charges
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="service", type="string", length=255, nullable=false)
+     */
+    private $service;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="montant", type="integer", nullable=false)
@@ -42,6 +49,7 @@ class Charges
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
 
@@ -69,7 +77,29 @@ class Charges
         return $this->libelle;
     }
 
-    
+    /**
+     * Set service
+     *
+     * @param string $service
+     *
+     * @return Charges
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
 
     /**
      * Set montant

@@ -36,16 +36,16 @@ class Zones
     /**
      * @var integer
      *
-     * @ORM\Column(name="idregion", type="integer", nullable=false)
+     * @ORM\Column(name="iddepartement", type="integer", nullable=false)
      */
-    private $idregion;
+    private $iddepartement;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=50, nullable=false)
+     * @ORM\Column(name="departement", type="string", length=50, nullable=false)
      */
-    private $region;
+    private $departement;
 
     /**
      * @var integer
@@ -131,74 +131,6 @@ class Zones
     }
 
     /**
-     * Set idregion
-     *
-     * @param integer $idregion
-     *
-     * @return Zones
-     */
-    public function setIdregion($idregion)
-    {
-        $this->idregion = $idregion;
-
-        return $this;
-    }
-
-    /**
-     * Get idregion
-     *
-     * @return integer
-     */
-    public function getIdregion()
-    {
-        return $this->idregion;
-    }
-
-    /**
-     * Set region
-     *
-     * @param string $region
-     *
-     * @return Zones
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
-    /**
-     * Get region
-     *
-     * @return string
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    /**
-     * @var integer
-     */
-    private $iddepartement;
-
-    /**
-     * @var string
-     */
-    private $departement;
-
-
-    /**
      * Set iddepartement
      *
      * @param integer $iddepartement
@@ -208,6 +140,19 @@ class Zones
     public function setIddepartement($iddepartement)
     {
         $this->iddepartement = $iddepartement;
+        return $this;
+    }
+
+    /**
+     * Set idregion
+     *
+     * @param integer $idregion
+     *
+     * @return Zones
+     */
+    public function setIdregion($idregion)
+    {
+        $this->idregion = $idregion;
 
         return $this;
     }
@@ -232,7 +177,28 @@ class Zones
     public function setDepartement($departement)
     {
         $this->departement = $departement;
+    }
 
+    /**
+     * Get idregion
+     *
+     * @return integer
+     */
+    public function getIdregion()
+    {
+        return $this->idregion;
+    }
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     *
+     * @return Zones
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
         return $this;
     }
 
@@ -244,5 +210,24 @@ class Zones
     public function getDepartement()
     {
         return $this->departement;
+    }
+    /**
+     * Get region
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

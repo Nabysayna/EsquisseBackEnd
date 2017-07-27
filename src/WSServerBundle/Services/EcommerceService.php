@@ -6,6 +6,7 @@ use WSServerBundle\Entity\Articles;
 use WSServerBundle\Entity\Commandes;
 use WSServerBundle\Entity\Ventes;
 use WSServerBundle\Entity\Clients;
+use WSServerBundle\Entity\Categories;
 
 
 class EcommerceService
@@ -126,15 +127,13 @@ class EcommerceService
           if ($params->typeListe=="toReceive"){
             $dbcommandes = $this->em->getRepository('WSServerBundle:Commandes')->findBy(array('commanditaire' => $correspSession->getIdUser(), 'recu'=>0));
             foreach ($dbcommandes as $commande) {
-            $article = $this->em->getRepository('WSServerBundle:Articles')->findOneBy(array('id' => $commande->getIdArticle()));
-
               $formatted[] = [
                  'id' => $commande->getId(),
                  'quantite' => $commande->getQuantite(),
-                 'designation' => $article->getDesignation(),
-                 'prixUnitaire' => $article->getPrix(),
-                 'tel' => $commande->getTel(),
-                 'fullName' => $commande->getFullname(),
+                 'designation' => $commande->getDesignation(),
+                 'montant' => $commande->getMontantcommande(),
+                 'tel' => $commande->getTelephoneclient(),
+                 'fullName' => $commande->getPrenomclient()." ".$commande->getNomclient(),
                  'dateCommande' => $commande->getDateCommande()->format('Y-m-d H:i')
               ];
           }
@@ -149,10 +148,10 @@ class EcommerceService
               $formatted[] = [
                  'id' => $commande->getId(),
                  'quantite' => $commande->getQuantite(),
-                 'designation' => $article->getDesignation(),
-                 'prixUnitaire' => $article->getPrix(),
-                 'tel' => $commande->getTel(),
-                 'fullName' => $commande->getFullname(),
+                 'designation' => $commande->getDesignation(),
+                 'montant' => $commande->getMontantcommande(),
+                 'tel' => $commande->getTelephoneclient(),
+                 'fullName' => $commande->getPrenomclient()." ".$commande->getNomclient(),
                  'dateCommande' => $commande->getDateCommande()->format('Y-m-d H:i')
               ];
             } 
@@ -218,6 +217,21 @@ class EcommerceService
       }
 
       return ''. json_encode($formatted);
+    }
+
+    public function listerCategorie($params){
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+        if (!empty($correspSession)){
+          $categories = $this->em->getRepository('WSServerBundle:Categories')->findAll();            
+          $formatted = [];
+          foreach ($categories as $categorie) {
+              $formatted[] = $categorie->getCategorie() ;
+          }
+          return ''. json_encode($formatted);
+        }
+        else
+          return 'nothing';
     }
 
 
@@ -310,32 +324,38 @@ class EcommerceService
         $commande = new Commandes();
         if (!empty($correspSession)){
 
-          $commandetmp = $params->article; 
+          $commandetmp = explode("#",$params->article)[1]; 
           $tmpCmd = $this->em->getRepository('WSServerBundle:Tmpcommande')->findOneBy(array('codeCommande' => $commandetmp));  
           $memoire = json_encode($tmpCmd) ;   
 
           if (!empty($tmpCmd)){    
-            $commande->setIdArticle( $tmpCmd->getIdArticle() );
-            $commande->setCommanditaire( $correspSession->getIdUser() );
-            $commande->setPourvoyeur( $tmpCmd->getPourvoyeur() );
-            $commande->setQuantite( $tmpCmd->getQte() );
-            $commande->setIdclient( $tmpCmd->getIdClient() );  
-            $commande->setPrenomclient( $tmpCmd->getPrenomclient() );  
-            $commande->setNomclient( $tmpCmd->getNomclient() );  
-            $commande->setTelephoneclient( $tmpCmd->getTelclient() );
-            $commande->setFourni(0);
-            $commande->setLivre(0);
-            $commande->setRecu(0);
-            $commande->setCodepayement(1234);
-            $commande->setDependsOn( $correspSession->getDependsOn() );
-            $commande->setPointderecuperation("Dakar");
-            $commande->setMontantcommande( $tmpCmd->getMntcmd() ) ;
-            $commande->setDateCommande(new \Datetime());
 
-            $this->em->persist($commande) ;
-            $this->em->remove($tmpCmd) ;
-            $this->em->flush() ;
-            return json_encode((array)$commande) ;
+              if(explode("#",$params->article)[0]=="infocmd"){ 
+                return json_encode((array)$tmpCmd) ;
+              }else{
+                $commande->setIdArticle( $tmpCmd->getIdArticle() );
+                $commande->setDesignation( $tmpCmd->getDesignation() );
+                $commande->setCommanditaire( $correspSession->getIdUser() );
+                $commande->setPourvoyeur( $tmpCmd->getPourvoyeur() );
+                $commande->setQuantite( $tmpCmd->getQte() );
+                $commande->setIdclient( $tmpCmd->getIdClient() );  
+                $commande->setPrenomclient( $tmpCmd->getPrenomclient() );  
+                $commande->setNomclient( $tmpCmd->getNomclient() );  
+                $commande->setTelephoneclient( $tmpCmd->getTelclient() );
+                $commande->setFourni(0);
+                $commande->setLivre(0);
+                $commande->setRecu(0);
+                $commande->setCodepayement(1234);
+                $commande->setDependsOn( $correspSession->getDependsOn() );
+                $commande->setPointderecuperation("Dakar");
+                $commande->setMontantcommande( $tmpCmd->getMntcmd() ) ;
+                $commande->setDateCommande(new \Datetime());
+
+                $this->em->persist($commande) ;
+                $this->em->remove($tmpCmd) ;
+                $this->em->flush() ;
+                return json_encode((array)$commande) ;
+            }
           }else
             return 'No row found matching the given code.';
       }else

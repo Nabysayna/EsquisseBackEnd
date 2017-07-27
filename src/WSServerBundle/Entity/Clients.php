@@ -85,21 +85,21 @@ class Clients
     /**
      * @var integer
      *
-     * @ORM\Column(name="fidelite", type="integer", nullable=false)
+     * @ORM\Column(name="fidelite", type="integer", nullable=true)
      */
     private $fidelite = '0';
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     * @ORM\Column(name="id_user", type="integer", nullable=true)
      */
     private $idUser;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="depends_on", type="integer", nullable=false)
+     * @ORM\Column(name="depends_on", type="integer", nullable=true)
      */
     private $dependsOn;
 
@@ -111,6 +111,8 @@ class Clients
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+
 
 
 
