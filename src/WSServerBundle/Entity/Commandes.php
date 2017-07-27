@@ -139,20 +139,6 @@ class Commandes
     private $idUser;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pointderecuperation", type="string", length=50, nullable=false)
-     */
-    private $pointderecuperation;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="montantcommande", type="integer", nullable=false)
-     */
-    private $montantcommande;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -160,6 +146,7 @@ class Commandes
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
 
@@ -476,61 +463,30 @@ class Commandes
     }
 
     /**
-<<<<<<< HEAD
-     * Set dependOn
-=======
      * Set dependsOn
->>>>>>> a9c10fc4487ed4eb1a3ad67e3a35827b260a7ef8
      *
-     * @param integer $dependOn
+     * @param integer $dependsOn
      *
      * @return Commandes
      */
-    public function setDependOn($dependOn)
+    public function setDependsOn($dependsOn)
     {
-        $this->dependOn = $dependOn;
+        $this->dependsOn = $dependsOn;
 
         return $this;
     }
 
     /**
-     * Get dependOn
+     * Get dependsOn
      *
      * @return integer
      */
-    public function getDependOn()
+    public function getDependsOn()
     {
-        return $this->dependOn;
+        return $this->dependsOn;
     }
 
     /**
-<<<<<<< HEAD
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Commandes
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-
-    /**
-=======
->>>>>>> a9c10fc4487ed4eb1a3ad67e3a35827b260a7ef8
      * Set pointderecuperation
      *
      * @param string $pointderecuperation
@@ -576,6 +532,54 @@ class Commandes
     public function getMontantcommande()
     {
         return $this->montantcommande;
+    }
+
+    /**
+     * Set dependOn
+     *
+     * @param integer $dependOn
+     *
+     * @return Commandes
+     */
+    public function setDependOn($dependOn)
+    {
+        $this->dependOn = $dependOn;
+
+        return $this;
+    }
+
+    /**
+     * Get dependOn
+     *
+     * @return integer
+     */
+    public function getDependOn()
+    {
+        return $this->dependOn;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param integer $idUser
+     *
+     * @return Commandes
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
     }
 
     /**

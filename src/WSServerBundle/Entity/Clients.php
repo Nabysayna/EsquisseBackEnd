@@ -76,9 +76,9 @@ class Clients
     private $adresse;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="date_ajout", type="datetime", nullable=true)
+     * @ORM\Column(name="nbreoperation", type="integer", nullable=false)
      */
     private $nbreOperation = '1';
 
@@ -88,34 +88,6 @@ class Clients
      * @ORM\Column(name="fidelite", type="integer", nullable=false)
      */
     private $fidelite = '0';
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_user", type="integer", nullable=false)
-     */
-    private $idUser;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="depends_on", type="integer", nullable=false)
-     */
-    private $dependsOn;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="nbre_operation", type="integer", nullable=true)
-     */
-    private $nbreOperation;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="fidelite", type="integer", nullable=true)
-     */
-    private $fidelite;
 
     /**
      * @var integer
@@ -139,6 +111,8 @@ class Clients
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+
 
 
 
@@ -356,30 +330,6 @@ class Clients
     public function getAdresse()
     {
         return $this->adresse;
-    }
-
-    /**
-     * Set dateAjout
-     *
-     * @param \DateTime $dateAjout
-     *
-     * @return Clients
-     */
-    public function setDateAjout($dateAjout)
-    {
-        $this->dateAjout = $dateAjout;
-
-        return $this;
-    }
-
-    /**
-     * Get dateAjout
-     *
-     * @return \DateTime
-     */
-    public function getDateAjout()
-    {
-        return $this->dateAjout;
     }
 
     /**

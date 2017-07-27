@@ -5,12 +5,12 @@ namespace WSServerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tnt
+ * Postcash
  *
- * @ORM\Table(name="tnt")
+ * @ORM\Table(name="postcash")
  * @ORM\Entity
  */
-class Tnt
+class Postcash
 {
     /**
      * @var integer
@@ -29,7 +29,7 @@ class Tnt
     /**
      * @var string
      *
-     * @ORM\Column(name="infosOperation", type="string", length=255, nullable=false)
+     * @ORM\Column(name="infosOperation", type="string", length=2055, nullable=false)
      */
     private $infosoperation;
 
@@ -39,20 +39,6 @@ class Tnt
      * @ORM\Column(name="date_operation", type="datetime", nullable=false)
      */
     private $dateOperation;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="echeance", type="date", nullable=false)
-     */
-    private $echeance;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="depends_on", type="integer", nullable=false)
-     */
-    private $dependsOn;
 
     /**
      * @var integer
@@ -65,13 +51,12 @@ class Tnt
 
 
 
-
     /**
      * Set iduser
      *
      * @param integer $iduser
      *
-     * @return Tnt
+     * @return Postcash
      */
     public function setIduser($iduser)
     {
@@ -95,7 +80,7 @@ class Tnt
      *
      * @param string $typeoperation
      *
-     * @return Tnt
+     * @return Postcash
      */
     public function setTypeoperation($typeoperation)
     {
@@ -119,7 +104,7 @@ class Tnt
      *
      * @param string $infosoperation
      *
-     * @return Tnt
+     * @return Postcash
      */
     public function setInfosoperation($infosoperation)
     {
@@ -143,7 +128,7 @@ class Tnt
      *
      * @param \DateTime $dateOperation
      *
-     * @return Tnt
+     * @return Postcash
      */
     public function setDateOperation($dateOperation)
     {
@@ -160,54 +145,6 @@ class Tnt
     public function getDateOperation()
     {
         return $this->dateOperation;
-    }
-
-    /**
-     * Set echeance
-     *
-     * @param \DateTime $echeance
-     *
-     * @return Tnt
-     */
-    public function setEcheance($echeance)
-    {
-        $this->echeance = $echeance;
-
-        return $this;
-    }
-
-    /**
-     * Get echeance
-     *
-     * @return \DateTime
-     */
-    public function getEcheance()
-    {
-        return $this->echeance;
-    }
-
-    /**
-     * Set dependsOn
-     *
-     * @param integer $dependsOn
-     *
-     * @return Tnt
-     */
-    public function setDependsOn($dependsOn)
-    {
-        $this->dependsOn = $dependsOn;
-
-        return $this;
-    }
-
-    /**
-     * Get dependsOn
-     *
-     * @return integer
-     */
-    public function getDependsOn()
-    {
-        return $this->dependsOn;
     }
 
     /**
