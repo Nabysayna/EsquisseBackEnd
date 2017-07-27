@@ -3,27 +3,96 @@
 namespace WSServerBundle\Services;
 
 use WSServerBundle\Entity\Clients;
-use WSServerBundle\Entity\Commandes;
+use WSServerBundle\Entity\Infonews;
+use WSServerBundle\Entity\Tmpcommande;
 
 
 class OutsitEcommerceService
 {
+  private $em;
+  private $mailservice;
+  
+  
+  public function __construct(\Doctrine\ORM\EntityManager $entityManager, \WSServerBundle\Services\MailingService $mailService)
+  {
+    $this->em = $entityManager;
+    $this->mailservice = $mailService;
+  }
 
-    private $em;
-    private $mailservice;
-    
-    
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager, \WSServerBundle\Services\MailingService $mailService)
+    function listerarticlepdv($params)
     {
-      $this->em = $entityManager;
-      $this->mailservice = $mailService;
+      $datas = explode('.', $params->slugpdv);
+      if (count($datas) < 3){
+        return ''. json_encode( array('errorCode' => 0, 'response' => $datas) );
+      }
+      else{
+        $query1 = $this->em->createQuery("SELECT 
+          CONCAT(u.prenom,' ', u.nom) AS createby, 
+          u.login AS email, 
+          u.telephone,
+          UPPER(u.adresse) AS adresse, 
+          UPPER(u.sousZone) AS souszone,
+          UPPER(z.zone) AS zone 
+          FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Zones z 
+          WHERE u.idUser=:idpdv and u.accesslevel=3 and u.idsousZone=z.id")->setParameter('idpdv', $datas[2]);
+        $results1 = $query1->getArrayResult();
+        
+        if (count($results1) == 0) {
+          return ''. json_encode( array('errorCode' => 0, 'response' => $results1) );
+        }
+        else{
+          $query2 = $this->em->createQuery("SELECT 
+              a.id AS idarticle,
+              CONCAT(u.prenom,' ', u.nom) AS createby,
+              u.idUser AS pourvoyeur,
+              a.description,
+              a.prix,
+              a.stock AS qte,
+              a.imgLink AS imagelink,
+              a.dateAjout AS datepublication,
+              a.avis,
+              a.nbreavis,
+              a.designation,
+              a.categorie,
+              z.zone 
+              FROM 
+              WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u, WSServerBundle\Entity\Zones z
+              WHERE a.idUser=u.idUser and a.idUser=:idpdv and u.idsousZone=z.id
+          ")->setParameter('idpdv', $datas[2]);
+          $results2 = $query2->getArrayResult();
+
+          $query3 = $this->em->createQuery("SELECT 
+              a.categorie,
+              COUNT(a.id) AS nbre
+              FROM 
+              WSServerBundle\Entity\Articles a 
+              WHERE a.idUser=:idpdv
+              GROUP BY a.categorie
+          ")->setParameter('idpdv', $datas[2]);
+          $results3 = $query3->getArrayResult();
+          
+          $intervalleprix = array_column($results2, 'prix');
+          sort($intervalleprix);
+          
+          $formatted = array(
+            'pdv' => $results1[0], 
+            'articles' => $results2, 
+            'categories' => $results3, 
+            'intervalleprix' => $intervalleprix, 
+          );
+          return ''. json_encode( array('errorCode' => 1, 'response' => $formatted) );
+        }
+
+      }
+
     }
 
-    function listerarticleecomoutsite($params)
+    function listerarticle($params)
     {
-      $query = $this->em->createQuery("SELECT 
+      $query1 = $this->em->createQuery("SELECT 
           a.id AS idarticle,
           CONCAT(u.prenom,' ', u.nom) AS createby,
+          u.idUser AS pourvoyeur,
           a.description,
           a.prix,
           a.stock AS qte,
@@ -33,44 +102,43 @@ class OutsitEcommerceService
           a.nbreavis,
           a.designation,
           a.categorie,
-          u.zone 
+          z.zone 
           FROM 
-          WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u 
+          WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u, WSServerBundle\Entity\Zones z 
           WHERE 
-          a.idUser=u.idUser
+          a.idUser=u.idUser and u.idsousZone=z.id
       ");
-      $results = $query->getArrayResult();
-      return ''. json_encode($results);
-    }
-
-    function listercategorieecomoutsite($params)
-    {
-      $query = $this->em->createQuery("SELECT  
+      $results1 = $query1->getArrayResult();
+      
+      $query2 = $this->em->createQuery("SELECT  
         a.categorie,
         COUNT(a.id) AS nbre
         FROM 
         WSServerBundle\Entity\Articles a 
         GROUP BY a.categorie
       ");
-      $results = $query->getArrayResult();
+      $results2 = $query2->getArrayResult();
 
-      return ''. json_encode($results);
-    }
-
-    function listerzoneecomoutsite($params)
-    {
-      $query = $this->em->createQuery("SELECT  
-        u.zone,
-        COUNT(u.idUser) AS nbre
+      $query3 = $this->em->createQuery("SELECT  
+        z.zone,
+        COUNT(z.id) AS nbre
         FROM 
-        WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u 
+        WSServerBundle\Entity\Articles a, WSServerBundle\Entity\Users u, WSServerBundle\Entity\Zones z 
         WHERE 
-        a.idUser=u.idUser
-        GROUP BY u.zone
+        a.idUser=u.idUser and u.idsousZone=z.id
+        GROUP BY z.zone
       ");
-      $results = $query->getArrayResult();
+      $results3 = $query3->getArrayResult();
       
-      return ''. json_encode($results);
+      $intervalleprix = array_column($results1, 'prix');
+      sort($intervalleprix);
+      $formatted = array(
+        'articles' => $results1, 
+        'categories' => $results2, 
+        'zones' => $results3, 
+        'intervalleprix' => $intervalleprix, 
+      );
+      return ''. json_encode( $formatted );
     }
 
     function ajoutavisecomoutsite($params)
@@ -88,13 +156,30 @@ class OutsitEcommerceService
         return ''. json_encode($reponse);
     }
 
+    function ajoutabonneecomoutsite($params)
+    {
+      $existabonne = $this->em->getRepository('WSServerBundle:Infonews')->findOneBy(array('email' => $params->infoclient));
+      if(empty($existabonne)){
+        $newabonne = new Infonews();
+        $newabonne->setEmail($params->infoclient);
+        $addTime = new \Datetime();
+        $newabonne->setDateajout($addTime);
+        $this->em->persist($newabonne);
+        $this->em->flush();
+      }
+      $reponse = array('response' => 'ok');
+      return ''. json_encode($reponse);
+    }
+
     function ajoutcommandeecomoutsite($params)
     {
       $existclient = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone'=>$params->telephoneclient));
+      $codepayement = time();
       if(empty($existclient)){
         $newclient = new Clients();
         $newclient->setPrenom($params->prenomclient);
         $newclient->setNom($params->nomclient);
+        $newclient->setFullname($params->prenomclient." ".$params->nomclient);
         $newclient->setTelephone($params->telephoneclient);
         $newclient->setEmail($params->emailclient);
         $addTime = new \Datetime();
@@ -102,99 +187,43 @@ class OutsitEcommerceService
         $this->em->persist($newclient);
         $this->em->flush();
 
-        $newCommande = new Commandes();
-        $newCommande->setIdArticle($params->id_article);
-        $newCommande->setCommanditaire(-1);
-        $newCommande->setIdclient($newclient->getId());
+        $newCommande = new Tmpcommande();
+        $newCommande->setOrderedArticles($params->orderedarticles);
+        $newCommande->setIdClient($newclient->getId());
         $newCommande->setPrenomclient($params->prenomclient);
         $newCommande->setNomclient($params->nomclient);
-        $newCommande->setTelephoneclient($params->telephoneclient);
-        $newCommande->setQuantite($params->quantite);
+        $newCommande->setTelclient($params->telephoneclient);
         $addTime = new \Datetime();
         $newCommande->setDateCommande($addTime);
-        $newCommande->setCodepayement(time());
+        $newCommande->setCodeCommande($codepayement);
+        $newCommande->setMntcmd($params->montant);
         $this->em->persist($newCommande);
         $this->em->flush();
       }
       else{      
-        $newCommande = new Commandes();
-        $newCommande->setIdArticle($params->id_article);
-        $newCommande->setCommanditaire(-1);
-        $newCommande->setIdclient($existclient->getId());
+        $newCommande = new Tmpcommande();
+        $newCommande->setOrderedArticles($params->orderedarticles);
+        $newCommande->setIdClient($existclient->getId());
         $newCommande->setPrenomclient($params->prenomclient);
         $newCommande->setNomclient($params->nomclient);
-        $newCommande->setTelephoneclient($params->telephoneclient);
-        $newCommande->setQuantite($params->quantite);
+        $newCommande->setTelclient($params->telephoneclient);
         $addTime = new \Datetime();
         $newCommande->setDateCommande($addTime);
-        $newCommande->setCodepayement(time());
+        $newCommande->setCodeCommande($codepayement);
+        $newCommande->setMntcmd($params->montant);
         $this->em->persist($newCommande);
         $this->em->flush();
       }
-      $reponse = array(
-        'response' => 'ok'
-      );
-      return ''. json_encode($reponse);
+      $sendMail = $this->mailservice->alerttoclientsite($params->emailclient, "votre code de paiement", "Veuillez utiliser ce code ". $codepayement ." pour le paiement de la commande ".$params->designation);
+      return ''. json_encode( array('errorCode' => 1, 'response' => $codepayement) );
     }
 
-    function ajoutabonneecomoutsite($params)
-    {
-      $existclient = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('email' => $params->infoclient));
-      if(empty($existclient)){
-        $newclient = new Clients();
-        $newclient->setEmail($params->infoclient);
-        $addTime = new \Datetime();
-        $newclient->setDateAjout($addTime);
-        $this->em->persist($newclient);
-        $this->em->flush();
-      }
-      $reponse = array(
-        'response' => 'ok'
-      );
-      return ''. json_encode($reponse);
-    }
-
-    function ecrireecomoutsite($params)
-    {
-      $existclient = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('email' => $params->email));
-      if(empty($existclient)){
-        $newclient = new Clients();
-        $newclient->setFullname($params->fullname);
-        $newclient->setEmail($params->email);
-        $addTime = new \Datetime();
-        $newclient->setDateAjout($addTime);
-        $this->em->persist($newclient);
-        $this->em->flush();
-      }
-      
+    function ecrireecomoutsite($params) {
       $sendMail = $this->mailservice->envoifromsite($params->email, $params->sujet, $params->message);
       $reponse = array(
         'response' => $sendMail
       );
       return ''. json_encode($reponse);
     }
-    
-    function ajoutauthecomoutsite($params)
-    {
-        $reponse = array(
-          'api' => 1,
-          'token' => 'as12',
-          'typedebouquet' => '123'
-        );
-
-        return ''. json_encode($reponse);
-    }
-    
-    function listercommandeecomoutsite($params)
-    {
-      $reponse = array(
-        'typedebouquet' => 'listercommandeecomoutsite'
-      );
-
-      return ''. json_encode($reponse);
-    }
-
-    
-    
-    
+        
 }
