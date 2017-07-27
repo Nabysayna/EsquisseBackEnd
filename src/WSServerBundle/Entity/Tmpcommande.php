@@ -71,19 +71,11 @@ class Tmpcommande
     /**
      * @var integer
      *
-     * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
-     */
-    private $pourvoyeur;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
 
 
 
@@ -279,30 +271,6 @@ class Tmpcommande
     public function getMntcmd()
     {
         return $this->mntcmd;
-    }
-
-    /**
-     * Set pourvoyeur
-     *
-     * @param integer $pourvoyeur
-     *
-     * @return Tmpcommande
-     */
-    public function setPourvoyeur($pourvoyeur)
-    {
-        $this->pourvoyeur = $pourvoyeur;
-
-        return $this;
-    }
-
-    /**
-     * Get pourvoyeur
-     *
-     * @return integer
-     */
-    public function getPourvoyeur()
-    {
-        return $this->pourvoyeur;
     }
 
     /**

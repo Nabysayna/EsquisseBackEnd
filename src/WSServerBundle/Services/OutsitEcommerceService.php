@@ -4,7 +4,6 @@ namespace WSServerBundle\Services;
 
 use WSServerBundle\Entity\Clients;
 use WSServerBundle\Entity\Infonews;
-use WSServerBundle\Entity\Commandes;
 use WSServerBundle\Entity\Tmpcommande;
 
 
@@ -189,9 +188,7 @@ class OutsitEcommerceService
         $this->em->flush();
 
         $newCommande = new Tmpcommande();
-        $newCommande->setIdArticle($params->id_article);
-        $newCommande->setDesignation($params->designation);
-        $newCommande->setQte($params->quantite);
+        $newCommande->setOrderedArticles($params->orderedarticles);
         $newCommande->setIdClient($newclient->getId());
         $newCommande->setPrenomclient($params->prenomclient);
         $newCommande->setNomclient($params->nomclient);
@@ -200,15 +197,12 @@ class OutsitEcommerceService
         $newCommande->setDateCommande($addTime);
         $newCommande->setCodeCommande($codepayement);
         $newCommande->setMntcmd($params->montant);
-        $newCommande->setPourvoyeur($params->pourvoyeur);
         $this->em->persist($newCommande);
         $this->em->flush();
       }
       else{      
         $newCommande = new Tmpcommande();
-        $newCommande->setIdArticle($params->id_article);
-        $newCommande->setDesignation($params->designation);
-        $newCommande->setQte($params->quantite);
+        $newCommande->setOrderedArticles($params->orderedarticles);
         $newCommande->setIdClient($existclient->getId());
         $newCommande->setPrenomclient($params->prenomclient);
         $newCommande->setNomclient($params->nomclient);
@@ -217,7 +211,6 @@ class OutsitEcommerceService
         $newCommande->setDateCommande($addTime);
         $newCommande->setCodeCommande($codepayement);
         $newCommande->setMntcmd($params->montant);
-        $newCommande->setPourvoyeur($params->pourvoyeur);
         $this->em->persist($newCommande);
         $this->em->flush();
       }

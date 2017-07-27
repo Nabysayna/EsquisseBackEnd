@@ -7,15 +7,12 @@
 <xsd:complexType name="InAjoutCommandeEcomOutsite">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
-<xsd:element name="id_article" type="xsd:int"/>
-<xsd:element name="designation" type="xsd:string"/>
+<xsd:element name="orderedarticles" type="xsd:string"/>
 <xsd:element name="nomclient" type="xsd:string"/>
 <xsd:element name="prenomclient" type="xsd:string"/>
 <xsd:element name="emailclient" type="xsd:string"/>
 <xsd:element name="telephoneclient" type="xsd:string"/>
-<xsd:element name="quantite" type="xsd:int"/>
 <xsd:element name="montant" type="xsd:int"/>
-<xsd:element name="pourvoyeur" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InAjoutAvisEcomOutsite">
