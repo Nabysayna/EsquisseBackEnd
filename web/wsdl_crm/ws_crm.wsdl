@@ -114,11 +114,7 @@
 </binding>
 <service name="crm">
 <port name="crmPort" binding="tns:crmBinding">
-<<<<<<< HEAD
-<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/crm"/>
-=======
-<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/crm"/>
->>>>>>> 2fda2223204d2e6e58802324fe8c94f9acca59dd
+<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/crm"/>
 </port>
 </service>
 </definitions>

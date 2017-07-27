@@ -41,6 +41,20 @@ class Tnt
     private $dateOperation;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="echeance", type="date", nullable=false)
+     */
+    private $echeance;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
+     */
+    private $dependsOn;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -51,109 +65,4 @@ class Tnt
 
 
 
-    /**
-     * Set iduser
-     *
-     * @param integer $iduser
-     *
-     * @return Tnt
-     */
-    public function setIduser($iduser)
-    {
-        $this->iduser = $iduser;
-
-        return $this;
-    }
-
-    /**
-     * Get iduser
-     *
-     * @return integer
-     */
-    public function getIduser()
-    {
-        return $this->iduser;
-    }
-
-    /**
-     * Set typeoperation
-     *
-     * @param string $typeoperation
-     *
-     * @return Tnt
-     */
-    public function setTypeoperation($typeoperation)
-    {
-        $this->typeoperation = $typeoperation;
-
-        return $this;
-    }
-
-    /**
-     * Get typeoperation
-     *
-     * @return string
-     */
-    public function getTypeoperation()
-    {
-        return $this->typeoperation;
-    }
-
-    /**
-     * Set infosoperation
-     *
-     * @param string $infosoperation
-     *
-     * @return Tnt
-     */
-    public function setInfosoperation($infosoperation)
-    {
-        $this->infosoperation = $infosoperation;
-
-        return $this;
-    }
-
-    /**
-     * Get infosoperation
-     *
-     * @return string
-     */
-    public function getInfosoperation()
-    {
-        return $this->infosoperation;
-    }
-
-    /**
-     * Set dateOperation
-     *
-     * @param \DateTime $dateOperation
-     *
-     * @return Tnt
-     */
-    public function setDateOperation($dateOperation)
-    {
-        $this->dateOperation = $dateOperation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateOperation
-     *
-     * @return \DateTime
-     */
-    public function getDateOperation()
-    {
-        return $this->dateOperation;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 }

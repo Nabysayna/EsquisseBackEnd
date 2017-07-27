@@ -34,6 +34,13 @@ class Clients
     private $telephone;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="date", nullable=true)
+     */
+    private $dateAjout;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=50, nullable=true)
@@ -73,7 +80,28 @@ class Clients
      *
      * @ORM\Column(name="date_ajout", type="datetime", nullable=true)
      */
-    private $dateAjout;
+    private $nbreOperation = '1';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="fidelite", type="integer", nullable=false)
+     */
+    private $fidelite = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
+     */
+    private $dependsOn;
 
     /**
      * @var integer
@@ -184,6 +212,30 @@ class Clients
     public function getTelephone()
     {
         return $this->telephone;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Clients
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
     }
 
     /**

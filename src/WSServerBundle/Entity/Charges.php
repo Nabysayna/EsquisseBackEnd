@@ -22,16 +22,9 @@ class Charges
     /**
      * @var string
      *
-     * @ORM\Column(name="detail", type="string", length=1000, nullable=true)
+     * @ORM\Column(name="detail", type="string", length=1000, nullable=false)
      */
     private $detail;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="service", type="string", length=255, nullable=false)
-     */
-    private $service;
 
     /**
      * @var integer
@@ -46,13 +39,6 @@ class Charges
      * @ORM\Column(name="idUser", type="integer", nullable=false)
      */
     private $iduser;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
-     */
-    private $dateAjout;
 
     /**
      * @var integer
@@ -114,30 +100,6 @@ class Charges
     }
 
     /**
-     * Set service
-     *
-     * @param string $service
-     *
-     * @return Charges
-     */
-    public function setService($service)
-    {
-        $this->service = $service;
-
-        return $this;
-    }
-
-    /**
-     * Get service
-     *
-     * @return string
-     */
-    public function getService()
-    {
-        return $this->service;
-    }
-
-    /**
      * Set montant
      *
      * @param integer $montant
@@ -183,30 +145,6 @@ class Charges
     public function getIduser()
     {
         return $this->iduser;
-    }
-
-    /**
-     * Set dateAjout
-     *
-     * @param \DateTime $dateAjout
-     *
-     * @return Charges
-     */
-    public function setDateAjout($dateAjout)
-    {
-        $this->dateAjout = $dateAjout;
-
-        return $this;
-    }
-
-    /**
-     * Get dateAjout
-     *
-     * @return \DateTime
-     */
-    public function getDateAjout()
-    {
-        return $this->dateAjout;
     }
 
     /**
