@@ -140,6 +140,19 @@ class Zones
     public function setIddepartement($iddepartement)
     {
         $this->iddepartement = $iddepartement;
+        return $this;
+    }
+
+    /**
+     * Set idregion
+     *
+     * @param integer $idregion
+     *
+     * @return Zones
+     */
+    public function setIdregion($idregion)
+    {
+        $this->idregion = $idregion;
 
         return $this;
     }
@@ -164,7 +177,28 @@ class Zones
     public function setDepartement($departement)
     {
         $this->departement = $departement;
+    }
 
+    /**
+     * Get idregion
+     *
+     * @return integer
+     */
+    public function getIdregion()
+    {
+        return $this->idregion;
+    }
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     *
+     * @return Zones
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
         return $this;
     }
 
@@ -176,6 +210,15 @@ class Zones
     public function getDepartement()
     {
         return $this->departement;
+    }
+    /**
+     * Get region
+     *
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
     }
 
     /**

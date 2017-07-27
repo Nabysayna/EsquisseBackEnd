@@ -134,11 +134,26 @@ class Commandes
     /**
      * @var integer
      *
+     * @ORM\Column(name="depend_on", type="integer", nullable=false)
+     */
+    private $dependOn;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
 
@@ -548,6 +563,54 @@ class Commandes
     public function getMontantcommande()
     {
         return $this->montantcommande;
+    }
+
+    /**
+     * Set dependOn
+     *
+     * @param integer $dependOn
+     *
+     * @return Commandes
+     */
+    public function setDependOn($dependOn)
+    {
+        $this->dependOn = $dependOn;
+
+        return $this;
+    }
+
+    /**
+     * Get dependOn
+     *
+     * @return integer
+     */
+    public function getDependOn()
+    {
+        return $this->dependOn;
+    }
+
+    /**
+     * Set idUser
+     *
+     * @param integer $idUser
+     *
+     * @return Commandes
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
     }
 
     /**

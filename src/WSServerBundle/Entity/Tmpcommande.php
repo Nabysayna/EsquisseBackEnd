@@ -13,25 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Tmpcommande
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_article", type="integer", nullable=false)
-     */
-    private $idArticle;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="designation", type="string", length=30, nullable=false)
+     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
      */
-    private $designation;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="qte", type="integer", nullable=false)
-     */
-    private $qte;
+    private $orderedArticles;
 
     /**
      * @var \DateTime
@@ -85,13 +71,6 @@ class Tmpcommande
     /**
      * @var integer
      *
-     * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
-     */
-    private $pourvoyeur;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -101,75 +80,27 @@ class Tmpcommande
 
 
     /**
-     * Set idArticle
+     * Set orderedArticles
      *
-     * @param integer $idArticle
+     * @param string $orderedArticles
      *
      * @return Tmpcommande
      */
-    public function setIdArticle($idArticle)
+    public function setOrderedArticles($orderedArticles)
     {
-        $this->idArticle = $idArticle;
+        $this->orderedArticles = $orderedArticles;
 
         return $this;
     }
 
     /**
-     * Get idArticle
-     *
-     * @return integer
-     */
-    public function getIdArticle()
-    {
-        return $this->idArticle;
-    }
-
-    /**
-     * Set designation
-     *
-     * @param string $designation
-     *
-     * @return Tmpcommande
-     */
-    public function setDesignation($designation)
-    {
-        $this->designation = $designation;
-
-        return $this;
-    }
-
-    /**
-     * Get designation
+     * Get orderedArticles
      *
      * @return string
      */
-    public function getDesignation()
+    public function getOrderedArticles()
     {
-        return $this->designation;
-    }
-
-    /**
-     * Set qte
-     *
-     * @param integer $qte
-     *
-     * @return Tmpcommande
-     */
-    public function setQte($qte)
-    {
-        $this->qte = $qte;
-
-        return $this;
-    }
-
-    /**
-     * Get qte
-     *
-     * @return integer
-     */
-    public function getQte()
-    {
-        return $this->qte;
+        return $this->orderedArticles;
     }
 
     /**
@@ -338,30 +269,6 @@ class Tmpcommande
     public function getMntcmd()
     {
         return $this->mntcmd;
-    }
-
-    /**
-     * Set pourvoyeur
-     *
-     * @param integer $pourvoyeur
-     *
-     * @return Tmpcommande
-     */
-    public function setPourvoyeur($pourvoyeur)
-    {
-        $this->pourvoyeur = $pourvoyeur;
-
-        return $this;
-    }
-
-    /**
-     * Get pourvoyeur
-     *
-     * @return integer
-     */
-    public function getPourvoyeur()
-    {
-        return $this->pourvoyeur;
     }
 
     /**
