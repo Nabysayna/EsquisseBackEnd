@@ -9,6 +9,11 @@
         <option name="unsigned"/>
       </options>
     </field>
+    <field name="sujet" type="string" column="sujet" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="nomservice" type="string" column="nomservice" length="255" nullable="false">
       <options>
         <option name="fixed"/>
@@ -19,7 +24,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="etat" type="smallint" column="etat" nullable="false">
+    <field name="etat" type="smallint" column="etat" nullable="true">
       <options>
         <option name="unsigned"/>
       </options>

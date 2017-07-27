@@ -63,6 +63,11 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+      test_server_demandepret:
+        class: WSServerBundle\Services\DemandepretService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
           
       test_server_mailing:
         class: WSServerBundle\Services\MailingService

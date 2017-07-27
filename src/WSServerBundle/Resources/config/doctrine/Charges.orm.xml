@@ -4,12 +4,13 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
+    <field name="dateajout" type="datetime" column="dateAjout" nullable="false"/>
     <field name="libelle" type="string" column="libelle" length="255" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="detail" type="string" column="detail" length="1000" nullable="false">
+    <field name="service" type="string" column="service" length="20" nullable="false">
       <options>
         <option name="fixed"/>
       </options>

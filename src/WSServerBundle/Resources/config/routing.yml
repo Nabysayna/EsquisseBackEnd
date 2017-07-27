@@ -47,6 +47,31 @@ ws_server_gestionreporting:
     path:     /gestionreporting
     defaults: { _controller: WSServerBundle:Gestionreporting:gestionreporting }
 
+    
+ws_server_servicepoint:
+    path:     /servicepoint
+    defaults: { _controller: WSServerBundle:Gestionreporting:servicepoint }
+
+
+    
+ws_server_ajoutdepense:
+    path:     /ajoutdepense
+    defaults: { _controller: WSServerBundle:Gestionreporting:ajoutdepense }
+
+
+ws_server_reclamation:
+    path:     /reclamation
+    defaults: { _controller: WSServerBundle:Gestionreporting:reclamation }
+
+ws_server_vente:
+    path:     /vente
+    defaults: { _controller: WSServerBundle:Gestionreporting:vente }
+
+
+ws_server_demandepret:
+    path:     /demandepret
+    defaults: { _controller: WSServerBundle:Demandepret:demandepret }
+
 
 
 

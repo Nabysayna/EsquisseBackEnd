@@ -4,7 +4,12 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="type" type="string" column="type" length="255" nullable="false">
+    <field name="typedevente" type="string" column="typedevente" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="servicevente" type="string" column="servicevente" length="30" nullable="false">
       <options>
         <option name="fixed"/>
       </options>

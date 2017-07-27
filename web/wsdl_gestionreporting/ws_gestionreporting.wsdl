@@ -4,7 +4,36 @@
 <xsd:schema targetNamespace="urn:gestreportwsdl">
 <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
 <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="libelle" type="xsd:string"/>
+<xsd:element name="service" type="xsd:string"/>
+<xsd:element name="montant" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="sujet" type="xsd:string"/>
+<xsd:element name="nomservice" type="xsd:string"/>
+<xsd:element name="message" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="servicevente" type="xsd:string"/>
+<xsd:element name="designation" type="xsd:string"/>
+<xsd:element name="quantite" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+
+
 </xsd:schema>
+
 </types>
 <message name="gestionreportingRequest">
 <part name="token" type="xsd:string"/>
@@ -12,11 +41,55 @@
 <message name="gestionreportingResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="servicepointRequest">
+<part name="token" type="xsd:string"/>
+</message>
+<message name="servicepointResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutdepenseRequest">
+<part name="params" type="xsd:InData"/>
+</message>
+<message name="ajoutdepenseResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="reclamationRequest">
+<part name="params" type="xsd:InData"/>
+</message>
+<message name="reclamationResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="venteRequest">
+<part name="params" type="xsd:InData"/>
+</message>
+<message name="venteResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <portType name="gestreportPortType">
 <operation name="gestionreporting">
 <documentation>Method gestreport gestionreporting</documentation>
 <input message="tns:gestionreportingRequest"/>
 <output message="tns:gestionreportingResponse"/>
+</operation>
+<operation name="servicepoint">
+<documentation>Method servicept servicepoint</documentation>
+<input message="tns:servicepointRequest"/>
+<output message="tns:servicepointResponse"/>
+</operation>
+<operation name="ajoutdepense">
+<documentation>Method ajoutdepense ajoutdepense</documentation>
+<input message="tns:ajoutdepenseRequest"/>
+<output message="tns:ajoutdepenseResponse"/>
+</operation>
+<operation name="reclamation">
+<documentation>Method reclamation reclamation</documentation>
+<input message="tns:reclamationRequest"/>
+<output message="tns:reclamationResponse"/>
+</operation>
+<operation name="vente">
+<documentation>Method vente vente</documentation>
+<input message="tns:venteRequest"/>
+<output message="tns:venteResponse"/>
 </operation>
 </portType>
 <binding name="gestreportBinding" type="tns:gestreportPortType">
@@ -28,6 +101,42 @@
 </input>
 <output>
 <soap:body use="encoded" namespace="urn:gestreportwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="servicepoint">
+<soap:operation soapAction="urn:serviceptwsdl#servicepoint" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:serviceptwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:serviceptwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutdepense">
+<soap:operation soapAction="urn:ajoutdepensewsdl#ajoutdepense" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ajoutdepensewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ajoutdepensewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="reclamation">
+<soap:operation soapAction="urn:reclamationwsdl#reclamation" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:reclamationwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:reclamationwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="vente">
+<soap:operation soapAction="urn:ventewsdl#vente" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ventewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ventewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
 </binding>

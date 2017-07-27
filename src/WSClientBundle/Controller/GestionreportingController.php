@@ -21,5 +21,28 @@ class GestionreportingController extends Controller
         return new JsonResponse(array('result' => $result));
     }
 
+
+    public function servicepointAction()
+    {
+        $params = array('token' => '3fea65929f0e36ac15d4c35ead4084115c89864f');
+        $result = $this->client->call('servicepoint', $params);
+        return new JsonResponse(array('result' => $result));
+    }
+
+    public function ajoutdepenseAction()
+    {
+        $params = array('token' => '3fea65929f0e36ac15d4c35ead4084115c89864f', 'type' => "test", 'libelle' => "impression", 'detail' => "Achat d'une imprimante", 'montant' => 50000);
+        $result = $this->client->call('ajoutdepense', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
+
+     public function reclamationAction()
+    {
+        $params = array('token' => '3fea65929f0e36ac15d4c35ead4084115c89864f', 'type' => "test", 'sujet' => "vente", 'service' => "e-commerce", 'message' => "plus de stock");
+        $result = $this->client->call('reclamation', array('params' => $params));
+
+        return new JsonResponse(array('result' => $result));
+    }
   
 }

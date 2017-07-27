@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:gestreportwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:gestreportwsdl">
+<types>
+<xsd:schema targetNamespace="urn:demandepretwsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="montantdemande" type="xsd:int"/>
+</xsd:all>
+</xsd:complexType>
+
+
+</xsd:schema>
+
+</types>
+<message name="demandepretRequest">
+<part name="token" type="xsd:string"/>
+</message>
+<message name="demandepretResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="ajoutdemandepretRequest">
+<part name="params" type="xsd:InData"/>
+</message>
+<message name="ajoutdemandepretResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="demandepretPortType">
+<operation name="demandepret">
+<documentation>Method demandepret demandepret</documentation>
+<input message="tns:demandepretRequest"/>
+<output message="tns:demandepretResponse"/>
+</operation>
+<operation name="ajoutdemandepret">
+<documentation>Method ajoutdemandepret ajoutdemandepret</documentation>
+<input message="tns:ajoutdemandepretRequest"/>
+<output message="tns:ajoutdemandepretResponse"/>
+</operation>
+</portType>
+<binding name="demandepretBinding" type="tns:demandepretPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="demandepret">
+<soap:operation soapAction="urn:demandepretwsdl#demandepret" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:demandepretwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:demandepretwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="ajoutdemandepret">
+<soap:operation soapAction="urn:ajoutdemandepretwsdl#ajoutdemandepret" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ajoutdemandepretwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ajoutdemandepretwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="demandepret">
+<port name="demandepretPort" binding="tns:demandepretBinding">
+<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/demandepret"/>
+</port>
+</service>
+</definitions>
