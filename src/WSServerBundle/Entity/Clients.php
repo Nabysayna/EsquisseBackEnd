@@ -78,14 +78,14 @@ class Clients
     /**
      * @var integer
      *
-     * @ORM\Column(name="nbreoperation", type="integer", nullable=false)
+     * @ORM\Column(name="nbre_operation", type="integer", nullable=true)
      */
     private $nbreOperation = '1';
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="fidelite", type="integer", nullable=false)
+     * @ORM\Column(name="fidelite", type="integer", nullable=true)
      */
     private $fidelite = '0';
 

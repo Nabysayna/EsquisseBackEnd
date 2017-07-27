@@ -22,9 +22,9 @@ class Charges
     /**
      * @var string
      *
-     * @ORM\Column(name="detail", type="string", length=1000, nullable=false)
+     * @ORM\Column(name="service", type="string", length=255, nullable=false)
      */
-    private $detail;
+    private $service;
 
     /**
      * @var integer
@@ -48,6 +48,7 @@ class Charges
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
 
@@ -76,27 +77,27 @@ class Charges
     }
 
     /**
-     * Set detail
+     * Set service
      *
-     * @param string $detail
+     * @param string $service
      *
      * @return Charges
      */
-    public function setDetail($detail)
+    public function setService($service)
     {
-        $this->detail = $detail;
+        $this->service = $service;
 
         return $this;
     }
 
     /**
-     * Get detail
+     * Get service
      *
      * @return string
      */
-    public function getDetail()
+    public function getService()
     {
-        return $this->detail;
+        return $this->service;
     }
 
     /**

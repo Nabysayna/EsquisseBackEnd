@@ -13,25 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Tmpcommande
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_article", type="integer", nullable=false)
-     */
-    private $idArticle;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="designation", type="string", length=30, nullable=false)
+     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
      */
-    private $designation;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="qte", type="integer", nullable=false)
-     */
-    private $qte;
+    private $orderedArticles;
 
     /**
      * @var \DateTime
@@ -97,6 +83,8 @@ class Tmpcommande
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+
 
 
 
