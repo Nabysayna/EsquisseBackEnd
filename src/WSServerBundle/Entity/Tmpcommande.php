@@ -20,6 +20,13 @@ class Tmpcommande
     private $idArticle;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="designation", type="string", length=30, nullable=false)
+     */
+    private $designation;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="qte", type="integer", nullable=false)
@@ -115,6 +122,30 @@ class Tmpcommande
     public function getIdArticle()
     {
         return $this->idArticle;
+    }
+
+    /**
+     * Set designation
+     *
+     * @param string $designation
+     *
+     * @return Tmpcommande
+     */
+    public function setDesignation($designation)
+    {
+        $this->designation = $designation;
+
+        return $this;
+    }
+
+    /**
+     * Get designation
+     *
+     * @return string
+     */
+    public function getDesignation()
+    {
+        return $this->designation;
     }
 
     /**

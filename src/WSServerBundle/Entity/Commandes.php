@@ -20,6 +20,13 @@ class Commandes
     private $idArticle;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="designation", type="string", length=30, nullable=false)
+     */
+    private $designation;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="commanditaire", type="integer", nullable=false)
@@ -157,6 +164,30 @@ class Commandes
     public function getIdArticle()
     {
         return $this->idArticle;
+    }
+
+    /**
+     * Set designation
+     *
+     * @param string $designation
+     *
+     * @return Commandes
+     */
+    public function setDesignation($designation)
+    {
+        $this->designation = $designation;
+
+        return $this;
+    }
+
+    /**
+     * Get designation
+     *
+     * @return string
+     */
+    public function getDesignation()
+    {
+        return $this->designation;
     }
 
     /**
