@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:consulterpretwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:consulterpretwsdl">
+<types>
+<xsd:schema targetNamespace="urn:consulterpretwsdl">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+</xsd:schema>
+</types>
+<message name="consulterpretRequest">
+<part name="token" type="xsd:string"/>
+</message>
+<message name="consulterpretResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<portType name="consulterpretPortType">
+<operation name="consulterpret">
+<documentation>Method consulterpret consulterpret</documentation>
+<input message="tns:consulterpretRequest"/>
+<output message="tns:consulterpretResponse"/>
+</operation>
+</portType>
+<binding name="consulterpretBinding" type="tns:consulterpretPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="consulterpret">
+<soap:operation soapAction="urn:consulterpretwsdl#consulterpret" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:consulterpretwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:consulterpretwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="consulterpret">
+<port name="consulterpretPort" binding="tns:consulterpretBinding">
+<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/consulterpret"/>
+</port>
+</service>
+</definitions>

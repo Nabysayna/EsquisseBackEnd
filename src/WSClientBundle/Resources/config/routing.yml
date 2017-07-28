@@ -402,3 +402,7 @@ ws_client_comptapdv_ajoutdemandepret:
     path:     /demandepret/ajoutdemandepret
     defaults: { _controller: WSClientBundle:Demandepret:ajoutdemandepret }
 
+ws_client_comptapdv_consulterpret:
+    path:     /consulterpret/consulterpret
+    defaults: { _controller: WSClientBundle:Consulterpret:consulterpret }
+

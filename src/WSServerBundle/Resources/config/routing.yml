@@ -78,6 +78,11 @@ ws_server_ajoutdemandepret:
     defaults: { _controller: WSServerBundle:Demandepret:ajoutdemandepret }
 
 
+ws_server_consulterpret:
+    path:     /consulterpret
+    defaults: { _controller: WSServerBundle:Consulterpret:consulterpret }
+
+
 
 
 #########################################################
