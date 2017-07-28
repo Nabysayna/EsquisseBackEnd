@@ -73,6 +73,11 @@ ws_server_demandepret:
     defaults: { _controller: WSServerBundle:Demandepret:demandepret }
 
 
+ws_server_ajoutdemandepret:
+    path:     /ajoutdemandepret
+    defaults: { _controller: WSServerBundle:Demandepret:ajoutdemandepret }
+
+
 
 
 #########################################################

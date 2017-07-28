@@ -2,6 +2,7 @@
 
 namespace WSServerBundle\Services;
 use WSServerBundle\Entity\Authorizedsessions;
+use WSServerBundle\Entity\Demandepret;
 
 class DemandepretService
 {
@@ -46,12 +47,15 @@ class DemandepretService
     
      public function ajoutdemandepret($params) {   
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      $dmd = $this->em->getRepository('WSServerBundle:Plafond')->findOneBy(array('dependsOn' => $correspSession->getDependsOn()));
 
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{      
         $newDemandepret = new Demandepret();
         $newDemandepret->setIduser( $correspSession->getIdUser());
+        $newDemandepret->setDependsOn($correspSession->getDependsOn());
+        $newDemandepret->setPlafond($dmd->getPlafond());
         $newDemandepret->setMontantdemande($params->montantdemande);
         $this->em->persist($newDemandepret);
         $this->em->flush();

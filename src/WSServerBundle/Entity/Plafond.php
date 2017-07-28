@@ -3,9 +3,9 @@
 namespace WSServerBundle\Entity;
 
 /**
- * Demandepret
+ * Plafond
  */
-class Demandepret
+class Plafond
 {
     /**
      * @var integer
@@ -16,12 +16,6 @@ class Demandepret
      * @var integer
      */
     private $dependsOn;
-
-
-    /**
-     * @var integer
-     */
-    private $montantdemande;
 
     /**
      * @var integer
@@ -39,7 +33,7 @@ class Demandepret
      *
      * @param integer $idUser
      *
-     * @return Demandepret
+     * @return Plafond
      */
     public function setIdUser($idUser)
     {
@@ -63,7 +57,7 @@ class Demandepret
      *
      * @param integer $dependsOn
      *
-     * @return Demandepret
+     * @return Plafond
      */
     public function setDependsOn($dependsOn)
     {
@@ -82,37 +76,12 @@ class Demandepret
         return $this->dependsOn;
     }
 
-   
-    /**
-     * Set montantdemande
-     *
-     * @param integer $montantdemande
-     *
-     * @return Demandepret
-     */
-    public function setMontantdemande($montantdemande)
-    {
-        $this->montantdemande = $montantdemande;
-
-        return $this;
-    }
-
-    /**
-     * Get montantdemande
-     *
-     * @return integer
-     */
-    public function getMontantdemande()
-    {
-        return $this->montantdemande;
-    }
-
     /**
      * Set plafond
      *
      * @param integer $plafond
      *
-     * @return Demandepret
+     * @return Plafond
      */
     public function setPlafond($plafond)
     {
@@ -141,3 +110,4 @@ class Demandepret
         return $this->id;
     }
 }
+

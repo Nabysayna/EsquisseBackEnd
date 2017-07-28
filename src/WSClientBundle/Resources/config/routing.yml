@@ -396,3 +396,9 @@ ws_client_comptapdv_reclamation:
 ws_client_comptapdv_demandepret:
     path:     /demandepret/demandepret
     defaults: { _controller: WSClientBundle:Demandepret:demandepret }
+
+
+ws_client_comptapdv_ajoutdemandepret:
+    path:     /demandepret/ajoutdemandepret
+    defaults: { _controller: WSClientBundle:Demandepret:ajoutdemandepret }
+
