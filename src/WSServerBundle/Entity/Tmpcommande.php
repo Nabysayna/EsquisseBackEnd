@@ -77,6 +77,27 @@ class Tmpcommande
      */
     private $id;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_article", type="integer", nullable=false)
+     */
+    private $idArticle;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="qte", type="integer", nullable=false)
+     */
+    private $qte;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
+     */
+    private $pourvoyeur;
+
 
 
     /**
@@ -126,6 +147,9 @@ class Tmpcommande
     {
         return $this->dateCommande;
     }
+
+    
+
 
     /**
      * Set idClient

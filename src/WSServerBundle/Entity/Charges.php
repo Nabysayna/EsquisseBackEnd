@@ -187,33 +187,5 @@ class Charges
     {
         return $this->dateajout;
     }
-    /**
-     * @var string
-     */
-    private $service;
-
-
-    /**
-     * Set service
-     *
-     * @param string $service
-     *
-     * @return Charges
-     */
-    public function setService($service)
-    {
-        $this->service = $service;
-
-        return $this;
-    }
-
-    /**
-     * Get service
-     *
-     * @return string
-     */
-    public function getService()
-    {
-        return $this->service;
-    }
+    
 }

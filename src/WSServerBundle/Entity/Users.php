@@ -105,6 +105,20 @@ class Users
      */
     private $idUser;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idzone", type="integer", nullable=false)
+     */
+    private $idzone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     */
+    private $zone;
+
 
 
     /**
