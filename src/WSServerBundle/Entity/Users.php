@@ -76,6 +76,13 @@ class Users
     private $dateCreation;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=false)
+     */
+    private $token;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="idsous_zone", type="integer", nullable=true)
@@ -88,13 +95,6 @@ class Users
      * @ORM\Column(name="sous_zone", type="string", length=50, nullable=false)
      */
     private $sousZone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="token", type="string", length=255, nullable=false)
-     */
-    private $token;
 
     /**
      * @var integer
@@ -324,6 +324,30 @@ class Users
     }
 
     /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Users
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
      * Set idsousZone
      *
      * @param integer $idsousZone
@@ -369,30 +393,6 @@ class Users
     public function getSousZone()
     {
         return $this->sousZone;
-    }
-
-    /**
-     * Set token
-     *
-     * @param string $token
-     *
-     * @return Users
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * Get token
-     *
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->token;
     }
 
     /**

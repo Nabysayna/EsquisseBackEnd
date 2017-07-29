@@ -36,16 +36,16 @@ class Caisse
     /**
      * @var integer
      *
-     * @ORM\Column(name="approvision", type="bigint", nullable=false)
+     * @ORM\Column(name="solde_fermet", type="bigint", nullable=false)
      */
-    private $approvision;
+    private $soldeFermet;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="solde_fermet", type="bigint", nullable=false)
+     * @ORM\Column(name="approvision", type="bigint", nullable=false)
      */
-    private $soldeFermet;
+    private $approvision;
 
     /**
      * @var integer
@@ -162,6 +162,30 @@ class Caisse
     }
 
     /**
+     * Set approvision
+     *
+     * @param integer $approvision
+     *
+     * @return Caisse
+     */
+    public function setApprovision($approvision)
+    {
+        $this->approvision = $approvision;
+
+        return $this;
+    }
+
+    /**
+     * Get approvision
+     *
+     * @return integer
+     */
+    public function getApprovision()
+    {
+        return $this->approvision;
+    }
+
+    /**
      * Set etat
      *
      * @param integer $etat
@@ -193,29 +217,5 @@ class Caisse
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set approvision
-     *
-     * @param integer $approvision
-     *
-     * @return Caisse
-     */
-    public function setApprovision($approvision)
-    {
-        $this->approvision = $approvision;
-
-        return $this;
-    }
-
-    /**
-     * Get approvision
-     *
-     * @return integer
-     */
-    public function getApprovision()
-    {
-        return $this->approvision;
     }
 }

@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Tmpcommande
 {
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
-     */
-    private $orderedArticles;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_commande", type="datetime", nullable=false)
@@ -69,6 +62,13 @@ class Tmpcommande
     private $mntcmd;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
+     */
+    private $orderedArticles;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -78,30 +78,6 @@ class Tmpcommande
     private $id;
 
 
-
-    /**
-     * Set orderedArticles
-     *
-     * @param string $orderedArticles
-     *
-     * @return Tmpcommande
-     */
-    public function setOrderedArticles($orderedArticles)
-    {
-        $this->orderedArticles = $orderedArticles;
-
-        return $this;
-    }
-
-    /**
-     * Get orderedArticles
-     *
-     * @return string
-     */
-    public function getOrderedArticles()
-    {
-        return $this->orderedArticles;
-    }
 
     /**
      * Set dateCommande
@@ -269,6 +245,30 @@ class Tmpcommande
     public function getMntcmd()
     {
         return $this->mntcmd;
+    }
+
+    /**
+     * Set orderedArticles
+     *
+     * @param string $orderedArticles
+     *
+     * @return Tmpcommande
+     */
+    public function setOrderedArticles($orderedArticles)
+    {
+        $this->orderedArticles = $orderedArticles;
+
+        return $this;
+    }
+
+    /**
+     * Get orderedArticles
+     *
+     * @return string
+     */
+    public function getOrderedArticles()
+    {
+        return $this->orderedArticles;
     }
 
     /**

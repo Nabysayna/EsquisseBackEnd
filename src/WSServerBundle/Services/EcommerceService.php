@@ -129,76 +129,56 @@ class EcommerceService
             foreach ($dbcommandes as $commande) {
               $formatted[] = [
                  'id' => $commande->getId(),
-                 'quantite' => $commande->getQuantite(),
-                 'designation' => $commande->getDesignation(),
+                 'orderedArticles' => $commande->getOrderedArticles(),
                  'montant' => $commande->getMontantcommande(),
                  'tel' => $commande->getTelephoneclient(),
                  'fullName' => $commande->getPrenomclient()." ".$commande->getNomclient(),
                  'dateCommande' => $commande->getDateCommande()->format('Y-m-d H:i')
               ];
-          }
-
+            }
+            return ''. json_encode($formatted);
           }
 
           if($params->typeListe=="toDeliver"){
-            $dbcommandes = $this->em->getRepository('WSServerBundle:Commandes')->findBy(array('pourvoyeur' => $correspSession->getIdUser(), 'fourni'=>0));
-            foreach ($dbcommandes as $commande) {
-            $article = $this->em->getRepository('WSServerBundle:Articles')->findOneBy(array('id' => $commande->getIdArticle()));
+              $query = $this->em->createQuery("SELECT c FROM WSServerBundle\Entity\Commandes c WHERE c.fourni=0 and c.orderedArticles LIKE '%\"pourvoyeur\":".strval($correspSession->getIdUser())."}%'") ;
+              $dbcommandes = $query->getArrayResult();
 
-              $formatted[] = [
-                 'id' => $commande->getId(),
-                 'quantite' => $commande->getQuantite(),
-                 'designation' => $commande->getDesignation(),
-                 'montant' => $commande->getMontantcommande(),
-                 'tel' => $commande->getTelephoneclient(),
-                 'fullName' => $commande->getPrenomclient()." ".$commande->getNomclient(),
-                 'dateCommande' => $commande->getDateCommande()->format('Y-m-d H:i')
-              ];
-            } 
-
+            $retour = array( "borom"=>strval($correspSession->getIdUser()), "order"=>$dbcommandes ) ;
+            return json_encode($retour);
           }
 
           if($params->typeListe=="dispatchDelivering"){
             $dbcommandes = $this->em->getRepository('WSServerBundle:Commandes')->findBy(array('fourni'=>0));
             foreach ($dbcommandes as $commande) {
-              $article = $this->em->getRepository('WSServerBundle:Articles')->findOneBy(array('id' => $commande->getIdArticle()));
-
-              $user = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('idUser' => $commande->getPourvoyeur()) ); 
 
                 $formatted[] = [
                    'id' => $commande->getId(),
-                   'quantite' => $commande->getQuantite(),
-                   'designation' => $article->getDesignation(),
-                   'prixUnitaire' => $article->getPrix(),
+                   'orderedArticles' => $commande->getOrderedArticles(),
+                   'montant' => $commande->getMontantcommande(),
                    'tel' => $commande->getTel(), 
-                   'fullName' => $user->getPrenom()." ".$user->getNom(),
-                   'adress' => $user->getAdresse(),
+                   'fullName' => $commande->getPrenomclient()." ".$commande->getNomclient(),
                    'dateCommande' => $commande->getDateCommande()->format('Y-m-d H:i')
                 ];
 
             }
+            return ''. json_encode($formatted);
           }
 
           if($params->typeListe=="dispatchReception"){
             $dbcommandes = $this->em->getRepository('WSServerBundle:Commandes')->findBy(array('recu'=>0));
             foreach ($dbcommandes as $commande) {
-              $article = $this->em->getRepository('WSServerBundle:Articles')->findOneBy(array('id' => $commande->getIdArticle()));
-
-              $user = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('idUser' => $commande->getPourvoyeur()) ); 
 
                 $formatted[] = [
                    'id' => $commande->getId(),
-                   'quantite' => $commande->getQuantite(),
-                   'designation' => $article->getDesignation(),
-                   'prixUnitaire' => $article->getPrix(),
+                   'orderedArticles' => $commande->getOrderedArticles(),
+                   'montant' => $commande->getMontantcommande(),
                    'tel' => $commande->getTel(),
-                   'fullName' => $user->getPrenom()." ".$user->getNom(),
-                   'adress' => $user->getAdresse(),
+                   'fullName' => $commande->getPrenomclient()." ".$commande->getNomclient(),
                    'dateCommande' => $commande->getDateCommande()->format('Y-m-d H:i')
                 ];
             }
+            return ''. json_encode($formatted);
           }
-          return ''. json_encode($formatted);
 
         } else
           return json_encode( array('errorCode' => 0, 'message' => 'Utilisateur non authentifié') ) ;
@@ -331,13 +311,20 @@ class EcommerceService
           if (!empty($tmpCmd)){    
 
               if(explode("#",$params->article)[0]=="infocmd"){ 
-                return json_encode((array)$tmpCmd) ;
+                $formatted[] = [
+                   'id' => $tmpCmd->getId(),
+                   'orderedArticles' => $tmpCmd->getOrderedArticles(),
+                   'montant' => $tmpCmd->getMntcmd(),
+                   'prenomclient' => $tmpCmd->getPrenomclient(),
+                   'nomclient' => $tmpCmd->getNomclient(),
+                   'telclient' => $tmpCmd->getTelclient(),
+                   'dateCommande' => $tmpCmd->getDateCommande()->format('Y-m-d H:i')
+                ];
+
+                return json_encode($formatted) ;
               }else{
-                $commande->setIdArticle( $tmpCmd->getIdArticle() );
-                $commande->setDesignation( $tmpCmd->getDesignation() );
+                $commande->setOrderedArticles($tmpCmd->getOrderedArticles()) ;
                 $commande->setCommanditaire( $correspSession->getIdUser() );
-                $commande->setPourvoyeur( $tmpCmd->getPourvoyeur() );
-                $commande->setQuantite( $tmpCmd->getQte() );
                 $commande->setIdclient( $tmpCmd->getIdClient() );  
                 $commande->setPrenomclient( $tmpCmd->getPrenomclient() );  
                 $commande->setNomclient( $tmpCmd->getNomclient() );  
@@ -345,7 +332,7 @@ class EcommerceService
                 $commande->setFourni(0);
                 $commande->setLivre(0);
                 $commande->setRecu(0);
-                $commande->setCodepayement(1234);
+                $commande->setCodepayement(time());
                 $commande->setDependsOn( $correspSession->getDependsOn() );
                 $commande->setPointderecuperation("Dakar");
                 $commande->setMontantcommande( $tmpCmd->getMntcmd() ) ;
@@ -354,7 +341,8 @@ class EcommerceService
                 $this->em->persist($commande) ;
                 $this->em->remove($tmpCmd) ;
                 $this->em->flush() ;
-                return json_encode((array)$commande) ;
+
+                return "ok" ;
             }
           }else
             return 'No row found matching the given code.';

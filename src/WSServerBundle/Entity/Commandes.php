@@ -15,37 +15,9 @@ class Commandes
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_article", type="integer", nullable=false)
-     */
-    private $idArticle;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="designation", type="string", length=30, nullable=false)
-     */
-    private $designation;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="commanditaire", type="integer", nullable=false)
      */
     private $commanditaire;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="pourvoyeur", type="integer", nullable=true)
-     */
-    private $pourvoyeur;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
-     */
-    private $quantite;
 
     /**
      * @var \DateTime
@@ -132,18 +104,11 @@ class Commandes
     private $montantcommande;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="depend_on", type="integer", nullable=false)
+     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
      */
-    private $dependOn;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_user", type="integer", nullable=false)
-     */
-    private $idUser;
+    private $orderedArticles;
 
     /**
      * @var integer
@@ -155,55 +120,6 @@ class Commandes
     private $id;
 
 
-
-
-    /**
-     * Set idArticle
-     *
-     * @param integer $idArticle
-     *
-     * @return Commandes
-     */
-    public function setIdArticle($idArticle)
-    {
-        $this->idArticle = $idArticle;
-
-        return $this;
-    }
-
-    /**
-     * Get idArticle
-     *
-     * @return integer
-     */
-    public function getIdArticle()
-    {
-        return $this->idArticle;
-    }
-
-    /**
-     * Set designation
-     *
-     * @param string $designation
-     *
-     * @return Commandes
-     */
-    public function setDesignation($designation)
-    {
-        $this->designation = $designation;
-
-        return $this;
-    }
-
-    /**
-     * Get designation
-     *
-     * @return string
-     */
-    public function getDesignation()
-    {
-        return $this->designation;
-    }
 
     /**
      * Set commanditaire
@@ -227,54 +143,6 @@ class Commandes
     public function getCommanditaire()
     {
         return $this->commanditaire;
-    }
-
-    /**
-     * Set pourvoyeur
-     *
-     * @param integer $pourvoyeur
-     *
-     * @return Commandes
-     */
-    public function setPourvoyeur($pourvoyeur)
-    {
-        $this->pourvoyeur = $pourvoyeur;
-
-        return $this;
-    }
-
-    /**
-     * Get pourvoyeur
-     *
-     * @return integer
-     */
-    public function getPourvoyeur()
-    {
-        return $this->pourvoyeur;
-    }
-
-    /**
-     * Set quantite
-     *
-     * @param integer $quantite
-     *
-     * @return Commandes
-     */
-    public function setQuantite($quantite)
-    {
-        $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    /**
-     * Get quantite
-     *
-     * @return integer
-     */
-    public function getQuantite()
-    {
-        return $this->quantite;
     }
 
     /**
@@ -566,51 +434,27 @@ class Commandes
     }
 
     /**
-     * Set dependOn
+     * Set orderedArticles
      *
-     * @param integer $dependOn
+     * @param string $orderedArticles
      *
      * @return Commandes
      */
-    public function setDependOn($dependOn)
+    public function setOrderedArticles($orderedArticles)
     {
-        $this->dependOn = $dependOn;
+        $this->orderedArticles = $orderedArticles;
 
         return $this;
     }
 
     /**
-     * Get dependOn
+     * Get orderedArticles
      *
-     * @return integer
+     * @return string
      */
-    public function getDependOn()
+    public function getOrderedArticles()
     {
-        return $this->dependOn;
-    }
-
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Commandes
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
+        return $this->orderedArticles;
     }
 
     /**
