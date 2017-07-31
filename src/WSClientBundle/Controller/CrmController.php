@@ -49,4 +49,12 @@ class CrmController extends Controller
         return new JsonResponse(array('result' => $result));
     }
 
+    
+    public function servicepointAction()
+    {
+        $params = array('token' => '3fea65929f0e36ac15d4c35ead4084115c89864f');
+        $result = $this->client->call('servicepoint', $params);
+        return new JsonResponse(array('result' => $result));
+    }
+
 }

@@ -37,6 +37,12 @@
 <message name="suivicommandeResponse">
 <part name="return" type="xsd:string"/>
 </message>
+<message name="servicepointRequest">
+<part name="token" type="xsd:string"/>
+</message>
+<message name="servicepointResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <portType name="crmPortType">
 <operation name="portefeuille">
 <documentation>Method CRM portefeuille</documentation>
@@ -62,6 +68,11 @@
 <documentation>Method CRM suivicommande</documentation>
 <input message="tns:suivicommandeRequest"/>
 <output message="tns:suivicommandeResponse"/>
+</operation>
+<operation name="servicepoint">
+<documentation>Method CRM servicepoint</documentation>
+<input message="tns:servicepointRequest"/>
+<output message="tns:servicepointResponse"/>
 </operation>
 </portType>
 <binding name="crmBinding" type="tns:crmPortType">
@@ -104,6 +115,15 @@
 </operation>
 <operation name="suivicommande">
 <soap:operation soapAction="urn:crmwsdl#suivicommande" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="servicepoint">
+<soap:operation soapAction="urn:crmwsdl#servicepoint" style="rpc"/>
 <input>
 <soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </input>

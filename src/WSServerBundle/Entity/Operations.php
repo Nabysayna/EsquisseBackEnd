@@ -218,4 +218,33 @@ class Operations
     {
         return $this->id;
     }
+    /**
+     * @var integer
+     */
+    private $idpdv;
+
+
+    /**
+     * Set idpdv
+     *
+     * @param integer $idpdv
+     *
+     * @return Operations
+     */
+    public function setIdpdv($idpdv)
+    {
+        $this->idpdv = $idpdv;
+
+        return $this;
+    }
+
+    /**
+     * Get idpdv
+     *
+     * @return integer
+     */
+    public function getIdpdv()
+    {
+        return $this->idpdv;
+    }
 }

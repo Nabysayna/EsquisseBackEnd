@@ -187,4 +187,33 @@ class Reclamations
     {
         return $this->id;
     }
+    /**
+     * @var string
+     */
+    private $sujet;
+
+
+    /**
+     * Set sujet
+     *
+     * @param string $sujet
+     *
+     * @return Reclamations
+     */
+    public function setSujet($sujet)
+    {
+        $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    /**
+     * Get sujet
+     *
+     * @return string
+     */
+    public function getSujet()
+    {
+        return $this->sujet;
+    }
 }

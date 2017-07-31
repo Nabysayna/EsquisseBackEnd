@@ -364,6 +364,10 @@ ws_client_crm_prospection:
 ws_client_crm_suivicommande:
     path:     /crm/suivicommande
     defaults: { _controller: WSClientBundle:Crm:suivicommande }
+
+ws_client_crm_servicepoint:
+    path:     /crm/servicepoint
+    defaults: { _controller: WSClientBundle:Crm:servicepoint }
     
 ws_client_comptapdv_listevente:
     path:     /comptapdv/listevente
@@ -372,3 +376,33 @@ ws_client_comptapdv_listevente:
 ws_client_comptapdv_gestionreporting:
     path:     /gestionreporting/gestionreporting
     defaults: { _controller: WSClientBundle:Gestionreporting:gestionreporting }
+
+
+ws_client_comptapdv_servicepoint:
+    path:     /gestionreporting/servicepoint
+    defaults: { _controller: WSClientBundle:Gestionreporting:servicepoint }
+
+
+ws_client_comptapdv_ajoutdepense:
+    path:     /gestionreporting/ajoutdepense
+    defaults: { _controller: WSClientBundle:Gestionreporting:ajoutdepense }
+
+
+ws_client_comptapdv_reclamation:
+    path:     /gestionreporting/reclamation
+    defaults: { _controller: WSClientBundle:Gestionreporting:reclamation }
+
+
+ws_client_comptapdv_demandepret:
+    path:     /demandepret/demandepret
+    defaults: { _controller: WSClientBundle:Demandepret:demandepret }
+
+
+ws_client_comptapdv_ajoutdemandepret:
+    path:     /demandepret/ajoutdemandepret
+    defaults: { _controller: WSClientBundle:Demandepret:ajoutdemandepret }
+
+ws_client_comptapdv_consulterpret:
+    path:     /consulterpret/consulterpret
+    defaults: { _controller: WSClientBundle:Consulterpret:consulterpret }
+

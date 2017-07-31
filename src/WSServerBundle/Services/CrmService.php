@@ -135,6 +135,32 @@ class CrmService
           }
 
   }
+
+   public function servicepoint($params)
+    {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{
+        
+          $servicept = $this->em->getRepository('WSServerBundle:Services')->findBy(array('idadminpdv' => $correspSession->getIdUser()));
+          
+          $formatted=[];
+          
+        foreach ($servicept as $srv) {
+            $formatted[] = [
+               'nom' => $srv->getNom(),
+               'designations' => $srv->getDesignations()
+
+              ];
+
+            
+        }
+         return ''. json_encode($formatted);
+
+        }
+    }
 }
 
 

@@ -105,6 +105,20 @@ class Users
      */
     private $idUser;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idzone", type="integer", nullable=false)
+     */
+    private $idzone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     */
+    private $zone;
+
 
 
     /**
@@ -403,5 +417,53 @@ class Users
     public function getIdUser()
     {
         return $this->idUser;
+    }
+
+    /**
+     * Set idzone
+     *
+     * @param integer $idzone
+     *
+     * @return Users
+     */
+    public function setIdzone($idzone)
+    {
+        $this->idzone = $idzone;
+
+        return $this;
+    }
+
+    /**
+     * Get idzone
+     *
+     * @return integer
+     */
+    public function getIdzone()
+    {
+        return $this->idzone;
+    }
+
+    /**
+     * Set zone
+     *
+     * @param string $zone
+     *
+     * @return Users
+     */
+    public function setZone($zone)
+    {
+        $this->zone = $zone;
+
+        return $this;
+    }
+
+    /**
+     * Get zone
+     *
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
     }
 }

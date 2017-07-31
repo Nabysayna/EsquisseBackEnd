@@ -57,11 +57,17 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
-      test_server_outsitecommerce:
-        class: WSServerBundle\Services\OutsitEcommerceService
+
+      test_server_demandepret:
+        class: WSServerBundle\Services\DemandepretService
         arguments:
           - "@doctrine.orm.default_entity_manager"
-          - "@test_server_mailing"
+
+      test_server_consulterpret:
+        class: WSServerBundle\Services\ConsulterpretService
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+
 
           
       test_server_mailing:

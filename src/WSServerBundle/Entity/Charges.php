@@ -19,6 +19,7 @@ class Charges
      */
     private $libelle;
 
+
     /**
      * @var integer
      *
@@ -156,4 +157,34 @@ class Charges
     {
         return $this->id;
     }
+    /**
+     * @var \DateTime
+     */
+    private $dateajout;
+
+
+    /**
+     * Set dateajout
+     *
+     * @param \DateTime $dateajout
+     *
+     * @return Charges
+     */
+    public function setDateajout($dateajout)
+    {
+        $this->dateajout = $dateajout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateajout
+     *
+     * @return \DateTime
+     */
+    public function getDateajout()
+    {
+        return $this->dateajout;
+    }
+    
 }

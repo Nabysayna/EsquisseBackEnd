@@ -40,13 +40,7 @@ class Ventes
      */
     private $dateVente;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255, nullable=false)
-     */
-    private $type;
-
+    
     /**
      * @var string
      *
@@ -168,29 +162,6 @@ class Ventes
         return $this->dateVente;
     }
 
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Ventes
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
     /**
      * Set infovente
@@ -248,5 +219,63 @@ class Ventes
     public function getId()
     {
         return $this->id;
+    }
+    /**
+     * @var string
+     */
+    private $servicevente;
+
+
+    /**
+     * Set servicevente
+     *
+     * @param string $servicevente
+     *
+     * @return Ventes
+     */
+    public function setServicevente($servicevente)
+    {
+        $this->servicevente = $servicevente;
+
+        return $this;
+    }
+
+    /**
+     * Get servicevente
+     *
+     * @return string
+     */
+    public function getServicevente()
+    {
+        return $this->servicevente;
+    }
+    /**
+     * @var string
+     */
+    private $typedevente;
+
+
+    /**
+     * Set typedevente
+     *
+     * @param string $typedevente
+     *
+     * @return Ventes
+     */
+    public function setTypedevente($typedevente)
+    {
+        $this->typedevente = $typedevente;
+
+        return $this;
+    }
+
+    /**
+     * Get typedevente
+     *
+     * @return string
+     */
+    public function getTypedevente()
+    {
+        return $this->typedevente;
     }
 }
