@@ -4,6 +4,14 @@ namespace WSServerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+<<<<<<< HEAD
+=======
+/**
+ * Charge
+ *
+ * @ORM\Table(name="charge")
+ * @ORM\Entity
+>>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
 /**
  * Charge
  *
@@ -49,8 +57,11 @@ class Charge
      */
     private $id;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
     /**
      * Set idgerantpdv
      *

@@ -27,6 +27,7 @@ class Charges
     private $libelle;
 
     /**
+<<<<<<< HEAD
      * @var string
      *
      * @ORM\Column(name="service", type="string", length=20, nullable=false)
@@ -34,6 +35,8 @@ class Charges
     private $service;
 
     /**
+=======
+>>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
      * @var integer
      *
      * @ORM\Column(name="montant", type="integer", nullable=false)
@@ -48,6 +51,13 @@ class Charges
     private $iduser;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="service", type="string", length=255, nullable=false)
+     */
+    private $service;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -58,6 +68,7 @@ class Charges
 
 
 
+<<<<<<< HEAD
     /**
      * Set dateajout
      *
@@ -82,6 +93,8 @@ class Charges
         return $this->dateajout;
     }
 
+=======
+>>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
     /**
      * Set libelle
      *
@@ -104,30 +117,6 @@ class Charges
     public function getLibelle()
     {
         return $this->libelle;
-    }
-
-    /**
-     * Set service
-     *
-     * @param string $service
-     *
-     * @return Charges
-     */
-    public function setService($service)
-    {
-        $this->service = $service;
-
-        return $this;
-    }
-
-    /**
-     * Get service
-     *
-     * @return string
-     */
-    public function getService()
-    {
-        return $this->service;
     }
 
     /**
@@ -176,6 +165,30 @@ class Charges
     public function getIduser()
     {
         return $this->iduser;
+    }
+
+    /**
+     * Set service
+     *
+     * @param string $service
+     *
+     * @return Charges
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
     }
 
     /**

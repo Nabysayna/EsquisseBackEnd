@@ -205,6 +205,33 @@ class ComptapdvService
       }
     }
 
+    public function userexploitation($params) {
+      $result = array('prenom' => 'Tous','nom' => 'Tous', 'idpdv' => -1);
+      $results1 = array($result);
+      $query = $this->em->createQuery("SELECT DISTINCT u.prenom, u.nom, u.idUser AS idpdv FROM WSServerBundle\Entity\Users u WHERE u.dependsOn=:idadminpdv")->setParameter('idadminpdv', 2);
+      $results2 = $query->getArrayResult();
+      $results = array_merge ( $results1, $results2);
+      return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+    }
+
+    public function exploitation($params) {   
+      $formatted = array();
+      $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('dependsOn' => 2));
+      foreach ($exploitationvente as $vente) {
+          $formatted[] = [
+             'idpdv' => $vente->getIdUser(),
+             'designation' => $vente->getProduit(),
+             'stocki' => $vente->getStockini(),
+             'vente' => $vente->getVente(),
+             'stockf' => $vente->getStockfin(),
+             'mnt' => $vente->getMontant(),
+             'dateajout' => $vente->getDate(),
+            ];
+      }
+
+      return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+    }
+
     public function totaloperationparapi($params) {   
       $reponse = array(
         'typedebouquet' => 'totaloperationparapi'

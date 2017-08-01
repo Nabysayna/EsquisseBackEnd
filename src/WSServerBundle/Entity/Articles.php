@@ -29,7 +29,11 @@ class Articles
     /**
      * @var string
      *
+<<<<<<< HEAD
      * @ORM\Column(name="description", type="string", length=40, nullable=false)
+=======
+     * @ORM\Column(name="description", type="string", length=500, nullable=false)
+>>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
      */
     private $description;
 

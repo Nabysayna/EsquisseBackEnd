@@ -50,8 +50,7 @@ class CrmService
   {
   	$correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params));
   	$tayy = date("Y-m-d") ;
-	$dateDansDix = date ('Y-m-d', strtotime($tayy.' +10 days')) ;
-
+	  $dateDansDix = date ('Y-m-d', strtotime($tayy.' +10 days')) ;
 
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
@@ -60,12 +59,7 @@ class CrmService
          $result = $this->em->getRepository('WSServerBundle:Tnt')->createQueryBuilder('t')->where("t.echeance <= :dateDansDix and t.dependsOn =:idUser")->setParameter('dateDansDix', $dateDansDix)->setParameter('idUser',$correspSession->getIdUser())->getQuery()->getArrayResult();
 
      		return ''.json_encode($result) ;
-
-
-          }
-        
-        
-
+      }
   }
 
   public function promotion($params)

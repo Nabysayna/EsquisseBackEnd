@@ -59,8 +59,33 @@
 <xsd:element name="idcaisse" type="xsd:int"/>
 </xsd:all>
 </xsd:complexType>
+<xsd:complexType name="InExploitation">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="idpdv" type="xsd:int"/>
+<xsd:element name="type" type="xsd:string"/>
+<xsd:element name="infotype" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InExploitationUser">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
 </xsd:schema>
 </types>
+<message name="userexploitationRequest">
+<part name="params" type="tns:InExploitationUser"/>
+</message>
+<message name="userexploitationResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="exploitationRequest">
+<part name="params" type="tns:InExploitation"/>
+</message>
+<message name="exploitationResponse">
+<part name="return" type="xsd:string"/>
+</message>
 <message name="etatcaisseRequest">
 <part name="params" type="tns:InData"/>
 </message>
@@ -194,6 +219,16 @@
 <part name="return" type="xsd:string"/>
 </message>
 <portType name="comptapdvPortType">
+<operation name="userexploitation">
+<documentation>Method COMPTA PDV userexploitation</documentation>
+<input message="tns:userexploitationRequest"/>
+<output message="tns:userexploitationResponse"/>
+</operation>
+<operation name="exploitation">
+<documentation>Method COMPTA PDV exploitation</documentation>
+<input message="tns:exploitationRequest"/>
+<output message="tns:exploitationResponse"/>
+</operation>
 <operation name="etatcaisse">
 <documentation>Method COMPTA PDV etatcaisse</documentation>
 <input message="tns:etatcaisseRequest"/>
@@ -307,6 +342,24 @@
 </portType>
 <binding name="comptapdvBinding" type="tns:comptapdvPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="userexploitation">
+<soap:operation soapAction="urn:comptapdvwsdl#userexploitation" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="exploitation">
+<soap:operation soapAction="urn:comptapdvwsdl#exploitation" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:comptapdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
 <operation name="etatcaisse">
 <soap:operation soapAction="urn:comptapdvwsdl#etatcaisse" style="rpc"/>
 <input>
