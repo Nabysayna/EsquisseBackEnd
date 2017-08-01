@@ -1,0 +1,82 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Apis
+ *
+ * @ORM\Table(name="apis")
+ * @ORM\Entity
+ */
+class Apis
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_api", type="string", length=50, nullable=false)
+     */
+    private $nomApi;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="identifiant", type="string", length=50, nullable=false)
+     */
+    private $identifiant;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pwd", type="string", length=255, nullable=false)
+     */
+    private $pwd;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etat", type="integer", nullable=false)
+     */
+    private $etat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=false)
+     */
+    private $token;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="caution", type="integer", nullable=false)
+     */
+    private $caution;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     */
+    private $dateAjout;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cautionconsomme", type="integer", nullable=false)
+     */
+    private $cautionconsomme;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_api", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idApi;
+
+
+}
+

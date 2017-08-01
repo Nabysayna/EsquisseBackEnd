@@ -77,16 +77,6 @@ class Users
 
     /**
      * @var string
-<<<<<<< HEAD
-=======
-     *
-     * @ORM\Column(name="token", type="string", length=255, nullable=false)
-     */
-    private $token;
-
-    /**
-     * @var integer
->>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
      *
      * @ORM\Column(name="token", type="string", length=255, nullable=true)
      */
@@ -100,7 +90,6 @@ class Users
     private $idzone;
 
     /**
-<<<<<<< HEAD
      * @var string
      *
      * @ORM\Column(name="zone", type="string", length=50, nullable=false)
@@ -108,8 +97,6 @@ class Users
     private $zone;
 
     /**
-=======
->>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
      * @var integer
      *
      * @ORM\Column(name="id_user", type="integer")
@@ -338,8 +325,6 @@ class Users
 
     /**
      * Set token
-<<<<<<< HEAD
-=======
      *
      * @param string $token
      *
@@ -360,55 +345,6 @@ class Users
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Set idsousZone
-     *
-     * @param integer $idsousZone
-     *
-     * @return Users
-     */
-    public function setIdsousZone($idsousZone)
-    {
-        $this->idsousZone = $idsousZone;
-
-        return $this;
-    }
-
-    /**
-     * Get idsousZone
-     *
-     * @return integer
-     */
-    public function getIdsousZone()
-    {
-        return $this->idsousZone;
-    }
-
-    /**
-     * Set sousZone
->>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
-     *
-     * @param string $sousZone
-     *
-     * @return Users
-     */
-    public function setSousZone($sousZone)
-    {
-        $this->sousZone = $sousZone;
-
-        return $this;
-    }
-
-    /**
-     * Get sousZone
-     *
-     * @return string
-     */
-    public function getSousZone()
-    {
-        return $this->sousZone;
     }
 
     /**

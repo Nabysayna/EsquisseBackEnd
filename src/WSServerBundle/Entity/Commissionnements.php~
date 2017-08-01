@@ -1,0 +1,68 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Commissionnements
+ *
+ * @ORM\Table(name="commissionnements")
+ * @ORM\Entity
+ */
+class Commissionnements
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idapis", type="integer", nullable=false)
+     */
+    private $idapis;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="commissionsupenvoi", type="smallint", nullable=false)
+     */
+    private $commissionsupenvoi;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="commissioninfenvoi", type="smallint", nullable=false)
+     */
+    private $commissioninfenvoi;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="commissionsupretrait", type="smallint", nullable=false)
+     */
+    private $commissionsupretrait;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="commissioninfretrait", type="smallint", nullable=false)
+     */
+    private $commissioninfretrait;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateajout", type="datetime", nullable=false)
+     */
+    private $dateajout;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

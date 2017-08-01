@@ -15,7 +15,6 @@ class Commandes
     /**
      * @var integer
      *
-<<<<<<< HEAD
      * @ORM\Column(name="id_article", type="integer", nullable=false)
      */
     private $idArticle;
@@ -23,11 +22,23 @@ class Commandes
     /**
      * @var integer
      *
-=======
->>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
      * @ORM\Column(name="commanditaire", type="integer", nullable=false)
      */
     private $commanditaire;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pourvoyeur", type="integer", nullable=true)
+     */
+    private $pourvoyeur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantite", type="integer", nullable=false)
+     */
+    private $quantite;
 
     /**
      * @var \DateTime
@@ -114,16 +125,6 @@ class Commandes
     private $montantcommande;
 
     /**
-<<<<<<< HEAD
-=======
-     * @var string
-     *
-     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
-     */
-    private $orderedArticles;
-
-    /**
->>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -135,7 +136,6 @@ class Commandes
 
 
     /**
-<<<<<<< HEAD
      * Set idArticle
      *
      * @param integer $idArticle
@@ -160,8 +160,6 @@ class Commandes
     }
 
     /**
-=======
->>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
      * Set commanditaire
      *
      * @param integer $commanditaire
@@ -183,6 +181,54 @@ class Commandes
     public function getCommanditaire()
     {
         return $this->commanditaire;
+    }
+
+    /**
+     * Set pourvoyeur
+     *
+     * @param integer $pourvoyeur
+     *
+     * @return Commandes
+     */
+    public function setPourvoyeur($pourvoyeur)
+    {
+        $this->pourvoyeur = $pourvoyeur;
+
+        return $this;
+    }
+
+    /**
+     * Get pourvoyeur
+     *
+     * @return integer
+     */
+    public function getPourvoyeur()
+    {
+        return $this->pourvoyeur;
+    }
+
+    /**
+     * Set quantite
+     *
+     * @param integer $quantite
+     *
+     * @return Commandes
+     */
+    public function setQuantite($quantite)
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    /**
+     * Get quantite
+     *
+     * @return integer
+     */
+    public function getQuantite()
+    {
+        return $this->quantite;
     }
 
     /**
@@ -474,33 +520,6 @@ class Commandes
     }
 
     /**
-<<<<<<< HEAD
-=======
-     * Set orderedArticles
-     *
-     * @param string $orderedArticles
-     *
-     * @return Commandes
-     */
-    public function setOrderedArticles($orderedArticles)
-    {
-        $this->orderedArticles = $orderedArticles;
-
-        return $this;
-    }
-
-    /**
-     * Get orderedArticles
-     *
-     * @return string
-     */
-    public function getOrderedArticles()
-    {
-        return $this->orderedArticles;
-    }
-
-    /**
->>>>>>> 6b40296ccd26ae3357ce463f00ab8f05f5fc0deb
      * Get id
      *
      * @return integer
