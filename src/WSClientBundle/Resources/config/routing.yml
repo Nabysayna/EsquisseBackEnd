@@ -392,6 +392,10 @@ ws_client_comptapdv_reclamation:
     path:     /gestionreporting/reclamation
     defaults: { _controller: WSClientBundle:Gestionreporting:reclamation }
 
+ws_client_comptapdv_vente:
+    path:     /gestionreporting/vente
+    defaults: { _controller: WSClientBundle:Gestionreporting:vente }
+
 
 ws_client_comptapdv_demandepret:
     path:     /demandepret/demandepret

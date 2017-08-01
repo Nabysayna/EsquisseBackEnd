@@ -13,11 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
 class Tmpcommande
 {
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
+     * @ORM\Column(name="id_article", type="integer", nullable=false)
      */
-    private $orderedArticles;
+    private $idArticle;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="qte", type="integer", nullable=false)
+     */
+    private $qte;
 
     /**
      * @var \DateTime
@@ -71,57 +78,67 @@ class Tmpcommande
     /**
      * @var integer
      *
+     * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
+     */
+    private $pourvoyeur;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_article", type="integer", nullable=false)
-     */
-    private $idArticle;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="qte", type="integer", nullable=false)
-     */
-    private $qte;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
-     */
-    private $pourvoyeur;
-
 
 
     /**
-     * Set orderedArticles
+     * Set idArticle
      *
-     * @param string $orderedArticles
+     * @param integer $idArticle
      *
      * @return Tmpcommande
      */
-    public function setOrderedArticles($orderedArticles)
+    public function setIdArticle($idArticle)
     {
-        $this->orderedArticles = $orderedArticles;
+        $this->idArticle = $idArticle;
 
         return $this;
     }
 
     /**
-     * Get orderedArticles
+     * Get idArticle
      *
-     * @return string
+     * @return integer
      */
-    public function getOrderedArticles()
+    public function getIdArticle()
     {
-        return $this->orderedArticles;
+        return $this->idArticle;
+    }
+
+    /**
+     * Set qte
+     *
+     * @param integer $qte
+     *
+     * @return Tmpcommande
+     */
+    public function setQte($qte)
+    {
+        $this->qte = $qte;
+
+        return $this;
+    }
+
+    /**
+     * Get qte
+     *
+     * @return integer
+     */
+    public function getQte()
+    {
+        return $this->qte;
     }
 
     /**
@@ -147,9 +164,6 @@ class Tmpcommande
     {
         return $this->dateCommande;
     }
-
-    
-
 
     /**
      * Set idClient
@@ -296,64 +310,6 @@ class Tmpcommande
     }
 
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set idArticle
-     *
-     * @param integer $idArticle
-     *
-     * @return Tmpcommande
-     */
-    public function setIdArticle($idArticle)
-    {
-        $this->idArticle = $idArticle;
-
-        return $this;
-    }
-
-    /**
-     * Get idArticle
-     *
-     * @return integer
-     */
-    public function getIdArticle()
-    {
-        return $this->idArticle;
-    }
-
-    /**
-     * Set qte
-     *
-     * @param integer $qte
-     *
-     * @return Tmpcommande
-     */
-    public function setQte($qte)
-    {
-        $this->qte = $qte;
-
-        return $this;
-    }
-
-    /**
-     * Get qte
-     *
-     * @return integer
-     */
-    public function getQte()
-    {
-        return $this->qte;
-    }
-
-    /**
      * Set pourvoyeur
      *
      * @param integer $pourvoyeur
@@ -375,5 +331,15 @@ class Tmpcommande
     public function getPourvoyeur()
     {
         return $this->pourvoyeur;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 }

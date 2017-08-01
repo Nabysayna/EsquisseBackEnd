@@ -2,36 +2,53 @@
 
 namespace WSServerBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Demandepret
+ *
+ * @ORM\Table(name="demandepret")
+ * @ORM\Entity
  */
 class Demandepret
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
      */
     private $idUser;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
      */
     private $dependsOn;
 
-
     /**
      * @var integer
+     *
+     * @ORM\Column(name="montantdemande", type="integer", nullable=false)
      */
     private $montantdemande;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="plafond", type="integer", nullable=false)
      */
     private $plafond;
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
 
 
     /**
@@ -82,7 +99,6 @@ class Demandepret
         return $this->dependsOn;
     }
 
-   
     /**
      * Set montantdemande
      *

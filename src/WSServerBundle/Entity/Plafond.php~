@@ -5,12 +5,12 @@ namespace WSServerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Prerogatives
+ * Plafond
  *
- * @ORM\Table(name="prerogatives")
+ * @ORM\Table(name="plafond")
  * @ORM\Entity
  */
-class Prerogatives
+class Plafond
 {
     /**
      * @var integer
@@ -20,27 +20,27 @@ class Prerogatives
     private $idUser;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="authorized_apis", type="string", length=80, nullable=false)
+     * @ORM\Column(name="depends_on", type="integer", nullable=false)
      */
-    private $authorizedApis;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
-     */
-    private $dateAjout;
+    private $dependsOn;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_auth", type="integer")
+     * @ORM\Column(name="plafond", type="integer", nullable=false)
+     */
+    private $plafond;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idAuth;
+    private $id;
 
 
 }

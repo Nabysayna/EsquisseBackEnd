@@ -76,39 +76,16 @@ class Users
     private $dateCreation;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idsous_zone", type="integer", nullable=true)
-     */
-    private $idsousZone;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=false)
-     */
-    private $sousZone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="token", type="string", length=255, nullable=false)
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
      */
     private $token;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_user", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idUser;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idzone", type="integer", nullable=false)
+     * @ORM\Column(name="idzone", type="integer", nullable=true)
      */
     private $idzone;
 
@@ -118,6 +95,15 @@ class Users
      * @ORM\Column(name="zone", type="string", length=50, nullable=false)
      */
     private $zone;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idUser;
 
 
 
@@ -338,54 +324,6 @@ class Users
     }
 
     /**
-     * Set idsousZone
-     *
-     * @param integer $idsousZone
-     *
-     * @return Users
-     */
-    public function setIdsousZone($idsousZone)
-    {
-        $this->idsousZone = $idsousZone;
-
-        return $this;
-    }
-
-    /**
-     * Get idsousZone
-     *
-     * @return integer
-     */
-    public function getIdsousZone()
-    {
-        return $this->idsousZone;
-    }
-
-    /**
-     * Set sousZone
-     *
-     * @param string $sousZone
-     *
-     * @return Users
-     */
-    public function setSousZone($sousZone)
-    {
-        $this->sousZone = $sousZone;
-
-        return $this;
-    }
-
-    /**
-     * Get sousZone
-     *
-     * @return string
-     */
-    public function getSousZone()
-    {
-        return $this->sousZone;
-    }
-
-    /**
      * Set token
      *
      * @param string $token
@@ -407,16 +345,6 @@ class Users
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
     }
 
     /**
@@ -465,5 +393,15 @@ class Users
     public function getZone()
     {
         return $this->zone;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
     }
 }

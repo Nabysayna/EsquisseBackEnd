@@ -27,16 +27,9 @@ class Articles
     private $designation;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idcategorie", type="integer", nullable=true)
-     */
-    private $idcategorie;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=70, nullable=false)
+     * @ORM\Column(name="description", type="string", length=40, nullable=false)
      */
     private $description;
 
@@ -69,6 +62,13 @@ class Articles
     private $dateAjout;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="idcategorie", type="integer", nullable=true)
+     */
+    private $idcategorie;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="categorie", type="string", length=50, nullable=false)
@@ -97,7 +97,6 @@ class Articles
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
 
 
 
@@ -147,30 +146,6 @@ class Articles
     public function getDesignation()
     {
         return $this->designation;
-    }
-
-    /**
-     * Set idcategorie
-     *
-     * @param integer $idcategorie
-     *
-     * @return Articles
-     */
-    public function setIdcategorie($idcategorie)
-    {
-        $this->idcategorie = $idcategorie;
-
-        return $this;
-    }
-
-    /**
-     * Get idcategorie
-     *
-     * @return integer
-     */
-    public function getIdcategorie()
-    {
-        return $this->idcategorie;
     }
 
     /**
@@ -291,6 +266,30 @@ class Articles
     public function getDateAjout()
     {
         return $this->dateAjout;
+    }
+
+    /**
+     * Set idcategorie
+     *
+     * @param integer $idcategorie
+     *
+     * @return Articles
+     */
+    public function setIdcategorie($idcategorie)
+    {
+        $this->idcategorie = $idcategorie;
+
+        return $this;
+    }
+
+    /**
+     * Get idcategorie
+     *
+     * @return integer
+     */
+    public function getIdcategorie()
+    {
+        return $this->idcategorie;
     }
 
     /**

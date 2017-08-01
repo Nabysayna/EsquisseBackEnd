@@ -13,17 +13,23 @@ use Doctrine\ORM\Mapping as ORM;
 class Charges
 {
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateAjout", type="datetime", nullable=false)
+     */
+    private $dateajout;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="libelle", type="string", length=255, nullable=false)
      */
     private $libelle;
 
-
     /**
      * @var string
      *
-     * @ORM\Column(name="service", type="string", length=255, nullable=false)
+     * @ORM\Column(name="service", type="string", length=20, nullable=false)
      */
     private $service;
 
@@ -52,6 +58,29 @@ class Charges
 
 
 
+    /**
+     * Set dateajout
+     *
+     * @param \DateTime $dateajout
+     *
+     * @return Charges
+     */
+    public function setDateajout($dateajout)
+    {
+        $this->dateajout = $dateajout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateajout
+     *
+     * @return \DateTime
+     */
+    public function getDateajout()
+    {
+        return $this->dateajout;
+    }
 
     /**
      * Set libelle
@@ -158,34 +187,4 @@ class Charges
     {
         return $this->id;
     }
-    /**
-     * @var \DateTime
-     */
-    private $dateajout;
-
-
-    /**
-     * Set dateajout
-     *
-     * @param \DateTime $dateajout
-     *
-     * @return Charges
-     */
-    public function setDateajout($dateajout)
-    {
-        $this->dateajout = $dateajout;
-
-        return $this;
-    }
-
-    /**
-     * Get dateajout
-     *
-     * @return \DateTime
-     */
-    public function getDateajout()
-    {
-        return $this->dateajout;
-    }
-    
 }
