@@ -9,8 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="charge")
  * @ORM\Entity
-/**
- * Charge
  */
 class Charge
 {
@@ -50,6 +48,8 @@ class Charge
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+
 
     /**
      * Set idgerantpdv

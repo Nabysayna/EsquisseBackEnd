@@ -5,6 +5,7 @@ use WSServerBundle\Entity\Authorizedsessions;
 use WSServerBundle\Entity\Charges;
 use WSServerBundle\Entity\Reclamations;
 use WSServerBundle\Entity\Ventes;
+use WSServerBundle\Entity\Exploitations;
 
 
 class GestionreportingService
@@ -121,42 +122,64 @@ class GestionreportingService
 
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
-      else{   
-        $service = $this->em->getRepository('WSServerBundle:Services')->findBy(array('nom'=>$params->servicevente));
-        $listedesignations=json_decode($service->getDesignations());
-        $desigCurrent=null;
-        foreach ($listedesignations as $designation) {
-          if($designation->name==$params->designation){
-            $designation->stock=$designation->stock-$params->quantite;
-            $desigCurrent=$designation;
-          }
-        }
-        $montant=$params->quantite*$desigCurrent->prixunitaire;
-        $service->setDesignations($listedesignations);
-        persist($service);   
+      else{  
+          $service=$this->em->getRepository('WSServerBundle:Services')->findOneBy(array('nom'=>$params->servicevente));
+           $designations=json_decode($service->getDesignations());
+            foreach ($designations as $dsgn)
+             {
+                  if($dsgn->name==$params->designation)
+                  {
+                    $dsgn->stock=$dsgn->stock-$params->quantite;
+                      
+                  }
+                  $tempDesignation=$dsgn;
+              
+              }
+                  $service->setDesignations(json_encode($designations));
+                  $this->em->persist($service);
+                  $newVentes= new Ventes();
+                  $newVentes->setDependOn( $correspSession->getDependsOn());
+                  $newVentes->setIdClient(0);
+                  $newVentes->setIdUser($correspSession->getIdUser());
+                  $newVentes->setServicevente($params->servicevente);
+                  $infovente = array('produit' =>$params->designation ,'nbrarticle'=>$params->quantite);
+                  $newVentes->setInfovente(json_encode($infovente));
+                  $newVentes->setMontant($tempDesignation->prixunitaire*$params->quantite);
+                  $newVentes->setDateVente(new \Datetime());
+                  $this->em->persist($newVentes);
+                  $today=new \Datetime();
+                  $exploitation=$this->em->getRepository('WSServerBundle:Exploitations')->findOneBy(array('produit'=>$params->designation, 'date'=>$today));
+                  if(!empty($exploitation))
+                  {
+                    $exploitation->setVente($exploitation->getVente()+$params->quantite);
+                    $exploitation->setStockfin($exploitation->getStockini()-$exploitation->getVente());
+                    $exploitation->setMontant($params->quantite*$tempDesignation->prixunitaire);
+                    $this->em->persist($exploitation);
 
-        $newVentes = new Ventes();
-        $newVentes->setIduser( $correspSession->getIdUser());
-        $newVentes->setDependOn($correspSession->getDependsOn());
-        $newVentes->setMontant($montant);
-        $newVentes->setDateVente(new \Datetime());
-        $newVentes->setTypedevente($service->getNom());
-        $infovente = array('designations' =>$params->designation ,'stocki' );
-        $newVentes->setInfovente($params->infovente);
-        $newVentes->setIdClient($params->idclient);
-        $newVentes->setServicevente($params->servicevente);
+                  }
+                  else
+                  {
+                    $newExploitation= new Exploitations();
+                    $newExploitation->setIdUser( $correspSession->getIdUser());
+                    $newExploitation->setDependsOn( $correspSession->getDependsOn());
+                    $newExploitation->setInfosup("");
+                    $newExploitation->setProduit($params->designation);
+                    $newExploitation->setStockini($tempDesignation->stock+$params->quantite);
+                    $newExploitation->setVente($params->quantite);
+                    $newExploitation->setStockfin($newExploitation->getStockini()-$newExploitation->getVente());
+                    $newExploitation->setMontant($params->quantite*$tempDesignation->prixunitaire);
+                    $newExploitation->setDate($today);
+                    $this->em->persist($newExploitation);
 
+                  }
+               $this->em->flush();
 
-        $this->em->persist($newVentes);
-        $this->em->flush();
-        
-        return ''. json_encode(array('errorCode' => 1, 'response' => "ok"));
-      }
-    }
-    
-  
- 
+               return ''. json_encode(array('errorCode' => 1, 'response' => "ok"));
 
-  }
+              }
+     
+           }
+
+}
 
 

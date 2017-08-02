@@ -22,6 +22,13 @@ class Reclamations
     /**
      * @var string
      *
+     * @ORM\Column(name="sujet", type="string", length=30, nullable=false)
+     */
+    private $sujet;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nomservice", type="string", length=255, nullable=false)
      */
     private $nomservice;
@@ -36,7 +43,7 @@ class Reclamations
     /**
      * @var integer
      *
-     * @ORM\Column(name="etat", type="smallint", nullable=false)
+     * @ORM\Column(name="etat", type="smallint", nullable=true)
      */
     private $etat;
 
@@ -80,6 +87,30 @@ class Reclamations
     public function getIduser()
     {
         return $this->iduser;
+    }
+
+    /**
+     * Set sujet
+     *
+     * @param string $sujet
+     *
+     * @return Reclamations
+     */
+    public function setSujet($sujet)
+    {
+        $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    /**
+     * Get sujet
+     *
+     * @return string
+     */
+    public function getSujet()
+    {
+        return $this->sujet;
     }
 
     /**
@@ -186,34 +217,5 @@ class Reclamations
     public function getId()
     {
         return $this->id;
-    }
-    /**
-     * @var string
-     */
-    private $sujet;
-
-
-    /**
-     * Set sujet
-     *
-     * @param string $sujet
-     *
-     * @return Reclamations
-     */
-    public function setSujet($sujet)
-    {
-        $this->sujet = $sujet;
-
-        return $this;
-    }
-
-    /**
-     * Get sujet
-     *
-     * @return string
-     */
-    public function getSujet()
-    {
-        return $this->sujet;
     }
 }
