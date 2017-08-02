@@ -223,22 +223,57 @@ class ComptapdvService
         $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('dependsOn' => 2));        
       }
       else{
-        $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('idUser' => $params->idpdv));        
+        $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('idUser' => $params->idpdv)); 
       }
-
-      foreach ($exploitationvente as $vente) {
-        $formatted[] = [
-         'idpdv' => $vente->getIdUser(),
-         'designation' => $vente->getProduit(),
-         'stocki' => $vente->getStockini(),
-         'vente' => $vente->getVente(),
-         'stockf' => $vente->getStockfin(),
-         'mnt' => $vente->getMontant(),
-         'dateajout' => $vente->getDate(),
-        ];
+      if($params->type == "jour"){
+        foreach ($exploitationvente as $vente) {
+          if($params->infotype == $vente->getDateAjout()->format('Y-m-d')){
+            $formatted[] = [
+             'idpdv' => $vente->getIdUser(),
+             'designation' => $vente->getProduit(),
+             'stocki' => $vente->getStockini(),
+             'vente' => $vente->getVente(),
+             'stockf' => $vente->getStockfin(),
+             'mnt' => $vente->getMontant(),
+             'dateajout' => $vente->getDateAjout(),
+            ];
+          }
+        }
+        return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
       }
-
-      return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+      if($params->type == "annee"){
+        foreach ($exploitationvente as $vente) {
+          if($params->infotype == $vente->getDateAjout()->format('Y')){
+            $formatted[] = [
+             'idpdv' => $vente->getIdUser(),
+             'designation' => $vente->getProduit(),
+             'stocki' => $vente->getStockini(),
+             'vente' => $vente->getVente(),
+             'stockf' => $vente->getStockfin(),
+             'mnt' => $vente->getMontant(),
+             'dateajout' => $vente->getDateAjout(),
+            ];
+          }
+        }
+        return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+      }
+      if($params->type == "intervalle"){
+        $tabintervalle = explode (" ", $params->infotype);
+        foreach ($exploitationvente as $vente) {
+          if( $vente->getDateAjout()->format('Y-m-d') >= $tabintervalle[0] && $vente->getDateAjout()->format('Y-m-d') <= $tabintervalle[1] ){
+            $formatted[] = [
+             'idpdv' => $vente->getIdUser(),
+             'designation' => $vente->getProduit(),
+             'stocki' => $vente->getStockini(),
+             'vente' => $vente->getVente(),
+             'stockf' => $vente->getStockfin(),
+             'mnt' => $vente->getMontant(),
+             'dateajout' => $vente->getDateAjout(),
+            ];
+          }
+        }
+        return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+      }
     }
 
     public function totaloperationparapi($params) {   

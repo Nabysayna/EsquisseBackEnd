@@ -92,7 +92,7 @@ class Users
     /**
      * @var string
      *
-     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=false)
+     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=true)
      */
     private $sousZone;
 
@@ -108,14 +108,14 @@ class Users
     /**
      * @var integer
      *
-     * @ORM\Column(name="idzone", type="integer", nullable=false)
+     * @ORM\Column(name="idzone", type="integer", nullable=true)
      */
     private $idzone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     * @ORM\Column(name="zone", type="string", length=50, nullable=true)
      */
     private $zone;
 
