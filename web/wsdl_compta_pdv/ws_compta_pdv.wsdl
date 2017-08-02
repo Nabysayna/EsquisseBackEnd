@@ -63,8 +63,6 @@
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
 <xsd:element name="idpdv" type="xsd:int"/>
-<xsd:element name="type" type="xsd:string"/>
-<xsd:element name="infotype" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
 <xsd:complexType name="InExploitationUser">

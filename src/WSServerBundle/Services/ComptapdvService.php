@@ -155,6 +155,7 @@ class ComptapdvService
         return ''. json_encode(array('errorCode' => 1, 'response' => $results));
       }
     }
+
     public function ajoutservice($params) {   
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
@@ -191,6 +192,7 @@ class ComptapdvService
         return ''. json_encode(array('errorCode' => 1, 'response' => 'ok'));
       }
     }
+    
     public function supprimerservice($params) {   
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
@@ -216,17 +218,24 @@ class ComptapdvService
 
     public function exploitation($params) {   
       $formatted = array();
-      $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('dependsOn' => 2));
+      $exploitationvente = null;
+      if ($params->idpdv == -1){
+        $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('dependsOn' => 2));        
+      }
+      else{
+        $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('idUser' => $params->idpdv));        
+      }
+
       foreach ($exploitationvente as $vente) {
-          $formatted[] = [
-             'idpdv' => $vente->getIdUser(),
-             'designation' => $vente->getProduit(),
-             'stocki' => $vente->getStockini(),
-             'vente' => $vente->getVente(),
-             'stockf' => $vente->getStockfin(),
-             'mnt' => $vente->getMontant(),
-             'dateajout' => $vente->getDate(),
-            ];
+        $formatted[] = [
+         'idpdv' => $vente->getIdUser(),
+         'designation' => $vente->getProduit(),
+         'stocki' => $vente->getStockini(),
+         'vente' => $vente->getVente(),
+         'stockf' => $vente->getStockfin(),
+         'mnt' => $vente->getMontant(),
+         'dateajout' => $vente->getDate(),
+        ];
       }
 
       return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
