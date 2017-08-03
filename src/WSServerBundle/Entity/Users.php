@@ -92,9 +92,23 @@ class Users
     /**
      * @var string
      *
-     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=true)
+     * @ORM\Column(name="sous_zone", type="string", length=50, nullable=false)
      */
     private $sousZone;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idzone", type="integer", nullable=false)
+     */
+    private $idzone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
+     */
+    private $zone;
 
     /**
      * @var integer
@@ -104,20 +118,6 @@ class Users
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idUser;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idzone", type="integer", nullable=true)
-     */
-    private $idzone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="zone", type="string", length=50, nullable=true)
-     */
-    private $zone;
 
 
 
@@ -410,16 +410,6 @@ class Users
     }
 
     /**
-     * Get idUser
-     *
-     * @return integer
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-
-    /**
      * Set idzone
      *
      * @param integer $idzone
@@ -465,5 +455,15 @@ class Users
     public function getZone()
     {
         return $this->zone;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
     }
 }

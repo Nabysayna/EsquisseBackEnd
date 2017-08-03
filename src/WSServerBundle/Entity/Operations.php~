@@ -256,4 +256,28 @@ class Operations
     {
         return $this->id;
     }
+
+    /**
+     * Set dateoperation
+     *
+     * @param \DateTime $dateoperation
+     *
+     * @return Operations
+     */
+    public function setDateoperation($dateoperation)
+    {
+        $this->dateoperation = $dateoperation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateoperation
+     *
+     * @return \DateTime
+     */
+    public function getDateoperation()
+    {
+        return $this->dateoperation;
+    }
 }
