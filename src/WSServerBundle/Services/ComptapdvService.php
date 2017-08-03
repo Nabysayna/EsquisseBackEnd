@@ -155,6 +155,7 @@ class ComptapdvService
         return ''. json_encode(array('errorCode' => 1, 'response' => $results));
       }
     }
+
     public function ajoutservice($params) {   
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
@@ -191,6 +192,7 @@ class ComptapdvService
         return ''. json_encode(array('errorCode' => 1, 'response' => 'ok'));
       }
     }
+    
     public function supprimerservice($params) {   
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
@@ -206,30 +208,84 @@ class ComptapdvService
     }
 
     public function userexploitation($params) {
-      $result = array('prenom' => 'Tous','nom' => 'Tous', 'idpdv' => -1);
-      $results1 = array($result);
-      $query = $this->em->createQuery("SELECT DISTINCT u.prenom, u.nom, u.idUser AS idpdv FROM WSServerBundle\Entity\Users u WHERE u.dependsOn=:idadminpdv")->setParameter('idadminpdv', 2);
-      $results2 = $query->getArrayResult();
-      $results = array_merge ( $results1, $results2);
-      return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{   
+        $result = array('prenom' => 'Tous','nom' => 'Tous', 'idpdv' => -1);
+        $results1 = array($result);
+        $query = $this->em->createQuery("SELECT DISTINCT u.prenom, u.nom, u.idUser AS idpdv FROM WSServerBundle\Entity\Users u WHERE u.dependsOn=:idadminpdv")->setParameter('idadminpdv', $correspSession->getIdUser());
+        $results2 = $query->getArrayResult();
+        $results = array_merge ( $results1, $results2);
+        return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+      }
     }
 
-    public function exploitation($params) {   
-      $formatted = array();
-      $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('dependsOn' => 2));
-      foreach ($exploitationvente as $vente) {
-          $formatted[] = [
-             'idpdv' => $vente->getIdUser(),
-             'designation' => $vente->getProduit(),
-             'stocki' => $vente->getStockini(),
-             'vente' => $vente->getVente(),
-             'stockf' => $vente->getStockfin(),
-             'mnt' => $vente->getMontant(),
-             'dateajout' => $vente->getDate(),
-            ];
-      }
+    public function exploitation($params) {  
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-      return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{    
+        $formatted = array();
+        $exploitationvente = null;
+        if ($params->idpdv == -1){
+          $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('dependsOn' => $correspSession->getIdUser()));        
+        }
+        else{
+          $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('idUser' => $params->idpdv, 'dependsOn' => $correspSession->getIdUser())); 
+        }
+        if($params->type == "jour"){
+          foreach ($exploitationvente as $vente) {
+            if($params->infotype == $vente->getDateAjout()->format('Y-m-d')){
+              $formatted[] = [
+               'idpdv' => $vente->getIdUser(),
+               'designation' => $vente->getProduit(),
+               'stocki' => $vente->getStockini(),
+               'vente' => $vente->getVente(),
+               'stockf' => $vente->getStockfin(),
+               'mnt' => $vente->getMontant(),
+               'dateajout' => $vente->getDateAjout(),
+              ];
+            }
+          }
+          return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+        }
+        if($params->type == "annee"){
+          foreach ($exploitationvente as $vente) {
+            if($params->infotype == $vente->getDateAjout()->format('Y')){
+              $formatted[] = [
+               'idpdv' => $vente->getIdUser(),
+               'designation' => $vente->getProduit(),
+               'stocki' => $vente->getStockini(),
+               'vente' => $vente->getVente(),
+               'stockf' => $vente->getStockfin(),
+               'mnt' => $vente->getMontant(),
+               'dateajout' => $vente->getDateAjout(),
+              ];
+            }
+          }
+          return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+        }
+        if($params->type == "intervalle"){
+          $tabintervalle = explode (" ", $params->infotype);
+          foreach ($exploitationvente as $vente) {
+            if( $vente->getDateAjout()->format('Y-m-d') >= $tabintervalle[0] && $vente->getDateAjout()->format('Y-m-d') <= $tabintervalle[1] ){
+              $formatted[] = [
+               'idpdv' => $vente->getIdUser(),
+               'designation' => $vente->getProduit(),
+               'stocki' => $vente->getStockini(),
+               'vente' => $vente->getVente(),
+               'stockf' => $vente->getStockfin(),
+               'mnt' => $vente->getMontant(),
+               'dateajout' => $vente->getDateAjout(),
+              ];
+            }
+          }
+          return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+        }
+      }
     }
 
     public function totaloperationparapi($params) {   

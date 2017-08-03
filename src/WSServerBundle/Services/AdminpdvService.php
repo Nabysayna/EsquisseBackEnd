@@ -54,8 +54,7 @@ class AdminpdvService
             'isconnect' => $openSession
           );
         }
-        
-        return ''. json_encode($datapdv);
+        return ''. json_encode( array('errorCode' => 1, 'response' => $datapdv) );
       }
     }
 
@@ -98,7 +97,7 @@ class AdminpdvService
             'depositconsomme' => $depositetat->getCautionconsomme(),
             'commission' => $depositetat->getCautionconsomme() - $depositetat->getCaution()
         );
-        return ''. json_encode($response);
+        return ''. json_encode( array('errorCode' => 1, 'response' => $response) );
       }
     }
 
@@ -130,6 +129,11 @@ class AdminpdvService
 
     function performancepdv($params) {
         
+        $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{    
         $formatted = array();
         $pdvs = $this->em->getRepository('WSServerBundle:Users')->findBy(array('dependsOn'=>2));
         foreach ($pdvs as $pdv) {
@@ -138,11 +142,11 @@ class AdminpdvService
             'fullname' => $pdv->getPrenom()." ".$pdv->getNom(),
             'telephone' => $pdv->getTelephone(),
             'nbreoperation' => 123,
-            'montanttotal' => 123000,
+            'montanttotal' => 123001,
           ];
         }
         return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
-
+      }
     }
 
     function consommationdepositpdv($params) {
