@@ -128,50 +128,69 @@ class AdminpdvService
     }
 
     function performancepdv($params) {
-        
-        $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
-
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
-      else{    
-        $formatted = array();
-        $pdvs = $this->em->getRepository('WSServerBundle:Users')->findBy(array('dependsOn'=>2));
-        foreach ($pdvs as $pdv) {
-          $formatted[] = [
-            'idpdv' => $pdv->getIdUser(),
-            'fullname' => $pdv->getPrenom()." ".$pdv->getNom(),
-            'telephone' => $pdv->getTelephone(),
-            'nbreoperation' => 123,
-            'montanttotal' => 123001,
-          ];
+      else{
+        if($params->type == "journee"){
+            $query = $this->em->createQuery("SELECT 
+            u.idUser AS idpdv, 
+            CONCAT(u.prenom,' ', u.nom) AS fullname,
+            u.telephone, 
+            COUNT(op.id) AS nbreoperation, 
+            SUM(op.montant) AS montanttotal
+            FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
+            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation>CURRENT_DATE()
+            GROUP BY idpdv, fullname
+            ORDER BY montanttotal DESC, nbreoperation DESC
+          ")->setParameter('ondepends',$correspSession->getIdUser());
+
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
         }
-        return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
+        if($params->type == "semaine"){
+            $query = $this->em->createQuery("SELECT 
+            u.idUser AS idpdv, 
+            CONCAT(u.prenom,' ', u.nom) AS fullname,
+            u.telephone, 
+            COUNT(op.id) AS nbreoperation, 
+            SUM(op.montant) AS montanttotal
+            FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
+            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation=CURRENT_DATE()
+            GROUP BY idpdv, fullname
+            ORDER BY montanttotal DESC, nbreoperation DESC
+          ")->setParameter('ondepends',$correspSession->getIdUser());
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
+        if($params->type == "mois"){
+            $query = $this->em->createQuery("SELECT 
+            u.idUser AS idpdv, 
+            CONCAT(u.prenom,' ', u.nom) AS fullname,
+            u.telephone, 
+            COUNT(op.id) AS nbreoperation, 
+            SUM(op.montant) AS montanttotal
+            FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
+            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation<CURRENT_DATE()
+            GROUP BY idpdv, fullname
+            ORDER BY montanttotal DESC, nbreoperation DESC
+          ")->setParameter('ondepends',$correspSession->getIdUser());
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
       }
     }
 
-    function consommationdepositpdv($params) {
-      $reponse = [
-        array(
-          'pdv' => 'Assane KA',
-          'adresse' => "Pikine",
-          'montantconsomme' => 500000,
-          'commission' => 50000
-        ),
-        array(
-          'pdv' => 'Naby NDIAYE',
-          'adresse' => "Parcelle",
-          'montantconsomme' => 300000,
-          'commission' => 30000
-        ),
-        array(
-          'pdv' => 'Bamba GNING',
-          'adresse' => "Diamalaye",
-          'montantconsomme' => 200000,
-          'commission' => 20000
-        ),
-      ];
-
-      return ''. json_encode($reponse);
-    }
+// DAYOFWEEK(date)
+// SELECT CLIENT.NomClient AS NomClient,
+// CLIENT.CodePostal AS CodePostal,
+// CLIENT.Ville AS Ville,
+// SUM(COMMANDE.TotalTTC) AS TotalTTC
+// FROM CLIENT AS CLI, COMMANDE AS COM
+// WHERE CLI.NumClient = COM.NumClient
+// AND CodePostal LIKE '21%'
+// GROUP BY NomClient, CodePostal, Ville
+// HAVING TotalTTC > 3000
+// ORDER BY TotalTTC ASC
 
 }
