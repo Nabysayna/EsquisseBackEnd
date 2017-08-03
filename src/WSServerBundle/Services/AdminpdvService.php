@@ -140,7 +140,7 @@ class AdminpdvService
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
-            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation>CURRENT_DATE()
+            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation>=CURRENT_DATE()
             GROUP BY idpdv, fullname
             ORDER BY montanttotal DESC, nbreoperation DESC
           ")->setParameter('ondepends',$correspSession->getIdUser());
@@ -149,14 +149,15 @@ class AdminpdvService
           return ''. json_encode(array('errorCode' => 1, 'response' => $results));
         }
         if($params->type == "semaine"){
-            $query = $this->em->createQuery("SELECT 
+          $semainedate = date('Y-m-d',strtotime("last Monday"));
+          $query = $this->em->createQuery("SELECT 
             u.idUser AS idpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
-            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation=CURRENT_DATE()
+            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation>='".$semainedate."'
             GROUP BY idpdv, fullname
             ORDER BY montanttotal DESC, nbreoperation DESC
           ")->setParameter('ondepends',$correspSession->getIdUser());
@@ -164,14 +165,15 @@ class AdminpdvService
           return ''. json_encode(array('errorCode' => 1, 'response' => $results));
         }
         if($params->type == "mois"){
-            $query = $this->em->createQuery("SELECT 
+          $moisdate = date('Y-m-01');
+          $query = $this->em->createQuery("SELECT 
             u.idUser AS idpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
-            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation<CURRENT_DATE()
+            WHERE u.dependsOn=:ondepends and u.dependsOn=op.dependsOn and u.idUser=op.idpdv and op.dateoperation>='".$moisdate."'
             GROUP BY idpdv, fullname
             ORDER BY montanttotal DESC, nbreoperation DESC
           ")->setParameter('ondepends',$correspSession->getIdUser());
