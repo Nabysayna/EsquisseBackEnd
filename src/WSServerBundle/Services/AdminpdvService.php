@@ -137,6 +137,7 @@ class AdminpdvService
             u.idUser AS idpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
+            op.dateoperation,
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
@@ -154,6 +155,7 @@ class AdminpdvService
             u.idUser AS idpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
+            op.dateoperation,
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
@@ -170,6 +172,7 @@ class AdminpdvService
             u.idUser AS idpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
+            op.dateoperation,
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
@@ -183,16 +186,56 @@ class AdminpdvService
       }
     }
 
-// DAYOFWEEK(date)
-// SELECT CLIENT.NomClient AS NomClient,
-// CLIENT.CodePostal AS CodePostal,
-// CLIENT.Ville AS Ville,
-// SUM(COMMANDE.TotalTTC) AS TotalTTC
-// FROM CLIENT AS CLI, COMMANDE AS COM
-// WHERE CLI.NumClient = COM.NumClient
-// AND CodePostal LIKE '21%'
-// GROUP BY NomClient, CodePostal, Ville
-// HAVING TotalTTC > 3000
-// ORDER BY TotalTTC ASC
+    function detailperformancepdv($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{
+        if($params->type == "journee"){
+          $query = $this->em->createQuery("SELECT 
+            op.dateoperation,
+            op.operateur,
+            op.traitement,
+            op.montant
+            FROM WSServerBundle\Entity\Operations op 
+            WHERE op.dependsOn=:ondepends and op.idpdv=".$params->idpdv." and op.dateoperation>=CURRENT_DATE()
+            ORDER BY op.dateoperation DESC
+          ")->setParameter('ondepends',$correspSession->getIdUser());
+
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
+        if($params->type == "semaine"){
+          $semainedate = date('Y-m-d',strtotime("last Monday"));
+          $query = $this->em->createQuery("SELECT 
+            op.dateoperation,
+            op.operateur,
+            op.traitement,
+            op.montant
+            FROM WSServerBundle\Entity\Operations op 
+            WHERE op.dependsOn=:ondepends and op.idpdv=".$params->idpdv." and op.dateoperation>='".$semainedate."'
+            ORDER BY op.dateoperation DESC
+          ")->setParameter('ondepends',$correspSession->getIdUser());
+
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
+        if($params->type == "mois"){
+          $moisdate = date('Y-m-01');
+          $query = $this->em->createQuery("SELECT 
+            op.dateoperation,
+            op.operateur,
+            op.traitement,
+            op.montant
+            FROM WSServerBundle\Entity\Operations op 
+            WHERE op.dependsOn=:ondepends and op.idpdv=".$params->idpdv." and op.dateoperation>='".$moisdate."'
+            ORDER BY op.dateoperation DESC
+          ")->setParameter('ondepends',$correspSession->getIdUser());
+
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
+      }
+    }
 
 }
