@@ -92,7 +92,7 @@ class Commandes
     /**
      * @var string
      *
-     * @ORM\Column(name="pointderecuperation", type="string", length=50, nullable=false)
+     * @ORM\Column(name="pointderecuperation", type="string", length=255, nullable=false)
      */
     private $pointderecuperation;
 

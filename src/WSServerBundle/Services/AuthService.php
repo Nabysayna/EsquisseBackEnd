@@ -30,8 +30,7 @@ class AuthService
       $dbuser = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('login' => $user->login, 'pwd' => $user->pwd));
 
       if (empty($dbuser)) {
-        $reponse = array('prenom' => '', 'token' => '', 'reponse' => false);
-        return ''. json_encode($reponse);
+        return 'false';
       }
       else {
 

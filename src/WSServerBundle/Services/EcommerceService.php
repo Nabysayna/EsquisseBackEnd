@@ -140,7 +140,7 @@ class EcommerceService
           }
 
           if($params->typeListe=="toDeliver"){
-              $query = $this->em->createQuery("SELECT c FROM WSServerBundle\Entity\Commandes c WHERE c.fourni=0 and c.orderedArticles LIKE '%\"pourvoyeur\":".strval($correspSession->getIdUser())."}%'") ;
+              $query = $this->em->createQuery("SELECT c FROM WSServerBundle\Entity\Commandes c WHERE c.fourni=0 and c.orderedArticles LIKE '%\"pourvoyeur\":".strval($correspSession->getIdUser()).",%'") ;
               $dbcommandes = $query->getArrayResult();
 
             $retour = array( "borom"=>strval($correspSession->getIdUser()), "order"=>$dbcommandes ) ;
@@ -149,13 +149,15 @@ class EcommerceService
 
           if($params->typeListe=="dispatchDelivering"){
             $dbcommandes = $this->em->getRepository('WSServerBundle:Commandes')->findBy(array('fourni'=>0));
+
             foreach ($dbcommandes as $commande) {
 
                 $formatted[] = [
                    'id' => $commande->getId(),
                    'orderedArticles' => $commande->getOrderedArticles(),
                    'montant' => $commande->getMontantcommande(),
-                   'tel' => $commande->getTel(), 
+                   'tel' => $commande->getTelephoneclient(), 
+                   'pointderecuperation' => $commande->getpointderecuperation(), 
                    'fullName' => $commande->getPrenomclient()." ".$commande->getNomclient(),
                    'dateCommande' => $commande->getDateCommande()->format('Y-m-d H:i')
                 ];
@@ -167,12 +169,12 @@ class EcommerceService
           if($params->typeListe=="dispatchReception"){
             $dbcommandes = $this->em->getRepository('WSServerBundle:Commandes')->findBy(array('recu'=>0));
             foreach ($dbcommandes as $commande) {
-
                 $formatted[] = [
                    'id' => $commande->getId(),
                    'orderedArticles' => $commande->getOrderedArticles(),
                    'montant' => $commande->getMontantcommande(),
-                   'tel' => $commande->getTel(),
+                   'tel' => $commande->getTelephoneclient(),
+                   'pointderecuperation' => $commande->getpointderecuperation(), 
                    'fullName' => $commande->getPrenomclient()." ".$commande->getNomclient(),
                    'dateCommande' => $commande->getDateCommande()->format('Y-m-d H:i')
                 ];
@@ -258,7 +260,20 @@ class EcommerceService
 
       if (!empty($correspSession)){
         $cmdFournie = $this->em->getRepository('WSServerBundle:Commandes')->findOneBy(array('id' => $params->idCommande));
-        $cmdFournie->setFourni(1) ;
+        $orderedArticles = json_decode($cmdFournie->getOrderedArticles()) ;
+        $suppliedCount = 0 ;
+        foreach ($orderedArticles as $orderedArticle) {
+          if( $orderedArticle->supplied == 1 )
+            $suppliedCount = $suppliedCount + 1 ;
+          if( $orderedArticle->pourvoyeur == $correspSession->getIdUser() ){
+            $orderedArticle->supplied = 1 ;
+            $suppliedCount = $suppliedCount + 1 ;
+          }
+        }
+        if( $suppliedCount == count($orderedArticles) )
+          $cmdFournie->setFourni(1) ;
+
+        $cmdFournie->setOrderedArticles( json_encode($orderedArticles) ) ;
         $this->em->persist($cmdFournie) ;
         $this->em->flush() ;
         return 'ok';
@@ -298,11 +313,36 @@ class EcommerceService
         return 'bad move';
     }
 
+
+    public function formateOrders($tmporderedArticles, $currentUser){
+        $orderedArticles = json_decode($tmporderedArticles) ;
+        $formatedOrder=[] ;
+        foreach ($orderedArticles as $orderedArticle) {
+          $formatedOrder[] = [
+             'idarticle' => $orderedArticle->idarticle,
+             'qte' =>$orderedArticle->qte,
+             'prix' => $orderedArticle->prix,
+             'montant' => $orderedArticle->montant,
+             'designation' => $orderedArticle->designation,  
+             'description' => $orderedArticle->description,
+             'imagelink' => $orderedArticle->imagelink,
+             'pourvoyeur' => $orderedArticle->pourvoyeur,
+             'supplied' => 0,
+             'address' => $currentUser->getAdresse(),
+             'souszone' => $currentUser->getSousZone(),
+             'zone' => $currentUser->getZone()
+          ];              
+        }
+        return json_encode($formatedOrder) ;
+    }
+
     public function prendreCommande($params)
     {
         $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
         $commande = new Commandes();
         if (!empty($correspSession)){
+
+          $currentUser = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('idUser'=>$correspSession->getIdUser() ) );
 
           $commandetmp = explode("#",$params->article)[1]; 
           $tmpCmd = $this->em->getRepository('WSServerBundle:Tmpcommande')->findOneBy(array('codeCommande' => $commandetmp));  
@@ -313,7 +353,7 @@ class EcommerceService
               if(explode("#",$params->article)[0]=="infocmd"){ 
                 $formatted[] = [
                    'id' => $tmpCmd->getId(),
-                   'orderedArticles' => $tmpCmd->getOrderedArticles(),
+                   'orderedArticles' =>$tmpCmd->getOrderedArticles(),
                    'montant' => $tmpCmd->getMntcmd(),
                    'prenomclient' => $tmpCmd->getPrenomclient(),
                    'nomclient' => $tmpCmd->getNomclient(),
@@ -323,7 +363,7 @@ class EcommerceService
 
                 return json_encode($formatted) ;
               }else{
-                $commande->setOrderedArticles($tmpCmd->getOrderedArticles()) ;
+                $commande->setOrderedArticles($this->formateOrders($tmpCmd->getOrderedArticles(), $currentUser)) ;
                 $commande->setCommanditaire( $correspSession->getIdUser() );
                 $commande->setIdclient( $tmpCmd->getIdClient() );  
                 $commande->setPrenomclient( $tmpCmd->getPrenomclient() );  
@@ -334,7 +374,10 @@ class EcommerceService
                 $commande->setRecu(0);
                 $commande->setCodepayement(time());
                 $commande->setDependsOn( $correspSession->getDependsOn() );
-                $commande->setPointderecuperation("Dakar");
+
+                $pointderecuperation = array( "address"=>$currentUser->getAdresse(),"souszone"=>$currentUser->getSousZone(),"zone"=>$currentUser->getZone() ) ;
+
+                $commande->setPointderecuperation( json_encode($pointderecuperation) );
                 $commande->setMontantcommande( $tmpCmd->getMntcmd() ) ;
                 $commande->setDateCommande(new \Datetime());
 
@@ -351,4 +394,4 @@ class EcommerceService
     }
 
     
-}
+} 
