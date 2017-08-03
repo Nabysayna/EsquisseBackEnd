@@ -29,5 +29,38 @@ class Categories
     private $id;
 
 
-}
 
+    /**
+     * Set categorie
+     *
+     * @param string $categorie
+     *
+     * @return Categories
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return string
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

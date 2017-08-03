@@ -43,5 +43,86 @@ class Prerogatives
     private $idAuth;
 
 
-}
 
+    /**
+     * Set idUser
+     *
+     * @param integer $idUser
+     *
+     * @return Prerogatives
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set authorizedApis
+     *
+     * @param string $authorizedApis
+     *
+     * @return Prerogatives
+     */
+    public function setAuthorizedApis($authorizedApis)
+    {
+        $this->authorizedApis = $authorizedApis;
+
+        return $this;
+    }
+
+    /**
+     * Get authorizedApis
+     *
+     * @return string
+     */
+    public function getAuthorizedApis()
+    {
+        return $this->authorizedApis;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Prerogatives
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
+    }
+
+    /**
+     * Get idAuth
+     *
+     * @return integer
+     */
+    public function getIdAuth()
+    {
+        return $this->idAuth;
+    }
+}

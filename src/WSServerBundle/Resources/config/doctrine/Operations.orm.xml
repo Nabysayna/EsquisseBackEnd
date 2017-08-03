@@ -9,11 +9,7 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="date" type="string" column="date" length="20" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
+    <field name="dateoperation" type="datetime" column="dateoperation" nullable="false"/>
     <field name="operateur" type="string" column="operateur" length="20" nullable="false">
       <options>
         <option name="fixed"/>

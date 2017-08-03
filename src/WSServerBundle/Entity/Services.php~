@@ -57,5 +57,134 @@ class Services
     private $id;
 
 
-}
 
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Services
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set idadminpdv
+     *
+     * @param integer $idadminpdv
+     *
+     * @return Services
+     */
+    public function setIdadminpdv($idadminpdv)
+    {
+        $this->idadminpdv = $idadminpdv;
+
+        return $this;
+    }
+
+    /**
+     * Get idadminpdv
+     *
+     * @return integer
+     */
+    public function getIdadminpdv()
+    {
+        return $this->idadminpdv;
+    }
+
+    /**
+     * Set idpdv
+     *
+     * @param integer $idpdv
+     *
+     * @return Services
+     */
+    public function setIdpdv($idpdv)
+    {
+        $this->idpdv = $idpdv;
+
+        return $this;
+    }
+
+    /**
+     * Get idpdv
+     *
+     * @return integer
+     */
+    public function getIdpdv()
+    {
+        return $this->idpdv;
+    }
+
+    /**
+     * Set designations
+     *
+     * @param string $designations
+     *
+     * @return Services
+     */
+    public function setDesignations($designations)
+    {
+        $this->designations = $designations;
+
+        return $this;
+    }
+
+    /**
+     * Get designations
+     *
+     * @return string
+     */
+    public function getDesignations()
+    {
+        return $this->designations;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Services
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

@@ -57,5 +57,134 @@ class Cautions
     private $idCaution;
 
 
-}
 
+    /**
+     * Set idUser
+     *
+     * @param integer $idUser
+     *
+     * @return Cautions
+     */
+    public function setIdUser($idUser)
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get idUser
+     *
+     * @return integer
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set caution
+     *
+     * @param integer $caution
+     *
+     * @return Cautions
+     */
+    public function setCaution($caution)
+    {
+        $this->caution = $caution;
+
+        return $this;
+    }
+
+    /**
+     * Get caution
+     *
+     * @return integer
+     */
+    public function getCaution()
+    {
+        return $this->caution;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Cautions
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
+    }
+
+    /**
+     * Set cautionconsomme
+     *
+     * @param integer $cautionconsomme
+     *
+     * @return Cautions
+     */
+    public function setCautionconsomme($cautionconsomme)
+    {
+        $this->cautionconsomme = $cautionconsomme;
+
+        return $this;
+    }
+
+    /**
+     * Get cautionconsomme
+     *
+     * @return integer
+     */
+    public function getCautionconsomme()
+    {
+        return $this->cautionconsomme;
+    }
+
+    /**
+     * Set dateModif
+     *
+     * @param \DateTime $dateModif
+     *
+     * @return Cautions
+     */
+    public function setDateModif($dateModif)
+    {
+        $this->dateModif = $dateModif;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModif
+     *
+     * @return \DateTime
+     */
+    public function getDateModif()
+    {
+        return $this->dateModif;
+    }
+
+    /**
+     * Get idCaution
+     *
+     * @return integer
+     */
+    public function getIdCaution()
+    {
+        return $this->idCaution;
+    }
+}

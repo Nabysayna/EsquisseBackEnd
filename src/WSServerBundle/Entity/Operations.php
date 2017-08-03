@@ -2,74 +2,50 @@
 
 namespace WSServerBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Operations
- *
- * @ORM\Table(name="operations")
- * @ORM\Entity
  */
 class Operations
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="idpdv", type="integer", nullable=false)
      */
     private $idpdv;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="date", type="string", length=20, nullable=false)
+     * @var \DateTime
      */
-    private $date;
+    private $dateoperation;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="operateur", type="string", length=20, nullable=false)
      */
     private $operateur;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="traitement", type="string", length=30, nullable=false)
      */
     private $traitement;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="infoclient", type="string", length=50, nullable=false)
      */
     private $infoclient;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="depends_on", type="integer", nullable=false)
      */
     private $dependsOn;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="montant", type="integer", nullable=false)
      */
     private $montant;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
 
 
     /**
@@ -97,27 +73,27 @@ class Operations
     }
 
     /**
-     * Set date
+     * Set dateoperation
      *
-     * @param string $date
+     * @param \DateTime $dateoperation
      *
      * @return Operations
      */
-    public function setDate($date)
+    public function setDateoperation($dateoperation)
     {
-        $this->date = $date;
+        $this->dateoperation = $dateoperation;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get dateoperation
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getDate()
+    public function getDateoperation()
     {
-        return $this->date;
+        return $this->dateoperation;
     }
 
     /**
@@ -250,3 +226,4 @@ class Operations
         return $this->id;
     }
 }
+
