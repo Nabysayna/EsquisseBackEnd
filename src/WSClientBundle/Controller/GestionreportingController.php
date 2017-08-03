@@ -44,5 +44,12 @@ class GestionreportingController extends Controller
 
         return new JsonResponse(array('result' => $result));
     }
+
+    public function venteAction()
+    {
+        $params = array('token' => '2cf4017955cf78cf1d1055e0d93b76aea98b520d','servicevente'=>"gh", 'designation'=>"gf",'quantite'=>4);
+        $result = $this->client->call('vente', $params);
+        return new JsonResponse(array('result' => $result));
+    }
   
 }

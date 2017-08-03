@@ -177,7 +177,7 @@
 </binding>
 <service name="ecommerceoutsite">
 <port name="ecommerceoutsitePort" binding="tns:ecommerceoutsiteBinding">
-<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/outsitecommerce"/>
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/outsitecommerce"/>
 </port>
 </service>
 </definitions>

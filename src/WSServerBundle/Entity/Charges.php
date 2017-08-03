@@ -13,12 +13,25 @@ use Doctrine\ORM\Mapping as ORM;
 class Charges
 {
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateAjout", type="datetime", nullable=true)
+     */
+    private $dateajout;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="libelle", type="string", length=255, nullable=false)
      */
     private $libelle;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="service", type="string", length=20, nullable=false)
+     */
+    private $service;
 
     /**
      * @var integer
@@ -35,13 +48,6 @@ class Charges
     private $iduser;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="service", type="string", length=255, nullable=false)
-     */
-    private $service;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -51,6 +57,30 @@ class Charges
     private $id;
 
 
+
+    /**
+     * Set dateajout
+     *
+     * @param \DateTime $dateajout
+     *
+     * @return Charges
+     */
+    public function setDateajout($dateajout)
+    {
+        $this->dateajout = $dateajout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateajout
+     *
+     * @return \DateTime
+     */
+    public function getDateajout()
+    {
+        return $this->dateajout;
+    }
 
     /**
      * Set libelle
@@ -74,6 +104,30 @@ class Charges
     public function getLibelle()
     {
         return $this->libelle;
+    }
+
+    /**
+     * Set service
+     *
+     * @param string $service
+     *
+     * @return Charges
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
     }
 
     /**
@@ -125,30 +179,6 @@ class Charges
     }
 
     /**
-     * Set service
-     *
-     * @param string $service
-     *
-     * @return Charges
-     */
-    public function setService($service)
-    {
-        $this->service = $service;
-
-        return $this;
-    }
-
-    /**
-     * Get service
-     *
-     * @return string
-     */
-    public function getService()
-    {
-        return $this->service;
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -157,34 +187,4 @@ class Charges
     {
         return $this->id;
     }
-    /**
-     * @var \DateTime
-     */
-    private $dateajout;
-
-
-    /**
-     * Set dateajout
-     *
-     * @param \DateTime $dateajout
-     *
-     * @return Charges
-     */
-    public function setDateajout($dateajout)
-    {
-        $this->dateajout = $dateajout;
-
-        return $this;
-    }
-
-    /**
-     * Get dateajout
-     *
-     * @return \DateTime
-     */
-    public function getDateajout()
-    {
-        return $this->dateajout;
-    }
-    
 }
