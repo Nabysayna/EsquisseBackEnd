@@ -15,7 +15,7 @@ class Charges
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateAjout", type="datetime", nullable=false)
+     * @ORM\Column(name="dateAjout", type="datetime", nullable=true)
      */
     private $dateajout;
 
@@ -55,6 +55,8 @@ class Charges
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+
 
 
 

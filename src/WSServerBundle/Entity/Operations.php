@@ -104,52 +104,6 @@ class Operations
     }
 
     /**
-<<<<<<< HEAD
-     * Set dateAjout
-     *
-     * @param \DateTime $dateAjout
-     *
-     * @return Operations
-     */
-    public function setDateAjout($dateAjout)
-    {
-        $this->dateAjout = $dateAjout;
-=======
-     * Set dateoperation
-     *
-     * @param \DateTime $dateoperation
-     *
-     * @return Operations
-     */
-    public function setDateoperation($dateoperation)
-    {
-        $this->dateoperation = $dateoperation;
->>>>>>> f856b9a22c09f759690373a4ba6e85b088145b53
-
-        return $this;
-    }
-
-    /**
-<<<<<<< HEAD
-     * Get dateAjout
-     *
-     * @return \DateTime
-     */
-    public function getDateAjout()
-    {
-        return $this->dateAjout;
-=======
-     * Get dateoperation
-     *
-     * @return \DateTime
-     */
-    public function getDateoperation()
-    {
-        return $this->dateoperation;
->>>>>>> f856b9a22c09f759690373a4ba6e85b088145b53
-    }
-
-    /**
      * Set operateur
      *
      * @param string $operateur
