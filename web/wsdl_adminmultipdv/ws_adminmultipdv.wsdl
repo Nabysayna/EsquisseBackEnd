@@ -10,6 +10,26 @@
 <xsd:element name="type" type="xsd:string"/>
 </xsd:all>
 </xsd:complexType>
+<xsd:complexType name="InDataByLotByDate">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="typelot" type="xsd:string"/>
+<xsd:element name="typedate" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InDataByIdadminpdvByDate">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="idadminpdv" type="xsd:int"/>
+<xsd:element name="typedate" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+<xsd:complexType name="InDataByDate">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="typedate" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
 <xsd:complexType name="InModifyCaution">
 <xsd:all>
 <xsd:element name="token" type="xsd:string"/>
@@ -55,6 +75,24 @@
 <part name="params" type="tns:InData"/>
 </message>
 <message name="performancesadminpdvResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="performancesadminclasserbydateRequest">
+<part name="params" type="tns:InDataByDate"/>
+</message>
+<message name="performancesadminclasserbydateResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="performancesadminclasserbylotbydateRequest">
+<part name="params" type="tns:InDataByLotByDate"/>
+</message>
+<message name="performancesadminclasserbylotbydateResponse">
+<part name="return" type="xsd:string"/>
+</message>
+<message name="detailperformancesadminclasserbydateRequest">
+<part name="params" type="tns:InDataByIdadminpdvByDate"/>
+</message>
+<message name="detailperformancesadminclasserbydateResponse">
 <part name="return" type="xsd:string"/>
 </message>
 <message name="historiquerecouvrementRequest">
@@ -134,6 +172,27 @@ Method ADMINMULTIPDV depositinitialconsommeparservice
 <documentation>Method ADMINMULTIPDV performancesadminpdv</documentation>
 <input message="tns:performancesadminpdvRequest"/>
 <output message="tns:performancesadminpdvResponse"/>
+</operation>
+<operation name="performancesadminclasserbydate">
+<documentation>
+Method ADMINMULTIPDV performancesadminclasserbydate
+</documentation>
+<input message="tns:performancesadminclasserbydateRequest"/>
+<output message="tns:performancesadminclasserbydateResponse"/>
+</operation>
+<operation name="performancesadminclasserbylotbydate">
+<documentation>
+Method ADMINMULTIPDV performancesadminclasserbylotbydate
+</documentation>
+<input message="tns:performancesadminclasserbylotbydateRequest"/>
+<output message="tns:performancesadminclasserbylotbydateResponse"/>
+</operation>
+<operation name="detailperformancesadminclasserbydate">
+<documentation>
+Method ADMINMULTIPDV detailperformancesadminclasserbydate
+</documentation>
+<input message="tns:detailperformancesadminclasserbydateRequest"/>
+<output message="tns:detailperformancesadminclasserbydateResponse"/>
 </operation>
 <operation name="historiquerecouvrement">
 <documentation>Method ADMINMULTIPDV historiquerecouvrement</documentation>
@@ -223,6 +282,33 @@ Method ADMINMULTIPDV depositinitialconsommeparservice
 <soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
+<operation name="performancesadminclasserbydate">
+<soap:operation soapAction="urn:adminmultipdvwsdl#performancesadminclasserbydate" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="performancesadminclasserbylotbydate">
+<soap:operation soapAction="urn:adminmultipdvwsdl#performancesadminclasserbylotbydate" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="detailperformancesadminclasserbydate">
+<soap:operation soapAction="urn:adminmultipdvwsdl#detailperformancesadminclasserbydate" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:adminmultipdvwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
 <operation name="historiquerecouvrement">
 <soap:operation soapAction="urn:adminmultipdvwsdl#historiquerecouvrement" style="rpc"/>
 <input>
@@ -298,7 +384,7 @@ Method ADMINMULTIPDV depositinitialconsommeparservice
 </binding>
 <service name="adminmultipdv">
 <port name="adminmultipdvPort" binding="tns:adminmultipdvBinding">
-<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv"/>
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/adminmultipdv"/>
 </port>
 </service>
 </definitions>

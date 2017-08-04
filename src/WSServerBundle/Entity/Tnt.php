@@ -43,7 +43,7 @@ class Tnt
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="echeance", type="date", nullable=false)
+     * @ORM\Column(name="echeance", type="date", nullable=true)
      */
     private $echeance;
 

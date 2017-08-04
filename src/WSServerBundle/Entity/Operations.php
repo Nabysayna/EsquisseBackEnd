@@ -26,6 +26,7 @@ class Operations
      */
     private $dateoperation;
 
+    
     /**
      * @var string
      *
@@ -72,6 +73,12 @@ class Operations
 
 
 
+
+
+    
+
+    
+
     /**
      * Set idpdv
      *
@@ -94,30 +101,6 @@ class Operations
     public function getIdpdv()
     {
         return $this->idpdv;
-    }
-
-    /**
-     * Set dateoperation
-     *
-     * @param \DateTime $dateoperation
-     *
-     * @return Operations
-     */
-    public function setDateoperation($dateoperation)
-    {
-        $this->dateoperation = $dateoperation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateoperation
-     *
-     * @return \DateTime
-     */
-    public function getDateoperation()
-    {
-        return $this->dateoperation;
     }
 
     /**
@@ -248,5 +231,29 @@ class Operations
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set dateoperation
+     *
+     * @param \DateTime $dateoperation
+     *
+     * @return Operations
+     */
+    public function setDateoperation($dateoperation)
+    {
+        $this->dateoperation = $dateoperation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateoperation
+     *
+     * @return \DateTime
+     */
+    public function getDateoperation()
+    {
+        return $this->dateoperation;
     }
 }
