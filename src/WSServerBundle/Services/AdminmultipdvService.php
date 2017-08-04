@@ -271,78 +271,170 @@ class AdminmultipdvService
     }
 
     function performancesadminclasserbydate($params) {
-      $reponse = array(
-        'typedata' => 'Performance des adminpdv',
-        'typeservice' => ['Faible', 'Passage', 'Assez-bien', 'Bien'],
-        'montanttotal' => [90000, 150000, 550000, 1650000]
-      );
-
-      return ''. json_encode( array('errorCode' => 1, 'response' => $reponse) ) ;
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{
+        $datenow = null;
+        if($params->typedate == "journee"){
+          $datenow = date('Y-m-d');
+        }
+        if($params->typedate == "semaine"){
+          $datenow = date('Y-m-d',strtotime("last Monday"));
+        }
+        if($params->typedate == "mois"){
+          $datenow = date('Y-m-01');
+        }
+        
+        $query = $this->em->createQuery("SELECT 
+          op.dependsOn,
+          SUM(op.montant) AS montanttotal
+          FROM WSServerBundle\Entity\Operations op 
+          WHERE op.dateoperation>=:typedate
+          GROUP BY op.dependsOn
+          ORDER BY montanttotal DESC
+        ")->setParameter('typedate',$datenow);
+        $results = $query->getArrayResult();
+        $compteurfaible = 0; 
+        $compteurpassable = 0; 
+        $compteurassezbien = 0; 
+        $compteurbien = 0;
+        foreach ($results as $value) {
+          if($value['montanttotal'] <= 50000){
+            $compteurfaible += $value['montanttotal'];
+          }
+          elseif( ($value['montanttotal'] > 50000 ) && ($value['montanttotal'] <= 250000 ) ){
+            $compteurpassable += $value['montanttotal'];
+          }
+          elseif( ($value['montanttotal'] > 250000 ) && ($value['montanttotal'] <= 500000 ) ){
+            $compteurassezbien += $value['montanttotal'];
+          }
+          elseif( $value['montanttotal'] > 500000 ){
+            $compteurbien += $value['montanttotal'];
+          }
+        }
+        $reponse = array(
+          'typedata' => 'Performance des adminpdv',
+          'typeservice' => ['Faible', 'Passage', 'Assez-bien', 'Bien'],
+          'montanttotal' => [$compteurfaible, $compteurpassable, $compteurassezbien, $compteurbien]
+        );
+        return ''. json_encode( array('errorCode' => 1, 'response' => $reponse) ) ;
+      }
     }
 
     function performancesadminclasserbylotbydate($params) {
-        $reponse = [
-          array(
-            'id' => 1,
-            'fullname' => "Assane KA",
-            'nbreoperation' => 123,
-            'montanttotal' => 123000,
-          ),
-          array(
-            'id' => 2,
-            'fullname' => "Naby NDIAYE",
-            'nbreoperation' => 120,
-            'montanttotal' => 120000,
-          ),
-          array(
-            'id' => 3,
-            'fullname' => "Bamba GNING",
-            'nbreoperation' => 100,
-            'montanttotal' => 100000,
-          ),
-        ];
-
-        return ''. json_encode( array('errorCode' => 1, 'response' => $reponse) ) ;
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{
+        $datenow = date('Y-m-d');
+        if($params->typedate == "semaine"){
+          $datenow = date('Y-m-d',strtotime("last Monday"));
+        }
+        if($params->typedate == "mois"){
+          $datenow = date('Y-m-01');
+        }
+        
+        if($params->typelot == "Faible"){
+          $query = $this->em->createQuery("SELECT 
+            u.idUser AS idadminpdv, 
+            CONCAT(u.prenom,' ', u.nom) AS fullname,
+            u.telephone, 
+            op.dateoperation,
+            COUNT(op.id) AS nbreoperation, 
+            SUM(op.montant) AS montanttotal
+            FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
+            WHERE u.idUser=op.dependsOn and op.dateoperation>=:typedate
+            GROUP BY idadminpdv, fullname
+            HAVING montanttotal<=50000
+            ORDER BY montanttotal DESC, nbreoperation DESC
+          ")->setParameter('typedate',$datenow);
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
+        if($params->typelot == "Passable"){
+          $query = $this->em->createQuery("SELECT 
+            u.idUser AS idadminpdv, 
+            CONCAT(u.prenom,' ', u.nom) AS fullname,
+            u.telephone, 
+            op.dateoperation,
+            COUNT(op.id) AS nbreoperation, 
+            SUM(op.montant) AS montanttotal
+            FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
+            WHERE u.idUser=op.dependsOn and op.dateoperation>=:typedate
+            GROUP BY idadminpdv, fullname
+            HAVING montanttotal>50000 and montanttotal<=250000 
+            ORDER BY montanttotal DESC, nbreoperation DESC
+          ")->setParameter('typedate',$datenow);
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
+        if($params->typelot == "Assez-bien"){
+          $query = $this->em->createQuery("SELECT 
+            u.idUser AS idadminpdv, 
+            CONCAT(u.prenom,' ', u.nom) AS fullname,
+            u.telephone, 
+            op.dateoperation,
+            COUNT(op.id) AS nbreoperation, 
+            SUM(op.montant) AS montanttotal
+            FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
+            WHERE u.idUser=op.dependsOn and op.dateoperation>=:typedate
+            GROUP BY idadminpdv, fullname
+            HAVING montanttotal>250000 and montanttotal<=500000 
+            ORDER BY montanttotal DESC, nbreoperation DESC
+          ")->setParameter('typedate',$datenow);
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
+        if($params->typelot == "Bien"){
+          $query = $this->em->createQuery("SELECT 
+            u.idUser AS idadminpdv, 
+            CONCAT(u.prenom,' ', u.nom) AS fullname,
+            u.telephone, 
+            op.dateoperation,
+            COUNT(op.id) AS nbreoperation, 
+            SUM(op.montant) AS montanttotal
+            FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
+            WHERE u.idUser=op.dependsOn and op.dateoperation>=:typedate
+            GROUP BY idadminpdv, fullname
+            HAVING montanttotal>500000
+            ORDER BY montanttotal DESC, nbreoperation DESC
+          ")->setParameter('typedate',$datenow);
+          $results = $query->getArrayResult();
+          return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+        }
+      }
     }
 
-    // function listmap($params){}
-
-    // function performancesadminpdv($params) {
-    //   $reponse = array(
-    //     'typedata' => 'Performance des adminpdv',
-    //     'typeservice' => ['Faible', 'Passage', 'Assez-bien', 'Bien'],
-    //     'montanttotal' => [90000, 150000, 550000, 1650000]
-    //   );
-
-    //   return ''. json_encode($reponse);
-    // }
-
-    // function performanceagent($params) {
-    //     $reponse = [
-    //       array(
-    //         'id' => 1,
-    //         'fullname' => "Assane KA",
-    //         'nbreoperation' => 123,
-    //         'montanttotal' => 123000,
-    //       ),
-    //       array(
-    //         'id' => 2,
-    //         'fullname' => "Naby NDIAYE",
-    //         'nbreoperation' => 120,
-    //         'montanttotal' => 120000,
-    //       ),
-    //       array(
-    //         'id' => 3,
-    //         'fullname' => "Bamba GNING",
-    //         'nbreoperation' => 100,
-    //         'montanttotal' => 100000,
-    //       ),
-    //     ];
-
-    //     return ''. json_encode($reponse);
-    // }
-
-
+    function performancesadminclasserbylotbydate($params) {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{
+        $datenow = date('Y-m-d');
+        if($params->typedate == "semaine"){
+          $datenow = date('Y-m-d',strtotime("last Monday"));
+        }
+        if($params->typedate == "mois"){
+          $datenow = date('Y-m-01');
+        }
+        $query = $this->em->createQuery("SELECT 
+          u.idUser AS idadminpdv, 
+          CONCAT(u.prenom,' ', u.nom) AS fullname,
+          u.telephone, 
+          op.dateoperation,
+          op.operateur,
+          op.traitement,
+          op.montant
+          FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
+          WHERE op.dependsOn=u.idUser and op.dependsOn=:idadminpdv and op.dateoperation>='".$datenow."'
+          ORDER BY op.dateoperation DESC
+        ")->setParameter('idadminpdv',$params->idadminpdv);
+        $results = $query->getArrayResult();
+        return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+      }
+    }
+    
     
 
 }
