@@ -340,7 +340,6 @@ class AdminmultipdvService
             u.idUser AS idadminpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
-            op.dateoperation,
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
@@ -357,7 +356,6 @@ class AdminmultipdvService
             u.idUser AS idadminpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
-            op.dateoperation,
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
@@ -374,7 +372,6 @@ class AdminmultipdvService
             u.idUser AS idadminpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
-            op.dateoperation,
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
@@ -391,7 +388,6 @@ class AdminmultipdvService
             u.idUser AS idadminpdv, 
             CONCAT(u.prenom,' ', u.nom) AS fullname,
             u.telephone, 
-            op.dateoperation,
             COUNT(op.id) AS nbreoperation, 
             SUM(op.montant) AS montanttotal
             FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
@@ -406,7 +402,7 @@ class AdminmultipdvService
       }
     }
 
-    function performancesadminclasserbylotbydate($params) {
+    function detailperformancesadminclasserbydate($params) {
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
@@ -422,13 +418,13 @@ class AdminmultipdvService
           u.idUser AS idadminpdv, 
           CONCAT(u.prenom,' ', u.nom) AS fullname,
           u.telephone, 
-          op.dateoperation,
           op.operateur,
           op.traitement,
-          op.montant
+          SUM(op.montant) AS montanttotal
           FROM WSServerBundle\Entity\Users u, WSServerBundle\Entity\Operations op 
-          WHERE op.dependsOn=u.idUser and op.dependsOn=:idadminpdv and op.dateoperation>='".$datenow."'
-          ORDER BY op.dateoperation DESC
+          WHERE op.dependsOn=:idadminpdv and op.idpdv=u.idUser and op.dependsOn=u.dependsOn and op.dateoperation>='".$datenow."'
+          GROUP BY op.operateur, op.traitement
+          ORDER BY op.dateoperation DESC, montanttotal DESC
         ")->setParameter('idadminpdv',$params->idadminpdv);
         $results = $query->getArrayResult();
         return ''. json_encode(array('errorCode' => 1, 'response' => $results));
