@@ -62,6 +62,16 @@ class Infonews
     }
 
     /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * Set dateajout
      *
      * @param \DateTime $dateajout
@@ -83,15 +93,5 @@ class Infonews
     public function getDateajout()
     {
         return $this->dateajout;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }

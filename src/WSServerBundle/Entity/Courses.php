@@ -27,20 +27,6 @@ class Courses
     private $idCmd;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="localisation", type="string", length=255, nullable=false)
-     */
-    private $localisation;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="infosup", type="string", length=255, nullable=false)
-     */
-    private $infosup;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_course", type="datetime", nullable=false)
@@ -111,54 +97,6 @@ class Courses
     public function getIdCmd()
     {
         return $this->idCmd;
-    }
-
-    /**
-     * Set localisation
-     *
-     * @param string $localisation
-     *
-     * @return Courses
-     */
-    public function setLocalisation($localisation)
-    {
-        $this->localisation = $localisation;
-
-        return $this;
-    }
-
-    /**
-     * Get localisation
-     *
-     * @return string
-     */
-    public function getLocalisation()
-    {
-        return $this->localisation;
-    }
-
-    /**
-     * Set infosup
-     *
-     * @param string $infosup
-     *
-     * @return Courses
-     */
-    public function setInfosup($infosup)
-    {
-        $this->infosup = $infosup;
-
-        return $this;
-    }
-
-    /**
-     * Get infosup
-     *
-     * @return string
-     */
-    public function getInfosup()
-    {
-        return $this->infosup;
     }
 
     /**

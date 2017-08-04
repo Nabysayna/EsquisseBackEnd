@@ -34,7 +34,7 @@ class GestionreportingService
           
         foreach ($gestreport as $gst) {
             $formatted[] = [
-               'date' => $gst->getDate(),
+               'dateoperation' => $gst->getDateoperation()->format('Y-m-d H:i'),
                'operateur' => $gst->getOperateur(),
                'traitement' => $gst->getTraitement(),
                'montant' => $gst->getMontant()

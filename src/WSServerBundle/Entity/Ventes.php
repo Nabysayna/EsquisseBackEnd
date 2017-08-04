@@ -13,11 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Ventes
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="depend_on", type="integer", nullable=false)
+     * @ORM\Column(name="servicevente", type="string", length=30, nullable=false)
      */
-    private $dependOn;
+    private $servicevente;
 
     /**
      * @var integer
@@ -34,11 +34,11 @@ class Ventes
     private $idUser;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="date_vente", type="datetime", nullable=false)
+     * @ORM\Column(name="depend_on", type="integer", nullable=false)
      */
-    private $dateVente;
+    private $dependOn;
 
     /**
      * @var string
@@ -46,6 +46,13 @@ class Ventes
      * @ORM\Column(name="infovente", type="string", length=500, nullable=false)
      */
     private $infovente;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_vente", type="datetime", nullable=false)
+     */
+    private $dateVente;
 
     /**
      * @var integer
@@ -66,27 +73,27 @@ class Ventes
 
 
     /**
-     * Set dependOn
+     * Set servicevente
      *
-     * @param integer $dependOn
+     * @param string $servicevente
      *
      * @return Ventes
      */
-    public function setDependOn($dependOn)
+    public function setServicevente($servicevente)
     {
-        $this->dependOn = $dependOn;
+        $this->servicevente = $servicevente;
 
         return $this;
     }
 
     /**
-     * Get dependOn
+     * Get servicevente
      *
-     * @return integer
+     * @return string
      */
-    public function getDependOn()
+    public function getServicevente()
     {
-        return $this->dependOn;
+        return $this->servicevente;
     }
 
     /**
@@ -138,27 +145,27 @@ class Ventes
     }
 
     /**
-     * Set dateVente
+     * Set dependOn
      *
-     * @param \DateTime $dateVente
+     * @param integer $dependOn
      *
      * @return Ventes
      */
-    public function setDateVente($dateVente)
+    public function setDependOn($dependOn)
     {
-        $this->dateVente = $dateVente;
+        $this->dependOn = $dependOn;
 
         return $this;
     }
 
     /**
-     * Get dateVente
+     * Get dependOn
      *
-     * @return \DateTime
+     * @return integer
      */
-    public function getDateVente()
+    public function getDependOn()
     {
-        return $this->dateVente;
+        return $this->dependOn;
     }
 
     /**
@@ -183,6 +190,30 @@ class Ventes
     public function getInfovente()
     {
         return $this->infovente;
+    }
+
+    /**
+     * Set dateVente
+     *
+     * @param \DateTime $dateVente
+     *
+     * @return Ventes
+     */
+    public function setDateVente($dateVente)
+    {
+        $this->dateVente = $dateVente;
+
+        return $this;
+    }
+
+    /**
+     * Get dateVente
+     *
+     * @return \DateTime
+     */
+    public function getDateVente()
+    {
+        return $this->dateVente;
     }
 
     /**
