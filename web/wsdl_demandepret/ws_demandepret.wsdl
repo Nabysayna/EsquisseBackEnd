@@ -63,7 +63,7 @@
 </binding>
 <service name="demandepret">
 <port name="demandepretPort" binding="tns:demandepretBinding">
-<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/demandepret"/>
+<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/demandepret"/>
 </port>
 </service>
 </definitions>
