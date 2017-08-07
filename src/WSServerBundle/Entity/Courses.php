@@ -27,6 +27,20 @@ class Courses
     private $idCmd;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="localisation", type="string", length=255, nullable=false)
+     */
+    private $localisation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="infosup", type="string", length=255, nullable=false)
+     */
+    private $infosup;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_course", type="datetime", nullable=false)
@@ -38,7 +52,14 @@ class Courses
      *
      * @ORM\Column(name="etat", type="integer", nullable=false)
      */
-    private $etat;
+    private $etat = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=false)
+     */
+    private $type;
 
     /**
      * @var integer
@@ -100,6 +121,54 @@ class Courses
     }
 
     /**
+     * Set localisation
+     *
+     * @param string $localisation
+     *
+     * @return Courses
+     */
+    public function setLocalisation($localisation)
+    {
+        $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    /**
+     * Get localisation
+     *
+     * @return string
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * Set infosup
+     *
+     * @param string $infosup
+     *
+     * @return Courses
+     */
+    public function setInfosup($infosup)
+    {
+        $this->infosup = $infosup;
+
+        return $this;
+    }
+
+    /**
+     * Get infosup
+     *
+     * @return string
+     */
+    public function getInfosup()
+    {
+        return $this->infosup;
+    }
+
+    /**
      * Set dateCourse
      *
      * @param \DateTime $dateCourse
@@ -145,6 +214,30 @@ class Courses
     public function getEtat()
     {
         return $this->etat;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return Courses
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**

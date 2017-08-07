@@ -13,20 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Operations
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="idpdv", type="integer", nullable=false)
+     * @ORM\Column(name="date", type="string", length=20, nullable=false)
      */
-    private $idpdv;
+    private $date;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateoperation", type="datetime", nullable=false)
-     */
-    private $dateoperation;
-
-    
     /**
      * @var string
      *
@@ -73,34 +65,28 @@ class Operations
 
 
 
-
-
-    
-
-    
-
     /**
-     * Set idpdv
+     * Set date
      *
-     * @param integer $idpdv
+     * @param string $date
      *
      * @return Operations
      */
-    public function setIdpdv($idpdv)
+    public function setDate($date)
     {
-        $this->idpdv = $idpdv;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Get idpdv
+     * Get date
      *
-     * @return integer
+     * @return string
      */
-    public function getIdpdv()
+    public function getDate()
     {
-        return $this->idpdv;
+        return $this->date;
     }
 
     /**
@@ -231,29 +217,5 @@ class Operations
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set dateoperation
-     *
-     * @param \DateTime $dateoperation
-     *
-     * @return Operations
-     */
-    public function setDateoperation($dateoperation)
-    {
-        $this->dateoperation = $dateoperation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateoperation
-     *
-     * @return \DateTime
-     */
-    public function getDateoperation()
-    {
-        return $this->dateoperation;
     }
 }
