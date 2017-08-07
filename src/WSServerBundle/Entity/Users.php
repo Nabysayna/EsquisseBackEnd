@@ -76,6 +76,13 @@ class Users
     private $dateCreation;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=false)
+     */
+    private $token;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="idsous_zone", type="integer", nullable=true)
@@ -90,11 +97,18 @@ class Users
     private $sousZone;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="idzone", type="integer", nullable=false)
+     */
+    private $idzone;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="token", type="string", length=255, nullable=false)
+     * @ORM\Column(name="zone", type="string", length=50, nullable=false)
      */
-    private $token;
+    private $zone;
 
     /**
      * @var integer
@@ -324,6 +338,30 @@ class Users
     }
 
     /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Users
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
      * Set idsousZone
      *
      * @param integer $idsousZone
@@ -372,27 +410,51 @@ class Users
     }
 
     /**
-     * Set token
+     * Set idzone
      *
-     * @param string $token
+     * @param integer $idzone
      *
      * @return Users
      */
-    public function setToken($token)
+    public function setIdzone($idzone)
     {
-        $this->token = $token;
+        $this->idzone = $idzone;
 
         return $this;
     }
 
     /**
-     * Get token
+     * Get idzone
+     *
+     * @return integer
+     */
+    public function getIdzone()
+    {
+        return $this->idzone;
+    }
+
+    /**
+     * Set zone
+     *
+     * @param string $zone
+     *
+     * @return Users
+     */
+    public function setZone($zone)
+    {
+        $this->zone = $zone;
+
+        return $this;
+    }
+
+    /**
+     * Get zone
      *
      * @return string
      */
-    public function getToken()
+    public function getZone()
     {
-        return $this->token;
+        return $this->zone;
     }
 
     /**
