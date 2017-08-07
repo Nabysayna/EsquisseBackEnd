@@ -6,6 +6,8 @@ use WSServerBundle\Entity\Charges;
 use WSServerBundle\Entity\Reclamations;
 use WSServerBundle\Entity\Ventes;
 use WSServerBundle\Entity\Exploitations;
+use WSServerBundle\Entity\Abonnements;
+use WSServerBundle\Entity\Clients;
 
 
 class GestionreportingService
@@ -124,6 +126,13 @@ class GestionreportingService
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{  
           $service=$this->em->getRepository('WSServerBundle:Services')->findOneBy(array('nom'=>$params->servicevente));
+          if($params->servicevente=='assurance')
+          {
+             $infoassurance=array('servicevente'=>$params->servicevente, 'designation'=>$params->designation);
+             $params->designation=json_decode($params->designation)->desig;
+          }
+           
+
            $designations=json_decode($service->getDesignations());
             foreach ($designations as $dsgn)
              {
@@ -172,11 +181,45 @@ class GestionreportingService
                     $this->em->persist($newExploitation);
 
                   }
+                  if($params->servicevente=='assurance')
+               {
+                  $newAbonnement= new Abonnements();
+                  $newAbonnement->setNomservice('assurance');
+                  $infosup=json_encode( array('type'=>json_decode($infoassurance["designation"])->desig) );
+                  $newAbonnement->setInfosup($infosup);
+                  $newAbonnement->setPrenom(json_decode($infoassurance["designation"])->prenom);
+                  $newAbonnement->setNom(json_decode($infoassurance["designation"])->nom);
+                  $newAbonnement->setTelephone(json_decode($infoassurance["designation"])->telephone);
+                  $newAbonnement->setDateajout( json_decode($infoassurance["designation"])->datedebut );
+                  $newAbonnement->setEcheance( json_decode($infoassurance["designation"])->datefin );
+                  $newAbonnement->setIdUser( $correspSession->getIdUser());
+                  $newAbonnement->setDependsOn( $correspSession->getDependsOn());
+                  $this->em->persist($newAbonnement);
+
+                   $client = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone'=>$newAbonnement->getTelephone()));
+                   if(empty($client))
+                   {
+/*                    $newClient= new Clients();
+                    $newClient->setNom($newAbonnement->getNom());
+                    $newClient->setPrenom($newAbonnement->getPrenom());
+                    $newClient->setTelephone($newAbonnement->getTelephone());
+                    $newClient->setIdUser( $correspSession->getIdUser());
+                     $newClient->setDependsOn( $correspSession->getDependsOn());
+                     $addTime = new \Datetime();
+                     $newClient->setDateAjout($addTime);
+                     $this->em->persist($newClient);
+*/
+                   }
+      
+               }
                $this->em->flush();
 
                return ''. json_encode(array('errorCode' => 1, 'response' => "ok"));
 
+
+
               }
+
      
            }
 
