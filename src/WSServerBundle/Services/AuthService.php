@@ -73,6 +73,11 @@ class AuthService
     {
       $tempRow = $this->em->getRepository('WSServerBundle:Tokentemporaire')->findOneBy(array('tokentemporaire'=>$params->tokentemporaire));
 
+      if (empty($tempRow)) {
+        $reponse = array('prenom' => '', 'token' => '', 'reponse' => false);
+        return ''. json_encode($reponse);
+      }
+
       $dbuser = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('idUser' => $tempRow->getIdUser()));
 
       if (empty($dbuser)) {

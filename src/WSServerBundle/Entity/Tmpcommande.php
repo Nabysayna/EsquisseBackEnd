@@ -62,13 +62,6 @@ class Tmpcommande
     private $mntcmd;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
-     */
-    private $orderedArticles;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id_article", type="integer", nullable=false)
@@ -88,6 +81,13 @@ class Tmpcommande
      * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
      */
     private $pourvoyeur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
+     */
+    private $orderedArticles;
 
     /**
      * @var integer
@@ -269,30 +269,6 @@ class Tmpcommande
     }
 
     /**
-     * Set orderedArticles
-     *
-     * @param string $orderedArticles
-     *
-     * @return Tmpcommande
-     */
-    public function setOrderedArticles($orderedArticles)
-    {
-        $this->orderedArticles = $orderedArticles;
-
-        return $this;
-    }
-
-    /**
-     * Get orderedArticles
-     *
-     * @return string
-     */
-    public function getOrderedArticles()
-    {
-        return $this->orderedArticles;
-    }
-
-    /**
      * Set idArticle
      *
      * @param integer $idArticle
@@ -362,6 +338,30 @@ class Tmpcommande
     public function getPourvoyeur()
     {
         return $this->pourvoyeur;
+    }
+
+    /**
+     * Set orderedArticles
+     *
+     * @param string $orderedArticles
+     *
+     * @return Tmpcommande
+     */
+    public function setOrderedArticles($orderedArticles)
+    {
+        $this->orderedArticles = $orderedArticles;
+
+        return $this;
+    }
+
+    /**
+     * Get orderedArticles
+     *
+     * @return string
+     */
+    public function getOrderedArticles()
+    {
+        return $this->orderedArticles;
     }
 
     /**

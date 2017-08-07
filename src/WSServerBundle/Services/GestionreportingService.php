@@ -8,6 +8,7 @@ use WSServerBundle\Entity\Ventes;
 use WSServerBundle\Entity\Exploitations;
 use WSServerBundle\Entity\Abonnements;
 use WSServerBundle\Entity\Clients;
+use WSServerBundle\Entity\Operations;
 
 
 class GestionreportingService
@@ -28,24 +29,17 @@ class GestionreportingService
 
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
-      else{
-        
-          $gestreport = $this->em->getRepository('WSServerBundle:Operations')->findBy(array('dependsOn' => $correspSession->getIdUser()));
-          
-          $formatted=[];
-          
-        foreach ($gestreport as $gst) {
-            $formatted[] = [
-               'dateoperation' => $gst->getDateoperation()->format('Y-m-d H:i'),
-               'operateur' => $gst->getOperateur(),
-               'traitement' => $gst->getTraitement(),
-               'montant' => $gst->getMontant()
+      else{        
+          $idGerant = $correspSession->getIdUser();
 
-              ];
-
-            
-        }
-         return ''. json_encode($formatted);
+          $queryHisto = $this->em->createQuery("SELECT 
+              o
+              FROM 
+              WSServerBundle\Entity\Operations o 
+              WHERE o.idpdv=:idGerant and o.dateoperation>=:today
+          ")->setParameter('idGerant', $idGerant)->setParameter('today', date('Y-m-d'));
+          $results = $queryHisto->getArrayResult();
+         return json_encode($results);
 
         }
       
@@ -109,6 +103,7 @@ class GestionreportingService
         $newReclamations->setSujet($params->sujet);
         $newReclamations->setNomservice($params->nomservice);
         $newReclamations->setMessage($params->message);
+        $newReclamations->setEtat(0);
         $newReclamations->setDateajout(new \Datetime());
 
         $this->em->persist($newReclamations);
@@ -126,7 +121,7 @@ class GestionreportingService
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{  
           $service=$this->em->getRepository('WSServerBundle:Services')->findOneBy(array('nom'=>$params->servicevente));
-          if($params->servicevente=='assurance')
+          if(strcasecmp($params->servicevente,'assurance')==0 )
           {
              $infoassurance=array('servicevente'=>$params->servicevente, 'designation'=>$params->designation);
              $params->designation=json_decode($params->designation)->desig;
@@ -146,6 +141,8 @@ class GestionreportingService
               }
                   $service->setDesignations(json_encode($designations));
                   $this->em->persist($service);
+                  $today=new \Datetime();
+
                   $newVentes= new Ventes();
                   $newVentes->setDependOn( $correspSession->getDependsOn());
                   $newVentes->setIdClient(0);
@@ -154,10 +151,9 @@ class GestionreportingService
                   $infovente = array('produit' =>$params->designation ,'nbrarticle'=>$params->quantite);
                   $newVentes->setInfovente(json_encode($infovente));
                   $newVentes->setMontant($tempDesignation->prixunitaire*$params->quantite);
-                  $newVentes->setDateVente(new \Datetime());
+                  $newVentes->setDateVente($today);
                   $this->em->persist($newVentes);
-                  $today=new \Datetime();
-                  $exploitation=$this->em->getRepository('WSServerBundle:Exploitations')->findOneBy(array('produit'=>$params->designation, 'date'=>$today));
+                  $exploitation=$this->em->getRepository('WSServerBundle:Exploitations')->findOneBy(array('produit'=>$params->designation, 'dateAjout'=>$today));
                   if(!empty($exploitation))
                   {
                     $exploitation->setVente($exploitation->getVente()+$params->quantite);
@@ -177,11 +173,11 @@ class GestionreportingService
                     $newExploitation->setVente($params->quantite);
                     $newExploitation->setStockfin($newExploitation->getStockini()-$newExploitation->getVente());
                     $newExploitation->setMontant($params->quantite*$tempDesignation->prixunitaire);
-                    $newExploitation->setDate($today);
+                    $newExploitation->setDateAjout($today);
                     $this->em->persist($newExploitation);
 
                   }
-                  if($params->servicevente=='assurance')
+                  if(strcasecmp($params->servicevente,'assurance')==0 )
                {
                   $newAbonnement= new Abonnements();
                   $newAbonnement->setNomservice('assurance');
@@ -190,8 +186,8 @@ class GestionreportingService
                   $newAbonnement->setPrenom(json_decode($infoassurance["designation"])->prenom);
                   $newAbonnement->setNom(json_decode($infoassurance["designation"])->nom);
                   $newAbonnement->setTelephone(json_decode($infoassurance["designation"])->telephone);
-                  $newAbonnement->setDateajout( json_decode($infoassurance["designation"])->datedebut );
-                  $newAbonnement->setEcheance( json_decode($infoassurance["designation"])->datefin );
+                  $newAbonnement->setDateajout( new \Datetime(json_decode($infoassurance["designation"])->datedebut) );
+                  $newAbonnement->setEcheance( new \Datetime(json_decode($infoassurance["designation"])->datefin) );
                   $newAbonnement->setIdUser( $correspSession->getIdUser());
                   $newAbonnement->setDependsOn( $correspSession->getDependsOn());
                   $this->em->persist($newAbonnement);
@@ -199,7 +195,7 @@ class GestionreportingService
                    $client = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone'=>$newAbonnement->getTelephone()));
                    if(empty($client))
                    {
-/*                    $newClient= new Clients();
+                    $newClient= new Clients();
                     $newClient->setNom($newAbonnement->getNom());
                     $newClient->setPrenom($newAbonnement->getPrenom());
                     $newClient->setTelephone($newAbonnement->getTelephone());
@@ -208,7 +204,7 @@ class GestionreportingService
                      $addTime = new \Datetime();
                      $newClient->setDateAjout($addTime);
                      $this->em->persist($newClient);
-*/
+
                    }
       
                }

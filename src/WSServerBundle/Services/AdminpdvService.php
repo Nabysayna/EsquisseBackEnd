@@ -51,7 +51,7 @@ class AdminpdvService
             'pdv' => $value['prenom']." ".$value['nom'],
             'adresse' => $value['adresse'],
             'telephone' => $value['telephone'],
-            'isconnect' => $openSession
+            'isconnect' => !empty($openSession)
           );
         }
         return ''. json_encode( array('errorCode' => 1, 'response' => $datapdv) );

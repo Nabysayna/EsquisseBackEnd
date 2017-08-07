@@ -109,8 +109,8 @@ class ComptapdvService
         foreach ($exploitationvente as $vente) {
             $infovente = json_decode( $vente->getInfovente() );
             $formatted[] = [
-               'service' => $vente->getType(),
-               'libelle' => $infovente->designation,
+               'service' => $vente->getServicevente(),
+               'libelle' => $infovente->produit,
                'montant' => $vente->getMontant(),
                'date' => $vente->getDateVente(),
               ];
@@ -132,7 +132,7 @@ class ComptapdvService
             $infovente = json_decode( $vente->getInfovente() );
             $formatted[] = [
                'idpdv' => $vente->getIdUser(),
-               'designation' => $infovente->designation,
+               'designation' => $infovente->produit,
                'stocki' => $infovente->stocki,
                'vente' => $infovente->stockvente,
                'stockf' => $infovente->stocki - $infovente->stockvente,
@@ -150,7 +150,7 @@ class ComptapdvService
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
       else{      
-        $query = $this->em->createQuery("SELECT serv.id AS idservice, serv.nom AS services, serv.designations AS design FROM WSServerBundle\Entity\Services serv WHERE serv.idadminpdv=:idadmin")->setParameter('idadmin', $correspSession->getIdUser());
+        $query = $this->em->createQuery("SELECT serv.id AS idservice, serv.nom AS services, serv.designations AS design FROM WSServerBundle\Entity\Services serv WHERE serv.idpdv=:idpdv")->setParameter('idpdv', $params->idpdv);
         $results = $query->getArrayResult();
         return ''. json_encode(array('errorCode' => 1, 'response' => $results));
       }

@@ -35,11 +35,6 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="orderedArticles" type="string" column="ordered_articles" length="5000" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
     <field name="idArticle" type="integer" column="id_article" nullable="false">
       <options>
         <option name="unsigned"/>
@@ -53,6 +48,11 @@
     <field name="pourvoyeur" type="integer" column="pourvoyeur" nullable="false">
       <options>
         <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="orderedArticles" type="string" column="ordered_articles" length="5000" nullable="false">
+      <options>
+        <option name="fixed"/>
       </options>
     </field>
   </entity>

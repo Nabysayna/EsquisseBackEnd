@@ -15,13 +15,6 @@ class Operations
     /**
      * @var string
      *
-     * @ORM\Column(name="date", type="string", length=20, nullable=false)
-     */
-    private $date;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="operateur", type="string", length=20, nullable=false)
      */
     private $operateur;
@@ -55,6 +48,20 @@ class Operations
     private $montant;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateoperation", type="datetime", nullable=true)
+     */
+    private $dateoperation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idpdv", type="integer", nullable=false)
+     */
+    private $idpdv;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -64,30 +71,6 @@ class Operations
     private $id;
 
 
-
-    /**
-     * Set date
-     *
-     * @param string $date
-     *
-     * @return Operations
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return string
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
 
     /**
      * Set operateur
@@ -207,6 +190,54 @@ class Operations
     public function getMontant()
     {
         return $this->montant;
+    }
+
+    /**
+     * Set dateoperation
+     *
+     * @param \DateTime $dateoperation
+     *
+     * @return Operations
+     */
+    public function setDateoperation($dateoperation)
+    {
+        $this->dateoperation = $dateoperation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateoperation
+     *
+     * @return \DateTime
+     */
+    public function getDateoperation()
+    {
+        return $this->dateoperation;
+    }
+
+    /**
+     * Set idpdv
+     *
+     * @param integer $idpdv
+     *
+     * @return Operations
+     */
+    public function setIdpdv($idpdv)
+    {
+        $this->idpdv = $idpdv;
+
+        return $this;
+    }
+
+    /**
+     * Get idpdv
+     *
+     * @return integer
+     */
+    public function getIdpdv()
+    {
+        return $this->idpdv;
     }
 
     /**

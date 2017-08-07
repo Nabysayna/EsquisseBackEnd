@@ -4,11 +4,6 @@
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="date" type="string" column="date" length="20" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
     <field name="operateur" type="string" column="operateur" length="20" nullable="false">
       <options>
         <option name="fixed"/>
@@ -30,6 +25,12 @@
       </options>
     </field>
     <field name="montant" type="integer" column="montant" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="dateoperation" type="datetime" column="dateoperation" nullable="true"/>
+    <field name="idpdv" type="integer" column="idpdv" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>

@@ -22,6 +22,13 @@ class Reclamations
     /**
      * @var string
      *
+     * @ORM\Column(name="sujet", type="string", length=50, nullable=false)
+     */
+    private $sujet;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nomservice", type="string", length=255, nullable=false)
      */
     private $nomservice;
@@ -80,6 +87,30 @@ class Reclamations
     public function getIduser()
     {
         return $this->iduser;
+    }
+
+    /**
+     * Set sujet
+     *
+     * @param string $sujet
+     *
+     * @return Reclamations
+     */
+    public function setSujet($sujet)
+    {
+        $this->sujet = $sujet;
+
+        return $this;
+    }
+
+    /**
+     * Get sujet
+     *
+     * @return string
+     */
+    public function getSujet()
+    {
+        return $this->sujet;
     }
 
     /**
