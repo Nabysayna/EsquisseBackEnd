@@ -5,19 +5,19 @@ namespace WSServerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Departements
+ * Regions
  *
- * @ORM\Table(name="departements")
+ * @ORM\Table(name="regions")
  * @ORM\Entity
  */
-class Departements
+class Regions
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="departement", type="string", length=50, nullable=false)
+     * @ORM\Column(name="region", type="string", length=50, nullable=false)
      */
-    private $departement;
+    private $region;
 
     /**
      * @var integer
@@ -34,18 +34,25 @@ class Departements
     private $longitude;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=10, nullable=false)
+     */
+    private $code;
+
+    /**
      * @var integer
      *
-     * @ORM\Column(name="idregion", type="integer", nullable=false)
+     * @ORM\Column(name="idpays", type="integer", nullable=false)
      */
-    private $idregion;
+    private $idpays;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=50, nullable=false)
+     * @ORM\Column(name="pays", type="string", length=50, nullable=false)
      */
-    private $region;
+    private $pays;
 
     /**
      * @var integer
@@ -59,27 +66,27 @@ class Departements
 
 
     /**
-     * Set departement
+     * Set region
      *
-     * @param string $departement
+     * @param string $region
      *
-     * @return Departements
+     * @return Regions
      */
-    public function setDepartement($departement)
+    public function setRegion($region)
     {
-        $this->departement = $departement;
+        $this->region = $region;
 
         return $this;
     }
 
     /**
-     * Get departement
+     * Get region
      *
      * @return string
      */
-    public function getDepartement()
+    public function getRegion()
     {
-        return $this->departement;
+        return $this->region;
     }
 
     /**
@@ -87,7 +94,7 @@ class Departements
      *
      * @param integer $latitude
      *
-     * @return Departements
+     * @return Regions
      */
     public function setLatitude($latitude)
     {
@@ -111,7 +118,7 @@ class Departements
      *
      * @param integer $longitude
      *
-     * @return Departements
+     * @return Regions
      */
     public function setLongitude($longitude)
     {
@@ -131,51 +138,75 @@ class Departements
     }
 
     /**
-     * Set idregion
+     * Set code
      *
-     * @param integer $idregion
+     * @param string $code
      *
-     * @return Departements
+     * @return Regions
      */
-    public function setIdregion($idregion)
+    public function setCode($code)
     {
-        $this->idregion = $idregion;
+        $this->code = $code;
 
         return $this;
     }
 
     /**
-     * Get idregion
-     *
-     * @return integer
-     */
-    public function getIdregion()
-    {
-        return $this->idregion;
-    }
-
-    /**
-     * Set region
-     *
-     * @param string $region
-     *
-     * @return Departements
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
-    /**
-     * Get region
+     * Get code
      *
      * @return string
      */
-    public function getRegion()
+    public function getCode()
     {
-        return $this->region;
+        return $this->code;
+    }
+
+    /**
+     * Set idpays
+     *
+     * @param integer $idpays
+     *
+     * @return Regions
+     */
+    public function setIdpays($idpays)
+    {
+        $this->idpays = $idpays;
+
+        return $this;
+    }
+
+    /**
+     * Get idpays
+     *
+     * @return integer
+     */
+    public function getIdpays()
+    {
+        return $this->idpays;
+    }
+
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     *
+     * @return Regions
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
     }
 
     /**

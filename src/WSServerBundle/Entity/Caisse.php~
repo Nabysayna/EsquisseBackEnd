@@ -5,12 +5,12 @@ namespace WSServerBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Charge
+ * Caisse
  *
- * @ORM\Table(name="charge")
+ * @ORM\Table(name="caisse")
  * @ORM\Entity
  */
-class Charge
+class Caisse
 {
     /**
      * @var integer
@@ -27,18 +27,18 @@ class Charge
     private $idadminpdv;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="libelle", type="string", length=50, nullable=false)
+     * @ORM\Column(name="solde_ouvert", type="bigint", nullable=false)
      */
-    private $libelle;
+    private $soldeOuvert;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="montant", type="bigint", nullable=false)
+     * @ORM\Column(name="solde_fermet", type="bigint", nullable=false)
      */
-    private $montant;
+    private $soldeFermet;
 
     /**
      * @var integer
@@ -56,7 +56,7 @@ class Charge
      *
      * @param integer $idgerantpdv
      *
-     * @return Charge
+     * @return Caisse
      */
     public function setIdgerantpdv($idgerantpdv)
     {
@@ -80,7 +80,7 @@ class Charge
      *
      * @param integer $idadminpdv
      *
-     * @return Charge
+     * @return Caisse
      */
     public function setIdadminpdv($idadminpdv)
     {
@@ -100,51 +100,51 @@ class Charge
     }
 
     /**
-     * Set libelle
+     * Set soldeOuvert
      *
-     * @param string $libelle
+     * @param integer $soldeOuvert
      *
-     * @return Charge
+     * @return Caisse
      */
-    public function setLibelle($libelle)
+    public function setSoldeOuvert($soldeOuvert)
     {
-        $this->libelle = $libelle;
+        $this->soldeOuvert = $soldeOuvert;
 
         return $this;
     }
 
     /**
-     * Get libelle
-     *
-     * @return string
-     */
-    public function getLibelle()
-    {
-        return $this->libelle;
-    }
-
-    /**
-     * Set montant
-     *
-     * @param integer $montant
-     *
-     * @return Charge
-     */
-    public function setMontant($montant)
-    {
-        $this->montant = $montant;
-
-        return $this;
-    }
-
-    /**
-     * Get montant
+     * Get soldeOuvert
      *
      * @return integer
      */
-    public function getMontant()
+    public function getSoldeOuvert()
     {
-        return $this->montant;
+        return $this->soldeOuvert;
+    }
+
+    /**
+     * Set soldeFermet
+     *
+     * @param integer $soldeFermet
+     *
+     * @return Caisse
+     */
+    public function setSoldeFermet($soldeFermet)
+    {
+        $this->soldeFermet = $soldeFermet;
+
+        return $this;
+    }
+
+    /**
+     * Get soldeFermet
+     *
+     * @return integer
+     */
+    public function getSoldeFermet()
+    {
+        return $this->soldeFermet;
     }
 
     /**
