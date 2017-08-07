@@ -251,7 +251,7 @@
 </binding>
 <service name="jonijoni">
 <port name="jonijoniPort" binding="tns:jonijoniBinding">
-<soap:address location="http://localhost:8888/EsquisseBackEnd/web/app_dev.php/invest/jonijoni"/>
+<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/jonijoni"/>
 </port>
 </service>
 </definitions>
