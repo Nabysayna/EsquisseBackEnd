@@ -7,7 +7,6 @@ use WSServerBundle\Entity\Tnt;
 use WSServerBundle\Entity\Authorizedsessions;
 
 
-
 class TntService
 {
     private $em;
