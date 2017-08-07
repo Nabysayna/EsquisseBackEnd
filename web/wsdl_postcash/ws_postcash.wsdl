@@ -695,7 +695,7 @@
 </binding>
 <service name="postcash">
 <port name="postcashPort" binding="tns:postcashBinding">
-<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/postcash"/>
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/postcash"/>
 </port>
 </service>
 </definitions>

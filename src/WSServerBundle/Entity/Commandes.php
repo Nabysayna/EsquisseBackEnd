@@ -29,21 +29,21 @@ class Commandes
     /**
      * @var integer
      *
-     * @ORM\Column(name="fourni", type="integer", nullable=false)
+     * @ORM\Column(name="fourni", type="integer", nullable=true, options={"default" : 0})
      */
     private $fourni;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="livre", type="integer", nullable=false)
+     * @ORM\Column(name="livre", type="integer", nullable=true, options={"default" : 0})
      */
     private $livre;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="recu", type="integer", nullable=false)
+     * @ORM\Column(name="recu", type="integer", nullable=true, options={"default" : 0})
      */
     private $recu;
 

@@ -40,36 +40,71 @@ class EcommerceService
     
     public function ajoutcommande($params)
     {
-        $commande = new Commandes();
-        $commande->setIdArticle($params->id_article);
-        $commande->setCommanditaire( $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token' => $params->token))->getIdUser() );
-        $articleCmd = $this->em->getRepository('WSServerBundle:Articles')->findOneBy(array('id' => $params->id_article)) ;
-        $commande->setPourvoyeur( $articleCmd->getIdUser() );
-        $commande->setQuantite($params->quantite);
-        $commande->setFullname($params->prenomclient." ".$params->nomclient);  
-        $commande->setTel($params->telclient);
-        $commande->setFourni(0);
-        $commande->setLivre(0);
-        $commande->setRecu(0);
-        $commande->setDateCommande(new \Datetime());
 
-        $articleCmd->setStock($articleCmd->getStock()-$params->quantite) ;
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{      
+        $existclient = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone'=>$params->telephoneclient));
+        $currentUser = $this->em->getRepository('WSServerBundle:Users')->findOneBy(array('idUser'=>$correspSession->getIdUser() ) );
 
-        $rowClient = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone' => $params->telclient));
+        $codepayement = time();
+        if(empty($existclient)){
+          $newclient = new Clients();
+          $newclient->setPrenom($params->prenomclient);
+          $newclient->setNom($params->nomclient);
+          $newclient->setFullname($params->prenomclient." ".$params->nomclient);
+          $newclient->setTelephone($params->telephoneclient);
+          $newclient->setEmail($params->emailclient);
+          $addTime = new \Datetime();
+          $newclient->setDateAjout($addTime);
+          $this->em->persist($newclient);
+          $this->em->flush();
+          
+          $commande = new Commandes();
+          $addTime = new \Datetime();
+          $commande->setDateCommande($addTime);
+          $commande->setIdclient($newclient->getId());
+          $commande->setPrenomclient($params->prenomclient);
+          $commande->setNomclient($params->nomclient);
+          $commande->setTelephoneclient($params->telephoneclient);
+          $commande->setCodepayement($codepayement);
+          $commande->setMontantcommande($params->montant);
+          $commande->setOrderedArticles($params->orderedarticles);
 
-        if (empty($rowClient)){
-          $client = new Clients();
-          $client->setPrenom($params->prenomclient);  
-          $client->setNom($params->nomclient);  
-          $client->setTelephone($params->telclient);
-          $this->em->persist($client);
+          $pointderecuperation = array( "address"=>$currentUser->getAdresse(),"souszone"=>$currentUser->getSousZone(),"zone"=>$currentUser->getZone() ) ;
+          $commande->setPointderecuperation( json_encode($pointderecuperation) );
+          $commande->setDependsOn($correspSession->getDependsOn());
+          $commande->setCommanditaire($correspSession->getIdUser());
+          
+          $this->em->persist($commande);
+          $this->em->flush();
         }
+        else{      
+          $commande = new Commandes();
+          $addTime = new \Datetime();
+          $commande->setDateCommande($addTime);
+          $commande->setIdclient($existclient->getId());
+          $commande->setPrenomclient($params->prenomclient);
+          $commande->setNomclient($params->nomclient);
+          $commande->setTelephoneclient($params->telephoneclient);
+          $commande->setCodepayement($codepayement);
+          $commande->setMontantcommande($params->montant);
+          $commande->setOrderedArticles($params->orderedarticles);
 
-        $this->em->persist($commande);
-        $this->em->persist($articleCmd);
-        $this->em->flush();
+          $pointderecuperation = array( "address"=>$currentUser->getAdresse(),"souszone"=>$currentUser->getSousZone(),"zone"=>$currentUser->getZone() ) ;
+          $commande->setPointderecuperation( json_encode($pointderecuperation) );
+          $commande->setDependsOn($correspSession->getDependsOn());
+          $commande->setCommanditaire($correspSession->getIdUser());
+          
+          $this->em->persist($commande);
+          $this->em->flush();
 
-        return 'ok';
+        }
+        
+        // $sendMail = $this->mailservice->alerttoclientsite($params->emailclient, "votre code de paiement", "Veuillez utiliser ce code ". $codepayement ." pour le paiement de la commande ".$params->designation);
+        return ''. json_encode( array('errorCode' => 1, 'response' => 'ok') );
+      }
     }
     
     public function ajoutvente($params)

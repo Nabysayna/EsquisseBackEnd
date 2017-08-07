@@ -99,7 +99,7 @@
 </binding>
 <service name="commercial">
 <port name="commercialPort" binding="tns:commercialBinding">
-<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/commercial"/>
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/commercial"/>
 </port>
 </service>
 </definitions>

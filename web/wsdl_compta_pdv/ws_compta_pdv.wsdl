@@ -561,7 +561,7 @@
 </binding>
 <service name="comptapdv">
 <port name="comptapdvPort" binding="tns:comptapdvBinding">
-<soap:address location="http://localhost/EsquisseBackEnd/web/app_dev.php/invest/comptapdv"/>
+<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/app_dev.php/invest/comptapdv"/>
 </port>
 </service>
 </definitions>
