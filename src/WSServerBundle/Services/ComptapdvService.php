@@ -222,71 +222,57 @@ class ComptapdvService
       }
     }
 
-    public function exploitation($params) {  
-      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-      if(empty($correspSession))
-        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
-      else{    
-        $formatted = array();
-        $exploitationvente = null;
-        if ($params->idpdv == -1){
-          $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('dependsOn' => $correspSession->getIdUser()));        
-        }
-        else{
-          $exploitationvente = $this->em->getRepository('WSServerBundle:Exploitations')->findBy(array('idUser' => $params->idpdv, 'dependsOn' => $correspSession->getIdUser())); 
-        }
-        if($params->type == "jour"){
-          foreach ($exploitationvente as $vente) {
-            if($params->infotype == $vente->getDateAjout()->format('Y-m-d')){
-              $formatted[] = [
-               'idpdv' => $vente->getIdUser(),
-               'designation' => $vente->getProduit(),
-               'stocki' => $vente->getStockini(),
-               'vente' => $vente->getVente(),
-               'stockf' => $vente->getStockfin(),
-               'mnt' => $vente->getMontant(),
-               'dateajout' => $vente->getDateAjout(),
-              ];
+    public function exploitation($params) {  
+          $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+          if(empty($correspSession))
+            return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+          else{    
+            $wheredate = null;
+            if($params->type == "jour"){
+              $wheredate = "'".$params->infotype."' and '".$params->infotype." 23:59'";
+            }
+            if($params->type == "annee"){
+              $wheredate = "'".$params->infotype."-01-01' and '".$params->infotype."-12-31 23:59'";
+            }
+            if($params->type == "intervalle"){
+              $tabintervalle = explode (" ", $params->infotype);
+              $wheredate = "'".$tabintervalle[0]."' and '".$tabintervalle[1]." 23:59'";
+            }
+            if ($params->idpdv == -1){
+              $query = $this->em->createQuery("SELECT 
+                exploit.produit AS designation,
+                exploit.stockini AS stocki,
+                exploit.vente AS vente,
+                exploit.stockfin AS stockf,
+                exploit.montant AS mnt,
+                exploit.dateAjout AS dateajout
+                FROM WSServerBundle\Entity\Exploitations exploit 
+                WHERE exploit.dependsOn=:iddepends and exploit.dateAjout between ".$wheredate."
+                ORDER BY dateajout DESC, mnt DESC
+              ")->setParameter('iddepends',$correspSession->getIdUser());
+              $results = $query->getArrayResult();
+              return ''. json_encode(array('errorCode' => 1, 'response' => $results));
+            }
+            else{
+              $query = $this->em->createQuery("SELECT 
+                exploit.produit AS designation,
+                exploit.stockini AS stocki,
+                exploit.vente AS vente,
+                exploit.stockfin AS stockf,
+                exploit.montant AS mnt,
+                exploit.dateAjout AS dateajout
+                FROM WSServerBundle\Entity\Exploitations exploit 
+                WHERE exploit.idUser=:iddepends and exploit.dateAjout between ".$wheredate."
+                ORDER BY dateajout DESC, mnt DESC
+              ")->setParameter('iddepends',$params->idpdv);
+              $results = $query->getArrayResult();
+              return ''. json_encode(array('errorCode' => 1, 'response' => $results));
             }
           }
-          return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
         }
-        if($params->type == "annee"){
-          foreach ($exploitationvente as $vente) {
-            if($params->infotype == $vente->getDateAjout()->format('Y')){
-              $formatted[] = [
-               'idpdv' => $vente->getIdUser(),
-               'designation' => $vente->getProduit(),
-               'stocki' => $vente->getStockini(),
-               'vente' => $vente->getVente(),
-               'stockf' => $vente->getStockfin(),
-               'mnt' => $vente->getMontant(),
-               'dateajout' => $vente->getDateAjout(),
-              ];
-            }
-          }
-          return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
-        }
-        if($params->type == "intervalle"){
-          $tabintervalle = explode (" ", $params->infotype);
-          foreach ($exploitationvente as $vente) {
-            if( $vente->getDateAjout()->format('Y-m-d') >= $tabintervalle[0] && $vente->getDateAjout()->format('Y-m-d') <= $tabintervalle[1] ){
-              $formatted[] = [
-               'idpdv' => $vente->getIdUser(),
-               'designation' => $vente->getProduit(),
-               'stocki' => $vente->getStockini(),
-               'vente' => $vente->getVente(),
-               'stockf' => $vente->getStockfin(),
-               'mnt' => $vente->getMontant(),
-               'dateajout' => $vente->getDateAjout(),
-              ];
-            }
-          }
-          return ''. json_encode(array('errorCode' => 1, 'response' => $formatted));
-        }
-      }
-    }
+
 
     public function totaloperationparapi($params) {   
       $reponse = array(
