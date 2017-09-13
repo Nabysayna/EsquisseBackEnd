@@ -62,27 +62,6 @@ class Tmpcommande
     private $mntcmd;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_article", type="integer", nullable=false)
-     */
-    private $idArticle;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="qte", type="integer", nullable=false)
-     */
-    private $qte;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
-     */
-    private $pourvoyeur;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)
@@ -266,78 +245,6 @@ class Tmpcommande
     public function getMntcmd()
     {
         return $this->mntcmd;
-    }
-
-    /**
-     * Set idArticle
-     *
-     * @param integer $idArticle
-     *
-     * @return Tmpcommande
-     */
-    public function setIdArticle($idArticle)
-    {
-        $this->idArticle = $idArticle;
-
-        return $this;
-    }
-
-    /**
-     * Get idArticle
-     *
-     * @return integer
-     */
-    public function getIdArticle()
-    {
-        return $this->idArticle;
-    }
-
-    /**
-     * Set qte
-     *
-     * @param integer $qte
-     *
-     * @return Tmpcommande
-     */
-    public function setQte($qte)
-    {
-        $this->qte = $qte;
-
-        return $this;
-    }
-
-    /**
-     * Get qte
-     *
-     * @return integer
-     */
-    public function getQte()
-    {
-        return $this->qte;
-    }
-
-    /**
-     * Set pourvoyeur
-     *
-     * @param integer $pourvoyeur
-     *
-     * @return Tmpcommande
-     */
-    public function setPourvoyeur($pourvoyeur)
-    {
-        $this->pourvoyeur = $pourvoyeur;
-
-        return $this;
-    }
-
-    /**
-     * Get pourvoyeur
-     *
-     * @return integer
-     */
-    public function getPourvoyeur()
-    {
-        return $this->pourvoyeur;
     }
 
     /**

@@ -9,26 +9,50 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="commissionsupenvoi" type="smallint" column="commissionsupenvoi" nullable="false">
+    <field name="concedant" type="string" column="concedant" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="libelleoperation" type="string" column="libelleoperation" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="borneinf" type="integer" column="borneinf" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="commissioninfenvoi" type="smallint" column="commissioninfenvoi" nullable="false">
+    <field name="bornesup" type="integer" column="bornesup" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="commissionsupretrait" type="smallint" column="commissionsupretrait" nullable="false">
+    <field name="frais" type="integer" column="frais" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="commissioninfretrait" type="smallint" column="commissioninfretrait" nullable="false">
+    <field name="partconcedant" type="integer" column="partconcedant" nullable="false">
       <options>
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="dateajout" type="datetime" column="dateajout" nullable="false"/>
+    <field name="partdistributeur" type="integer" column="partdistributeur" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="partbbs" type="integer" column="partbbs" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="partpdv" type="integer" column="partpdv" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>

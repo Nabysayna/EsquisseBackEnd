@@ -12,9 +12,12 @@ use WSServerBundle\Entity\Categories;
 class EcommerceService
 {
     private $em;
+    private $smsSender;
 
-  	public function __construct(\Doctrine\ORM\EntityManager $entityManager){
+  	public function __construct(\Doctrine\ORM\EntityManager $entityManager, \WSServerBundle\Services\SmsService $smsSender){
+
   		$this->em = $entityManager;
+      $this->smsSender = $smsSender;
   	}
  
     public function ajoutarticle($params)
@@ -40,7 +43,6 @@ class EcommerceService
     
     public function ajoutcommande($params)
     {
-
       $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
@@ -99,10 +101,13 @@ class EcommerceService
           
           $this->em->persist($commande);
           $this->em->flush();
-
         }
         
-        // $sendMail = $this->mailservice->alerttoclientsite($params->emailclient, "votre code de paiement", "Veuillez utiliser ce code ". $codepayement ." pour le paiement de la commande ".$params->designation);
+        $this->smsSender->sendCode("+221".$params->telephoneclient, "Code De Suivi", $codepayement) ;
+
+/*         $sendMail = $this->mailservice->alerttoclientsite($params->emailclient, "Code de Suivi", "Veuillez utiliser le code ". $codepayement ."  pour suivre votre commande");
+*/
+
         return ''. json_encode( array('errorCode' => 1, 'response' => 'ok') );
       }
     }
@@ -407,7 +412,8 @@ class EcommerceService
                 $commande->setFourni(0);
                 $commande->setLivre(0);
                 $commande->setRecu(0);
-                $commande->setCodepayement(time());
+                $codepayement = time() ;
+                $commande->setCodepayement($codepayement);
                 $commande->setDependsOn( $correspSession->getDependsOn() );
 
                 $pointderecuperation = array( "address"=>$currentUser->getAdresse(),"souszone"=>$currentUser->getSousZone(),"zone"=>$currentUser->getZone() ) ;
@@ -420,6 +426,12 @@ class EcommerceService
                 $this->em->remove($tmpCmd) ;
                 $this->em->flush() ;
 
+                $client = $this->em->getRepository('WSServerBundle:Clients')->findOneBy( array('telephone'=>$tmpCmd->getTelclient() ) );
+
+                $this->smsSender->sendCode("+221".$tmpCmd->getTelclient(), "Code De Suivi", $codepayement) ;
+
+/*                $sendMail = $this->mailservice->alerttoclientsite($client->getEmail(), "Code de Suivi", "Veuillez utiliser le code ***". $codepayement ."*** pour suivre votre commande");
+*/
                 return "ok" ;
             }
           }else

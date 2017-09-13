@@ -20,39 +20,67 @@ class Commissionnements
     private $idapis;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="commissionsupenvoi", type="smallint", nullable=false)
+     * @ORM\Column(name="concedant", type="string", length=50, nullable=false)
      */
-    private $commissionsupenvoi;
+    private $concedant;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelleoperation", type="string", length=50, nullable=false)
+     */
+    private $libelleoperation;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="commissioninfenvoi", type="smallint", nullable=false)
+     * @ORM\Column(name="borneinf", type="integer", nullable=false)
      */
-    private $commissioninfenvoi;
+    private $borneinf;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="commissionsupretrait", type="smallint", nullable=false)
+     * @ORM\Column(name="bornesup", type="integer", nullable=false)
      */
-    private $commissionsupretrait;
+    private $bornesup;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="commissioninfretrait", type="smallint", nullable=false)
+     * @ORM\Column(name="frais", type="integer", nullable=false)
      */
-    private $commissioninfretrait;
+    private $frais;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="dateajout", type="datetime", nullable=false)
+     * @ORM\Column(name="partconcedant", type="integer", nullable=false)
      */
-    private $dateajout;
+    private $partconcedant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="partdistributeur", type="integer", nullable=false)
+     */
+    private $partdistributeur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="partbbs", type="integer", nullable=false)
+     */
+    private $partbbs;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="partpdv", type="integer", nullable=false)
+     */
+    private $partpdv;
 
     /**
      * @var integer
@@ -90,123 +118,219 @@ class Commissionnements
     }
 
     /**
-     * Set commissionsupenvoi
+     * Set concedant
      *
-     * @param integer $commissionsupenvoi
+     * @param string $concedant
      *
      * @return Commissionnements
      */
-    public function setCommissionsupenvoi($commissionsupenvoi)
+    public function setConcedant($concedant)
     {
-        $this->commissionsupenvoi = $commissionsupenvoi;
+        $this->concedant = $concedant;
 
         return $this;
     }
 
     /**
-     * Get commissionsupenvoi
+     * Get concedant
+     *
+     * @return string
+     */
+    public function getConcedant()
+    {
+        return $this->concedant;
+    }
+
+    /**
+     * Set libelleoperation
+     *
+     * @param string $libelleoperation
+     *
+     * @return Commissionnements
+     */
+    public function setLibelleoperation($libelleoperation)
+    {
+        $this->libelleoperation = $libelleoperation;
+
+        return $this;
+    }
+
+    /**
+     * Get libelleoperation
+     *
+     * @return string
+     */
+    public function getLibelleoperation()
+    {
+        return $this->libelleoperation;
+    }
+
+    /**
+     * Set borneinf
+     *
+     * @param integer $borneinf
+     *
+     * @return Commissionnements
+     */
+    public function setBorneinf($borneinf)
+    {
+        $this->borneinf = $borneinf;
+
+        return $this;
+    }
+
+    /**
+     * Get borneinf
      *
      * @return integer
      */
-    public function getCommissionsupenvoi()
+    public function getBorneinf()
     {
-        return $this->commissionsupenvoi;
+        return $this->borneinf;
     }
 
     /**
-     * Set commissioninfenvoi
+     * Set bornesup
      *
-     * @param integer $commissioninfenvoi
+     * @param integer $bornesup
      *
      * @return Commissionnements
      */
-    public function setCommissioninfenvoi($commissioninfenvoi)
+    public function setBornesup($bornesup)
     {
-        $this->commissioninfenvoi = $commissioninfenvoi;
+        $this->bornesup = $bornesup;
 
         return $this;
     }
 
     /**
-     * Get commissioninfenvoi
+     * Get bornesup
      *
      * @return integer
      */
-    public function getCommissioninfenvoi()
+    public function getBornesup()
     {
-        return $this->commissioninfenvoi;
+        return $this->bornesup;
     }
 
     /**
-     * Set commissionsupretrait
+     * Set frais
      *
-     * @param integer $commissionsupretrait
+     * @param integer $frais
      *
      * @return Commissionnements
      */
-    public function setCommissionsupretrait($commissionsupretrait)
+    public function setFrais($frais)
     {
-        $this->commissionsupretrait = $commissionsupretrait;
+        $this->frais = $frais;
 
         return $this;
     }
 
     /**
-     * Get commissionsupretrait
+     * Get frais
      *
      * @return integer
      */
-    public function getCommissionsupretrait()
+    public function getFrais()
     {
-        return $this->commissionsupretrait;
+        return $this->frais;
     }
 
     /**
-     * Set commissioninfretrait
+     * Set partconcedant
      *
-     * @param integer $commissioninfretrait
+     * @param integer $partconcedant
      *
      * @return Commissionnements
      */
-    public function setCommissioninfretrait($commissioninfretrait)
+    public function setPartconcedant($partconcedant)
     {
-        $this->commissioninfretrait = $commissioninfretrait;
+        $this->partconcedant = $partconcedant;
 
         return $this;
     }
 
     /**
-     * Get commissioninfretrait
+     * Get partconcedant
      *
      * @return integer
      */
-    public function getCommissioninfretrait()
+    public function getPartconcedant()
     {
-        return $this->commissioninfretrait;
+        return $this->partconcedant;
     }
 
     /**
-     * Set dateajout
+     * Set partdistributeur
      *
-     * @param \DateTime $dateajout
+     * @param integer $partdistributeur
      *
      * @return Commissionnements
      */
-    public function setDateajout($dateajout)
+    public function setPartdistributeur($partdistributeur)
     {
-        $this->dateajout = $dateajout;
+        $this->partdistributeur = $partdistributeur;
 
         return $this;
     }
 
     /**
-     * Get dateajout
+     * Get partdistributeur
      *
-     * @return \DateTime
+     * @return integer
      */
-    public function getDateajout()
+    public function getPartdistributeur()
     {
-        return $this->dateajout;
+        return $this->partdistributeur;
+    }
+
+    /**
+     * Set partbbs
+     *
+     * @param integer $partbbs
+     *
+     * @return Commissionnements
+     */
+    public function setPartbbs($partbbs)
+    {
+        $this->partbbs = $partbbs;
+
+        return $this;
+    }
+
+    /**
+     * Get partbbs
+     *
+     * @return integer
+     */
+    public function getPartbbs()
+    {
+        return $this->partbbs;
+    }
+
+    /**
+     * Set partpdv
+     *
+     * @param integer $partpdv
+     *
+     * @return Commissionnements
+     */
+    public function setPartpdv($partpdv)
+    {
+        $this->partpdv = $partpdv;
+
+        return $this;
+    }
+
+    /**
+     * Get partpdv
+     *
+     * @return integer
+     */
+    public function getPartpdv()
+    {
+        return $this->partpdv;
     }
 
     /**

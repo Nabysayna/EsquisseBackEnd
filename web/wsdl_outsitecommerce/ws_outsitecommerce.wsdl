@@ -86,6 +86,15 @@
 <message name="listerarticleResponse">
 <part name="return" type="xsd:string"/>
 </message>
+
+<message name="trackingRequest">
+<part name="params" type="xsd:string"/>
+</message>
+<message name="trackingResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
+
 <portType name="ecommerceoutsitePortType">
 <operation name="ajoutcommandeecomoutsite">
 <documentation>Method ECOMMERCEOUTSITE ajoutcommandeecomoutsite</documentation>
@@ -117,7 +126,17 @@
 <input message="tns:listerarticleRequest"/>
 <output message="tns:listerarticleResponse"/>
 </operation>
+
+<operation name="tracking">
+<documentation>Method ECOMMERCEOUTSITE Tracking</documentation>
+<input message="tns:trackingRequest"/>
+<output message="tns:trackingResponse"/>
+</operation>
+
 </portType>
+
+
+
 <binding name="ecommerceoutsiteBinding" type="tns:ecommerceoutsitePortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
 <operation name="ajoutcommandeecomoutsite">
@@ -174,6 +193,18 @@
 <soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
+
+<operation name="tracking">
+<soap:operation soapAction="urn:ecommerceoutsitewsdl#tracking" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:ecommerceoutsitewsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
+
 </binding>
 <service name="ecommerceoutsite">
 <port name="ecommerceoutsitePort" binding="tns:ecommerceoutsiteBinding">

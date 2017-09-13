@@ -20,6 +20,13 @@ class Categories
     private $categorie;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="detailCategorie", type="string", length=225, nullable=false)
+     */
+    private $detailcategorie;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")

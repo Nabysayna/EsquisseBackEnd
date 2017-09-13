@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new WSBundle\WSBundle(),
             new WSServerBundle\WSServerBundle(),
             new WSClientBundle\WSClientBundle(),
+            //new Jhg\NexmoBundle\JhgNexmoBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

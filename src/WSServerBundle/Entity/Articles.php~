@@ -71,7 +71,7 @@ class Articles
     /**
      * @var string
      *
-     * @ORM\Column(name="categorie", type="string", length=50, nullable=false)
+     * @ORM\Column(name="categorie", type="string", length=255, nullable=false)
      */
     private $categorie;
 

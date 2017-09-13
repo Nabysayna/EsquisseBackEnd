@@ -20,39 +20,67 @@ class Commissionnements
     private $idapis;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="commissionsupenvoi", type="smallint", nullable=false)
+     * @ORM\Column(name="concedant", type="string", length=50, nullable=false)
      */
-    private $commissionsupenvoi;
+    private $concedant;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelleoperation", type="string", length=50, nullable=false)
+     */
+    private $libelleoperation;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="commissioninfenvoi", type="smallint", nullable=false)
+     * @ORM\Column(name="borneinf", type="integer", nullable=false)
      */
-    private $commissioninfenvoi;
+    private $borneinf;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="commissionsupretrait", type="smallint", nullable=false)
+     * @ORM\Column(name="bornesup", type="integer", nullable=false)
      */
-    private $commissionsupretrait;
+    private $bornesup;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="commissioninfretrait", type="smallint", nullable=false)
+     * @ORM\Column(name="frais", type="integer", nullable=false)
      */
-    private $commissioninfretrait;
+    private $frais;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="dateajout", type="datetime", nullable=false)
+     * @ORM\Column(name="partconcedant", type="integer", nullable=false)
      */
-    private $dateajout;
+    private $partconcedant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="partdistributeur", type="integer", nullable=false)
+     */
+    private $partdistributeur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="partbbs", type="integer", nullable=false)
+     */
+    private $partbbs;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="partpdv", type="integer", nullable=false)
+     */
+    private $partpdv;
 
     /**
      * @var integer

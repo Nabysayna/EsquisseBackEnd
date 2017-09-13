@@ -62,27 +62,6 @@ class Tmpcommande
     private $mntcmd;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_article", type="integer", nullable=false)
-     */
-    private $idArticle;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="qte", type="integer", nullable=false)
-     */
-    private $qte;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="pourvoyeur", type="integer", nullable=false)
-     */
-    private $pourvoyeur;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="ordered_articles", type="string", length=5000, nullable=false)

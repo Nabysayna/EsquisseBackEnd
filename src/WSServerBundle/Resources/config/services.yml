@@ -15,11 +15,13 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
           - "@mailer"
+          - "@ws_api_service_sms"
 
       test_server_ecommerce:
         class: WSServerBundle\Services\EcommerceService
         arguments:
           - "@doctrine.orm.default_entity_manager"
+          - "@ws_api_service_sms"
 
       test_server_adminpdv:
         class: WSServerBundle\Services\AdminpdvService
@@ -51,6 +53,7 @@ services:
         class: WSServerBundle\Services\CrmService
         arguments:
           - "@doctrine.orm.default_entity_manager"
+          - "@ws_api_service_sms"
 
       test_server_gestionreporting:
         class: WSServerBundle\Services\GestionreportingService
@@ -73,6 +76,7 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
           - "@test_server_mailing"
+          - "@ws_api_service_sms"
 
           
           
@@ -91,6 +95,16 @@ services:
         arguments:
           - "@doctrine.orm.default_entity_manager"
 
+#########################################################
+#########################################################
+#     Service Transversaux
+
+
+      ws_api_service_sms:
+        class: WSServerBundle\Services\SmsService
+        # arguments:
+        #   - "@jhg_nexmo_sms"
+        #   - "%nexmo_delivery_phone_number%"
 
 
 
@@ -122,4 +136,3 @@ services:
           - "@doctrine.orm.default_entity_manager"
           - "@ws_api_client_tnt"
 
-      

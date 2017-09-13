@@ -20,6 +20,13 @@ class Categories
     private $categorie;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="detailCategorie", type="string", length=225, nullable=false)
+     */
+    private $detailcategorie;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -52,6 +59,30 @@ class Categories
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set detailcategorie
+     *
+     * @param string $detailcategorie
+     *
+     * @return Categories
+     */
+    public function setDetailcategorie($detailcategorie)
+    {
+        $this->detailcategorie = $detailcategorie;
+
+        return $this;
+    }
+
+    /**
+     * Get detailcategorie
+     *
+     * @return string
+     */
+    public function getDetailcategorie()
+    {
+        return $this->detailcategorie;
     }
 
     /**

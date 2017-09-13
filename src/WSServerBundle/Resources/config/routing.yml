@@ -83,6 +83,15 @@ ws_server_consulterpret:
     defaults: { _controller: WSServerBundle:Consulterpret:consulterpret }
 
 
+#########################################################
+#########################################################
+#     Services transversaux
+
+ws_server_smstest:
+    path:     /testersms
+    defaults: { _controller: WSServerBundle:TestSmS:index }
+
+
 
 
 #########################################################

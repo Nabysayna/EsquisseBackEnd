@@ -1,0 +1,89 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Commissions
+ *
+ * @ORM\Table(name="commissions")
+ * @ORM\Entity
+ */
+class Commissions
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomservice", type="string", length=100, nullable=true)
+     */
+    private $nomservice;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelleoperation", type="string", length=100, nullable=true)
+     */
+    private $libelleoperation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="montant", type="integer", nullable=true)
+     */
+    private $montant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="frais", type="integer", nullable=true)
+     */
+    private $frais;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="com_concedant", type="integer", nullable=true)
+     */
+    private $comConcedant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="com_distributeur", type="integer", nullable=true)
+     */
+    private $comDistributeur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="commissionbbs", type="integer", nullable=true)
+     */
+    private $commissionbbs;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="commissionpdv", type="integer", nullable=true)
+     */
+    private $commissionpdv;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateoperation", type="datetime", nullable=true)
+     */
+    private $dateoperation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

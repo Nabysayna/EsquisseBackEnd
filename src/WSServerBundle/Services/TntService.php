@@ -5,6 +5,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 use WSServerBundle\Entity\Tnt;
 use WSServerBundle\Entity\Authorizedsessions;
+use WSServerBundle\Entity\Abonnements;
+use WSServerBundle\Entity\Clients;
+use WSServerBundle\Entity\Operations;
 
 
 class TntService
@@ -68,6 +71,34 @@ class TntService
               $this->em->flush();
             
           }
+
+          $newAbonnement= new Abonnements();
+          $newAbonnement->setNomservice('TNT');
+          $infosup=json_encode( array('type'=>json_decode($infoassurance["designation"])->desig) );
+          $newAbonnement->setInfosup($infosup);
+          $newAbonnement->setPrenom(json_decode($infoassurance["designation"])->prenom);
+          $newAbonnement->setNom(json_decode($infoassurance["designation"])->nom);
+          $newAbonnement->setTelephone(json_decode($infoassurance["designation"])->telephone);
+          $newAbonnement->setDateajout( new \Datetime(json_decode($infoassurance["designation"])->datedebut) );
+          $newAbonnement->setEcheance( new \Datetime(json_decode($infoassurance["designation"])->datefin) );
+          $newAbonnement->setIdUser( $correspSession->getIdUser());
+          $newAbonnement->setDependsOn( $correspSession->getDependsOn());
+          $this->em->persist($newAbonnement);
+
+           $client = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone'=>$newAbonnement->getTelephone()));
+           if(empty($client))
+           {
+            $newClient= new Clients();
+            $newClient->setNom($newAbonnement->getNom());
+            $newClient->setPrenom($newAbonnement->getPrenom());
+            $newClient->setTelephone($newAbonnement->getTelephone());
+            $newClient->setIdUser( $correspSession->getIdUser());
+             $newClient->setDependsOn( $correspSession->getDependsOn());
+             $addTime = new \Datetime();
+             $newClient->setDateAjout($addTime);
+             $this->em->persist($newClient);
+
+           }
           return $result;
       }
     }

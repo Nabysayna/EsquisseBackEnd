@@ -52,7 +52,7 @@ class Courses
      *
      * @ORM\Column(name="etat", type="integer", nullable=false)
      */
-    private $etat = '0';
+    private $etat;
 
     /**
      * @var integer

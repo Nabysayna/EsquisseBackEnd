@@ -9,9 +9,11 @@ class AuthService
 {
     private $em;
     private $mailer;
-  	public function __construct(\Doctrine\ORM\EntityManager $entityManager, $mailer){
+    private $smsSender;
+  	public function __construct(\Doctrine\ORM\EntityManager $entityManager, $mailer, \WSServerBundle\Services\SmsService $smsSender){
   		$this->em = $entityManager;
       $this->mailer = $mailer;
+      $this->smsSender = $smsSender;
   	}
 
     public function testDB(){
@@ -35,8 +37,9 @@ class AuthService
       else {
 
           $sessionStart = new \Datetime() ;
+
          // $tokenTemp =  microtime() ;
-           $explodedToken = explode(" ", $dbuser->getToken() ) ;
+/*           $explodedToken = explode(" ", $dbuser->getToken() ) ;
           
            $line = [];
            $colm = [];
@@ -52,6 +55,15 @@ class AuthService
              $chaineAttendue = $chaineAttendue." ".strval($line[$i]+1)."--".strval($colm[$i]+1);
              $tokenTemp = $tokenTemp.$explodedToken[$line[$i]][$colm[$i]] ;
            }
+*/
+
+          $randomDigit = mt_rand(0, 9);
+          $tokenTemp = strval($randomDigit);
+
+           for ($i=1; $i <4 ; $i++) { 
+              $randomDigit = mt_rand(0, 9);
+              $tokenTemp = $tokenTemp.strval($randomDigit) ;
+           }
           
           $newTempRow = new Tokentemporaire();
           $newTempRow->setIdUser($dbuser->getIdUser());
@@ -62,9 +74,9 @@ class AuthService
           $this->em->persist($newTempRow);
           $this->em->flush();
 
-         // $this->envoyerSMS('naby.hikam@gmail.com', $dbuser->getLogin(), strval($tokenTemp) ) ;
+          $this->smsSender->sendCode("+".$dbuser->getTelephone(), "Code d'authentification", $tokenTemp);
 
-          return $chaineAttendue;
+          return "ok";
       }
 
     }

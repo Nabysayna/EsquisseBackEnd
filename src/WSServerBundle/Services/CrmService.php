@@ -8,10 +8,12 @@ class CrmService
 
   private $em;
   private $crmClient;
+  private $smsSender;
 
-  public function __construct(\Doctrine\ORM\EntityManager $entityManager)
+  public function __construct(\Doctrine\ORM\EntityManager $entityManager,\WSServerBundle\Services\SmsService $smsSender)
   {
     $this->em = $entityManager;
+    $this->smsSender = $smsSender;
   }
 
   public function portefeuille($params)
@@ -54,11 +56,10 @@ class CrmService
 
       if(empty($correspSession))
         return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
-      else{
-        
-         $result = $this->em->getRepository('WSServerBundle:Tnt')->createQueryBuilder('t')->where("t.echeance <= :dateDansDix and t.dependsOn =:idUser")->setParameter('dateDansDix', $dateDansDix)->setParameter('idUser',$correspSession->getIdUser())->getQuery()->getArrayResult();
+      else{        
+           $result = $this->em->getRepository('WSServerBundle:Abonnements')->createQueryBuilder('t')->where("t.echeance <= :dateDansDix and t.dependsOn =:idUser")->setParameter('dateDansDix', $dateDansDix)->setParameter('idUser',$correspSession->getIdUser())->getQuery()->getArrayResult();
 
-     		return ''.json_encode($result) ;
+       		return ''.json_encode($result) ;
       }
   }
 
@@ -154,13 +155,24 @@ class CrmService
                'designations' => $srv->getDesignations()
 
               ];
-
-            
         }
          return ''. json_encode($formatted);
-
         }
     }
+
+   public function sendSms($params)
+    {
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
+
+      if(empty($correspSession))
+        return ''. json_encode( array('errorCode' => 0, 'response' => 'Utilisateur non authentifié') ) ;
+      else{        
+        return $this->smsSender->sendCode(explode('#',$params->destinataires), "Code De TEST", $params->messageContain) ;
+        // return 'true';
+        }
+    }
+
+
 }
 
 

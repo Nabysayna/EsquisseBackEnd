@@ -11,12 +11,14 @@ class OutsitEcommerceService
 {
   private $em;
   private $mailservice;
+  private $smsSender;
+
   
-  
-  public function __construct(\Doctrine\ORM\EntityManager $entityManager, \WSServerBundle\Services\MailingService $mailService)
+  public function __construct(\Doctrine\ORM\EntityManager $entityManager, \WSServerBundle\Services\MailingService $mailService, WSServerBundle\Services\SmsService $smsSender)
   {
     $this->em = $entityManager;
     $this->mailservice = $mailService;
+    $this->smsSender = $smsSender;
   }
 
     function listerarticlepdv($params)
@@ -214,7 +216,12 @@ class OutsitEcommerceService
         $this->em->persist($newCommande);
         $this->em->flush();
       }
-      $sendMail = $this->mailservice->alerttoclientsite($params->emailclient, "votre code de paiement", "Veuillez utiliser ce code ". $codepayement ." pour le paiement de la commande ".$params->designation);
+
+/*      $sendMail = $this->mailservice->alerttoclientsite($params->emailclient, "votre code de paiement", "Veuillez utiliser ce code ". $codepayement ." pour le paiement de la commande ".$params->designation);
+*/      
+
+      $this->smsSender->sendCode("+".$params->telephoneclient, "Code De Paiement", $codepayement) ;
+
       return ''. json_encode( array('errorCode' => 1, 'response' => $codepayement) );
     }
 
@@ -225,5 +232,20 @@ class OutsitEcommerceService
       );
       return ''. json_encode($reponse);
     }
+
+    function tracking($params) {
+      $commande = $this->em->getRepository('WSServerBundle:Commandes')->findOneBy(array('codepayement'=>$params));
+
+      if(!empty($commande)){
+          $reponse = array(
+            'fourni' => $commande->getFourni(), 
+            'recu' => $commande->getRecu(),
+            'livre' => $commande->getLivre()
+          );
+          return ''. json_encode($reponse);
+      }
+      return ''. json_encode( array('errorCode' => 1, 'response' => 'bad tracking code') );
+    }
+
         
 }

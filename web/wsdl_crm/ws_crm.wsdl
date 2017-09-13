@@ -4,8 +4,18 @@
 <xsd:schema targetNamespace="urn:crmwsdl">
 <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
 <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+
+<xsd:complexType name="InData">
+<xsd:all>
+<xsd:element name="token" type="xsd:string"/>
+<xsd:element name="destinataires" type="xsd:string"/>
+<xsd:element name="messageContain" type="xsd:string"/>
+</xsd:all>
+</xsd:complexType>
+
 </xsd:schema>
 </types>
+
 <message name="portefeuilleRequest">
 <part name="token" type="xsd:string"/>
 </message>
@@ -43,6 +53,15 @@
 <message name="servicepointResponse">
 <part name="return" type="xsd:string"/>
 </message>
+
+<message name="sendSmsRequest">
+<part name="params" type="tns:InData"/>
+</message>
+<message name="sendSmsResponse">
+<part name="return" type="xsd:string"/>
+</message>
+
+
 <portType name="crmPortType">
 <operation name="portefeuille">
 <documentation>Method CRM portefeuille</documentation>
@@ -74,6 +93,15 @@
 <input message="tns:servicepointRequest"/>
 <output message="tns:servicepointResponse"/>
 </operation>
+
+<operation name="sendSms">
+<documentation>Method CRM sendSms</documentation>
+<input message="tns:sendSmsRequest"/>
+<output message="tns:sendSmsResponse"/>
+</operation>
+
+
+
 </portType>
 <binding name="crmBinding" type="tns:crmPortType">
 <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -131,6 +159,18 @@
 <soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 </output>
 </operation>
+
+<operation name="sendSms">
+<soap:operation soapAction="urn:crmwsdl#sendSms" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:crmwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+
+
 </binding>
 <service name="crm">
 <port name="crmPort" binding="tns:crmBinding">
