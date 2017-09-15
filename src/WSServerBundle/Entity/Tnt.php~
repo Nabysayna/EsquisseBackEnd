@@ -29,7 +29,7 @@ class Tnt
     /**
      * @var string
      *
-     * @ORM\Column(name="infosOperation", type="string", length=255, nullable=false)
+     * @ORM\Column(name="infosOperation", type="string", length=500, nullable=false)
      */
     private $infosoperation;
 
