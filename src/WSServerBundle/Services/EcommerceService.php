@@ -228,17 +228,23 @@ class EcommerceService
     
     public function listervente($params)
     {
-      $dbventes = $this->em->getRepository('WSServerBundle:Ventes')->findBy(array('idUser' => 4));
-        
-      $formatted = [];
-      foreach ($dbventes as $vente) {
-          $formatted[] = [
-             'id' => $vente->getId(),
-             'montant' => $vente->getMontant()
-          ];
-      }
+      $correspSession = $this->em->getRepository('WSServerBundle:Authorizedsessions')->findOneBy(array('token'=>$params->token));
 
-      return ''. json_encode($formatted);
+        if (!empty($correspSession)){
+          $ventesEcom = $this->em->getRepository('WSServerBundle:Ventes')->findBy(array('idUser' =>$correspSession->getIdUser(), 'servicevente' =>'e-commerce' ));
+          $formatted = [];
+          foreach ($ventesEcom as $vente) {
+              $formatted[] = [
+                  'id'=>$vente->getId() ,
+                  'montant'=>$vente->getMontant() ,
+                  'infovente'=>$vente->getInfovente(), 
+                  'datevente'=>$vente->getDateVente()->format('Y-m-d H:i') 
+              ] ;
+          }
+          return ''. json_encode($formatted);
+        }
+        else
+          return json_encode( array('errorCode' => 0, 'message' => 'Aucune vente enregistrée pour ce point') );
     }
 
     public function listerCategorie($params){
