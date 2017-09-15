@@ -135,46 +135,64 @@ class TntService
       if(empty($correspSession))
         return json_encode( array('errorCode' => 0, 'message' => 'Utilisateur non authentifié') ) ;
       else{
+
+        if ($params->typedebouquet==0){
+          $bouquet = 'Sans Abonnement' ;
+        }
+        if ($params->typedebouquet==1){
+          $bouquet = ' + 1 Mois ' ;
+          $params->duree = 1;
+        }
+        if ($params->typedebouquet==3){
+          $bouquet = ' + 3 Mois' ;
+          $params->duree = 3;
+        }
           
-        $paramToRecord = array('prenom' => $params->prenom, 'nom' => $params->nom, 'tel' => $params->tel, 'adresse' => $params->adresse, 'region' => $params->region, 'cni' => $params->cni, 'numerochip' => $params->numerochip, 'numerocarte' => $params->numerocarte, 'typedebouquet' => $params->typedebouquet, 'prix' => $params->prix);
+        $paramToRecord = array('prenom' => $params->prenom, 'nom' => $params->nom, 'tel' => $params->tel, 'adresse' => $params->adresse, 'region' => $params->region, 'cni' => $params->cni, 'numerochip' => $params->numerochip, 'numerocarte' => $params->numerocarte, 'typedebouquet' => $bouquet, 'prix' => $params->prix);
         $tntRecord = new Tnt();
         $tntRecord->setIduser($correspSession->getIdUser());
+        $tntRecord->setDependsOn($correspSession->getDependsOn());
         $tntRecord->setTypeoperation("decodeur");
         $tntRecord->setInfosoperation(json_encode($paramToRecord));
         $tntRecord->setDateOperation(new \Datetime());
         $this->em->persist($tntRecord);
 
-/*        $result = $this->tntClient->ajoutabonnement($params);
+        $params->city = $params->region ;
+        $params->typedebouquet = 1;
+        if ($bouquet != 'Sans Abonnement')
+          $result = $this->tntClient->ajoutabonnement($params);
 
-        $tayy = date("Y-m-d") ;
-        $echeance = date ('Y-m-d', strtotime($tayy.'+'.$params->duree.' month')) ;
-        $newAbonnement= new Abonnements();
-        $newAbonnement->setNomservice('TNT');
-        $infosup=json_encode( array('type'=> 'Maanaa' ) );
-        $newAbonnement->setInfosup($infosup);
-        $newAbonnement->setPrenom($params->prenom);
-        $newAbonnement->setNom($params->nom);
-        $newAbonnement->setTelephone($params->tel);
-        $newAbonnement->setDateajout( new \Datetime($tayy) );
-        $newAbonnement->setEcheance( new \Datetime($echeance) );
-        $newAbonnement->setIdUser( $correspSession->getIdUser());
-        $newAbonnement->setDependsOn( $correspSession->getDependsOn());
-        $this->em->persist($newAbonnement);
+        if(isset($result) && json_decode($result)->response=="ok"){
+            $tayy = date("Y-m-d") ;
+            $echeance = date ('Y-m-d', strtotime($tayy.'+'.$params->duree.' month')) ;
+            $newAbonnement= new Abonnements();
+            $newAbonnement->setNomservice('TNT');
+            $infosup=json_encode( array('type'=> 'Maanaa') );
+            $newAbonnement->setInfosup($infosup);
+            $newAbonnement->setPrenom($params->prenom);
+            $newAbonnement->setNom($params->nom);
+            $newAbonnement->setTelephone($params->tel);
+            $newAbonnement->setDateajout( new \Datetime($tayy) );
+            $newAbonnement->setEcheance( new \Datetime($echeance) );
+            $newAbonnement->setIdUser( $correspSession->getIdUser());
+            $newAbonnement->setDependsOn( $correspSession->getDependsOn());
+            $this->em->persist($newAbonnement);
 
-         $client = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone'=>$newAbonnement->getTelephone()));
-         if(empty($client))
-         {
-            $newClient= new Clients();
-            $newClient->setNom($newAbonnement->getNom());
-            $newClient->setPrenom($newAbonnement->getPrenom());
-            $newClient->setTelephone($newAbonnement->getTelephone());
-            $newClient->setIdUser( $correspSession->getIdUser());
-            $newClient->setDependsOn( $correspSession->getDependsOn());
-            $newClient->setDateAjout( new \Datetime($tayy) );
-            $this->em->persist($newClient);
-         }
+            $client = $this->em->getRepository('WSServerBundle:Clients')->findOneBy(array('telephone'=>$newAbonnement->getTelephone()));
+            if(empty($client))
+            {
+              $newClient= new Clients();
+              $newClient->setNom($newAbonnement->getNom());
+              $newClient->setPrenom($newAbonnement->getPrenom());
+              $newClient->setTelephone($newAbonnement->getTelephone());
+              $newClient->setIdUser( $correspSession->getIdUser());
+              $newClient->setDependsOn( $correspSession->getDependsOn());
+              $newClient->setDateAjout( new \Datetime($tayy) );
+              $this->em->persist($newClient);
+            }
+        }
 
-*/        $this->em->flush();
+        $this->em->flush();
         return 'ok';
       }
     }
