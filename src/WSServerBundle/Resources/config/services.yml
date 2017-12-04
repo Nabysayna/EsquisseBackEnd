@@ -118,6 +118,9 @@ services:
           - "@doctrine.orm.default_entity_manager"
           - "@ws_api_client_postcash"
 
+      test_server_wizall:
+        class: WSServerBundle\Services\WizallService
+        
       test_server_expressocash:
         class: WSServerBundle\Services\ExpressoCashService
         arguments:
