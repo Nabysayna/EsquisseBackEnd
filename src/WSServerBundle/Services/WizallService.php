@@ -15,6 +15,10 @@ class WizallService
   {
     return ''. json_encode( array('errorCode' => 1, 'response' => $params) );
   }
+  function intouchCashout($params)
+  {
+    return ''. json_encode( array('errorCode' => 1, 'response' => $params) );
+  }
 
 
   

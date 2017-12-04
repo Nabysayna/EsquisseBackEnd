@@ -12,7 +12,7 @@ class DefaultController extends Controller
  
     public function indexAction()
     {
-        $server = new \SoapServer('webservice.wsdl');
+       /* $server = new \SoapServer('webservice.wsdl');
         $server->setObject($this->get('hello_service'));
 
         $response = new Response();
@@ -20,9 +20,9 @@ class DefaultController extends Controller
 
         ob_start();
         $server->handle();
-        $response->setContent(ob_get_clean());
-
-        return $response;
+        $response->setContent(ob_get_clean());*/
+        
+        return new JsonResponse(array('prenom'=>'mag'));
     }
 
     public function clientoapAction()

@@ -2,46 +2,72 @@
 <definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:wizallwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:wizallwsdl">
 <types>
 <xsd:schema targetNamespace="urn:wizallwsdl">
-<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
-<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
-<xsd:complexType name="datapostcashin">
-<xsd:all>
-<xsd:element name="token" type="xsd:string"/>
-<xsd:element name="frommsisdn" type="xsd:string"/>
-<xsd:element name="tomsisdn" type="xsd:string"/>
-<xsd:element name="amount" type="xsd:int"/>
-</xsd:all>
-</xsd:complexType>
+	<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+	<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+	<xsd:complexType name="datapostcashin">
+		<xsd:all>
+			<xsd:element name="token" type="xsd:string"/>
+			<xsd:element name="frommsisdn" type="xsd:string"/>
+			<xsd:element name="tomsisdn" type="xsd:string"/>
+			<xsd:element name="amount" type="xsd:int"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="dataintouchcashout">
+		<xsd:all>
+			<xsd:element name="token" type="xsd:string"/>
+			<xsd:element name="agentmsisdn" type="xsd:string"/>
+			<xsd:element name="usermsisdn" type="xsd:string"/>
+			<xsd:element name="amount" type="xsd:int"/>
+		</xsd:all>
+	</xsd:complexType>
 </xsd:schema>
 </types>
 <message name="intouchCashinRequest">
-<part name="params" type="tns:datapostcashin"/>
+   <part name="params" type="tns:datapostcashin"/>
 </message>
-<message name="intouchCashinResponse">
-<part name="return" type="xsd:string"/>
+<message name="intouchResponse">
+   <part name="return" type="xsd:string"/>
 </message>
+<message name="intouchCashoutRequest">
+	<part name="params" type="tns:dataintouchcashout" />
+</message>
+
 <portType name="wizallPortType">
-<operation name="intouchCashin">
-<documentation>Method intouchCashin</documentation>
-<input message="tns:intouchCashinRequest"/>
-<output message="tns:intouchCashinResponse"/>
-</operation>
+	<operation name="intouchCashin">
+		<documentation>Method intouchCashin</documentation>
+		<input message="tns:intouchCashinRequest"/>
+		<output message="tns:intouchResponse"/>
+	</operation>
+	<operation name="intouchCashout">
+		<documentation>Method intouchCashout</documentation>
+		<input message="tns:intouchCashoutRequest"/>
+		<output message="tns:intouchResponse"/>
+	</operation>
 </portType>
 <binding name="wizallBinding" type="tns:wizallPortType">
-<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-<operation name="intouchCashin">
-<soap:operation soapAction="urn:wizallwsdl#intouchCashin" style="rpc"/>
-<input>
-<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
+	<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<operation name="intouchCashin">
+		<soap:operation soapAction="urn:wizallwsdl#intouchCashin" style="rpc"/>
+		<input>
+		<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</input>
+		<output>
+		<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</output>
+	</operation>
+	<operation name="intouchCashout">
+		<soap:operation soapAction="urn:wizallwsdl#intouchCashout" style="rpc"/>
+		<input>
+		<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</input>
+		<output>
+		<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</output>
+	</operation>
 </binding>
 <service name="wizall">
-<port name="wizallPort" binding="tns:wizallBinding">
-<soap:address location="http://localhost/dev-bbsinvest-plateform/EsquisseBackEnd/web/invest/wizall"/>
-</port>
+	<port name="wizallPort" binding="tns:wizallBinding">
+	   <soap:address location="http://localhost/EsquisseBackEnd/web/invest/wizall"/>
+	</port>
 </service>
 </definitions>
