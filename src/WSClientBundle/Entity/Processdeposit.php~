@@ -1,0 +1,82 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Processdeposit
+ *
+ * @ORM\Table(name="processdeposit")
+ * @ORM\Entity
+ */
+class Processdeposit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idadminpdv", type="integer", nullable=false)
+     */
+    private $idadminpdv;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="montantdeposit", type="integer", nullable=false)
+     */
+    private $montantdeposit;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etatdemande", type="smallint", nullable=false)
+     */
+    private $etatdemande;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datedemande", type="datetime", nullable=false)
+     */
+    private $datedemande;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="initiateur", type="string", length=250, nullable=false)
+     */
+    private $initiateur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="agent_recouvreur", type="string", length=250, nullable=false)
+     */
+    private $agentRecouvreur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imageqrcode", type="string", length=250, nullable=false)
+     */
+    private $imageqrcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="agent_positionneur", type="string", length=250, nullable=false)
+     */
+    private $agentPositionneur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

@@ -27,13 +27,6 @@ class Cautions
     private $caution;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
-     */
-    private $dateAjout;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="cautionconsomme", type="integer", nullable=false)
@@ -46,6 +39,13 @@ class Cautions
      * @ORM\Column(name="date_modif", type="datetime", nullable=true)
      */
     private $dateModif;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     */
+    private $dateAjout;
 
     /**
      * @var integer
@@ -107,30 +107,6 @@ class Cautions
     }
 
     /**
-     * Set dateAjout
-     *
-     * @param \DateTime $dateAjout
-     *
-     * @return Cautions
-     */
-    public function setDateAjout($dateAjout)
-    {
-        $this->dateAjout = $dateAjout;
-
-        return $this;
-    }
-
-    /**
-     * Get dateAjout
-     *
-     * @return \DateTime
-     */
-    public function getDateAjout()
-    {
-        return $this->dateAjout;
-    }
-
-    /**
      * Set cautionconsomme
      *
      * @param integer $cautionconsomme
@@ -176,6 +152,30 @@ class Cautions
     public function getDateModif()
     {
         return $this->dateModif;
+    }
+
+    /**
+     * Set dateAjout
+     *
+     * @param \DateTime $dateAjout
+     *
+     * @return Cautions
+     */
+    public function setDateAjout($dateAjout)
+    {
+        $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAjout
+     *
+     * @return \DateTime
+     */
+    public function getDateAjout()
+    {
+        return $this->dateAjout;
     }
 
     /**

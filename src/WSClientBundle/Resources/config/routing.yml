@@ -409,4 +409,19 @@ ws_client_comptapdv_ajoutdemandepret:
 ws_client_comptapdv_consulterpret:
     path:     /consulterpret/consulterpret
     defaults: { _controller: WSClientBundle:Consulterpret:consulterpret }
+ws_client_comptapdv_initier_deposit:
+    path:     /testdeposit/initier
+    defaults: { _controller: WSClientBundle:Adminpdv:initier }
+ws_client_comptapdv_initier_accepter:
+    path:     /testdeposit/accepter
+    defaults: { _controller: WSClientBundle:Adminpdv:accepter }
+ws_client_comptapdv_initier_positioner:
+    path:     /testdeposit/positioner
+    defaults: { _controller: WSClientBundle:Adminpdv:positioner }
+ws_client_comptapdv_initier_valider:
+    path:     /testdeposit/valider
+    defaults: { _controller: WSClientBundle:Adminpdv:valider }
+
+
+
 

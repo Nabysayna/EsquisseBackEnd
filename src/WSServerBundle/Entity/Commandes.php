@@ -31,21 +31,21 @@ class Commandes
      *
      * @ORM\Column(name="fourni", type="integer", nullable=false)
      */
-    private $fourni = '0';
+    private $fourni;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="livre", type="integer", nullable=false)
      */
-    private $livre = '0';
+    private $livre;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="recu", type="integer", nullable=false)
      */
-    private $recu = '0';
+    private $recu;
 
     /**
      * @var integer

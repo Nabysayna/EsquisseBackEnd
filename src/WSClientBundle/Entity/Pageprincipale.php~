@@ -1,0 +1,124 @@
+<?php
+
+namespace WSServerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Pageprincipale
+ *
+ * @ORM\Table(name="pageprincipale")
+ * @ORM\Entity
+ */
+class Pageprincipale
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     */
+    private $idUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="designation", type="string", length=30, nullable=false)
+     */
+    private $designation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="prix", type="integer", nullable=false)
+     */
+    private $prix;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="stock", type="integer", nullable=false)
+     */
+    private $stock;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="img_link", type="string", length=255, nullable=false)
+     */
+    private $imgLink;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_ajout", type="datetime", nullable=false)
+     */
+    private $dateAjout;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idcategorie", type="integer", nullable=true)
+     */
+    private $idcategorie;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categorie", type="string", length=255, nullable=false)
+     */
+    private $categorie;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="avis", type="integer", nullable=true)
+     */
+    private $avis;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbreavis", type="integer", nullable=false)
+     */
+    private $nbreavis;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=300, nullable=false)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="couleur", type="string", length=20, nullable=false)
+     */
+    private $couleur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="taille", type="integer", nullable=false)
+     */
+    private $taille;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+
