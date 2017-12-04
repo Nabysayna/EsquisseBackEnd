@@ -98,6 +98,10 @@ ws_server_smstest:
 #########################################################
 #     API Service Partenaire
 
+ws_server_wizall:
+    path:     /wizall
+    defaults: { _controller: WSServerBundle:Wizall:wizall }
+
 ws_server_postcash:
     path:     /postcash
     defaults: { _controller: WSServerBundle:PostCash:postcash }
