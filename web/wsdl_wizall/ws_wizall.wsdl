@@ -20,28 +20,107 @@
 			<xsd:element name="amount" type="xsd:int"/>
 		</xsd:all>
 	</xsd:complexType>
+	<xsd:complexType name="dataintouchPayerFactureSde">
+		<xsd:all>
+			<xsd:element name="token" type="xsd:string"/>
+			<xsd:element name="montant" type="xsd:int"/>
+			<xsd:element name="reference_client" type="xsd:int"/>
+			<xsd:element name="reference_facture" type="xsd:int"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="dataintouchRecupereFactureSde">
+		<xsd:all>
+			<xsd:element name="token" type="xsd:string"/>
+			<xsd:element name="reference_client" type="xsd:int"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="dataintouchPayerFactureSenelec">
+		<xsd:all>
+			<xsd:element name="token" type="xsd:string"/>
+			<xsd:element name="montant" type="xsd:int"/>
+			<xsd:element name="police" type="xsd:string"/>
+			<xsd:element name="numfacture" type="xsd:string"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="dataintouchRecupereFactureSenelec">
+		<xsd:all>
+			<xsd:element name="token" type="xsd:string"/>
+			<xsd:element name="police" type="xsd:string"/>
+		</xsd:all>
+	</xsd:complexType>
 </xsd:schema>
 </types>
 <message name="intouchCashinRequest">
    <part name="params" type="tns:datapostcashin"/>
 </message>
-<message name="intouchResponse">
+<message name="intouchCashinResponse">
    <part name="return" type="xsd:string"/>
 </message>
+
 <message name="intouchCashoutRequest">
 	<part name="params" type="tns:dataintouchcashout" />
+</message>
+<message name="intouchCashoutResponse">
+   <part name="return" type="xsd:string"/>
+</message>
+
+<message name="intouchPayerFactureSdeRequest">
+	<part name="params" type="tns:dataintouchPayerFactureSde" />
+</message>
+<message name="intouchPayerFactureSdeResponse">
+   <part name="return" type="xsd:string"/>
+</message>
+
+<message name="intouchRecupereFactureSdeRequest">
+	<part name="params" type="tns:dataintouchRecupereFactureSde" />
+</message>
+<message name="intoucRecupereFactureSdehResponse">
+   <part name="return" type="xsd:string"/>
+</message>
+
+<message name="intouchPayerFactureSenelecRequest">
+	<part name="params" type="dataintouchPayerFactureSenelec" />
+</message>
+<message name="intouchPayerFactureSenelecResponse">
+   <part name="return" type="xsd:string"/>
+</message>
+
+<message name="intouchRecupereFactureSenelecRequest">
+	<part name="params" type="dataintouchRecupereFactureSenelec" />
+</message>
+<message name="intouchRecupereFactureSenelecResponse">
+   <part name="return" type="xsd:string"/>
 </message>
 
 <portType name="wizallPortType">
 	<operation name="intouchCashin">
 		<documentation>Method intouchCashin</documentation>
 		<input message="tns:intouchCashinRequest"/>
-		<output message="tns:intouchResponse"/>
+		<output message="tns:intouchCashinResponse"/>
 	</operation>
 	<operation name="intouchCashout">
 		<documentation>Method intouchCashout</documentation>
 		<input message="tns:intouchCashoutRequest"/>
-		<output message="tns:intouchResponse"/>
+		<output message="tns:intouchCashoutRequest"/>
+	</operation>
+	<operation name="intouchPayerFactureSde">
+		<input message="tns:intouchPayerFactureSdeRequest"/>
+		<output message="tns:intouchPayerFactureSdeResponse"/>
+	</operation>
+	<operation name="intouchRecupereFactureSde">
+		
+		<input message="tns:intouchRecupereFactureSdeRequest"/>
+		<output message="tns:intoucRecupereFactureSdehResponse"/>
+	</operation>
+	<operation name="intouchPayerFactureSenelec">
+	
+		<input message="tns:intouchPayerFactureSenelecRequest"/>
+		<output message="tns:intouchPayerFactureSenelecRequest"/>
+	</operation>
+	<operation name="intouchRecupereFactureSenelec">
+		
+		<input message="tns:intouchRecupereFactureSenelecRequest"/>
+		<output message="tns:intouchRecupereFactureSenelecResponse"/>
 	</operation>
 </portType>
 <binding name="wizallBinding" type="tns:wizallPortType">
@@ -49,19 +128,55 @@
 	<operation name="intouchCashin">
 		<soap:operation soapAction="urn:wizallwsdl#intouchCashin" style="rpc"/>
 		<input>
-		<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 		</input>
 		<output>
-		<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 		</output>
 	</operation>
 	<operation name="intouchCashout">
 		<soap:operation soapAction="urn:wizallwsdl#intouchCashout" style="rpc"/>
 		<input>
-		<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 		</input>
 		<output>
-		<soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</output>
+	</operation>
+	<operation name="intouchPayerFactureSde">
+		<soap:operation soapAction="urn:wizallwsdl#intouchPayerFactureSde" style="rpc"/>
+		<input>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</input>
+		<output>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</output>
+	</operation>
+	<operation name="intouchRecupereFactureSde">
+		<soap:operation soapAction="urn:wizallwsdl#intouchRecupereFactureSde" style="rpc"/>
+		<input>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</input>
+		<output>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</output>
+	</operation>
+	<operation name="intouchPayerFactureSenelec">
+		<soap:operation soapAction="urn:wizallwsdl#intouchPayerFactureSenelec" style="rpc"/>
+		<input>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</input>
+		<output>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</output>
+	</operation>
+	<operation name="intouchRecupereFactureSenelec">
+		<soap:operation soapAction="urn:wizallwsdl#intouchRecupereFactureSenelec" style="rpc"/>
+		<input>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</input>
+		<output>
+		  <soap:body use="encoded" namespace="urn:wizallwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
 		</output>
 	</operation>
 </binding>

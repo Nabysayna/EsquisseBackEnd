@@ -14,6 +14,8 @@ class WizallController extends Controller
 
     public function wizallAction()
     {
+		header("Access-Control-Allow-Origin: *"); 
+		header("Access-Control-Allow-Headers: SOAPAction, Content-Type"); 
         $server = new \SoapServer('wsdl_wizall/ws_wizall.wsdl',array('cache_wsdl' => WSDL_CACHE_NONE));
         $server->setObject($this->get('test_server_wizall'));
 
